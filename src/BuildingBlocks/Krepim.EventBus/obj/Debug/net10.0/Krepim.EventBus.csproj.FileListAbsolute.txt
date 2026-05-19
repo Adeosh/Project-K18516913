@@ -1,0 +1,11 @@
+C:\Users\adeos\Source\Repos\Krepim\src\BuildingBlocks\Krepim.EventBus\bin\Debug\net10.0\Krepim.EventBus.deps.json
+C:\Users\adeos\Source\Repos\Krepim\src\BuildingBlocks\Krepim.EventBus\bin\Debug\net10.0\Krepim.EventBus.dll
+C:\Users\adeos\Source\Repos\Krepim\src\BuildingBlocks\Krepim.EventBus\bin\Debug\net10.0\Krepim.EventBus.pdb
+C:\Users\adeos\Source\Repos\Krepim\src\BuildingBlocks\Krepim.EventBus\obj\Debug\net10.0\Krepim.EventBus.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\adeos\Source\Repos\Krepim\src\BuildingBlocks\Krepim.EventBus\obj\Debug\net10.0\Krepim.EventBus.AssemblyInfoInputs.cache
+C:\Users\adeos\Source\Repos\Krepim\src\BuildingBlocks\Krepim.EventBus\obj\Debug\net10.0\Krepim.EventBus.AssemblyInfo.cs
+C:\Users\adeos\Source\Repos\Krepim\src\BuildingBlocks\Krepim.EventBus\obj\Debug\net10.0\Krepim.EventBus.csproj.CoreCompileInputs.cache
+C:\Users\adeos\Source\Repos\Krepim\src\BuildingBlocks\Krepim.EventBus\obj\Debug\net10.0\Krepim.EventBus.dll
+C:\Users\adeos\Source\Repos\Krepim\src\BuildingBlocks\Krepim.EventBus\obj\Debug\net10.0\refint\Krepim.EventBus.dll
+C:\Users\adeos\Source\Repos\Krepim\src\BuildingBlocks\Krepim.EventBus\obj\Debug\net10.0\Krepim.EventBus.pdb
+C:\Users\adeos\Source\Repos\Krepim\src\BuildingBlocks\Krepim.EventBus\obj\Debug\net10.0\ref\Krepim.EventBus.dll

@@ -1,0 +1,12 @@
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.ServiceDefaults\bin\Debug\net10.0\Krepim.Aspire.ServiceDefaults.deps.json
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.ServiceDefaults\bin\Debug\net10.0\Krepim.Aspire.ServiceDefaults.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.ServiceDefaults\bin\Debug\net10.0\Krepim.Aspire.ServiceDefaults.pdb
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.ServiceDefaults\obj\Debug\net10.0\Krepim.Aspire.ServiceDefaults.csproj.AssemblyReference.cache
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.ServiceDefaults\obj\Debug\net10.0\Krepim.Aspire.ServiceDefaults.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.ServiceDefaults\obj\Debug\net10.0\Krepim.Aspire.ServiceDefaults.AssemblyInfoInputs.cache
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.ServiceDefaults\obj\Debug\net10.0\Krepim.Aspire.ServiceDefaults.AssemblyInfo.cs
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.ServiceDefaults\obj\Debug\net10.0\Krepim.Aspire.ServiceDefaults.csproj.CoreCompileInputs.cache
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.ServiceDefaults\obj\Debug\net10.0\Krepim.Aspire.ServiceDefaults.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.ServiceDefaults\obj\Debug\net10.0\refint\Krepim.Aspire.ServiceDefaults.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.ServiceDefaults\obj\Debug\net10.0\Krepim.Aspire.ServiceDefaults.pdb
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.ServiceDefaults\obj\Debug\net10.0\ref\Krepim.Aspire.ServiceDefaults.dll

@@ -1,0 +1,11 @@
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Domain\bin\Debug\net10.0\Krepim.Basket.Domain.deps.json
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Domain\bin\Debug\net10.0\Krepim.Basket.Domain.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Domain\bin\Debug\net10.0\Krepim.Basket.Domain.pdb
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Domain\obj\Debug\net10.0\Krepim.Basket.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Domain\obj\Debug\net10.0\Krepim.Basket.Domain.AssemblyInfoInputs.cache
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Domain\obj\Debug\net10.0\Krepim.Basket.Domain.AssemblyInfo.cs
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Domain\obj\Debug\net10.0\Krepim.Basket.Domain.csproj.CoreCompileInputs.cache
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Domain\obj\Debug\net10.0\Krepim.Basket.Domain.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Domain\obj\Debug\net10.0\refint\Krepim.Basket.Domain.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Domain\obj\Debug\net10.0\Krepim.Basket.Domain.pdb
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Domain\obj\Debug\net10.0\ref\Krepim.Basket.Domain.dll

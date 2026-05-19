@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Krepim.Ordering.Infrastructure\Krepim.Ordering.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\Aspire\Krepim.Aspire.ServiceDefaults\Krepim.Aspire.ServiceDefaults.csproj" />
+  </ItemGroup>
+</Project>

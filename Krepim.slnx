@@ -1,0 +1,103 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Aspire/">
+    <Project Path="src/Aspire/Krepim.Aspire.AppHost/Krepim.Aspire.AppHost.csproj" Id="33527e97-40c0-4b4c-9298-1ffc60859d58" />
+    <Project Path="src/Aspire/Krepim.Aspire.ServiceDefaults/Krepim.Aspire.ServiceDefaults.csproj" Id="e67911d5-5121-4b42-8890-9781d75b4316" />
+  </Folder>
+  <Folder Name="/src/BuildingBlocks/">
+    <Project Path="src/BuildingBlocks/Krepim.EventBus/Krepim.EventBus.csproj" />
+    <Project Path="src/BuildingBlocks/Krepim.SharedKernel/Krepim.SharedKernel.csproj" />
+  </Folder>
+  <Folder Name="/src/Clients/">
+    <Project Path="src/Clients/Krepim.Mobile/Krepim.Mobile.csproj">
+      <Deploy Solution="Debug|*" />
+    </Project>
+    <Project Path="src/Clients/Krepim.Web/krepim.web.client/krepim.web.client.esproj">
+      <Build />
+    </Project>
+    <Project Path="src/Clients/Krepim.Web/Krepim.Web.Server/Krepim.Web.Server.csproj" />
+  </Folder>
+  <Folder Name="/src/Gateways/">
+    <Project Path="src/Gateways/Krepim.ApiGateway/Krepim.ApiGateway.csproj" />
+  </Folder>
+  <Folder Name="/src/Services/" />
+  <Folder Name="/src/Services/Basket/">
+    <Project Path="src/Services/Basket/Krepim.Basket.Api/Krepim.Basket.Api.csproj" />
+    <Project Path="src/Services/Basket/Krepim.Basket.Application/Krepim.Basket.Application.csproj" />
+    <Project Path="src/Services/Basket/Krepim.Basket.Domain/Krepim.Basket.Domain.csproj" />
+    <Project Path="src/Services/Basket/Krepim.Basket.Infrastructure/Krepim.Basket.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Services/Catalog/">
+    <Project Path="src/Services/Catalog/Krepim.Catalog.Api/Krepim.Catalog.Api.csproj" />
+    <Project Path="src/Services/Catalog/Krepim.Catalog.Application/Krepim.Catalog.Application.csproj" />
+    <Project Path="src/Services/Catalog/Krepim.Catalog.Domain/Krepim.Catalog.Domain.csproj" />
+    <Project Path="src/Services/Catalog/Krepim.Catalog.Infrastructure/Krepim.Catalog.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Services/Identity/">
+    <Project Path="src/Services/Identity/Krepim.Identity.Api/Krepim.Identity.Api.csproj" />
+    <Project Path="src/Services/Identity/Krepim.Identity.Application/Krepim.Identity.Application.csproj" />
+    <Project Path="src/Services/Identity/Krepim.Identity.Domain/Krepim.Identity.Domain.csproj" />
+    <Project Path="src/Services/Identity/Krepim.Identity.Infrastructure/Krepim.Identity.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Services/Inventory/">
+    <Project Path="src/Services/Inventory/Krepim.Inventory.Api/Krepim.Inventory.Api.csproj" />
+    <Project Path="src/Services/Inventory/Krepim.Inventory.Application/Krepim.Inventory.Application.csproj" />
+    <Project Path="src/Services/Inventory/Krepim.Inventory.Domain/Krepim.Inventory.Domain.csproj" />
+    <Project Path="src/Services/Inventory/Krepim.Inventory.Infrastructure/Krepim.Inventory.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Services/Ordering/">
+    <Project Path="src/Services/Ordering/Krepim.Ordering.Api/Krepim.Ordering.Api.csproj" />
+    <Project Path="src/Services/Ordering/Krepim.Ordering.Application/Krepim.Ordering.Application.csproj" />
+    <Project Path="src/Services/Ordering/Krepim.Ordering.Domain/Krepim.Ordering.Domain.csproj" />
+    <Project Path="src/Services/Ordering/Krepim.Ordering.Infrastructure/Krepim.Ordering.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Services/Payment/">
+    <Project Path="src/Services/Payment/Krepim.Payment.Api/Krepim.Payment.Api.csproj" />
+    <Project Path="src/Services/Payment/Krepim.Payment.Application/Krepim.Payment.Application.csproj" />
+    <Project Path="src/Services/Payment/Krepim.Payment.Domain/Krepim.Payment.Domain.csproj" />
+    <Project Path="src/Services/Payment/Krepim.Payment.Infrastructure/Krepim.Payment.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/test/" />
+  <Folder Name="/test/ArchitectureTests/">
+    <Project Path="test/ArchitectureTests/Krepim.ArchitectureTests/Krepim.ArchitectureTests.csproj" />
+  </Folder>
+  <Folder Name="/test/BuildingBlocks/">
+    <Project Path="test/BuildingBlocks/Krepim.EventBus.Tests/Krepim.EventBus.Tests.csproj" />
+    <Project Path="test/BuildingBlocks/Krepim.SharedKernel.Tests/Krepim.SharedKernel.Tests.csproj" />
+  </Folder>
+  <Folder Name="/test/Services/" />
+  <Folder Name="/test/Services/Basket/">
+    <Project Path="test/Services/Basket/Krepim.Basket.Application.Tests/Krepim.Basket.Application.Tests.csproj" />
+    <Project Path="test/Services/Basket/Krepim.Basket.Domain.Tests/Krepim.Basket.Domain.Tests.csproj" />
+    <Project Path="test/Services/Basket/Krepim.Basket.IntegrationTests/Krepim.Basket.IntegrationTests.csproj" />
+  </Folder>
+  <Folder Name="/test/Services/Catalog/">
+    <Project Path="test/Services/Catalog/Krepim.Catalog.Application.Tests/Krepim.Catalog.Application.Tests.csproj" />
+    <Project Path="test/Services/Catalog/Krepim.Catalog.Domain.Tests/Krepim.Catalog.Domain.Tests.csproj" />
+    <Project Path="test/Services/Catalog/Krepim.Catalog.IntegrationTests/Krepim.Catalog.IntegrationTests.csproj" />
+  </Folder>
+  <Folder Name="/test/Services/Identity/">
+    <Project Path="test/Services/Identity/Krepim.Identity.Application.Tests/Krepim.Identity.Application.Tests.csproj" />
+    <Project Path="test/Services/Identity/Krepim.Identity.Domain.Tests/Krepim.Identity.Domain.Tests.csproj" />
+    <Project Path="test/Services/Identity/Krepim.Identity.IntegrationTests/Krepim.Identity.IntegrationTests.csproj" />
+  </Folder>
+  <Folder Name="/test/Services/Inventory/">
+    <Project Path="test/Services/Inventory/Krepim.Inventory.Application.Tests/Krepim.Inventory.Application.Tests.csproj" />
+    <Project Path="test/Services/Inventory/Krepim.Inventory.Domain.Tests/Krepim.Inventory.Domain.Tests.csproj" />
+    <Project Path="test/Services/Inventory/Krepim.Inventory.IntegrationTests/Krepim.Inventory.IntegrationTests.csproj" />
+  </Folder>
+  <Folder Name="/test/Services/Ordering/">
+    <Project Path="test/Services/Ordering/Krepim.Ordering.Application.Tests/Krepim.Ordering.Application.Tests.csproj" />
+    <Project Path="test/Services/Ordering/Krepim.Ordering.Domain.Tests/Krepim.Ordering.Domain.Tests.csproj" />
+    <Project Path="test/Services/Ordering/Krepim.Ordering.IntegrationTests/Krepim.Ordering.IntegrationTests.csproj" />
+  </Folder>
+  <Folder Name="/test/Services/Payment/">
+    <Project Path="test/Services/Payment/Krepim.Payment.Application.Tests/Krepim.Payment.Application.Tests.csproj" />
+    <Project Path="test/Services/Payment/Krepim.Payment.Domain.Tests/Krepim.Payment.Domain.Tests.csproj" />
+    <Project Path="test/Services/Payment/Krepim.Payment.IntegrationTests/Krepim.Payment.IntegrationTests.csproj" />
+  </Folder>
+</Solution>

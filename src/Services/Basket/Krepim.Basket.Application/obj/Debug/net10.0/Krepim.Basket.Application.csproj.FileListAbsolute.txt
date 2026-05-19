@@ -1,0 +1,17 @@
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Application\bin\Debug\net10.0\Krepim.Basket.Application.deps.json
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Application\bin\Debug\net10.0\Krepim.Basket.Application.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Application\bin\Debug\net10.0\Krepim.Basket.Application.pdb
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Application\bin\Debug\net10.0\Krepim.Basket.Domain.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Application\bin\Debug\net10.0\Krepim.SharedKernel.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Application\bin\Debug\net10.0\Krepim.Basket.Domain.pdb
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Application\bin\Debug\net10.0\Krepim.SharedKernel.pdb
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Application\obj\Debug\net10.0\Krepim.Basket.Application.csproj.AssemblyReference.cache
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Application\obj\Debug\net10.0\Krepim.Basket.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Application\obj\Debug\net10.0\Krepim.Basket.Application.AssemblyInfoInputs.cache
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Application\obj\Debug\net10.0\Krepim.Basket.Application.AssemblyInfo.cs
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Application\obj\Debug\net10.0\Krepim.Basket.Application.csproj.CoreCompileInputs.cache
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Application\obj\Debug\net10.0\Krepim.B.9ED71324.Up2Date
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Application\obj\Debug\net10.0\Krepim.Basket.Application.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Application\obj\Debug\net10.0\refint\Krepim.Basket.Application.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Application\obj\Debug\net10.0\Krepim.Basket.Application.pdb
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Application\obj\Debug\net10.0\ref\Krepim.Basket.Application.dll
