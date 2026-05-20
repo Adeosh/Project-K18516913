@@ -1,6 +1,8 @@
-﻿namespace Krepim.SharedKernel.Results
+﻿using Krepim.SharedKernel.Results.Interfaces;
+
+namespace Krepim.SharedKernel.Results
 {
-    public readonly struct Result
+    public readonly struct Result : IResult
     {
         public bool IsSuccess { get; }
         public bool IsFailure => !IsSuccess;
@@ -21,7 +23,7 @@
         public static Result Failure(Error error) => new(false, error);
     }
 
-    public readonly struct Result<T>
+    public readonly struct Result<T> : IResult
     {
         public bool IsSuccess { get; }
         public bool IsFailure => !IsSuccess;

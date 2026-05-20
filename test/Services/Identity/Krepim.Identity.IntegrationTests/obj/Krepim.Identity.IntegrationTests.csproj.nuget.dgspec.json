@@ -107,6 +107,7 @@
             "Microsoft.AspNetCore.Diagnostics.Abstractions": "2.3.10",
             "Microsoft.AspNetCore.Http": "2.3.10",
             "Microsoft.AspNetCore.Mvc": "2.3.10",
+            "Microsoft.AspNetCore.Mvc.Testing": "10.0.8",
             "Microsoft.AspNetCore.OpenApi": "10.0.8",
             "Microsoft.EntityFrameworkCore": "10.0.8",
             "Microsoft.EntityFrameworkCore.Design": "10.0.8",
@@ -117,6 +118,7 @@
             "Microsoft.NET.Test.Sdk": "18.5.1",
             "MongoDB.Driver": "3.8.1",
             "Net.Codecrete.QrCodeGenerator": "2.1.0",
+            "NetArchTest.Rules": "1.3.2",
             "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.1",
             "NSubstitute": "5.3.0",
             "OpenTelemetry.Exporter.OpenTelemetryProtocol": "1.15.3",
@@ -638,6 +640,7 @@
             "Microsoft.AspNetCore.Diagnostics.Abstractions": "2.3.10",
             "Microsoft.AspNetCore.Http": "2.3.10",
             "Microsoft.AspNetCore.Mvc": "2.3.10",
+            "Microsoft.AspNetCore.Mvc.Testing": "10.0.8",
             "Microsoft.AspNetCore.OpenApi": "10.0.8",
             "Microsoft.EntityFrameworkCore": "10.0.8",
             "Microsoft.EntityFrameworkCore.Design": "10.0.8",
@@ -648,6 +651,7 @@
             "Microsoft.NET.Test.Sdk": "18.5.1",
             "MongoDB.Driver": "3.8.1",
             "Net.Codecrete.QrCodeGenerator": "2.1.0",
+            "NetArchTest.Rules": "1.3.2",
             "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.1",
             "NSubstitute": "5.3.0",
             "OpenTelemetry.Exporter.OpenTelemetryProtocol": "1.15.3",
@@ -1058,6 +1062,7 @@
             "Microsoft.AspNetCore.Diagnostics.Abstractions": "2.3.10",
             "Microsoft.AspNetCore.Http": "2.3.10",
             "Microsoft.AspNetCore.Mvc": "2.3.10",
+            "Microsoft.AspNetCore.Mvc.Testing": "10.0.8",
             "Microsoft.AspNetCore.OpenApi": "10.0.8",
             "Microsoft.EntityFrameworkCore": "10.0.8",
             "Microsoft.EntityFrameworkCore.Design": "10.0.8",
@@ -1068,6 +1073,7 @@
             "Microsoft.NET.Test.Sdk": "18.5.1",
             "MongoDB.Driver": "3.8.1",
             "Net.Codecrete.QrCodeGenerator": "2.1.0",
+            "NetArchTest.Rules": "1.3.2",
             "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.1",
             "NSubstitute": "5.3.0",
             "OpenTelemetry.Exporter.OpenTelemetryProtocol": "1.15.3",
@@ -1608,6 +1614,7 @@
             "Microsoft.AspNetCore.Diagnostics.Abstractions": "2.3.10",
             "Microsoft.AspNetCore.Http": "2.3.10",
             "Microsoft.AspNetCore.Mvc": "2.3.10",
+            "Microsoft.AspNetCore.Mvc.Testing": "10.0.8",
             "Microsoft.AspNetCore.OpenApi": "10.0.8",
             "Microsoft.EntityFrameworkCore": "10.0.8",
             "Microsoft.EntityFrameworkCore.Design": "10.0.8",
@@ -1618,6 +1625,7 @@
             "Microsoft.NET.Test.Sdk": "18.5.1",
             "MongoDB.Driver": "3.8.1",
             "Net.Codecrete.QrCodeGenerator": "2.1.0",
+            "NetArchTest.Rules": "1.3.2",
             "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.1",
             "NSubstitute": "5.3.0",
             "OpenTelemetry.Exporter.OpenTelemetryProtocol": "1.15.3",
@@ -2171,6 +2179,7 @@
             "Microsoft.AspNetCore.Diagnostics.Abstractions": "2.3.10",
             "Microsoft.AspNetCore.Http": "2.3.10",
             "Microsoft.AspNetCore.Mvc": "2.3.10",
+            "Microsoft.AspNetCore.Mvc.Testing": "10.0.8",
             "Microsoft.AspNetCore.OpenApi": "10.0.8",
             "Microsoft.EntityFrameworkCore": "10.0.8",
             "Microsoft.EntityFrameworkCore.Design": "10.0.8",
@@ -2181,6 +2190,7 @@
             "Microsoft.NET.Test.Sdk": "18.5.1",
             "MongoDB.Driver": "3.8.1",
             "Net.Codecrete.QrCodeGenerator": "2.1.0",
+            "NetArchTest.Rules": "1.3.2",
             "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.1",
             "NSubstitute": "5.3.0",
             "OpenTelemetry.Exporter.OpenTelemetryProtocol": "1.15.3",
@@ -2563,6 +2573,7 @@
             "Microsoft.AspNetCore.Diagnostics.Abstractions": "2.3.10",
             "Microsoft.AspNetCore.Http": "2.3.10",
             "Microsoft.AspNetCore.Mvc": "2.3.10",
+            "Microsoft.AspNetCore.Mvc.Testing": "10.0.8",
             "Microsoft.AspNetCore.OpenApi": "10.0.8",
             "Microsoft.EntityFrameworkCore": "10.0.8",
             "Microsoft.EntityFrameworkCore.Design": "10.0.8",
@@ -2573,6 +2584,7 @@
             "Microsoft.NET.Test.Sdk": "18.5.1",
             "MongoDB.Driver": "3.8.1",
             "Net.Codecrete.QrCodeGenerator": "2.1.0",
+            "NetArchTest.Rules": "1.3.2",
             "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.1",
             "NSubstitute": "5.3.0",
             "OpenTelemetry.Exporter.OpenTelemetryProtocol": "1.15.3",
@@ -3002,6 +3014,7 @@
             "Microsoft.AspNetCore.Diagnostics.Abstractions": "2.3.10",
             "Microsoft.AspNetCore.Http": "2.3.10",
             "Microsoft.AspNetCore.Mvc": "2.3.10",
+            "Microsoft.AspNetCore.Mvc.Testing": "10.0.8",
             "Microsoft.AspNetCore.OpenApi": "10.0.8",
             "Microsoft.EntityFrameworkCore": "10.0.8",
             "Microsoft.EntityFrameworkCore.Design": "10.0.8",
@@ -3012,6 +3025,7 @@
             "Microsoft.NET.Test.Sdk": "18.5.1",
             "MongoDB.Driver": "3.8.1",
             "Net.Codecrete.QrCodeGenerator": "2.1.0",
+            "NetArchTest.Rules": "1.3.2",
             "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.1",
             "NSubstitute": "5.3.0",
             "OpenTelemetry.Exporter.OpenTelemetryProtocol": "1.15.3",
@@ -3378,14 +3392,49 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "dependencies": {
+            "FluentAssertions": {
+              "target": "Package",
+              "version": "[8.10.0, )",
+              "versionCentrallyManaged": true
+            },
+            "Microsoft.AspNetCore.Mvc.Testing": {
+              "target": "Package",
+              "version": "[10.0.8, )",
+              "versionCentrallyManaged": true
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[18.5.1, )",
               "versionCentrallyManaged": true
             },
+            "NSubstitute": {
+              "target": "Package",
+              "version": "[5.3.0, )",
+              "versionCentrallyManaged": true
+            },
             "OpenTelemetry.Exporter.OpenTelemetryProtocol": {
               "target": "Package",
               "version": "[1.15.3, )",
+              "versionCentrallyManaged": true
+            },
+            "Testcontainers": {
+              "target": "Package",
+              "version": "[4.11.0, )",
+              "versionCentrallyManaged": true
+            },
+            "Testcontainers.PostgreSql": {
+              "target": "Package",
+              "version": "[4.11.0, )",
+              "versionCentrallyManaged": true
+            },
+            "Testcontainers.RabbitMq": {
+              "target": "Package",
+              "version": "[4.11.0, )",
+              "versionCentrallyManaged": true
+            },
+            "Testcontainers.Redis": {
+              "target": "Package",
+              "version": "[4.11.0, )",
               "versionCentrallyManaged": true
             },
             "coverlet.collector": {
@@ -3421,6 +3470,7 @@
             "Microsoft.AspNetCore.Diagnostics.Abstractions": "2.3.10",
             "Microsoft.AspNetCore.Http": "2.3.10",
             "Microsoft.AspNetCore.Mvc": "2.3.10",
+            "Microsoft.AspNetCore.Mvc.Testing": "10.0.8",
             "Microsoft.AspNetCore.OpenApi": "10.0.8",
             "Microsoft.EntityFrameworkCore": "10.0.8",
             "Microsoft.EntityFrameworkCore.Design": "10.0.8",
@@ -3431,6 +3481,7 @@
             "Microsoft.NET.Test.Sdk": "18.5.1",
             "MongoDB.Driver": "3.8.1",
             "Net.Codecrete.QrCodeGenerator": "2.1.0",
+            "NetArchTest.Rules": "1.3.2",
             "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.1",
             "NSubstitute": "5.3.0",
             "OpenTelemetry.Exporter.OpenTelemetryProtocol": "1.15.3",

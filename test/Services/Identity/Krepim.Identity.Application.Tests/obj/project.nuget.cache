@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "IqboL5XzR8M=",
+  "dgSpecHash": "tX4DYEBju9A=",
   "success": true,
   "projectFilePath": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\test\\Services\\Identity\\Krepim.Identity.Application.Tests\\Krepim.Identity.Application.Tests.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\adeos\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\coverlet.collector\\10.0.1\\coverlet.collector.10.0.1.nupkg.sha512",
+    "C:\\Users\\adeos\\.nuget\\packages\\fluentassertions\\8.10.0\\fluentassertions.8.10.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\fluentvalidation\\12.1.0\\fluentvalidation.12.1.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\12.1.0\\fluentvalidation.dependencyinjectionextensions.12.1.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\masstransit\\8.5.9\\masstransit.8.5.9.nupkg.sha512",
@@ -29,7 +31,9 @@
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.testplatform.objectmodel\\18.5.1\\microsoft.testplatform.objectmodel.18.5.1.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.testplatform.testhost\\18.5.1\\microsoft.testplatform.testhost.18.5.1.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\adeos\\.nuget\\packages\\nsubstitute\\5.3.0\\nsubstitute.5.3.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\rabbitmq.client\\7.2.1\\rabbitmq.client.7.2.1.nupkg.sha512",
+    "C:\\Users\\adeos\\.nuget\\packages\\system.diagnostics.eventlog\\6.0.0\\system.diagnostics.eventlog.6.0.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\system.threading.ratelimiting\\8.0.0\\system.threading.ratelimiting.8.0.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\xunit\\2.9.2\\xunit.2.9.2.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\xunit.abstractions\\2.0.3\\xunit.abstractions.2.0.3.nupkg.sha512",

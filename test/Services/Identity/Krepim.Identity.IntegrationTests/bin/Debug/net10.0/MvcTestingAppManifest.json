@@ -1,0 +1,9 @@
+{
+  "Krepim.Aspire.ServiceDefaults, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\Aspire\\Krepim.Aspire.ServiceDefaults",
+  "Krepim.EventBus, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\BuildingBlocks\\Krepim.EventBus",
+  "Krepim.Identity.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\Services\\Identity\\Krepim.Identity.Api",
+  "Krepim.Identity.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\Services\\Identity\\Krepim.Identity.Application",
+  "Krepim.Identity.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\Services\\Identity\\Krepim.Identity.Domain",
+  "Krepim.Identity.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\Services\\Identity\\Krepim.Identity.Infrastructure",
+  "Krepim.SharedKernel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\BuildingBlocks\\Krepim.SharedKernel"
+}

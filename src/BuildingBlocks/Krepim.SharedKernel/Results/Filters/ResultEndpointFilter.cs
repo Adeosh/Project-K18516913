@@ -1,5 +1,6 @@
 ﻿using Krepim.SharedKernel.Extensions;
 using Microsoft.AspNetCore.Http;
+using System.Reflection;
 
 namespace Krepim.SharedKernel.Results.Filters
 {
@@ -9,21 +10,20 @@ namespace Krepim.SharedKernel.Results.Filters
         {
             var resultObj = await next(context);
 
-            if (resultObj is Result<object> genericResult)
-            {
-                if (genericResult.IsFailure)
-                {
-                    return genericResult.Error.ToProblemDetails();
-                }
-                return Microsoft.AspNetCore.Http.Results.Ok(genericResult.Value);
-            }
-
-            if (resultObj is Result result)
+            if (resultObj is Interfaces.IResult result)
             {
                 if (result.IsFailure)
+                    return result.Error.ToProblemDetails(); 
+
+                var type = resultObj.GetType();
+                if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Result<>))
                 {
-                    return result.Error.ToProblemDetails();
+                    var valueProperty = type.GetProperty("Value", BindingFlags.Public | BindingFlags.Instance);
+                    var value = valueProperty?.GetValue(resultObj);
+                
+                    return Microsoft.AspNetCore.Http.Results.Ok(value);
                 }
+
                 return Microsoft.AspNetCore.Http.Results.NoContent();
             }
 

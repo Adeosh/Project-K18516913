@@ -18,6 +18,6 @@ namespace Krepim.Identity.Domain.Errors
         public static readonly Error InvalidCredentials = new(
             "Identity.InvalidCredentials",
             "Invalid email or password.",
-            ErrorType.Failure);
+            ErrorType.Validation);
     }
 }

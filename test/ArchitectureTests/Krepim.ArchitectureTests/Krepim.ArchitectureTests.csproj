@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -8,8 +8,26 @@
   <ItemGroup>
     <PackageReference Include="coverlet.collector" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="NetArchTest.Rules" />
     <PackageReference Include="xunit" />
     <PackageReference Include="xunit.runner.visualstudio" />
+	<PackageReference Include="FluentAssertions" />
+	<PackageReference Include="NSubstitute" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\BuildingBlocks\Krepim.SharedKernel\Krepim.SharedKernel.csproj" />
+    <ProjectReference Include="..\..\..\src\Services\Basket\Krepim.Basket.Application\Krepim.Basket.Application.csproj" />
+    <ProjectReference Include="..\..\..\src\Services\Basket\Krepim.Basket.Domain\Krepim.Basket.Domain.csproj" />
+    <ProjectReference Include="..\..\..\src\Services\Catalog\Krepim.Catalog.Application\Krepim.Catalog.Application.csproj" />
+    <ProjectReference Include="..\..\..\src\Services\Catalog\Krepim.Catalog.Domain\Krepim.Catalog.Domain.csproj" />
+    <ProjectReference Include="..\..\..\src\Services\Identity\Krepim.Identity.Application\Krepim.Identity.Application.csproj" />
+    <ProjectReference Include="..\..\..\src\Services\Identity\Krepim.Identity.Domain\Krepim.Identity.Domain.csproj" />
+    <ProjectReference Include="..\..\..\src\Services\Inventory\Krepim.Inventory.Application\Krepim.Inventory.Application.csproj" />
+    <ProjectReference Include="..\..\..\src\Services\Inventory\Krepim.Inventory.Domain\Krepim.Inventory.Domain.csproj" />
+    <ProjectReference Include="..\..\..\src\Services\Ordering\Krepim.Ordering.Application\Krepim.Ordering.Application.csproj" />
+    <ProjectReference Include="..\..\..\src\Services\Ordering\Krepim.Ordering.Domain\Krepim.Ordering.Domain.csproj" />
+    <ProjectReference Include="..\..\..\src\Services\Payment\Krepim.Payment.Application\Krepim.Payment.Application.csproj" />
+    <ProjectReference Include="..\..\..\src\Services\Payment\Krepim.Payment.Domain\Krepim.Payment.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="Xunit" />

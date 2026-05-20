@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Krepim.Ordering.IntegrationTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b9219b71d0708f581ade1bc643629b7ab3ba6b96")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+54e3c063b6da12eecffea0222b2aff0e9405c98a")]
 [assembly: System.Reflection.AssemblyProductAttribute("Krepim.Ordering.IntegrationTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Krepim.Ordering.IntegrationTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
