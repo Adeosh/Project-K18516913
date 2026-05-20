@@ -17,3 +17,4 @@ C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Infrast
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Infrastructure\obj\Debug\net10.0\refint\Krepim.Ordering.Infrastructure.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Infrastructure\obj\Debug\net10.0\Krepim.Ordering.Infrastructure.pdb
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Infrastructure\obj\Debug\net10.0\ref\Krepim.Ordering.Infrastructure.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Infrastructure\obj\Debug\net10.0\Krepim.Ordering.Infrastructure.sourcelink.json

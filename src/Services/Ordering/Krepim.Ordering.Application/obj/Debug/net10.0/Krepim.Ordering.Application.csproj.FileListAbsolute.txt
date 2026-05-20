@@ -15,3 +15,4 @@ C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Applica
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Application\obj\Debug\net10.0\refint\Krepim.Ordering.Application.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Application\obj\Debug\net10.0\Krepim.Ordering.Application.pdb
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Application\obj\Debug\net10.0\ref\Krepim.Ordering.Application.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Application\obj\Debug\net10.0\Krepim.Ordering.Application.sourcelink.json

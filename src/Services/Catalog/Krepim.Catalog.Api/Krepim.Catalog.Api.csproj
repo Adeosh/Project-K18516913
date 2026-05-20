@@ -7,6 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" />
+    <PackageReference Include="SharpCompress" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Krepim.Catalog.Infrastructure\Krepim.Catalog.Infrastructure.csproj" />

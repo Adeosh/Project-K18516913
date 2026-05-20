@@ -98,3 +98,4 @@ C:\Users\adeos\Source\Repos\Krepim\test\BuildingBlocks\Krepim.EventBus.Tests\obj
 C:\Users\adeos\Source\Repos\Krepim\test\BuildingBlocks\Krepim.EventBus.Tests\obj\Debug\net10.0\Krepim.EventBus.Tests.pdb
 C:\Users\adeos\Source\Repos\Krepim\test\BuildingBlocks\Krepim.EventBus.Tests\obj\Debug\net10.0\Krepim.EventBus.Tests.genruntimeconfig.cache
 C:\Users\adeos\Source\Repos\Krepim\test\BuildingBlocks\Krepim.EventBus.Tests\obj\Debug\net10.0\ref\Krepim.EventBus.Tests.dll
+C:\Users\adeos\Source\Repos\Krepim\test\BuildingBlocks\Krepim.EventBus.Tests\obj\Debug\net10.0\Krepim.EventBus.Tests.sourcelink.json

@@ -1,9 +1,9 @@
 using Krepim.Identity.Api.Endpoints.Authentication;
 using Krepim.Identity.Api.Endpoints.Registration;
-using Krepim.Identity.Api.Infrastructure.Filters;
 using Krepim.Identity.Application;
 using Krepim.Identity.Infrastructure;
 using Krepim.SharedKernel.Exceptions;
+using Krepim.SharedKernel.Results.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 

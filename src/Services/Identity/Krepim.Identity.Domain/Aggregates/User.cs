@@ -24,8 +24,6 @@ namespace Krepim.Identity.Domain.Aggregates
 
             var user = new User(Guid.NewGuid(), email, passwordHash, role);
 
-            // добавить генерацию доменного события
-
             return user;
         }
     }

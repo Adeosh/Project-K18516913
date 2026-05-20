@@ -17,3 +17,4 @@ C:\Users\adeos\Source\Repos\Krepim\src\Services\Inventory\Krepim.Inventory.Infra
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Inventory\Krepim.Inventory.Infrastructure\obj\Debug\net10.0\refint\Krepim.Inventory.Infrastructure.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Inventory\Krepim.Inventory.Infrastructure\obj\Debug\net10.0\Krepim.Inventory.Infrastructure.pdb
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Inventory\Krepim.Inventory.Infrastructure\obj\Debug\net10.0\ref\Krepim.Inventory.Infrastructure.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Inventory\Krepim.Inventory.Infrastructure\obj\Debug\net10.0\Krepim.Inventory.Infrastructure.sourcelink.json

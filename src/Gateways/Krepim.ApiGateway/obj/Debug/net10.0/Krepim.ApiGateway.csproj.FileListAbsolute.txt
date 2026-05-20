@@ -53,3 +53,4 @@ C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\obj\Debug\net1
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\obj\Debug\net10.0\Krepim.ApiGateway.pdb
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\obj\Debug\net10.0\Krepim.ApiGateway.genruntimeconfig.cache
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\obj\Debug\net10.0\ref\Krepim.ApiGateway.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\obj\Debug\net10.0\Krepim.ApiGateway.sourcelink.json

@@ -158,3 +158,4 @@ C:\Users\adeos\Source\Repos\Krepim\test\Services\Ordering\Krepim.Ordering.Integr
 C:\Users\adeos\Source\Repos\Krepim\test\Services\Ordering\Krepim.Ordering.IntegrationTests\bin\Debug\net10.0\Microsoft.Extensions.Options.dll
 C:\Users\adeos\Source\Repos\Krepim\test\Services\Ordering\Krepim.Ordering.IntegrationTests\bin\Debug\net10.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll
 C:\Users\adeos\Source\Repos\Krepim\test\Services\Ordering\Krepim.Ordering.IntegrationTests\bin\Debug\net10.0\Microsoft.Extensions.Primitives.dll
+C:\Users\adeos\Source\Repos\Krepim\test\Services\Ordering\Krepim.Ordering.IntegrationTests\obj\Debug\net10.0\Krepim.Ordering.IntegrationTests.sourcelink.json

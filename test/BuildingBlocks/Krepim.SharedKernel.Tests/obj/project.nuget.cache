@@ -1,15 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "XPC7Gaqtz90=",
+  "dgSpecHash": "1yLTrU4JZ8w=",
   "success": true,
   "projectFilePath": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\test\\BuildingBlocks\\Krepim.SharedKernel.Tests\\Krepim.SharedKernel.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\adeos\\.nuget\\packages\\coverlet.collector\\10.0.1\\coverlet.collector.10.0.1.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\adeos\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.8\\microsoft.aspnetcore.openapi.10.0.8.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.codecoverage\\18.5.1\\microsoft.codecoverage.18.5.1.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.net.test.sdk\\18.5.1\\microsoft.net.test.sdk.18.5.1.nupkg.sha512",
+    "C:\\Users\\adeos\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.testplatform.objectmodel\\18.5.1\\microsoft.testplatform.objectmodel.18.5.1.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.testplatform.testhost\\18.5.1\\microsoft.testplatform.testhost.18.5.1.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",

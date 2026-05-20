@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "joBN5UQOphk=",
+  "dgSpecHash": "lPVXCHhVPvI=",
   "success": true,
   "projectFilePath": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\BuildingBlocks\\Krepim.SharedKernel\\Krepim.SharedKernel.csproj",
   "expectedPackageFiles": [
@@ -10,13 +10,15 @@
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.aspnetcore.http\\2.3.10\\microsoft.aspnetcore.http.2.3.10.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.aspnetcore.mvc\\2.3.10\\microsoft.aspnetcore.mvc.2.3.10.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\2.3.0\\microsoft.aspnetcore.mvc.razor.extensions.2.3.0.nupkg.sha512",
+    "C:\\Users\\adeos\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.8\\microsoft.aspnetcore.openapi.10.0.8.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.aspnetcore.razor.design\\2.3.0\\microsoft.aspnetcore.razor.design.2.3.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\2.3.0\\microsoft.aspnetcore.razor.language.2.3.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\1.1.0\\microsoft.codeanalysis.analyzers.1.1.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.codeanalysis.common\\2.8.2\\microsoft.codeanalysis.common.2.8.2.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.codeanalysis.csharp\\2.8.2\\microsoft.codeanalysis.csharp.2.8.2.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.codeanalysis.razor\\2.3.0\\microsoft.codeanalysis.razor.2.3.0.nupkg.sha512",
-    "C:\\Users\\adeos\\.nuget\\packages\\microsoft.extensions.logging\\10.0.8\\microsoft.extensions.logging.10.0.8.nupkg.sha512"
+    "C:\\Users\\adeos\\.nuget\\packages\\microsoft.extensions.logging\\10.0.8\\microsoft.extensions.logging.10.0.8.nupkg.sha512",
+    "C:\\Users\\adeos\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512"
   ],
   "logs": [
     {

@@ -90,6 +90,28 @@
           "build/netstandard2.0/_._": {}
         }
       },
+      "Microsoft.AspNetCore.OpenApi/10.0.8": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.OpenApi": "2.0.0"
+        },
+        "compile": {
+          "lib/net10.0/Microsoft.AspNetCore.OpenApi.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.AspNetCore.OpenApi.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ],
+        "build": {
+          "build/Microsoft.AspNetCore.OpenApi.targets": {}
+        }
+      },
       "Microsoft.AspNetCore.Razor.Design/2.3.0": {
         "type": "package",
         "build": {
@@ -171,6 +193,19 @@
         },
         "build": {
           "buildTransitive/net8.0/_._": {}
+        }
+      },
+      "Microsoft.OpenApi/2.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Microsoft.OpenApi.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.OpenApi.dll": {
+            "related": ".pdb;.xml"
+          }
         }
       }
     }
@@ -259,6 +294,24 @@
         "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.Razor.Extensions.dll",
         "microsoft.aspnetcore.mvc.razor.extensions.2.3.0.nupkg.sha512",
         "microsoft.aspnetcore.mvc.razor.extensions.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.OpenApi/10.0.8": {
+      "sha512": "cw24xHE2QaWwyEG9GQwFbjboyabub6Vd80DIItUGENzcQOa/BEnTrXsg2GADqWTmY/3ycqk9ToLGjgvF/VRlGA==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.openapi/10.0.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "analyzers/dotnet/cs/Microsoft.AspNetCore.OpenApi.SourceGenerators.dll",
+        "build/Microsoft.AspNetCore.OpenApi.targets",
+        "lib/net10.0/Microsoft.AspNetCore.OpenApi.dll",
+        "lib/net10.0/Microsoft.AspNetCore.OpenApi.xml",
+        "microsoft.aspnetcore.openapi.10.0.8.nupkg.sha512",
+        "microsoft.aspnetcore.openapi.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Razor.Design/2.3.0": {
@@ -391,6 +444,24 @@
         "microsoft.extensions.logging.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "Microsoft.OpenApi/2.0.0": {
+      "sha512": "GGYLfzV/G/ct80OZ45JxnWP7NvMX1BCugn/lX7TH5o0lcVaviavsLMTxmFV2AybXWjbi3h6FF1vgZiTK6PXndw==",
+      "type": "package",
+      "path": "microsoft.openapi/2.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net8.0/Microsoft.OpenApi.dll",
+        "lib/net8.0/Microsoft.OpenApi.pdb",
+        "lib/net8.0/Microsoft.OpenApi.xml",
+        "lib/netstandard2.0/Microsoft.OpenApi.dll",
+        "lib/netstandard2.0/Microsoft.OpenApi.pdb",
+        "lib/netstandard2.0/Microsoft.OpenApi.xml",
+        "microsoft.openapi.2.0.0.nupkg.sha512",
+        "microsoft.openapi.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -399,6 +470,7 @@
       "Microsoft.AspNetCore.Diagnostics.Abstractions >= 2.3.10",
       "Microsoft.AspNetCore.Http >= 2.3.10",
       "Microsoft.AspNetCore.Mvc >= 2.3.10",
+      "Microsoft.AspNetCore.OpenApi >= 10.0.8",
       "Microsoft.Extensions.Logging >= 10.0.8"
     ]
   },
@@ -476,6 +548,11 @@
             "version": "[2.3.10, )",
             "versionCentrallyManaged": true
           },
+          "Microsoft.AspNetCore.OpenApi": {
+            "target": "Package",
+            "version": "[10.0.8, )",
+            "versionCentrallyManaged": true
+          },
           "Microsoft.Extensions.Logging": {
             "target": "Package",
             "version": "[10.0.8, )",
@@ -483,12 +560,15 @@
           }
         },
         "centralPackageVersions": {
+          "Amazon.S3": "0.35.1",
+          "AWSSDK.S3": "4.0.23.3",
           "BCrypt.Net-Next": "4.2.0",
           "coverlet.collector": "10.0.1",
           "FluentAssertions": "8.10.0",
           "FluentValidation": "12.1.0",
           "FluentValidation.DependencyInjectionExtensions": "12.1.0",
           "MassTransit": "8.5.9",
+          "MassTransit.EntityFrameworkCore": "8.3.4",
           "MassTransit.RabbitMQ": "8.5.9",
           "MediatR": "12.4.1",
           "Microsoft.AspNetCore.App": "2.1.34",
@@ -513,7 +593,8 @@
           "OpenTelemetry.Instrumentation.AspNetCore": "1.15.1",
           "OpenTelemetry.Instrumentation.Http": "1.15.1",
           "OpenTelemetry.Instrumentation.Runtime": "1.15.1",
-          "Serilog.AspNetCore": "9.0.0",
+          "Serilog.AspNetCore": "10.0.0",
+          "SharpCompress": "0.48.1",
           "StackExchange.Redis": "2.13.1",
           "System.IdentityModel.Tokens.Jwt": "8.18.0",
           "Testcontainers": "4.11.0",

@@ -66,3 +66,4 @@ C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Api\obj\Deb
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Api\obj\Debug\net10.0\ref\Krepim.Basket.Api.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Api\bin\Debug\net10.0\MediatR.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Api\bin\Debug\net10.0\MediatR.Contracts.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Api\obj\Debug\net10.0\Krepim.Basket.Api.sourcelink.json

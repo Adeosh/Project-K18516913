@@ -163,3 +163,11 @@ C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\MassTransit.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\MassTransit.Abstractions.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\MassTransit.EntityFrameworkCoreIntegration.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\MassTransit.RabbitMqTransport.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\RabbitMQ.Client.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\Krepim.EventBus.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\Krepim.EventBus.pdb
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\obj\Debug\net10.0\Krepim.Identity.Api.sourcelink.json

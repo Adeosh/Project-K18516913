@@ -8,11 +8,66 @@
     ".NETCoreApp,Version=v10.0": {
       "Krepim.Catalog.Application/1.0.0": {
         "dependencies": {
+          "FluentValidation": "12.1.0",
+          "FluentValidation.DependencyInjectionExtensions": "12.1.0",
           "Krepim.Catalog.Domain": "1.0.0",
-          "Krepim.SharedKernel": "1.0.0"
+          "Krepim.EventBus": "1.0.0",
+          "Krepim.SharedKernel": "1.0.0",
+          "MassTransit": "8.5.9",
+          "MassTransit.RabbitMQ": "8.5.9"
         },
         "runtime": {
           "Krepim.Catalog.Application.dll": {}
+        }
+      },
+      "FluentValidation/12.1.0": {
+        "runtime": {
+          "lib/net8.0/FluentValidation.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.1.0.0"
+          }
+        }
+      },
+      "FluentValidation.DependencyInjectionExtensions/12.1.0": {
+        "dependencies": {
+          "FluentValidation": "12.1.0"
+        },
+        "runtime": {
+          "lib/net8.0/FluentValidation.DependencyInjectionExtensions.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.1.0.0"
+          }
+        }
+      },
+      "MassTransit/8.5.9": {
+        "dependencies": {
+          "MassTransit.Abstractions": "8.5.9"
+        },
+        "runtime": {
+          "lib/net10.0/MassTransit.dll": {
+            "assemblyVersion": "8.5.9.0",
+            "fileVersion": "8.5.9.0"
+          }
+        }
+      },
+      "MassTransit.Abstractions/8.5.9": {
+        "runtime": {
+          "lib/net10.0/MassTransit.Abstractions.dll": {
+            "assemblyVersion": "8.5.9.0",
+            "fileVersion": "8.5.9.0"
+          }
+        }
+      },
+      "MassTransit.RabbitMQ/8.5.9": {
+        "dependencies": {
+          "MassTransit": "8.5.9",
+          "RabbitMQ.Client": "7.2.1"
+        },
+        "runtime": {
+          "lib/net10.0/MassTransit.RabbitMqTransport.dll": {
+            "assemblyVersion": "8.5.9.0",
+            "fileVersion": "8.5.9.0"
+          }
         }
       },
       "MediatR/12.4.1": {
@@ -34,7 +89,37 @@
           }
         }
       },
+      "Microsoft.AspNetCore.OpenApi/10.0.8": {
+        "dependencies": {
+          "Microsoft.OpenApi": "2.0.0"
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.AspNetCore.OpenApi.dll": {
+            "assemblyVersion": "10.0.8.0",
+            "fileVersion": "10.0.826.23019"
+          }
+        }
+      },
+      "Microsoft.OpenApi/2.0.0": {
+        "runtime": {
+          "lib/net8.0/Microsoft.OpenApi.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
+      },
+      "RabbitMQ.Client/7.2.1": {
+        "runtime": {
+          "lib/net8.0/RabbitMQ.Client.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.2.1.0"
+          }
+        }
+      },
       "Krepim.Catalog.Domain/1.0.0": {
+        "dependencies": {
+          "Krepim.SharedKernel": "1.0.0"
+        },
         "runtime": {
           "Krepim.Catalog.Domain.dll": {
             "assemblyVersion": "1.0.0.0",
@@ -42,9 +127,18 @@
           }
         }
       },
+      "Krepim.EventBus/1.0.0": {
+        "runtime": {
+          "Krepim.EventBus.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "Krepim.SharedKernel/1.0.0": {
         "dependencies": {
-          "MediatR": "12.4.1"
+          "MediatR": "12.4.1",
+          "Microsoft.AspNetCore.OpenApi": "10.0.8"
         },
         "runtime": {
           "Krepim.SharedKernel.dll": {
@@ -61,6 +155,41 @@
       "serviceable": false,
       "sha512": ""
     },
+    "FluentValidation/12.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FqWEn8BdbbFEHGanj9K8SVo+LyBeFWy2rolaE+e1TNUbifr8M7Iss+I1AqTSc8kjKtvjl/WN4XIHiRpslh42bA==",
+      "path": "fluentvalidation/12.1.0",
+      "hashPath": "fluentvalidation.12.1.0.nupkg.sha512"
+    },
+    "FluentValidation.DependencyInjectionExtensions/12.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-p9ZnpVCUvkelSfqFYZP9aMtnuRlDRkrAAPqjQGG+1mVVn8zxE0bc1/RAFRBZKsPglbMBQOx8wXOZhg2fGstacQ==",
+      "path": "fluentvalidation.dependencyinjectionextensions/12.1.0",
+      "hashPath": "fluentvalidation.dependencyinjectionextensions.12.1.0.nupkg.sha512"
+    },
+    "MassTransit/8.5.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hhJyrU+7qReF1F+MBgH73E+KEx9oBcRFaCzEk90r8hOgI4HPhT2DYVfaHKGTHADE/P49H48xGgvO30Q9nWn7aA==",
+      "path": "masstransit/8.5.9",
+      "hashPath": "masstransit.8.5.9.nupkg.sha512"
+    },
+    "MassTransit.Abstractions/8.5.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-osNYcFMNzMbwPG6x5zc9u5l0t43+uvlbVqjS99hSIaop8uWnABps7NRgqAUgWX30Zd00wKhDv1nBFRtPV6CFSw==",
+      "path": "masstransit.abstractions/8.5.9",
+      "hashPath": "masstransit.abstractions.8.5.9.nupkg.sha512"
+    },
+    "MassTransit.RabbitMQ/8.5.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TikWOjyKxh9Lbk4BppOtF5PIAt5HwzSXIUgJ3bqI1waD94xR/9xhxQyl2xY/913vMhqu4DObXaQESLr9WNberA==",
+      "path": "masstransit.rabbitmq/8.5.9",
+      "hashPath": "masstransit.rabbitmq.8.5.9.nupkg.sha512"
+    },
     "MediatR/12.4.1": {
       "type": "package",
       "serviceable": true,
@@ -75,7 +204,33 @@
       "path": "mediatr.contracts/2.0.1",
       "hashPath": "mediatr.contracts.2.0.1.nupkg.sha512"
     },
+    "Microsoft.AspNetCore.OpenApi/10.0.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cw24xHE2QaWwyEG9GQwFbjboyabub6Vd80DIItUGENzcQOa/BEnTrXsg2GADqWTmY/3ycqk9ToLGjgvF/VRlGA==",
+      "path": "microsoft.aspnetcore.openapi/10.0.8",
+      "hashPath": "microsoft.aspnetcore.openapi.10.0.8.nupkg.sha512"
+    },
+    "Microsoft.OpenApi/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GGYLfzV/G/ct80OZ45JxnWP7NvMX1BCugn/lX7TH5o0lcVaviavsLMTxmFV2AybXWjbi3h6FF1vgZiTK6PXndw==",
+      "path": "microsoft.openapi/2.0.0",
+      "hashPath": "microsoft.openapi.2.0.0.nupkg.sha512"
+    },
+    "RabbitMQ.Client/7.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-YKXEfg9fVQiTKgZlvIhAfPSFaamEgi8DsQmisCH0IAsU4FYLrtoguDrDj6JtJVGUt40QPnBLRH6fTQcAC4qsOg==",
+      "path": "rabbitmq.client/7.2.1",
+      "hashPath": "rabbitmq.client.7.2.1.nupkg.sha512"
+    },
     "Krepim.Catalog.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Krepim.EventBus/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -158,3 +158,4 @@ C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.Integrat
 C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.IntegrationTests\bin\Debug\net10.0\Microsoft.Extensions.Options.dll
 C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.IntegrationTests\bin\Debug\net10.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll
 C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.IntegrationTests\bin\Debug\net10.0\Microsoft.Extensions.Primitives.dll
+C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.IntegrationTests\obj\Debug\net10.0\Krepim.Payment.IntegrationTests.sourcelink.json

@@ -10,3 +10,4 @@ C:\Users\adeos\Source\Repos\Krepim\src\BuildingBlocks\Krepim.SharedKernel\obj\De
 C:\Users\adeos\Source\Repos\Krepim\src\BuildingBlocks\Krepim.SharedKernel\obj\Debug\net10.0\Krepim.SharedKernel.pdb
 C:\Users\adeos\Source\Repos\Krepim\src\BuildingBlocks\Krepim.SharedKernel\obj\Debug\net10.0\ref\Krepim.SharedKernel.dll
 C:\Users\adeos\Source\Repos\Krepim\src\BuildingBlocks\Krepim.SharedKernel\obj\Debug\net10.0\Krepim.SharedKernel.csproj.AssemblyReference.cache
+C:\Users\adeos\Source\Repos\Krepim\src\BuildingBlocks\Krepim.SharedKernel\obj\Debug\net10.0\Krepim.SharedKernel.sourcelink.json

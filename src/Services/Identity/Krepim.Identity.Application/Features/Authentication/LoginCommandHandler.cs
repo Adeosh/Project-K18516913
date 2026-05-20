@@ -6,10 +6,9 @@ using MediatR;
 namespace Krepim.Identity.Application.Features.Authentication
 {
     internal sealed class LoginCommandHandler(
-    IUserRepository userRepository,
-    IPasswordHasher passwordHasher,
-    IJwtProvider jwtProvider)
-    : IRequestHandler<LoginCommand, Result<string>>
+        IUserRepository userRepository,
+        IPasswordHasher passwordHasher,
+        IJwtProvider jwtProvider) : IRequestHandler<LoginCommand, Result<string>>
     {
         public async Task<Result<string>> Handle(LoginCommand request, CancellationToken cancellationToken)
         {

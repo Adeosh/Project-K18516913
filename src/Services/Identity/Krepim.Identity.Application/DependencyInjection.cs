@@ -12,9 +12,6 @@ namespace Krepim.Identity.Application
             services.AddMediatR(config =>
             {
                 config.RegisterServicesFromAssembly(assembly);
-
-                // Если мы добавим Pipeline Behaviors в SharedKernel (например, для валидации):
-                // config.AddOpenBehavior(typeof(ValidationBehavior<,>));
             });
 
             services.AddValidatorsFromAssembly(assembly);

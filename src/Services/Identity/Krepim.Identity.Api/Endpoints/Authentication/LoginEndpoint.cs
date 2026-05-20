@@ -18,7 +18,7 @@ namespace Krepim.Identity.Api.Endpoints.Authentication
             .WithName("LoginUser")
             .WithSummary("Аутентификация пользователя")
             .Produces<string>(StatusCodes.Status200OK)
-            .ProducesProblem(StatusCodes.Status400BadRequest); // Для IdentityErrors.InvalidCredentials
+            .ProducesProblem(StatusCodes.Status400BadRequest);
         }
     }
 }

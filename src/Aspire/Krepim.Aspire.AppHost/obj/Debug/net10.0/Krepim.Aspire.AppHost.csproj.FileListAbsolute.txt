@@ -107,3 +107,4 @@ C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\obj\Debug\ne
 C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\obj\Debug\net10.0\Krepim.Aspire.AppHost.pdb
 C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\obj\Debug\net10.0\Krepim.Aspire.AppHost.genruntimeconfig.cache
 C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\obj\Debug\net10.0\ref\Krepim.Aspire.AppHost.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\obj\Debug\net10.0\Krepim.Aspire.AppHost.sourcelink.json

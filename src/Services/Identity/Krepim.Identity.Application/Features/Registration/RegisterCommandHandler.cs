@@ -1,15 +1,19 @@
-﻿using Krepim.Identity.Application.Interfaces;
+﻿using Krepim.EventBus.Events.Identity;
+using Krepim.Identity.Application.Interfaces;
 using Krepim.Identity.Domain.Aggregates;
 using Krepim.Identity.Domain.Errors;
+using Krepim.SharedKernel.Domain.Abstractions;
 using Krepim.SharedKernel.Results;
+using MassTransit;
 using MediatR;
 
 namespace Krepim.Identity.Application.Features.Registration
 {
     internal sealed class RegisterCommandHandler(
         IUserRepository userRepository,
-        IPasswordHasher passwordHasher)
-        : IRequestHandler<RegisterCommand, Result<Guid>>
+        IPasswordHasher passwordHasher,
+        IPublishEndpoint publishEndpoint,
+        IUnitOfWork unitOfWork) : IRequestHandler<RegisterCommand, Result<Guid>>
     {
         public async Task<Result<Guid>> Handle(RegisterCommand request, CancellationToken cancellationToken)
         {
@@ -24,6 +28,14 @@ namespace Krepim.Identity.Application.Features.Registration
                 return Result<Guid>.Failure(userResult.Error);
 
             await userRepository.AddAsync(userResult.Value, cancellationToken);
+
+            var integrationEvent = new UserRegisteredIntegrationEvent(
+                userResult.Value.Id,
+                userResult.Value.Email,
+                userResult.Value.Role.ToString());
+
+            await publishEndpoint.Publish(integrationEvent, cancellationToken);
+            await unitOfWork.SaveChangesAsync(cancellationToken);
 
             return userResult.Value.Id;
         }

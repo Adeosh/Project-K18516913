@@ -15,3 +15,6 @@ C:\Users\adeos\Source\Repos\Krepim\src\Services\Catalog\Krepim.Catalog.Applicati
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Catalog\Krepim.Catalog.Application\obj\Debug\net10.0\refint\Krepim.Catalog.Application.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Catalog\Krepim.Catalog.Application\obj\Debug\net10.0\Krepim.Catalog.Application.pdb
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Catalog\Krepim.Catalog.Application\obj\Debug\net10.0\ref\Krepim.Catalog.Application.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Catalog\Krepim.Catalog.Application\bin\Debug\net10.0\Krepim.EventBus.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Catalog\Krepim.Catalog.Application\bin\Debug\net10.0\Krepim.EventBus.pdb
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Catalog\Krepim.Catalog.Application\obj\Debug\net10.0\Krepim.Catalog.Application.sourcelink.json
