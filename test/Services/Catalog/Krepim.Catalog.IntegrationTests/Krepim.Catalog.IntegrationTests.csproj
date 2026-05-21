@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -7,16 +7,25 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="coverlet.collector" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" />
     <PackageReference Include="SharpCompress" />
-    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.v3" />
     <PackageReference Include="xunit.runner.visualstudio" />
+	<PackageReference Include="FluentAssertions" />
+	<PackageReference Include="NSubstitute" />
+	<PackageReference Include="Testcontainers" />
+	<PackageReference Include="Testcontainers.PostgreSql" />
+	<PackageReference Include="Testcontainers.RabbitMq" />
+	<PackageReference Include="Testcontainers.MongoDb" />
+	<PackageReference Include="Testcontainers.Redis" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="Xunit" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\src\Services\Catalog\Krepim.Catalog.Api\Krepim.Catalog.Api.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Krepim.Testing.Shared\Krepim.Testing.Shared.csproj" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,6 @@
 ﻿using Krepim.Catalog.Application.Features.SearchProduct;
 using Krepim.Catalog.Application.Models;
+using Krepim.SharedKernel.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,7 +19,9 @@ namespace Krepim.Catalog.Api.Endpoints.Products
             {
                 var query = new SearchProductsQuery(searchTerm, true, page <= 0 ? 1 : page, pageSize <= 0 ? 20 : pageSize);
 
-                return await sender.Send(query, ct);
+                var result = await sender.Send(query, ct);
+
+                return result.Match(products => Microsoft.AspNetCore.Http.Results.Ok(products));
             })
             .WithName("SearchProducts")
             .WithSummary("Быстрый поиск товаров (Read Model / MongoDB)")

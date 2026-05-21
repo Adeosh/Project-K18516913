@@ -7,6 +7,7 @@
 	<PackageReference Include="MassTransit.RabbitMQ" />
 	<PackageReference Include="FluentValidation" />
 	<PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
+	<InternalsVisibleTo Include="Krepim.Catalog.Application.Tests" />
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>

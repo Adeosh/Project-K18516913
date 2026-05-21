@@ -5,11 +5,12 @@ using MediatR;
 
 namespace Krepim.Catalog.Application.Features.SearchProduct
 {
-    internal sealed class SearchProductsQueryHandler(IProductReadRepository readRepository) : IRequestHandler<SearchProductsQuery, Result<IReadOnlyList<ProductReadModel>>>
+    internal sealed class SearchProductsQueryHandler(IProductReadRepository readRepo)
+        : IRequestHandler<SearchProductsQuery, Result<IReadOnlyList<ProductReadModel>>>
     {
-        public async Task<Result<IReadOnlyList<ProductReadModel>>> Handle(SearchProductsQuery request, CancellationToken cancellationToken)
+        public async Task<Result<IReadOnlyList<ProductReadModel>>> Handle(SearchProductsQuery request, CancellationToken ct)
         {
-            var products = await readRepository.SearchAsync(request.SearchTerm, request.OnlyActive, request.Page, request.PageSize, cancellationToken);
+            var products = await readRepo.SearchAsync(request.SearchTerm, request.OnlyActive, request.Page, request.PageSize, ct);
 
             return products.ToList();
         }

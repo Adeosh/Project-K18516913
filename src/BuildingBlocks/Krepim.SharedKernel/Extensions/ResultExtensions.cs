@@ -23,6 +23,24 @@ namespace Krepim.SharedKernel.Extensions
             );
         }
 
+        public static IResult Match<T>(
+            this Result<T> result,
+            Func<T, IResult> onSuccess)
+        {
+            return result.IsSuccess
+                ? onSuccess(result.Value)
+                : result.Error.ToProblemDetails();
+        }
+
+        public static IResult Match(
+            this Result result,
+            Func<IResult> onSuccess)
+        {
+            return result.IsSuccess
+                ? onSuccess()
+                : result.Error.ToProblemDetails();
+        }
+
         private static string GetTitle(ErrorType type) => type switch
         {
             ErrorType.Validation => "Bad Request",

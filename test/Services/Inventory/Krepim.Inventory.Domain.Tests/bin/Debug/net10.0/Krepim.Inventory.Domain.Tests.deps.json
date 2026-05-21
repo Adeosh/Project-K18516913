@@ -8,12 +8,49 @@
     ".NETCoreApp,Version=v10.0": {
       "Krepim.Inventory.Domain.Tests/1.0.0": {
         "dependencies": {
+          "FluentAssertions": "8.10.0",
           "Krepim.Inventory.Domain": "1.0.0",
           "Microsoft.NET.Test.Sdk": "18.5.1",
-          "xunit": "2.9.2"
+          "NSubstitute": "5.3.0",
+          "xunit.v3": "3.2.2"
         },
         "runtime": {
           "Krepim.Inventory.Domain.Tests.dll": {}
+        }
+      },
+      "Castle.Core/5.1.1": {
+        "dependencies": {
+          "System.Diagnostics.EventLog": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Castle.Core.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.1.1.0"
+          }
+        }
+      },
+      "FluentAssertions/8.10.0": {
+        "runtime": {
+          "lib/net6.0/FluentAssertions.dll": {
+            "assemblyVersion": "8.10.0.0",
+            "fileVersion": "8.10.0.0"
+          }
+        }
+      },
+      "Microsoft.ApplicationInsights/2.23.0": {
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.ApplicationInsights.dll": {
+            "assemblyVersion": "2.23.0.29",
+            "fileVersion": "2.23.0.29"
+          }
+        }
+      },
+      "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
+        "runtime": {
+          "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
         }
       },
       "Microsoft.CodeCoverage/18.5.1": {
@@ -28,6 +65,171 @@
         "dependencies": {
           "Microsoft.CodeCoverage": "18.5.1",
           "Microsoft.TestPlatform.TestHost": "18.5.1"
+        }
+      },
+      "Microsoft.Testing.Extensions.Telemetry/1.9.1": {
+        "dependencies": {
+          "Microsoft.ApplicationInsights": "2.23.0",
+          "Microsoft.Testing.Platform": "1.9.1"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Testing.Extensions.Telemetry.dll": {
+            "assemblyVersion": "1.9.1.0",
+            "fileVersion": "1.900.125.56105"
+          }
+        },
+        "resources": {
+          "lib/net9.0/cs/Microsoft.Testing.Extensions.Telemetry.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/net9.0/de/Microsoft.Testing.Extensions.Telemetry.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net9.0/es/Microsoft.Testing.Extensions.Telemetry.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net9.0/fr/Microsoft.Testing.Extensions.Telemetry.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net9.0/it/Microsoft.Testing.Extensions.Telemetry.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net9.0/ja/Microsoft.Testing.Extensions.Telemetry.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/net9.0/ko/Microsoft.Testing.Extensions.Telemetry.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/net9.0/pl/Microsoft.Testing.Extensions.Telemetry.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/net9.0/pt-BR/Microsoft.Testing.Extensions.Telemetry.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/net9.0/ru/Microsoft.Testing.Extensions.Telemetry.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net9.0/tr/Microsoft.Testing.Extensions.Telemetry.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/net9.0/zh-Hans/Microsoft.Testing.Extensions.Telemetry.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/net9.0/zh-Hant/Microsoft.Testing.Extensions.Telemetry.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "Microsoft.Testing.Extensions.TrxReport.Abstractions/1.9.1": {
+        "dependencies": {
+          "Microsoft.Testing.Platform": "1.9.1"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Testing.Extensions.TrxReport.Abstractions.dll": {
+            "assemblyVersion": "1.9.1.0",
+            "fileVersion": "1.900.125.56105"
+          }
+        }
+      },
+      "Microsoft.Testing.Platform/1.9.1": {
+        "runtime": {
+          "lib/net9.0/Microsoft.Testing.Platform.dll": {
+            "assemblyVersion": "1.9.1.0",
+            "fileVersion": "1.900.125.56105"
+          }
+        },
+        "resources": {
+          "lib/net9.0/cs/Microsoft.Testing.Platform.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/net9.0/de/Microsoft.Testing.Platform.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net9.0/es/Microsoft.Testing.Platform.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net9.0/fr/Microsoft.Testing.Platform.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net9.0/it/Microsoft.Testing.Platform.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net9.0/ja/Microsoft.Testing.Platform.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/net9.0/ko/Microsoft.Testing.Platform.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/net9.0/pl/Microsoft.Testing.Platform.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/net9.0/pt-BR/Microsoft.Testing.Platform.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/net9.0/ru/Microsoft.Testing.Platform.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net9.0/tr/Microsoft.Testing.Platform.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/net9.0/zh-Hans/Microsoft.Testing.Platform.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/net9.0/zh-Hant/Microsoft.Testing.Platform.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "Microsoft.Testing.Platform.MSBuild/1.9.1": {
+        "dependencies": {
+          "Microsoft.Testing.Platform": "1.9.1"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Testing.Extensions.MSBuild.dll": {
+            "assemblyVersion": "1.9.1.0",
+            "fileVersion": "1.900.125.56105"
+          }
+        },
+        "resources": {
+          "lib/net9.0/cs/Microsoft.Testing.Extensions.MSBuild.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/net9.0/de/Microsoft.Testing.Extensions.MSBuild.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net9.0/es/Microsoft.Testing.Extensions.MSBuild.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net9.0/fr/Microsoft.Testing.Extensions.MSBuild.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net9.0/it/Microsoft.Testing.Extensions.MSBuild.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net9.0/ja/Microsoft.Testing.Extensions.MSBuild.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/net9.0/ko/Microsoft.Testing.Extensions.MSBuild.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/net9.0/pl/Microsoft.Testing.Extensions.MSBuild.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/net9.0/pt-BR/Microsoft.Testing.Extensions.MSBuild.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/net9.0/ru/Microsoft.Testing.Extensions.MSBuild.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net9.0/tr/Microsoft.Testing.Extensions.MSBuild.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/net9.0/zh-Hans/Microsoft.Testing.Extensions.MSBuild.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/net9.0/zh-Hant/Microsoft.Testing.Extensions.MSBuild.resources.dll": {
+            "locale": "zh-Hant"
+          }
         }
       },
       "Microsoft.TestPlatform.ObjectModel/18.5.1": {
@@ -281,53 +483,116 @@
           }
         }
       },
-      "xunit/2.9.2": {
+      "NSubstitute/5.3.0": {
         "dependencies": {
-          "xunit.assert": "2.9.2",
-          "xunit.core": "2.9.2"
-        }
-      },
-      "xunit.abstractions/2.0.3": {
-        "runtime": {
-          "lib/netstandard2.0/xunit.abstractions.dll": {
-            "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.0.0.0"
-          }
-        }
-      },
-      "xunit.assert/2.9.2": {
-        "runtime": {
-          "lib/net6.0/xunit.assert.dll": {
-            "assemblyVersion": "2.9.2.0",
-            "fileVersion": "2.9.2.0"
-          }
-        }
-      },
-      "xunit.core/2.9.2": {
-        "dependencies": {
-          "xunit.extensibility.core": "2.9.2",
-          "xunit.extensibility.execution": "2.9.2"
-        }
-      },
-      "xunit.extensibility.core/2.9.2": {
-        "dependencies": {
-          "xunit.abstractions": "2.0.3"
+          "Castle.Core": "5.1.1"
         },
         "runtime": {
-          "lib/netstandard1.1/xunit.core.dll": {
-            "assemblyVersion": "2.9.2.0",
-            "fileVersion": "2.9.2.0"
+          "lib/net6.0/NSubstitute.dll": {
+            "assemblyVersion": "5.3.0.0",
+            "fileVersion": "5.3.0.0"
           }
         }
       },
-      "xunit.extensibility.execution/2.9.2": {
+      "System.Diagnostics.EventLog/6.0.0": {
+        "runtime": {
+          "lib/net6.0/System.Diagnostics.EventLog.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net6.0/System.Diagnostics.EventLog.Messages.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win/lib/net6.0/System.Diagnostics.EventLog.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        }
+      },
+      "xunit.v3/3.2.2": {
         "dependencies": {
-          "xunit.extensibility.core": "2.9.2"
+          "xunit.v3.mtp-v1": "3.2.2"
+        }
+      },
+      "xunit.v3.assert/3.2.2": {
+        "runtime": {
+          "lib/net8.0/xunit.v3.assert.dll": {
+            "assemblyVersion": "3.2.2.0",
+            "fileVersion": "3.2.2.0"
+          }
+        }
+      },
+      "xunit.v3.common/3.2.2": {
+        "dependencies": {
+          "Microsoft.Bcl.AsyncInterfaces": "6.0.0"
         },
         "runtime": {
-          "lib/netstandard1.1/xunit.execution.dotnet.dll": {
-            "assemblyVersion": "2.9.2.0",
-            "fileVersion": "2.9.2.0"
+          "lib/netstandard2.0/xunit.v3.common.dll": {
+            "assemblyVersion": "3.2.2.0",
+            "fileVersion": "3.2.2.0"
+          }
+        }
+      },
+      "xunit.v3.core.mtp-v1/3.2.2": {
+        "dependencies": {
+          "Microsoft.Testing.Extensions.Telemetry": "1.9.1",
+          "Microsoft.Testing.Extensions.TrxReport.Abstractions": "1.9.1",
+          "Microsoft.Testing.Platform": "1.9.1",
+          "Microsoft.Testing.Platform.MSBuild": "1.9.1",
+          "xunit.v3.extensibility.core": "3.2.2",
+          "xunit.v3.runner.inproc.console": "3.2.2"
+        },
+        "runtime": {
+          "lib/net8.0/xunit.v3.mtp-v1.dll": {
+            "assemblyVersion": "3.2.2.0",
+            "fileVersion": "3.2.2.0"
+          }
+        }
+      },
+      "xunit.v3.extensibility.core/3.2.2": {
+        "dependencies": {
+          "xunit.v3.common": "3.2.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/xunit.v3.core.dll": {
+            "assemblyVersion": "3.2.2.0",
+            "fileVersion": "3.2.2.0"
+          }
+        }
+      },
+      "xunit.v3.mtp-v1/3.2.2": {
+        "dependencies": {
+          "xunit.v3.assert": "3.2.2",
+          "xunit.v3.core.mtp-v1": "3.2.2"
+        }
+      },
+      "xunit.v3.runner.common/3.2.2": {
+        "dependencies": {
+          "xunit.v3.common": "3.2.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/xunit.v3.runner.common.dll": {
+            "assemblyVersion": "3.2.2.0",
+            "fileVersion": "3.2.2.0"
+          }
+        }
+      },
+      "xunit.v3.runner.inproc.console/3.2.2": {
+        "dependencies": {
+          "xunit.v3.extensibility.core": "3.2.2",
+          "xunit.v3.runner.common": "3.2.2"
+        },
+        "runtime": {
+          "lib/net8.0/xunit.v3.runner.inproc.console.dll": {
+            "assemblyVersion": "3.2.2.0",
+            "fileVersion": "3.2.2.0"
           }
         }
       },
@@ -347,6 +612,34 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Castle.Core/5.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rpYtIczkzGpf+EkZgDr9CClTdemhsrwA/W5hMoPjLkRFnXzH44zDLoovXeKtmxb1ykXK9aJVODSpiJml8CTw2g==",
+      "path": "castle.core/5.1.1",
+      "hashPath": "castle.core.5.1.1.nupkg.sha512"
+    },
+    "FluentAssertions/8.10.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yGvv+xp0gHFgGwhQcGoDdKIrhLhPi3zYYWWLLHPMctr+G6PWD7QH8L4wqoa5WRZquPbfSV/cP1MraI7ppAHrWw==",
+      "path": "fluentassertions/8.10.0",
+      "hashPath": "fluentassertions.8.10.0.nupkg.sha512"
+    },
+    "Microsoft.ApplicationInsights/2.23.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nWArUZTdU7iqZLycLKWe0TDms48KKGE6pONH2terYNa8REXiqixrMOkf1sk5DHGMaUTqONU2YkS4SAXBhLStgw==",
+      "path": "microsoft.applicationinsights/2.23.0",
+      "hashPath": "microsoft.applicationinsights.2.23.0.nupkg.sha512"
+    },
+    "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UcSjPsst+DfAdJGVDsu346FX0ci0ah+lw3WRtn18NUwEqRt70HaOQ7lI72vy3+1LxtqI3T5GWwV39rQSrCzAeg==",
+      "path": "microsoft.bcl.asyncinterfaces/6.0.0",
+      "hashPath": "microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512"
+    },
     "Microsoft.CodeCoverage/18.5.1": {
       "type": "package",
       "serviceable": true,
@@ -360,6 +653,34 @@
       "sha512": "sha512-SfqVaLiIqAbRWuPg5BP4QFwBIirQj/YIL8Dhxl6zntBKbXp0cQykoV480SmwG+yRMiWptxEI6NbHQuGSZ8b97w==",
       "path": "microsoft.net.test.sdk/18.5.1",
       "hashPath": "microsoft.net.test.sdk.18.5.1.nupkg.sha512"
+    },
+    "Microsoft.Testing.Extensions.Telemetry/1.9.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-No5AudZMmSb+uNXjlgL2y3/stHD2IT4uxqc5yHwkE+/nNux9jbKcaJMvcp9SwgP4DVD8L9/P3OUz8mmmcvEIdQ==",
+      "path": "microsoft.testing.extensions.telemetry/1.9.1",
+      "hashPath": "microsoft.testing.extensions.telemetry.1.9.1.nupkg.sha512"
+    },
+    "Microsoft.Testing.Extensions.TrxReport.Abstractions/1.9.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-AL46Xe1WBi85Ntd4mNPvat5ZSsZ2uejiVqoKCypr8J3wK0elA5xJ3AN4G/Q4GIwzUFnggZoH/DBjnr9J18IO/g==",
+      "path": "microsoft.testing.extensions.trxreport.abstractions/1.9.1",
+      "hashPath": "microsoft.testing.extensions.trxreport.abstractions.1.9.1.nupkg.sha512"
+    },
+    "Microsoft.Testing.Platform/1.9.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QafNtNSmEI0zazdebnsIkDKmFtTSpmx/5PLOjURWwozcPb3tvRxzosQSL8xwYNM1iPhhKiBksXZyRSE2COisrA==",
+      "path": "microsoft.testing.platform/1.9.1",
+      "hashPath": "microsoft.testing.platform.1.9.1.nupkg.sha512"
+    },
+    "Microsoft.Testing.Platform.MSBuild/1.9.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-oTUtyR4X/s9ytuiNA29FGsNCCH0rNmY5Wdm14NCKLjTM1cT9edVSlA+rGS/mVmusPqcP0l/x9qOnMXg16v87RQ==",
+      "path": "microsoft.testing.platform.msbuild/1.9.1",
+      "hashPath": "microsoft.testing.platform.msbuild.1.9.1.nupkg.sha512"
     },
     "Microsoft.TestPlatform.ObjectModel/18.5.1": {
       "type": "package",
@@ -382,47 +703,75 @@
       "path": "newtonsoft.json/13.0.3",
       "hashPath": "newtonsoft.json.13.0.3.nupkg.sha512"
     },
-    "xunit/2.9.2": {
+    "NSubstitute/5.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-7LhFS2N9Z6Xgg8aE5lY95cneYivRMfRI8v+4PATa4S64D5Z/Plkg0qa8dTRHSiGRgVZ/CL2gEfJDE5AUhOX+2Q==",
-      "path": "xunit/2.9.2",
-      "hashPath": "xunit.2.9.2.nupkg.sha512"
+      "sha512": "sha512-lJ47Cps5Qzr86N99lcwd+OUvQma7+fBgr8+Mn+aOC0WrlqMNkdivaYD9IvnZ5Mqo6Ky3LS7ZI+tUq1/s9ERd0Q==",
+      "path": "nsubstitute/5.3.0",
+      "hashPath": "nsubstitute.5.3.0.nupkg.sha512"
     },
-    "xunit.abstractions/2.0.3": {
+    "System.Diagnostics.EventLog/6.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-pot1I4YOxlWjIb5jmwvvQNbTrZ3lJQ+jUGkGjWE3hEFM0l5gOnBWS+H3qsex68s5cO52g+44vpGzhAt+42vwKg==",
-      "path": "xunit.abstractions/2.0.3",
-      "hashPath": "xunit.abstractions.2.0.3.nupkg.sha512"
+      "sha512": "sha512-lcyUiXTsETK2ALsZrX+nWuHSIQeazhqPphLfaRxzdGaG93+0kELqpgEHtwWOlQe7+jSFnKwaCAgL4kjeZCQJnw==",
+      "path": "system.diagnostics.eventlog/6.0.0",
+      "hashPath": "system.diagnostics.eventlog.6.0.0.nupkg.sha512"
     },
-    "xunit.assert/2.9.2": {
+    "xunit.v3/3.2.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-QkNBAQG4pa66cholm28AxijBjrmki98/vsEh4Sx5iplzotvPgpiotcxqJQMRC8d7RV7nIT8ozh97957hDnZwsQ==",
-      "path": "xunit.assert/2.9.2",
-      "hashPath": "xunit.assert.2.9.2.nupkg.sha512"
+      "sha512": "sha512-L+4/4y0Uqcg8/d6hfnxhnwh4j9FaeULvefTwrk30rr1o4n/vdPfyUQ8k0yzH8VJx7bmFEkDdcRfbtbjEHlaYcA==",
+      "path": "xunit.v3/3.2.2",
+      "hashPath": "xunit.v3.3.2.2.nupkg.sha512"
     },
-    "xunit.core/2.9.2": {
+    "xunit.v3.assert/3.2.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-O6RrNSdmZ0xgEn5kT927PNwog5vxTtKrWMihhhrT0Sg9jQ7iBDciYOwzBgP2krBEk5/GBXI18R1lKvmnxGcb4w==",
-      "path": "xunit.core/2.9.2",
-      "hashPath": "xunit.core.2.9.2.nupkg.sha512"
+      "sha512": "sha512-BPciBghgEEaJN/JG00QfCYDfEfnLgQhfnYEy+j1izoeHVNYd5+3Wm8GJ6JgYysOhpBPYGE+sbf75JtrRc7jrdA==",
+      "path": "xunit.v3.assert/3.2.2",
+      "hashPath": "xunit.v3.assert.3.2.2.nupkg.sha512"
     },
-    "xunit.extensibility.core/2.9.2": {
+    "xunit.v3.common/3.2.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Ol+KlBJz1x8BrdnhN2DeOuLrr1I/cTwtHCggL9BvYqFuVd/TUSzxNT5O0NxCIXth30bsKxgMfdqLTcORtM52yQ==",
-      "path": "xunit.extensibility.core/2.9.2",
-      "hashPath": "xunit.extensibility.core.2.9.2.nupkg.sha512"
+      "sha512": "sha512-Hj775PEH6GTbbg0wfKRvG2hNspDCvTH9irXhH4qIWgdrOSV1sQlqPie+DOvFeigsFg2fxSM3ZAaaCDQs+KreFA==",
+      "path": "xunit.v3.common/3.2.2",
+      "hashPath": "xunit.v3.common.3.2.2.nupkg.sha512"
     },
-    "xunit.extensibility.execution/2.9.2": {
+    "xunit.v3.core.mtp-v1/3.2.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-rKMpq4GsIUIJibXuZoZ8lYp5EpROlnYaRpwu9Zr0sRZXE7JqJfEEbCsUriZqB+ByXCLFBJyjkTRULMdC+U566g==",
-      "path": "xunit.extensibility.execution/2.9.2",
-      "hashPath": "xunit.extensibility.execution.2.9.2.nupkg.sha512"
+      "sha512": "sha512-Ga5aA2Ca9ktz+5k3g5ukzwfexwoqwDUpV6z7atSEUvqtd6JuybU1XopHqg1oFd78QdTfZgZE9h5sHpO4qYIi5w==",
+      "path": "xunit.v3.core.mtp-v1/3.2.2",
+      "hashPath": "xunit.v3.core.mtp-v1.3.2.2.nupkg.sha512"
+    },
+    "xunit.v3.extensibility.core/3.2.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-srY8z/oMPvh/t8axtO2DwrHajhFMH7tnqKildvYrVQIfICi8fOn3yIBWkVPAcrKmHMwvXRJ/XsQM3VMR6DOYfQ==",
+      "path": "xunit.v3.extensibility.core/3.2.2",
+      "hashPath": "xunit.v3.extensibility.core.3.2.2.nupkg.sha512"
+    },
+    "xunit.v3.mtp-v1/3.2.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-O41aAzYKBT5PWqATa1oEWVNCyEUypFQ4va6K0kz37dduV3EKzXNMaV2UnEhufzU4Cce1I33gg0oldS8tGL5I0A==",
+      "path": "xunit.v3.mtp-v1/3.2.2",
+      "hashPath": "xunit.v3.mtp-v1.3.2.2.nupkg.sha512"
+    },
+    "xunit.v3.runner.common/3.2.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/hkHkQCzGrugelOAehprm7RIWdsUFVmIVaD6jDH/8DNGCymTlKKPTbGokD5czbAfqfex47mBP0sb0zbHYwrO/g==",
+      "path": "xunit.v3.runner.common/3.2.2",
+      "hashPath": "xunit.v3.runner.common.3.2.2.nupkg.sha512"
+    },
+    "xunit.v3.runner.inproc.console/3.2.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ulWOdSvCk+bPXijJZ73bth9NyoOHsAs1ZOvamYbCkD4DNLX/Bd29Ve2ZNUwBbK0MqfIYWXHZViy/HKrdEC/izw==",
+      "path": "xunit.v3.runner.inproc.console/3.2.2",
+      "hashPath": "xunit.v3.runner.inproc.console.3.2.2.nupkg.sha512"
     },
     "Krepim.Inventory.Domain/1.0.0": {
       "type": "project",

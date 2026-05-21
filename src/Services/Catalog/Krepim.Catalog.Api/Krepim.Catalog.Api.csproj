@@ -8,8 +8,10 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" />
     <PackageReference Include="SharpCompress" />
+	<InternalsVisibleTo Include="Krepim.Catalog.IntegrationTests" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\Krepim.SharedKernel\Krepim.SharedKernel.csproj" />
     <ProjectReference Include="..\Krepim.Catalog.Infrastructure\Krepim.Catalog.Infrastructure.csproj" />
     <ProjectReference Include="..\..\..\Aspire\Krepim.Aspire.ServiceDefaults\Krepim.Aspire.ServiceDefaults.csproj" />
   </ItemGroup>

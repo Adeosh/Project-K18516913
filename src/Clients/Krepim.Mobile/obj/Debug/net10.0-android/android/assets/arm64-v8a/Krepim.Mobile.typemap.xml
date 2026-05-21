@@ -1,4 +1,4 @@
-<api type="debug" assembly-name="Krepim.Mobile" mvid="94bf20d7c78642ca9ca84faf86514b84">
+<api type="debug" assembly-name="Krepim.Mobile" mvid="4455a3416306409f9d0a7c8d815fc76e">
   <java-to-managed>
     <entry java-name="crc64b01d153aa83645ce/MainActivity" managed-name="Krepim.Mobile.MainActivity, Krepim.Mobile" managed-type-token-id="33554441" />
     <entry java-name="crc64b01d153aa83645ce/MainApplication" managed-name="Krepim.Mobile.MainApplication, Krepim.Mobile" managed-type-token-id="33554442" />

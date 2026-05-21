@@ -10,6 +10,7 @@
 	<InternalsVisibleTo Include="Krepim.Identity.IntegrationTests" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\Krepim.SharedKernel\Krepim.SharedKernel.csproj" />
     <ProjectReference Include="..\Krepim.Identity.Infrastructure\Krepim.Identity.Infrastructure.csproj" />
     <ProjectReference Include="..\..\..\Aspire\Krepim.Aspire.ServiceDefaults\Krepim.Aspire.ServiceDefaults.csproj" />
   </ItemGroup>

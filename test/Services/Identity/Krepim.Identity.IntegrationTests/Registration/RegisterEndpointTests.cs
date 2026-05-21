@@ -23,12 +23,12 @@ namespace Krepim.Identity.IntegrationTests.Registration
             var command = new RegisterCommand("integration@krepim.pro", "StrongPass123!", Role.Client);
 
             // Act
-            var response = await _client.PostAsJsonAsync("/api/users/register", command);
+            var response = await _client.PostAsJsonAsync("/api/users/register", command, cancellationToken: TestContext.Current.CancellationToken);
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            var userId = await response.Content.ReadFromJsonAsync<Guid>();
+            var userId = await response.Content.ReadFromJsonAsync<Guid>(cancellationToken: TestContext.Current.CancellationToken);
             userId.Should().NotBeEmpty();
         }
 
@@ -38,10 +38,10 @@ namespace Krepim.Identity.IntegrationTests.Registration
             // Arrange
             var command = new RegisterCommand("duplicate@krepim.pro", "Pass123!", Role.Client);
 
-            await _client.PostAsJsonAsync("/api/users/register", command);
+            await _client.PostAsJsonAsync("/api/users/register", command, cancellationToken: TestContext.Current.CancellationToken);
 
             // Act
-            var duplicateResponse = await _client.PostAsJsonAsync("/api/users/register", command);
+            var duplicateResponse = await _client.PostAsJsonAsync("/api/users/register", command, cancellationToken: TestContext.Current.CancellationToken);
 
             // Assert
             duplicateResponse.StatusCode.Should().Be(HttpStatusCode.Conflict);

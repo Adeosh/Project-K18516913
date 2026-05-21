@@ -10,17 +10,21 @@ namespace Krepim.SharedKernel.Results.Filters
         {
             var resultObj = await next(context);
 
-            if (resultObj is Interfaces.IResult result)
+            if (resultObj is IResult httpResult)
             {
-                if (result.IsFailure)
-                    return result.Error.ToProblemDetails(); 
+                return httpResult;
+            }
+
+            if (resultObj is Interfaces.IResult domainResult)
+            {
+                if (domainResult.IsFailure)
+                    return domainResult.Error.ToProblemDetails();
 
                 var type = resultObj.GetType();
                 if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Result<>))
                 {
                     var valueProperty = type.GetProperty("Value", BindingFlags.Public | BindingFlags.Instance);
                     var value = valueProperty?.GetValue(resultObj);
-                
                     return Microsoft.AspNetCore.Http.Results.Ok(value);
                 }
 

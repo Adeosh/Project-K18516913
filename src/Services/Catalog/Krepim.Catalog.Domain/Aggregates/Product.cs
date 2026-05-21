@@ -25,6 +25,15 @@ namespace Krepim.Catalog.Domain.Aggregates
             IsActive = false; // По умолчанию товар скрыт, пока менеджер не добавит фото/описание
         }
 
+        #region For EF
+
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+        private Product() : base(Guid.Empty)
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+        {
+        }
+        #endregion
+
         public static Result<Product> Create(string name, string description, string skuValue, decimal price, Guid categoryId)
         {
             var sku = Sku.Create(skuValue);

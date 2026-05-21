@@ -3917,6 +3917,7 @@
     "net10.0": [
       "Krepim.Aspire.ServiceDefaults >= 1.0.0",
       "Krepim.Catalog.Infrastructure >= 1.0.0",
+      "Krepim.SharedKernel >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 10.0.8",
       "OpenTelemetry.Exporter.OpenTelemetryProtocol >= 1.15.3",
       "SharpCompress >= 0.48.1"
@@ -3959,6 +3960,9 @@
           "projectReferences": {
             "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\Aspire\\Krepim.Aspire.ServiceDefaults\\Krepim.Aspire.ServiceDefaults.csproj": {
               "projectPath": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\Aspire\\Krepim.Aspire.ServiceDefaults\\Krepim.Aspire.ServiceDefaults.csproj"
+            },
+            "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\BuildingBlocks\\Krepim.SharedKernel\\Krepim.SharedKernel.csproj": {
+              "projectPath": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\BuildingBlocks\\Krepim.SharedKernel\\Krepim.SharedKernel.csproj"
             },
             "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\Services\\Catalog\\Krepim.Catalog.Infrastructure\\Krepim.Catalog.Infrastructure.csproj": {
               "projectPath": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\Services\\Catalog\\Krepim.Catalog.Infrastructure\\Krepim.Catalog.Infrastructure.csproj"
@@ -4039,12 +4043,14 @@
           "SharpCompress": "0.48.1",
           "StackExchange.Redis": "2.13.1",
           "System.IdentityModel.Tokens.Jwt": "8.18.0",
-          "Testcontainers": "4.11.0",
-          "Testcontainers.PostgreSql": "4.11.0",
-          "Testcontainers.RabbitMq": "4.11.0",
-          "Testcontainers.Redis": "4.11.0",
-          "xunit": "2.9.2",
-          "xunit.runner.visualstudio": "3.1.5"
+          "Testcontainers": "4.12.0",
+          "Testcontainers.MongoDb": "4.12.0",
+          "Testcontainers.PostgreSql": "4.12.0",
+          "Testcontainers.RabbitMq": "4.12.0",
+          "Testcontainers.Redis": "4.12.0",
+          "xunit.runner.visualstudio": "3.1.5",
+          "xunit.v3": "3.2.2",
+          "xunit.v3.extensibility.core": "3.2.2"
         },
         "imports": [
           "net461",

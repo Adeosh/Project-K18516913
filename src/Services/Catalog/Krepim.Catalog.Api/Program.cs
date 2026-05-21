@@ -14,6 +14,7 @@ builder.Services
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
 builder.Services.AddOpenApi();
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -26,6 +27,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseExceptionHandler();
+app.UseAuthorization();
 
 var apiGroup = app.MapGroup("/api/products")
     .WithTags("Products")

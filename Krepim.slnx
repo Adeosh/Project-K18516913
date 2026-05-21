@@ -100,4 +100,7 @@
     <Project Path="test/Services/Payment/Krepim.Payment.Domain.Tests/Krepim.Payment.Domain.Tests.csproj" />
     <Project Path="test/Services/Payment/Krepim.Payment.IntegrationTests/Krepim.Payment.IntegrationTests.csproj" />
   </Folder>
+  <Folder Name="/test/Shared/">
+    <Project Path="test/Shared/Krepim.Testing.Shared/Krepim.Testing.Shared.csproj" />
+  </Folder>
 </Solution>

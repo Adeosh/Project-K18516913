@@ -25,17 +25,17 @@ namespace Krepim.Identity.IntegrationTests.Authentication
             var email = "login_success@krepim.pro";
             var password = "ValidPassword123!";
             var registerCommand = new RegisterCommand(email, password, Role.Client);
-            await _client.PostAsJsonAsync("/api/users/register", registerCommand);
+            await _client.PostAsJsonAsync("/api/users/register", registerCommand, cancellationToken: TestContext.Current.CancellationToken);
 
             var loginCommand = new LoginCommand(email, password);
 
             // Act
-            var response = await _client.PostAsJsonAsync("/api/users/login", loginCommand);
+            var response = await _client.PostAsJsonAsync("/api/users/login", loginCommand, cancellationToken: TestContext.Current.CancellationToken);
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            var token = await response.Content.ReadFromJsonAsync<string>();
+            var token = await response.Content.ReadFromJsonAsync<string>(cancellationToken: TestContext.Current.CancellationToken);
             token.Should().NotBeNullOrWhiteSpace();
 
             var tokenParts = token!.Split('.');
@@ -50,12 +50,12 @@ namespace Krepim.Identity.IntegrationTests.Authentication
             var correctPassword = "ValidPassword123!";
             var wrongPassword = "WrongPassword123!";
 
-            await _client.PostAsJsonAsync("/api/users/register", new RegisterCommand(email, correctPassword, Role.Client));
+            await _client.PostAsJsonAsync("/api/users/register", new RegisterCommand(email, correctPassword, Role.Client), cancellationToken: TestContext.Current.CancellationToken);
 
             var loginCommand = new LoginCommand(email, wrongPassword);
 
             // Act
-            var response = await _client.PostAsJsonAsync("/api/users/login", loginCommand);
+            var response = await _client.PostAsJsonAsync("/api/users/login", loginCommand, cancellationToken: TestContext.Current.CancellationToken);
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
