@@ -50,6 +50,11 @@ namespace Krepim.SharedKernel.Results
         public static Result<T> Success(T value) => new(true, Error.None, value);
         public static Result<T> Failure(Error error) => new(false, error, default);
 
+        public object Match(Func<object, Microsoft.AspNetCore.Http.IResult> value)
+        {
+            throw new NotImplementedException();
+        }
+
         public static implicit operator Result<T>(T value) => Success(value);
     }
 }

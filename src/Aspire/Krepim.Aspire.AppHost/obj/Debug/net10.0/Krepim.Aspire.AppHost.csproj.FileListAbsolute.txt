@@ -108,3 +108,13 @@ C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\obj\Debug\ne
 C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\obj\Debug\net10.0\Krepim.Aspire.AppHost.genruntimeconfig.cache
 C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\obj\Debug\net10.0\ref\Krepim.Aspire.AppHost.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\obj\Debug\net10.0\Krepim.Aspire.AppHost.sourcelink.json
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\Aspire.Hosting.PostgreSQL.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\Aspire.Hosting.RabbitMQ.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\Aspire.Hosting.Redis.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\HealthChecks.NpgSql.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\HealthChecks.Rabbitmq.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\HealthChecks.Redis.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\Npgsql.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\Pipelines.Sockets.Unofficial.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\RabbitMQ.Client.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\StackExchange.Redis.dll

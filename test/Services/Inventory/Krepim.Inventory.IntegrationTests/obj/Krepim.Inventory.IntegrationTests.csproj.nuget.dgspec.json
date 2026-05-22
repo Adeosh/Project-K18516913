@@ -92,6 +92,9 @@
           },
           "centralPackageVersions": {
             "Amazon.S3": "0.35.1",
+            "Aspire.Hosting.PostgreSQL": "13.3.5",
+            "Aspire.Hosting.RabbitMQ": "13.3.5",
+            "Aspire.Hosting.Redis": "13.3.5",
             "AWSSDK.S3": "4.0.23.3",
             "BCrypt.Net-Next": "4.2.0",
             "coverlet.collector": "10.0.1",
@@ -141,7 +144,8 @@
             "Testcontainers.Redis": "4.12.0",
             "xunit.runner.visualstudio": "3.1.5",
             "xunit.v3": "3.2.2",
-            "xunit.v3.extensibility.core": "3.2.2"
+            "xunit.v3.extensibility.core": "3.2.2",
+            "Yarp.ReverseProxy": "2.3.0"
           },
           "imports": [
             "net461",
@@ -668,6 +672,9 @@
           },
           "centralPackageVersions": {
             "Amazon.S3": "0.35.1",
+            "Aspire.Hosting.PostgreSQL": "13.3.5",
+            "Aspire.Hosting.RabbitMQ": "13.3.5",
+            "Aspire.Hosting.Redis": "13.3.5",
             "AWSSDK.S3": "4.0.23.3",
             "BCrypt.Net-Next": "4.2.0",
             "coverlet.collector": "10.0.1",
@@ -717,7 +724,8 @@
             "Testcontainers.Redis": "4.12.0",
             "xunit.runner.visualstudio": "3.1.5",
             "xunit.v3": "3.2.2",
-            "xunit.v3.extensibility.core": "3.2.2"
+            "xunit.v3.extensibility.core": "3.2.2",
+            "Yarp.ReverseProxy": "2.3.0"
           },
           "imports": [
             "net461",
@@ -1226,6 +1234,9 @@
           },
           "centralPackageVersions": {
             "Amazon.S3": "0.35.1",
+            "Aspire.Hosting.PostgreSQL": "13.3.5",
+            "Aspire.Hosting.RabbitMQ": "13.3.5",
+            "Aspire.Hosting.Redis": "13.3.5",
             "AWSSDK.S3": "4.0.23.3",
             "BCrypt.Net-Next": "4.2.0",
             "coverlet.collector": "10.0.1",
@@ -1275,7 +1286,8 @@
             "Testcontainers.Redis": "4.12.0",
             "xunit.runner.visualstudio": "3.1.5",
             "xunit.v3": "3.2.2",
-            "xunit.v3.extensibility.core": "3.2.2"
+            "xunit.v3.extensibility.core": "3.2.2",
+            "Yarp.ReverseProxy": "2.3.0"
           },
           "imports": [
             "net461",
@@ -1772,6 +1784,9 @@
           "targetAlias": "net10.0",
           "centralPackageVersions": {
             "Amazon.S3": "0.35.1",
+            "Aspire.Hosting.PostgreSQL": "13.3.5",
+            "Aspire.Hosting.RabbitMQ": "13.3.5",
+            "Aspire.Hosting.Redis": "13.3.5",
             "AWSSDK.S3": "4.0.23.3",
             "BCrypt.Net-Next": "4.2.0",
             "coverlet.collector": "10.0.1",
@@ -1821,7 +1836,8 @@
             "Testcontainers.Redis": "4.12.0",
             "xunit.runner.visualstudio": "3.1.5",
             "xunit.v3": "3.2.2",
-            "xunit.v3.extensibility.core": "3.2.2"
+            "xunit.v3.extensibility.core": "3.2.2",
+            "Yarp.ReverseProxy": "2.3.0"
           },
           "imports": [
             "net461",
@@ -2168,6 +2184,9 @@
           "targetAlias": "net10.0",
           "centralPackageVersions": {
             "Amazon.S3": "0.35.1",
+            "Aspire.Hosting.PostgreSQL": "13.3.5",
+            "Aspire.Hosting.RabbitMQ": "13.3.5",
+            "Aspire.Hosting.Redis": "13.3.5",
             "AWSSDK.S3": "4.0.23.3",
             "BCrypt.Net-Next": "4.2.0",
             "coverlet.collector": "10.0.1",
@@ -2217,7 +2236,8 @@
             "Testcontainers.Redis": "4.12.0",
             "xunit.runner.visualstudio": "3.1.5",
             "xunit.v3": "3.2.2",
-            "xunit.v3.extensibility.core": "3.2.2"
+            "xunit.v3.extensibility.core": "3.2.2",
+            "Yarp.ReverseProxy": "2.3.0"
           },
           "imports": [
             "net461",
@@ -2568,6 +2588,9 @@
           "targetAlias": "net10.0",
           "centralPackageVersions": {
             "Amazon.S3": "0.35.1",
+            "Aspire.Hosting.PostgreSQL": "13.3.5",
+            "Aspire.Hosting.RabbitMQ": "13.3.5",
+            "Aspire.Hosting.Redis": "13.3.5",
             "AWSSDK.S3": "4.0.23.3",
             "BCrypt.Net-Next": "4.2.0",
             "coverlet.collector": "10.0.1",
@@ -2617,7 +2640,8 @@
             "Testcontainers.Redis": "4.12.0",
             "xunit.runner.visualstudio": "3.1.5",
             "xunit.v3": "3.2.2",
-            "xunit.v3.extensibility.core": "3.2.2"
+            "xunit.v3.extensibility.core": "3.2.2",
+            "Yarp.ReverseProxy": "2.3.0"
           },
           "imports": [
             "net461",
@@ -3025,6 +3049,9 @@
           },
           "centralPackageVersions": {
             "Amazon.S3": "0.35.1",
+            "Aspire.Hosting.PostgreSQL": "13.3.5",
+            "Aspire.Hosting.RabbitMQ": "13.3.5",
+            "Aspire.Hosting.Redis": "13.3.5",
             "AWSSDK.S3": "4.0.23.3",
             "BCrypt.Net-Next": "4.2.0",
             "coverlet.collector": "10.0.1",
@@ -3074,7 +3101,8 @@
             "Testcontainers.Redis": "4.12.0",
             "xunit.runner.visualstudio": "3.1.5",
             "xunit.v3": "3.2.2",
-            "xunit.v3.extensibility.core": "3.2.2"
+            "xunit.v3.extensibility.core": "3.2.2",
+            "Yarp.ReverseProxy": "2.3.0"
           },
           "imports": [
             "net461",

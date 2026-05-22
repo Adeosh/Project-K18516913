@@ -171,3 +171,6 @@ C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\Krepim.EventBus.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\Krepim.EventBus.pdb
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\obj\Debug\net10.0\Krepim.Identity.Api.sourcelink.json
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll

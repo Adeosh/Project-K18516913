@@ -160,3 +160,11 @@ C:\Users\adeos\Source\Repos\Krepim\test\BuildingBlocks\Krepim.SharedKernel.Tests
 C:\Users\adeos\Source\Repos\Krepim\test\BuildingBlocks\Krepim.SharedKernel.Tests\bin\Debug\net10.0\Castle.Core.dll
 C:\Users\adeos\Source\Repos\Krepim\test\BuildingBlocks\Krepim.SharedKernel.Tests\bin\Debug\net10.0\FluentAssertions.dll
 C:\Users\adeos\Source\Repos\Krepim\test\BuildingBlocks\Krepim.SharedKernel.Tests\bin\Debug\net10.0\NSubstitute.dll
+C:\Users\adeos\Source\Repos\Krepim\test\BuildingBlocks\Krepim.SharedKernel.Tests\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\adeos\Source\Repos\Krepim\test\BuildingBlocks\Krepim.SharedKernel.Tests\bin\Debug\net10.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\adeos\Source\Repos\Krepim\test\BuildingBlocks\Krepim.SharedKernel.Tests\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\adeos\Source\Repos\Krepim\test\BuildingBlocks\Krepim.SharedKernel.Tests\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\adeos\Source\Repos\Krepim\test\BuildingBlocks\Krepim.SharedKernel.Tests\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\adeos\Source\Repos\Krepim\test\BuildingBlocks\Krepim.SharedKernel.Tests\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\adeos\Source\Repos\Krepim\test\BuildingBlocks\Krepim.SharedKernel.Tests\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\adeos\Source\Repos\Krepim\test\BuildingBlocks\Krepim.SharedKernel.Tests\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll

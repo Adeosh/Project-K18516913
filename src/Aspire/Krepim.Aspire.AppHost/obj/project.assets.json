@@ -13,7 +13,7 @@
           "buildMultiTargeting/Aspire.Dashboard.Sdk.win-x64.targets": {}
         }
       },
-      "Aspire.Hosting/13.3.2": {
+      "Aspire.Hosting/13.3.5": {
         "type": "package",
         "dependencies": {
           "AspNetCore.HealthChecks.Uris": "9.0.0",
@@ -154,6 +154,188 @@
         },
         "buildMultiTargeting": {
           "buildMultiTargeting/Aspire.Hosting.Orchestration.win-x64.targets": {}
+        }
+      },
+      "Aspire.Hosting.PostgreSQL/13.3.5": {
+        "type": "package",
+        "dependencies": {
+          "AspNetCore.HealthChecks.NpgSql": "9.0.0",
+          "AspNetCore.HealthChecks.Uris": "9.0.0",
+          "Aspire.Hosting": "13.3.5",
+          "Google.Protobuf": "3.33.5",
+          "Grpc.AspNetCore": "2.76.0",
+          "Grpc.Net.ClientFactory": "2.76.0",
+          "Grpc.Tools": "2.78.0",
+          "Humanizer.Core": "2.14.1",
+          "JsonPatch.Net": "3.3.0",
+          "KubernetesClient": "18.0.13",
+          "Microsoft.Extensions.Configuration.Abstractions": "10.0.7",
+          "Microsoft.Extensions.Configuration.Binder": "10.0.7",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.7",
+          "Microsoft.Extensions.Diagnostics.HealthChecks": "8.0.26",
+          "Microsoft.Extensions.FileSystemGlobbing": "10.0.7",
+          "Microsoft.Extensions.Hosting": "10.0.7",
+          "Microsoft.Extensions.Hosting.Abstractions": "10.0.7",
+          "Microsoft.Extensions.Http": "10.0.7",
+          "Microsoft.Extensions.Logging": "10.0.7",
+          "Microsoft.Extensions.Logging.Abstractions": "10.0.7",
+          "Microsoft.Extensions.Options": "10.0.7",
+          "Microsoft.Extensions.Primitives": "10.0.7",
+          "ModelContextProtocol": "1.0.0",
+          "Newtonsoft.Json": "13.0.4",
+          "Polly.Core": "8.6.5",
+          "Semver": "3.0.0",
+          "StreamJsonRpc": "2.22.23",
+          "System.IO.Hashing": "10.0.3"
+        },
+        "compile": {
+          "lib/net8.0/Aspire.Hosting.PostgreSQL.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Aspire.Hosting.PostgreSQL.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Aspire.Hosting.RabbitMQ/13.3.5": {
+        "type": "package",
+        "dependencies": {
+          "AspNetCore.HealthChecks.Rabbitmq": "9.0.0",
+          "AspNetCore.HealthChecks.Uris": "9.0.0",
+          "Aspire.Hosting": "13.3.5",
+          "Google.Protobuf": "3.33.5",
+          "Grpc.AspNetCore": "2.76.0",
+          "Grpc.Net.ClientFactory": "2.76.0",
+          "Grpc.Tools": "2.78.0",
+          "Humanizer.Core": "2.14.1",
+          "JsonPatch.Net": "3.3.0",
+          "KubernetesClient": "18.0.13",
+          "Microsoft.Extensions.Configuration.Abstractions": "10.0.7",
+          "Microsoft.Extensions.Configuration.Binder": "10.0.7",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.7",
+          "Microsoft.Extensions.Diagnostics.HealthChecks": "8.0.26",
+          "Microsoft.Extensions.FileSystemGlobbing": "10.0.7",
+          "Microsoft.Extensions.Hosting": "10.0.7",
+          "Microsoft.Extensions.Hosting.Abstractions": "10.0.7",
+          "Microsoft.Extensions.Http": "10.0.7",
+          "Microsoft.Extensions.Logging": "10.0.7",
+          "Microsoft.Extensions.Logging.Abstractions": "10.0.7",
+          "Microsoft.Extensions.Options": "10.0.7",
+          "Microsoft.Extensions.Primitives": "10.0.7",
+          "ModelContextProtocol": "1.0.0",
+          "Newtonsoft.Json": "13.0.4",
+          "Polly.Core": "8.6.5",
+          "RabbitMQ.Client": "7.2.0",
+          "Semver": "3.0.0",
+          "StreamJsonRpc": "2.22.23",
+          "System.IO.Hashing": "10.0.3"
+        },
+        "compile": {
+          "lib/net8.0/Aspire.Hosting.RabbitMQ.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Aspire.Hosting.RabbitMQ.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Aspire.Hosting.Redis/13.3.5": {
+        "type": "package",
+        "dependencies": {
+          "AspNetCore.HealthChecks.Redis": "9.0.0",
+          "AspNetCore.HealthChecks.Uris": "9.0.0",
+          "Aspire.Hosting": "13.3.5",
+          "Google.Protobuf": "3.33.5",
+          "Grpc.AspNetCore": "2.76.0",
+          "Grpc.Net.ClientFactory": "2.76.0",
+          "Grpc.Tools": "2.78.0",
+          "Humanizer.Core": "2.14.1",
+          "JsonPatch.Net": "3.3.0",
+          "KubernetesClient": "18.0.13",
+          "Microsoft.Extensions.Configuration.Abstractions": "10.0.7",
+          "Microsoft.Extensions.Configuration.Binder": "10.0.7",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.7",
+          "Microsoft.Extensions.Diagnostics.HealthChecks": "8.0.26",
+          "Microsoft.Extensions.FileSystemGlobbing": "10.0.7",
+          "Microsoft.Extensions.Hosting": "10.0.7",
+          "Microsoft.Extensions.Hosting.Abstractions": "10.0.7",
+          "Microsoft.Extensions.Http": "10.0.7",
+          "Microsoft.Extensions.Logging": "10.0.7",
+          "Microsoft.Extensions.Logging.Abstractions": "10.0.7",
+          "Microsoft.Extensions.Options": "10.0.7",
+          "Microsoft.Extensions.Primitives": "10.0.7",
+          "ModelContextProtocol": "1.0.0",
+          "Newtonsoft.Json": "13.0.4",
+          "Polly.Core": "8.6.5",
+          "Semver": "3.0.0",
+          "StackExchange.Redis": "2.11.0",
+          "StreamJsonRpc": "2.22.23",
+          "System.IO.Hashing": "10.0.3"
+        },
+        "compile": {
+          "lib/net8.0/Aspire.Hosting.Redis.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Aspire.Hosting.Redis.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "AspNetCore.HealthChecks.NpgSql/9.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Diagnostics.HealthChecks": "8.0.11",
+          "Npgsql": "8.0.3"
+        },
+        "compile": {
+          "lib/net8.0/HealthChecks.NpgSql.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/HealthChecks.NpgSql.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "AspNetCore.HealthChecks.Rabbitmq/9.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Diagnostics.HealthChecks": "8.0.11",
+          "RabbitMQ.Client": "7.0.0"
+        },
+        "compile": {
+          "lib/net8.0/HealthChecks.Rabbitmq.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/HealthChecks.Rabbitmq.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "AspNetCore.HealthChecks.Redis/9.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Diagnostics.HealthChecks": "8.0.11",
+          "StackExchange.Redis": "2.7.4"
+        },
+        "compile": {
+          "lib/net8.0/HealthChecks.Redis.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/HealthChecks.Redis.dll": {
+            "related": ".xml"
+          }
         }
       },
       "AspNetCore.HealthChecks.Uris/9.0.0": {
@@ -1281,6 +1463,35 @@
           }
         }
       },
+      "Npgsql/8.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Npgsql.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Npgsql.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Pipelines.Sockets.Unofficial/2.2.8": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/Pipelines.Sockets.Unofficial.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net5.0/Pipelines.Sockets.Unofficial.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Polly.Core/8.6.5": {
         "type": "package",
         "compile": {
@@ -1291,6 +1502,22 @@
         "runtime": {
           "lib/net8.0/Polly.Core.dll": {
             "related": ".pdb;.xml"
+          }
+        }
+      },
+      "RabbitMQ.Client/7.2.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Threading.RateLimiting": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/RabbitMQ.Client.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/RabbitMQ.Client.dll": {
+            "related": ".xml"
           }
         }
       },
@@ -1306,6 +1533,24 @@
         },
         "runtime": {
           "lib/net5.0/Semver.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "StackExchange.Redis/2.11.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.0",
+          "Pipelines.Sockets.Unofficial": "2.2.8",
+          "System.IO.Hashing": "10.0.2"
+        },
+        "compile": {
+          "lib/net8.0/StackExchange.Redis.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/StackExchange.Redis.dll": {
             "related": ".xml"
           }
         }
@@ -1411,6 +1656,22 @@
         },
         "build": {
           "buildTransitive/net8.0/_._": {}
+        }
+      },
+      "System.Threading.RateLimiting/8.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/System.Threading.RateLimiting.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/System.Threading.RateLimiting.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "YamlDotNet/16.3.0": {
@@ -1581,17 +1842,17 @@
         "tools/zh-Hant/Aspire.Dashboard.resources.dll"
       ]
     },
-    "Aspire.Hosting/13.3.2": {
-      "sha512": "coTPhI1VHsB01nPxgdy+fyJmNCXpMs8WSSwbuWgjN46V7yd5ZEm93dxxxxvmicUGoABXMnJuJQDSzoKk5jxykg==",
+    "Aspire.Hosting/13.3.5": {
+      "sha512": "LHkPq30RgIxyN3rwPdqPAB1w5VwmfqjLoq+xX+Bac/9JOOwRROxHr7bjve28PnqBKmSX/z4PZlKlakKLOMGJXw==",
       "type": "package",
-      "path": "aspire.hosting/13.3.2",
+      "path": "aspire.hosting/13.3.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "README.md",
         "THIRD-PARTY-NOTICES.TXT",
-        "aspire.hosting.13.3.2.nupkg.sha512",
+        "aspire.hosting.13.3.5.nupkg.sha512",
         "aspire.hosting.nuspec",
         "buildTransitive/net8.0/Aspire.Hosting.Integration.Analyzers.dll",
         "buildTransitive/net8.0/Aspire.Hosting.targets",
@@ -1667,6 +1928,104 @@
         "tools/_manifest/spdx_2.2/manifest.spdx.json.sha256",
         "tools/dcp.exe",
         "tools/dcptun_c"
+      ]
+    },
+    "Aspire.Hosting.PostgreSQL/13.3.5": {
+      "sha512": "z9ikuYmeBhcUzA1lVeRfDdxdK2QcGI3golOvQ0EwkCyTpnD4yjTezuO5olY0qe4Wf/esxMPFHP8A1J5TEuNz1w==",
+      "type": "package",
+      "path": "aspire.hosting.postgresql/13.3.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "README.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "aspire.hosting.postgresql.13.3.5.nupkg.sha512",
+        "aspire.hosting.postgresql.nuspec",
+        "lib/net8.0/Aspire.Hosting.PostgreSQL.dll",
+        "lib/net8.0/Aspire.Hosting.PostgreSQL.xml"
+      ]
+    },
+    "Aspire.Hosting.RabbitMQ/13.3.5": {
+      "sha512": "aAKUVEPFKyj45cVlaJkTLQG+Mxs6mw1EouV6COQedY1u2JXnBsEXsnaB7ANO8qrrfQr4eB8L71xcGuJbfXtqWA==",
+      "type": "package",
+      "path": "aspire.hosting.rabbitmq/13.3.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "README.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "aspire.hosting.rabbitmq.13.3.5.nupkg.sha512",
+        "aspire.hosting.rabbitmq.nuspec",
+        "lib/net8.0/Aspire.Hosting.RabbitMQ.dll",
+        "lib/net8.0/Aspire.Hosting.RabbitMQ.xml"
+      ]
+    },
+    "Aspire.Hosting.Redis/13.3.5": {
+      "sha512": "l65u4TliNyJneZHKiQYINkc1abjzqlsaWp8eVDonMajM/Rn/Dtzf5FbEmDZZr9vf/siIhTZCmkKsRkpYfbPEsQ==",
+      "type": "package",
+      "path": "aspire.hosting.redis/13.3.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "README.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "aspire.hosting.redis.13.3.5.nupkg.sha512",
+        "aspire.hosting.redis.nuspec",
+        "lib/net8.0/Aspire.Hosting.Redis.dll",
+        "lib/net8.0/Aspire.Hosting.Redis.xml"
+      ]
+    },
+    "AspNetCore.HealthChecks.NpgSql/9.0.0": {
+      "sha512": "npc58/AD5zuVxERdhCl2Kb7WnL37mwX42SJcXIwvmEig0/dugOLg3SIwtfvvh3TnvTwR/sk5LYNkkPaBdks61A==",
+      "type": "package",
+      "path": "aspnetcore.healthchecks.npgsql/9.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "aspnetcore.healthchecks.npgsql.9.0.0.nupkg.sha512",
+        "aspnetcore.healthchecks.npgsql.nuspec",
+        "icon.png",
+        "lib/net8.0/HealthChecks.NpgSql.dll",
+        "lib/net8.0/HealthChecks.NpgSql.xml",
+        "lib/netstandard2.0/HealthChecks.NpgSql.dll",
+        "lib/netstandard2.0/HealthChecks.NpgSql.xml"
+      ]
+    },
+    "AspNetCore.HealthChecks.Rabbitmq/9.0.0": {
+      "sha512": "7WSQ7EwioA5niakzzLtGVcZMEOh+42fSwrI24vnNsT7gZuVGOViNekyz38G6wBPYKcpL/lUkMdg3ZaCiZTi/Dw==",
+      "type": "package",
+      "path": "aspnetcore.healthchecks.rabbitmq/9.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "aspnetcore.healthchecks.rabbitmq.9.0.0.nupkg.sha512",
+        "aspnetcore.healthchecks.rabbitmq.nuspec",
+        "icon.png",
+        "lib/net8.0/HealthChecks.Rabbitmq.dll",
+        "lib/net8.0/HealthChecks.Rabbitmq.xml",
+        "lib/netstandard2.0/HealthChecks.Rabbitmq.dll",
+        "lib/netstandard2.0/HealthChecks.Rabbitmq.xml"
+      ]
+    },
+    "AspNetCore.HealthChecks.Redis/9.0.0": {
+      "sha512": "yNH0h8GLRbAf+PU5HNVLZ5hNeyq9mDVmRKO9xuZsme/znUYoBJlQvI0gq45gaZNlLncCHkMhR4o90MuT+gxxPw==",
+      "type": "package",
+      "path": "aspnetcore.healthchecks.redis/9.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "aspnetcore.healthchecks.redis.9.0.0.nupkg.sha512",
+        "aspnetcore.healthchecks.redis.nuspec",
+        "icon.png",
+        "lib/net8.0/HealthChecks.Redis.dll",
+        "lib/net8.0/HealthChecks.Redis.xml",
+        "lib/netstandard2.0/HealthChecks.Redis.dll",
+        "lib/netstandard2.0/HealthChecks.Redis.xml"
       ]
     },
     "AspNetCore.HealthChecks.Uris/9.0.0": {
@@ -3297,6 +3656,52 @@
         "packageIcon.png"
       ]
     },
+    "Npgsql/8.0.3": {
+      "sha512": "6WEmzsQJCZAlUG1pThKg/RmeF6V+I0DmBBBE/8YzpRtEzhyZzKcK7ulMANDm5CkxrALBEC8H+5plxHWtIL7xnA==",
+      "type": "package",
+      "path": "npgsql/8.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net6.0/Npgsql.dll",
+        "lib/net6.0/Npgsql.xml",
+        "lib/net7.0/Npgsql.dll",
+        "lib/net7.0/Npgsql.xml",
+        "lib/net8.0/Npgsql.dll",
+        "lib/net8.0/Npgsql.xml",
+        "lib/netstandard2.0/Npgsql.dll",
+        "lib/netstandard2.0/Npgsql.xml",
+        "lib/netstandard2.1/Npgsql.dll",
+        "lib/netstandard2.1/Npgsql.xml",
+        "npgsql.8.0.3.nupkg.sha512",
+        "npgsql.nuspec",
+        "postgresql.png"
+      ]
+    },
+    "Pipelines.Sockets.Unofficial/2.2.8": {
+      "sha512": "zG2FApP5zxSx6OcdJQLbZDk2AVlN2BNQD6MorwIfV6gVj0RRxWPEp2LXAxqDGZqeNV1Zp0BNPcNaey/GXmTdvQ==",
+      "type": "package",
+      "path": "pipelines.sockets.unofficial/2.2.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net461/Pipelines.Sockets.Unofficial.dll",
+        "lib/net461/Pipelines.Sockets.Unofficial.xml",
+        "lib/net472/Pipelines.Sockets.Unofficial.dll",
+        "lib/net472/Pipelines.Sockets.Unofficial.xml",
+        "lib/net5.0/Pipelines.Sockets.Unofficial.dll",
+        "lib/net5.0/Pipelines.Sockets.Unofficial.xml",
+        "lib/netcoreapp3.1/Pipelines.Sockets.Unofficial.dll",
+        "lib/netcoreapp3.1/Pipelines.Sockets.Unofficial.xml",
+        "lib/netstandard2.0/Pipelines.Sockets.Unofficial.dll",
+        "lib/netstandard2.0/Pipelines.Sockets.Unofficial.xml",
+        "lib/netstandard2.1/Pipelines.Sockets.Unofficial.dll",
+        "lib/netstandard2.1/Pipelines.Sockets.Unofficial.xml",
+        "pipelines.sockets.unofficial.2.2.8.nupkg.sha512",
+        "pipelines.sockets.unofficial.nuspec"
+      ]
+    },
     "Polly.Core/8.6.5": {
       "sha512": "t+sUVrIwvo7UmsgHGgOG9F0GDZSRIm47u2ylH17Gvcv1q5hNEwgD5GoBlFyc0kh/pebmPyrAgvGsR/65ZBaXlg==",
       "type": "package",
@@ -3326,6 +3731,23 @@
         "polly.core.nuspec"
       ]
     },
+    "RabbitMQ.Client/7.2.0": {
+      "sha512": "PPQ7cF7lwbhqC4up6en1bTUZlz06YqQwJecOJzsguTtyhNA7oL5uNDZIx/h6ZfcyPZV4V3DYKSCxfm4RUFLcbA==",
+      "type": "package",
+      "path": "rabbitmq.client/7.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "icon.png",
+        "lib/net8.0/RabbitMQ.Client.dll",
+        "lib/net8.0/RabbitMQ.Client.xml",
+        "lib/netstandard2.0/RabbitMQ.Client.dll",
+        "lib/netstandard2.0/RabbitMQ.Client.xml",
+        "rabbitmq.client.7.2.0.nupkg.sha512",
+        "rabbitmq.client.nuspec"
+      ]
+    },
     "Semver/3.0.0": {
       "sha512": "9jZCicsVgTebqkAujRWtC9J1A5EQVlu0TVKHcgoCuv345ve5DYf4D1MjhKEnQjdRZo6x/vdv6QQrYFs7ilGzLA==",
       "type": "package",
@@ -3342,6 +3764,30 @@
         "lib/netstandard2.1/Semver.xml",
         "semver.3.0.0.nupkg.sha512",
         "semver.nuspec"
+      ]
+    },
+    "StackExchange.Redis/2.11.0": {
+      "sha512": "tCYDmkaCpEc48MZHh/FgQKavX/kqjpBAIyEFxeO9LTuHRV0flJndXcKpfbgUKahKuk/OI6TEXM6NwKu0gi6xjQ==",
+      "type": "package",
+      "path": "stackexchange.redis/2.11.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net461/StackExchange.Redis.dll",
+        "lib/net461/StackExchange.Redis.xml",
+        "lib/net472/StackExchange.Redis.dll",
+        "lib/net472/StackExchange.Redis.xml",
+        "lib/net6.0/StackExchange.Redis.dll",
+        "lib/net6.0/StackExchange.Redis.xml",
+        "lib/net8.0/StackExchange.Redis.dll",
+        "lib/net8.0/StackExchange.Redis.xml",
+        "lib/netcoreapp3.1/StackExchange.Redis.dll",
+        "lib/netcoreapp3.1/StackExchange.Redis.xml",
+        "lib/netstandard2.0/StackExchange.Redis.dll",
+        "lib/netstandard2.0/StackExchange.Redis.xml",
+        "stackexchange.redis.2.11.0.nupkg.sha512",
+        "stackexchange.redis.nuspec"
       ]
     },
     "StreamJsonRpc/2.22.23": {
@@ -3472,6 +3918,35 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "System.Threading.RateLimiting/8.0.0": {
+      "sha512": "7mu9v0QDv66ar3DpGSZHg9NuNcxDaaAcnMULuZlaTpP9+hwXhrxNGsF5GmLkSHxFdb5bBc1TzeujsRgTrPWi+Q==",
+      "type": "package",
+      "path": "system.threading.ratelimiting/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/System.Threading.RateLimiting.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/System.Threading.RateLimiting.targets",
+        "lib/net462/System.Threading.RateLimiting.dll",
+        "lib/net462/System.Threading.RateLimiting.xml",
+        "lib/net6.0/System.Threading.RateLimiting.dll",
+        "lib/net6.0/System.Threading.RateLimiting.xml",
+        "lib/net7.0/System.Threading.RateLimiting.dll",
+        "lib/net7.0/System.Threading.RateLimiting.xml",
+        "lib/net8.0/System.Threading.RateLimiting.dll",
+        "lib/net8.0/System.Threading.RateLimiting.xml",
+        "lib/netstandard2.0/System.Threading.RateLimiting.dll",
+        "lib/netstandard2.0/System.Threading.RateLimiting.xml",
+        "system.threading.ratelimiting.8.0.0.nupkg.sha512",
+        "system.threading.ratelimiting.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
     "YamlDotNet/16.3.0": {
       "sha512": "SgMOdxbz8X65z8hraIs6hOEdnkH6hESTAIUa7viEngHOYaH+6q5XJmwr1+yb9vJpNQ19hCQY69xbFsLtXpobQA==",
       "type": "package",
@@ -3500,7 +3975,10 @@
     "net10.0": [
       "Aspire.Dashboard.Sdk.win-x64 >= 13.3.2",
       "Aspire.Hosting.AppHost >= 13.3.2",
-      "Aspire.Hosting.Orchestration.win-x64 >= 13.3.2"
+      "Aspire.Hosting.Orchestration.win-x64 >= 13.3.2",
+      "Aspire.Hosting.PostgreSQL >= 13.3.5",
+      "Aspire.Hosting.RabbitMQ >= 13.3.5",
+      "Aspire.Hosting.Redis >= 13.3.5"
     ]
   },
   "packageFolders": {
@@ -3571,10 +4049,28 @@
             "target": "Package",
             "version": "[13.3.2, )",
             "autoReferenced": true
+          },
+          "Aspire.Hosting.PostgreSQL": {
+            "target": "Package",
+            "version": "[13.3.5, )",
+            "versionCentrallyManaged": true
+          },
+          "Aspire.Hosting.RabbitMQ": {
+            "target": "Package",
+            "version": "[13.3.5, )",
+            "versionCentrallyManaged": true
+          },
+          "Aspire.Hosting.Redis": {
+            "target": "Package",
+            "version": "[13.3.5, )",
+            "versionCentrallyManaged": true
           }
         },
         "centralPackageVersions": {
           "Amazon.S3": "0.35.1",
+          "Aspire.Hosting.PostgreSQL": "13.3.5",
+          "Aspire.Hosting.RabbitMQ": "13.3.5",
+          "Aspire.Hosting.Redis": "13.3.5",
           "AWSSDK.S3": "4.0.23.3",
           "BCrypt.Net-Next": "4.2.0",
           "coverlet.collector": "10.0.1",
@@ -3624,7 +4120,8 @@
           "Testcontainers.Redis": "4.12.0",
           "xunit.runner.visualstudio": "3.1.5",
           "xunit.v3": "3.2.2",
-          "xunit.v3.extensibility.core": "3.2.2"
+          "xunit.v3.extensibility.core": "3.2.2",
+          "Yarp.ReverseProxy": "2.3.0"
         },
         "imports": [
           "net461",

@@ -1,5 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
+    <PackageReference Include="MassTransit" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\Krepim.EventBus\Krepim.EventBus.csproj" />
     <ProjectReference Include="..\Krepim.Ordering.Domain\Krepim.Ordering.Domain.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\Krepim.SharedKernel\Krepim.SharedKernel.csproj" />
   </ItemGroup>

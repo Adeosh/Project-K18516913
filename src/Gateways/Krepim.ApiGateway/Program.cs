@@ -1,6 +1,14 @@
 var builder = WebApplication.CreateBuilder(args);
+
+builder.AddServiceDefaults();
+
+builder.Services.AddReverseProxy()
+    .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
+
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+app.MapDefaultEndpoints();
+
+app.MapReverseProxy();
 
 app.Run();

@@ -172,3 +172,11 @@ C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.Applicat
 C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.Application.Tests\obj\Debug\net10.0\Krepim.Catalog.Application.Tests.pdb
 C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.Application.Tests\obj\Debug\net10.0\Krepim.Catalog.Application.Tests.genruntimeconfig.cache
 C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.Application.Tests\obj\Debug\net10.0\ref\Krepim.Catalog.Application.Tests.dll
+C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.Application.Tests\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.Application.Tests\bin\Debug\net10.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.Application.Tests\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.Application.Tests\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.Application.Tests\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.Application.Tests\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.Application.Tests\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.Application.Tests\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll

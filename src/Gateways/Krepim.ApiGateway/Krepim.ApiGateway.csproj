@@ -1,6 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <ItemGroup>
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" />
+    <PackageReference Include="Yarp.ReverseProxy" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Aspire\Krepim.Aspire.ServiceDefaults\Krepim.Aspire.ServiceDefaults.csproj" />

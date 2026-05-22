@@ -367,6 +367,44 @@
           }
         }
       },
+      "System.IO.Hashing/8.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/System.IO.Hashing.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/System.IO.Hashing.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        }
+      },
+      "Yarp.ReverseProxy/2.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.IO.Hashing": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Yarp.ReverseProxy.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Yarp.ReverseProxy.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ],
+        "build": {
+          "buildTransitive/net8.0/Yarp.ReverseProxy.targets": {}
+        }
+      },
       "Krepim.Aspire.ServiceDefaults/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -969,6 +1007,59 @@
         "polly.ratelimiting.nuspec"
       ]
     },
+    "System.IO.Hashing/8.0.0": {
+      "sha512": "ne1843evDugl0md7Fjzy6QjJrzsjh46ZKbhf8GwBXb5f/gw97J4bxMs0NQKifDuThh/f0bZ0e62NPl1jzTuRqA==",
+      "type": "package",
+      "path": "system.io.hashing/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/System.IO.Hashing.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/System.IO.Hashing.targets",
+        "lib/net462/System.IO.Hashing.dll",
+        "lib/net462/System.IO.Hashing.xml",
+        "lib/net6.0/System.IO.Hashing.dll",
+        "lib/net6.0/System.IO.Hashing.xml",
+        "lib/net7.0/System.IO.Hashing.dll",
+        "lib/net7.0/System.IO.Hashing.xml",
+        "lib/net8.0/System.IO.Hashing.dll",
+        "lib/net8.0/System.IO.Hashing.xml",
+        "lib/netstandard2.0/System.IO.Hashing.dll",
+        "lib/netstandard2.0/System.IO.Hashing.xml",
+        "system.io.hashing.8.0.0.nupkg.sha512",
+        "system.io.hashing.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Yarp.ReverseProxy/2.3.0": {
+      "sha512": "gxtkN3a+9biu9V9Zd5NaTO6VZWXAnS2mhQ0R/VXmSPoTuiQNZsakKikrKpDtKxrL5nUYzbRsHtl40WNq+ZBKKg==",
+      "type": "package",
+      "path": "yarp.reverseproxy/2.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ConfigurationSchema.json",
+        "README.md",
+        "buildTransitive/net6.0/Yarp.ReverseProxy.targets",
+        "buildTransitive/net7.0/Yarp.ReverseProxy.targets",
+        "buildTransitive/net8.0/Yarp.ReverseProxy.targets",
+        "icon.png",
+        "lib/net6.0/Yarp.ReverseProxy.dll",
+        "lib/net6.0/Yarp.ReverseProxy.xml",
+        "lib/net7.0/Yarp.ReverseProxy.dll",
+        "lib/net7.0/Yarp.ReverseProxy.xml",
+        "lib/net8.0/Yarp.ReverseProxy.dll",
+        "lib/net8.0/Yarp.ReverseProxy.xml",
+        "yarp.reverseproxy.2.3.0.nupkg.sha512",
+        "yarp.reverseproxy.nuspec"
+      ]
+    },
     "Krepim.Aspire.ServiceDefaults/1.0.0": {
       "type": "project",
       "path": "../../Aspire/Krepim.Aspire.ServiceDefaults/Krepim.Aspire.ServiceDefaults.csproj",
@@ -978,7 +1069,8 @@
   "projectFileDependencyGroups": {
     "net10.0": [
       "Krepim.Aspire.ServiceDefaults >= 1.0.0",
-      "OpenTelemetry.Exporter.OpenTelemetryProtocol >= 1.15.3"
+      "OpenTelemetry.Exporter.OpenTelemetryProtocol >= 1.15.3",
+      "Yarp.ReverseProxy >= 2.3.0"
     ]
   },
   "packageFolders": {
@@ -1043,10 +1135,18 @@
             "target": "Package",
             "version": "[1.15.3, )",
             "versionCentrallyManaged": true
+          },
+          "Yarp.ReverseProxy": {
+            "target": "Package",
+            "version": "[2.3.0, )",
+            "versionCentrallyManaged": true
           }
         },
         "centralPackageVersions": {
           "Amazon.S3": "0.35.1",
+          "Aspire.Hosting.PostgreSQL": "13.3.5",
+          "Aspire.Hosting.RabbitMQ": "13.3.5",
+          "Aspire.Hosting.Redis": "13.3.5",
           "AWSSDK.S3": "4.0.23.3",
           "BCrypt.Net-Next": "4.2.0",
           "coverlet.collector": "10.0.1",
@@ -1096,7 +1196,8 @@
           "Testcontainers.Redis": "4.12.0",
           "xunit.runner.visualstudio": "3.1.5",
           "xunit.v3": "3.2.2",
-          "xunit.v3.extensibility.core": "3.2.2"
+          "xunit.v3.extensibility.core": "3.2.2",
+          "Yarp.ReverseProxy": "2.3.0"
         },
         "imports": [
           "net461",

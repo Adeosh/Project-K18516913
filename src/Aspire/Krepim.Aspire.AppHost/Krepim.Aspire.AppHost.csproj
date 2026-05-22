@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.PostgreSQL" />
+    <PackageReference Include="Aspire.Hosting.RabbitMQ" />
+    <PackageReference Include="Aspire.Hosting.Redis" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Clients\Krepim.Mobile\Krepim.Mobile.csproj">
       <SetTargetFramework>TargetFramework=net10.0</SetTargetFramework>
     </ProjectReference>
