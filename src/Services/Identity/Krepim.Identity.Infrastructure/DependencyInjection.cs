@@ -2,6 +2,7 @@
 using Krepim.Identity.Infrastructure.Authentication;
 using Krepim.Identity.Infrastructure.Database;
 using Krepim.Identity.Infrastructure.Database.Repositories;
+using Krepim.SharedKernel.Authentication;
 using Krepim.SharedKernel.Domain.Abstractions;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;

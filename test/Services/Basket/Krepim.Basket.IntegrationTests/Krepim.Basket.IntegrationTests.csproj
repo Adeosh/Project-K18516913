@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -17,11 +17,14 @@
 	<PackageReference Include="Testcontainers.PostgreSql" />
 	<PackageReference Include="Testcontainers.RabbitMq" />
 	<PackageReference Include="Testcontainers.Redis" />
+	<PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" />
+	<PackageReference Include="StackExchange.Redis" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="Xunit" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\src\Services\Basket\Krepim.Basket.Api\Krepim.Basket.Api.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Krepim.Testing.Shared\Krepim.Testing.Shared.csproj" />
   </ItemGroup>
 </Project>

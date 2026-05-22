@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Krepim.Testing.Shared")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bda7ea3e989e35c418469d97c8cc8ccb90982de5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4185bead6e0f1a872722f33302b083de9cd1a908")]
 [assembly: System.Reflection.AssemblyProductAttribute("Krepim.Testing.Shared")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Krepim.Testing.Shared")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -67,3 +67,7 @@ C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Api\obj\Deb
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Api\bin\Debug\net10.0\MediatR.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Api\bin\Debug\net10.0\MediatR.Contracts.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Api\obj\Debug\net10.0\Krepim.Basket.Api.sourcelink.json
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Api\bin\Debug\net10.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Api\bin\Debug\net10.0\Pipelines.Sockets.Unofficial.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Api\bin\Debug\net10.0\StackExchange.Redis.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Basket\Krepim.Basket.Api\bin\Debug\net10.0\System.IO.Hashing.dll

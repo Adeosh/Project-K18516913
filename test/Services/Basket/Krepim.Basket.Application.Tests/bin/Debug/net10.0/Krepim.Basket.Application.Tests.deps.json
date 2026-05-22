@@ -11,6 +11,7 @@
           "FluentAssertions": "8.10.0",
           "Krepim.Basket.Application": "1.0.0",
           "Microsoft.NET.Test.Sdk": "18.5.1",
+          "Moq": "4.20.72",
           "NSubstitute": "5.3.0",
           "xunit.v3": "3.2.2"
         },
@@ -510,6 +511,17 @@
           }
         }
       },
+      "Moq/4.20.72": {
+        "dependencies": {
+          "Castle.Core": "5.1.1"
+        },
+        "runtime": {
+          "lib/net6.0/Moq.dll": {
+            "assemblyVersion": "4.20.72.0",
+            "fileVersion": "4.20.72.0"
+          }
+        }
+      },
       "Newtonsoft.Json/13.0.3": {
         "runtime": {
           "lib/net6.0/Newtonsoft.Json.dll": {
@@ -760,6 +772,13 @@
       "sha512": "sha512-RM+3JNHEoHOCFXzVntUcIiYxzPjzBN0N8wto6HYXi76YyBTZ/3CeRL8U+Pk5zx3AUrOmHxDvKJwGUCdElU9bJg==",
       "path": "microsoft.testplatform.testhost/18.5.1",
       "hashPath": "microsoft.testplatform.testhost.18.5.1.nupkg.sha512"
+    },
+    "Moq/4.20.72": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-EA55cjyNn8eTNWrgrdZJH5QLFp2L43oxl1tlkoYUKIE9pRwL784OWiTXeCV5ApS+AMYEAlt7Fo03A2XfouvHmQ==",
+      "path": "moq/4.20.72",
+      "hashPath": "moq.4.20.72.nupkg.sha512"
     },
     "Newtonsoft.Json/13.0.3": {
       "type": "package",

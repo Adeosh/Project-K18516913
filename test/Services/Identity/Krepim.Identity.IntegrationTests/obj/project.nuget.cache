@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "LzEXGotJC+M=",
+  "dgSpecHash": "JwTe8V9MfaU=",
   "success": true,
   "projectFilePath": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\test\\Services\\Identity\\Krepim.Identity.IntegrationTests\\Krepim.Identity.IntegrationTests.csproj",
   "expectedPackageFiles": [
@@ -26,6 +26,7 @@
     "C:\\Users\\adeos\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.applicationinsights\\2.23.0\\microsoft.applicationinsights.2.23.0.nupkg.sha512",
+    "C:\\Users\\adeos\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\10.0.8\\microsoft.aspnetcore.authentication.jwtbearer.10.0.8.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.aspnetcore.mvc.testing\\10.0.8\\microsoft.aspnetcore.mvc.testing.10.0.8.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.8\\microsoft.aspnetcore.openapi.10.0.8.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.aspnetcore.testhost\\10.0.8\\microsoft.aspnetcore.testhost.10.0.8.nupkg.sha512",
@@ -92,6 +93,8 @@
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.identitymodel.abstractions\\8.18.0\\microsoft.identitymodel.abstractions.8.18.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\8.18.0\\microsoft.identitymodel.jsonwebtokens.8.18.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.identitymodel.logging\\8.18.0\\microsoft.identitymodel.logging.8.18.0.nupkg.sha512",
+    "C:\\Users\\adeos\\.nuget\\packages\\microsoft.identitymodel.protocols\\8.0.1\\microsoft.identitymodel.protocols.8.0.1.nupkg.sha512",
+    "C:\\Users\\adeos\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\8.0.1\\microsoft.identitymodel.protocols.openidconnect.8.0.1.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.identitymodel.tokens\\8.18.0\\microsoft.identitymodel.tokens.8.18.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.net.test.sdk\\18.5.1\\microsoft.net.test.sdk.18.5.1.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512",

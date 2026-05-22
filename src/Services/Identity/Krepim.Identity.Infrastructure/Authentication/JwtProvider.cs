@@ -1,5 +1,6 @@
 ﻿using Krepim.Identity.Application.Interfaces;
 using Krepim.Identity.Domain.Aggregates;
+using Krepim.SharedKernel.Authentication;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;

@@ -55,6 +55,17 @@
           }
         }
       },
+      "Microsoft.Extensions.Caching.StackExchangeRedis/10.0.8": {
+        "dependencies": {
+          "StackExchange.Redis": "2.13.1"
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.Extensions.Caching.StackExchangeRedis.dll": {
+            "assemblyVersion": "10.0.8.0",
+            "fileVersion": "10.0.826.23019"
+          }
+        }
+      },
       "Microsoft.Extensions.Compliance.Abstractions/10.6.0": {
         "runtime": {
           "lib/net10.0/Microsoft.Extensions.Compliance.Abstractions.dll": {
@@ -252,6 +263,14 @@
           }
         }
       },
+      "Pipelines.Sockets.Unofficial/2.2.16": {
+        "runtime": {
+          "lib/net9.0/Pipelines.Sockets.Unofficial.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "2.2.16.21791"
+          }
+        }
+      },
       "Polly.Core/8.4.2": {
         "runtime": {
           "lib/net8.0/Polly.Core.dll": {
@@ -279,6 +298,26 @@
           "lib/net8.0/Polly.RateLimiting.dll": {
             "assemblyVersion": "8.0.0.0",
             "fileVersion": "8.4.2.3950"
+          }
+        }
+      },
+      "StackExchange.Redis/2.13.1": {
+        "dependencies": {
+          "Pipelines.Sockets.Unofficial": "2.2.16",
+          "System.IO.Hashing": "10.0.2"
+        },
+        "runtime": {
+          "lib/net10.0/StackExchange.Redis.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.13.1.38939"
+          }
+        }
+      },
+      "System.IO.Hashing/10.0.2": {
+        "runtime": {
+          "lib/net10.0/System.IO.Hashing.dll": {
+            "assemblyVersion": "10.0.0.2",
+            "fileVersion": "10.0.225.61305"
           }
         }
       },
@@ -321,7 +360,9 @@
       },
       "Krepim.Basket.Infrastructure/1.0.0": {
         "dependencies": {
-          "Krepim.Basket.Application": "1.0.0"
+          "Krepim.Basket.Application": "1.0.0",
+          "Microsoft.Extensions.Caching.StackExchangeRedis": "10.0.8",
+          "StackExchange.Redis": "2.13.1"
         },
         "runtime": {
           "Krepim.Basket.Infrastructure.dll": {
@@ -377,6 +418,13 @@
       "sha512": "sha512-MPAI1c5QqkDgEyEvsSj7KPPWHlTCqvXxtfp7JISul4P54GfDkSs+S7Vyq7tmS7MzpEjuH/6xrsFlUqAPlLyTUA==",
       "path": "microsoft.extensions.ambientmetadata.application/10.6.0",
       "hashPath": "microsoft.extensions.ambientmetadata.application.10.6.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Caching.StackExchangeRedis/10.0.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fle9ns3q2kk63vt/wHFtLw1U9kiEbM42vTk2Sar8VBjiGJFkXAgm0QEKFx15YMHkJIPRVdknWaovpvgGEgn10g==",
+      "path": "microsoft.extensions.caching.stackexchangeredis/10.0.8",
+      "hashPath": "microsoft.extensions.caching.stackexchangeredis.10.0.8.nupkg.sha512"
     },
     "Microsoft.Extensions.Compliance.Abstractions/10.6.0": {
       "type": "package",
@@ -511,6 +559,13 @@
       "path": "opentelemetry.instrumentation.runtime/1.15.1",
       "hashPath": "opentelemetry.instrumentation.runtime.1.15.1.nupkg.sha512"
     },
+    "Pipelines.Sockets.Unofficial/2.2.16": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nonu9l0YrZH6krVYbskBjE7uG0VMAnvOQ9PU+RmzUsy+++vHkqzzCkHRoP877OiA3iRTxJyNDLfpcU8hrJ3/YQ==",
+      "path": "pipelines.sockets.unofficial/2.2.16",
+      "hashPath": "pipelines.sockets.unofficial.2.2.16.nupkg.sha512"
+    },
     "Polly.Core/8.4.2": {
       "type": "package",
       "serviceable": true,
@@ -531,6 +586,20 @@
       "sha512": "sha512-ehTImQ/eUyO07VYW2WvwSmU9rRH200SKJ/3jku9rOkyWE0A2JxNFmAVms8dSn49QLSjmjFRRSgfNyOgr/2PSmA==",
       "path": "polly.ratelimiting/8.4.2",
       "hashPath": "polly.ratelimiting.8.4.2.nupkg.sha512"
+    },
+    "StackExchange.Redis/2.13.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jC5wkRe8K6HPoDENUws+fl2d7+GKz+ky8SWEDzYzPx6hHt2EwxWm01gmYPWLzlT49jfYYap0guB5bExtyX9aIQ==",
+      "path": "stackexchange.redis/2.13.1",
+      "hashPath": "stackexchange.redis.2.13.1.nupkg.sha512"
+    },
+    "System.IO.Hashing/10.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-AKJknIFi9O3+rGExxTry188JPvUoZAPcCtS2qdqyFhIzsxQ1Ap94BeGDG0VzVEHakhmRxmJtVih6TsHoghIt/g==",
+      "path": "system.io.hashing/10.0.2",
+      "hashPath": "system.io.hashing.10.0.2.nupkg.sha512"
     },
     "Krepim.Aspire.ServiceDefaults/1.0.0": {
       "type": "project",

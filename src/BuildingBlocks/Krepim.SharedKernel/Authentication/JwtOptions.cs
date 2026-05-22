@@ -1,4 +1,4 @@
-﻿namespace Krepim.Identity.Infrastructure.Authentication
+﻿namespace Krepim.SharedKernel.Authentication
 {
     public sealed class JwtOptions
     {

@@ -1,0 +1,43 @@
+﻿using Krepim.Basket.Application.Interfaces;
+using Krepim.EventBus.Events.Basket;
+using Krepim.SharedKernel.Results;
+using MassTransit;
+using MediatR;
+
+namespace Krepim.Basket.Application.Features.Checkout
+{
+    internal sealed class CheckoutBasketCommandHandler(
+        IBasketRepository repository,
+        IPublishEndpoint publishEndpoint) : IRequestHandler<CheckoutBasketCommand, Result>
+    {
+        public async Task<Result> Handle(CheckoutBasketCommand request, CancellationToken ct)
+        {
+            var basket = await repository.GetBasketAsync(request.UserId, ct);
+
+            if (basket is null || !basket.Items.Any())
+            {
+                return Result.Failure(new Error(
+                    "Basket.Empty",
+                    "Невозможно оформить заказ: корзина пуста.",
+                    ErrorType.Validation));
+            }
+
+            var eventItems = basket.Items
+                .Select(i => new BasketCheckoutItem(i.ProductId, i.UnitPrice, i.Quantity))
+                .ToList();
+
+            var checkoutEvent = new BasketCheckoutIntegrationEvent(
+                request.UserId,
+                basket.TotalPrice,
+                request.City,
+                request.Street,
+                request.ZipCode,
+                eventItems);
+
+            await publishEndpoint.Publish(checkoutEvent, ct);
+            await repository.DeleteBasketAsync(request.UserId, ct);
+
+            return Result.Success();
+        }
+    }
+}
