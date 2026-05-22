@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Krepim.Catalog.Domain.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b6bf9b636a66f78caef8da2e4b9b1ee58ba6e25d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bda7ea3e989e35c418469d97c8cc8ccb90982de5")]
 [assembly: System.Reflection.AssemblyProductAttribute("Krepim.Catalog.Domain.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Krepim.Catalog.Domain.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

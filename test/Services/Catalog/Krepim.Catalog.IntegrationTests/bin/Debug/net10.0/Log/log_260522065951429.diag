@@ -1,0 +1,73 @@
+2026-05-22T06:59:51.4333455+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Version: 1.9.1+cb5afc3bb9bb01ebd75b57f89e8358b914ee2a49
+2026-05-22T06:59:51.4390827+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging mode: asynchronous
+2026-05-22T06:59:51.4396186+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging level: Information
+2026-05-22T06:59:51.4396228+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION CreateBuilderAsync entry time: 06:59:51.421
+2026-05-22T06:59:51.4396676+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION PID: 2372
+2026-05-22T06:59:51.4396856+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime information: win-x64 - .NET 10.0.7
+2026-05-22T06:59:51.4396955+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\10.0.7\System.Private.CoreLib.dll
+2026-05-22T06:59:51.4397000+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION IsDynamicCodeSupported: True
+2026-05-22T06:59:51.4397479+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Test module: C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\bin\Debug\net10.0\Krepim.Catalog.IntegrationTests.dll
+2026-05-22T06:59:51.4398212+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Command line arguments: '--server --diagnostic --diagnostic-verbosity Information --diagnostic-output-directory C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\bin\Debug\net10.0\Log --results-directory C:\Users\adeos\Source\Repos\Krepim\TestResults --client-port 65413'
+2026-05-22T06:59:51.4403440+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION TESTINGPLATFORM_DEFAULT_HANG_TIMEOUT: ''
+2026-05-22T06:59:51.4510287+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting RegisterEnvironmentVariablesConfigurationSource: 'True'
+2026-05-22T06:59:51.4597052+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting PlatformExitProcessOnUnhandledException: 'False', config file: False environment variable: 
+2026-05-22T06:59:51.6036742+00:00 Microsoft.Testing.Platform.Requests.TestHostTestFrameworkInvoker INFORMATION Test framework UID: '30ea7c6e-dd24-4152-a360-1387158cd41d' Version: '3.2.2' DisplayName: 'xUnit.net v3 Microsoft.Testing.Platform test framework' Description: 'xUnit.net v3 Microsoft.Testing.Platform test framework'
+2026-05-22T06:59:51.6102051+00:00 xUnit.net INFORMATION xUnit.net v3 In-Process Runner v3.2.2+728c1dce01 (64-bit .NET 10.0.7)
+2026-05-22T06:59:51.6372637+00:00 xUnit.net INFORMATION   Discovering: Krepim.Catalog.IntegrationTests
+2026-05-22T06:59:51.6635264+00:00 xUnit.net INFORMATION   Discovered:  Krepim.Catalog.IntegrationTests
+2026-05-22T06:59:51.6772190+00:00 xUnit.net INFORMATION   Starting:    Krepim.Catalog.IntegrationTests
+2026-05-22T07:00:02.2324785+00:00 xUnit.net ERROR     Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.GetProductById_Should_ReturnNotFound_WhenIdDoesNotExist [FAIL]
+2026-05-22T07:00:02.2327932+00:00 xUnit.net INFORMATION       Expected response.StatusCode to be HttpStatusCode.NotFound {value: 404}, but found HttpStatusCode.InternalServerError {value: 500}.
+2026-05-22T07:00:02.2330483+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-05-22T07:00:02.2332621+00:00 xUnit.net INFORMATION            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+2026-05-22T07:00:02.2332833+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Features\Products\ClientEndpointsTests.cs(94,0): at Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.GetProductById_Should_ReturnNotFound_WhenIdDoesNotExist()
+2026-05-22T07:00:02.2332846+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-05-22T07:00:02.3167472+00:00 xUnit.net ERROR     Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.GetProductById_Should_ReturnProduct_WhenItExists [FAIL]
+2026-05-22T07:00:02.3167660+00:00 xUnit.net INFORMATION       MongoDB.Bson.BsonSerializationException : An error occurred while serializing the Id property of class Krepim.Catalog.Application.Models.ProductReadModel: GuidSerializer cannot serialize a Guid when GuidRepresentation is Unspecified.
+2026-05-22T07:00:02.3167695+00:00 xUnit.net INFORMATION       ---- MongoDB.Bson.BsonSerializationException : GuidSerializer cannot serialize a Guid when GuidRepresentation is Unspecified.
+2026-05-22T07:00:02.3167973+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-05-22T07:00:02.3168103+00:00 xUnit.net INFORMATION            at MongoDB.Driver.Core.Operations.RetryableWriteOperationExecutor.ExecuteAsync[TResult](OperationContext operationContext, IRetryableWriteOperation`1 operation, RetryableWriteContext context)
+2026-05-22T07:00:02.3168161+00:00 xUnit.net INFORMATION            at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchAsync(OperationContext operationContext, RetryableWriteContext context, Batch batch)
+2026-05-22T07:00:02.3168212+00:00 xUnit.net INFORMATION            at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchesAsync(OperationContext operationContext, RetryableWriteContext context)
+2026-05-22T07:00:02.3168265+00:00 xUnit.net INFORMATION            at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteBatchAsync(OperationContext operationContext, RetryableWriteContext context, Batch batch)
+2026-05-22T07:00:02.3168404+00:00 xUnit.net INFORMATION            at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteAsync(OperationContext operationContext, IWriteBinding binding)
+2026-05-22T07:00:02.3168469+00:00 xUnit.net INFORMATION            at MongoDB.Driver.OperationExecutor.ExecuteWriteOperationAsync[TResult](OperationContext operationContext, IClientSessionHandle session, IWriteOperation`1 operation, Boolean allowChannelPinning)
+2026-05-22T07:00:02.3168535+00:00 xUnit.net INFORMATION            at MongoDB.Driver.MongoCollectionImpl`1.ExecuteWriteOperationAsync[TResult](IClientSessionHandle session, IWriteOperation`1 operation, Nullable`1 timeout, CancellationToken cancellationToken)
+2026-05-22T07:00:02.3168592+00:00 xUnit.net INFORMATION            at MongoDB.Driver.MongoCollectionImpl`1.BulkWriteAsync(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+2026-05-22T07:00:02.3168661+00:00 xUnit.net INFORMATION            at MongoDB.Driver.MongoCollectionImpl`1.BulkWriteAsync(IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+2026-05-22T07:00:02.3168705+00:00 xUnit.net INFORMATION            at MongoDB.Driver.MongoCollectionBase`1.InsertOneAsync(TDocument document, InsertOneOptions options, Func`3 bulkWriteAsync)
+2026-05-22T07:00:02.3168789+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Features\Products\ClientEndpointsTests.cs(27,0): at Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.SeedMongoProductAsync(ProductReadModel product)
+2026-05-22T07:00:02.3168854+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Features\Products\ClientEndpointsTests.cs(47,0): at Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.GetProductById_Should_ReturnProduct_WhenItExists()
+2026-05-22T07:00:02.3168869+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-05-22T07:00:02.3168897+00:00 xUnit.net INFORMATION         ----- Inner Stack Trace -----
+2026-05-22T07:00:02.3168947+00:00 xUnit.net INFORMATION            at MongoDB.Bson.Serialization.Serializers.GuidSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Guid value)
+2026-05-22T07:00:02.3169014+00:00 xUnit.net INFORMATION            at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
+2026-05-22T07:00:02.3169067+00:00 xUnit.net INFORMATION            at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
+2026-05-22T07:00:02.3169121+00:00 xUnit.net INFORMATION            at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeNormalMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
+2026-05-22T07:00:02.3169174+00:00 xUnit.net INFORMATION            at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
+2026-05-22T07:00:02.3203058+00:00 xUnit.net ERROR     Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.SearchProducts_Should_ReturnMatchingProducts [FAIL]
+2026-05-22T07:00:02.3203198+00:00 xUnit.net INFORMATION       MongoDB.Bson.BsonSerializationException : An error occurred while serializing the Id property of class Krepim.Catalog.Application.Models.ProductReadModel: GuidSerializer cannot serialize a Guid when GuidRepresentation is Unspecified.
+2026-05-22T07:00:02.3203208+00:00 xUnit.net INFORMATION       ---- MongoDB.Bson.BsonSerializationException : GuidSerializer cannot serialize a Guid when GuidRepresentation is Unspecified.
+2026-05-22T07:00:02.3203320+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-05-22T07:00:02.3203438+00:00 xUnit.net INFORMATION            at MongoDB.Driver.Core.Operations.RetryableWriteOperationExecutor.ExecuteAsync[TResult](OperationContext operationContext, IRetryableWriteOperation`1 operation, RetryableWriteContext context)
+2026-05-22T07:00:02.3203484+00:00 xUnit.net INFORMATION            at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchAsync(OperationContext operationContext, RetryableWriteContext context, Batch batch)
+2026-05-22T07:00:02.3203532+00:00 xUnit.net INFORMATION            at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchesAsync(OperationContext operationContext, RetryableWriteContext context)
+2026-05-22T07:00:02.3203592+00:00 xUnit.net INFORMATION            at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteBatchAsync(OperationContext operationContext, RetryableWriteContext context, Batch batch)
+2026-05-22T07:00:02.3203627+00:00 xUnit.net INFORMATION            at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteAsync(OperationContext operationContext, IWriteBinding binding)
+2026-05-22T07:00:02.3203679+00:00 xUnit.net INFORMATION            at MongoDB.Driver.OperationExecutor.ExecuteWriteOperationAsync[TResult](OperationContext operationContext, IClientSessionHandle session, IWriteOperation`1 operation, Boolean allowChannelPinning)
+2026-05-22T07:00:02.3203730+00:00 xUnit.net INFORMATION            at MongoDB.Driver.MongoCollectionImpl`1.ExecuteWriteOperationAsync[TResult](IClientSessionHandle session, IWriteOperation`1 operation, Nullable`1 timeout, CancellationToken cancellationToken)
+2026-05-22T07:00:02.3203804+00:00 xUnit.net INFORMATION            at MongoDB.Driver.MongoCollectionImpl`1.BulkWriteAsync(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+2026-05-22T07:00:02.3203844+00:00 xUnit.net INFORMATION            at MongoDB.Driver.MongoCollectionImpl`1.BulkWriteAsync(IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+2026-05-22T07:00:02.3203878+00:00 xUnit.net INFORMATION            at MongoDB.Driver.MongoCollectionBase`1.InsertOneAsync(TDocument document, InsertOneOptions options, Func`3 bulkWriteAsync)
+2026-05-22T07:00:02.3203949+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Features\Products\ClientEndpointsTests.cs(27,0): at Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.SeedMongoProductAsync(ProductReadModel product)
+2026-05-22T07:00:02.3204028+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Features\Products\ClientEndpointsTests.cs(67,0): at Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.SearchProducts_Should_ReturnMatchingProducts()
+2026-05-22T07:00:02.3204035+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-05-22T07:00:02.3204039+00:00 xUnit.net INFORMATION         ----- Inner Stack Trace -----
+2026-05-22T07:00:02.3204090+00:00 xUnit.net INFORMATION            at MongoDB.Bson.Serialization.Serializers.GuidSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Guid value)
+2026-05-22T07:00:02.3204140+00:00 xUnit.net INFORMATION            at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
+2026-05-22T07:00:02.3204206+00:00 xUnit.net INFORMATION            at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
+2026-05-22T07:00:02.3204245+00:00 xUnit.net INFORMATION            at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeNormalMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
+2026-05-22T07:00:02.3204283+00:00 xUnit.net INFORMATION            at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
+2026-05-22T07:00:03.0919062+00:00 xUnit.net INFORMATION   Finished:    Krepim.Catalog.IntegrationTests (ID = 'b6f6cfc01af6c8e8cdd5a6b6b4f1286fccd669accb960f34a17294a670ef0945')
+2026-05-22T07:00:03.0950824+00:00 xUnit.net INFORMATION === TEST EXECUTION SUMMARY ===
+2026-05-22T07:00:03.0982059+00:00 xUnit.net INFORMATION    Krepim.Catalog.IntegrationTests  Total: 3, Errors: 0, Failed: 3, Skipped: 0, Not Run: 0, Time: 11,418s

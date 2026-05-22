@@ -1,0 +1,185 @@
+2026-05-22T06:54:04.8254250+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Version: 1.9.1+cb5afc3bb9bb01ebd75b57f89e8358b914ee2a49
+2026-05-22T06:54:04.8312809+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging mode: asynchronous
+2026-05-22T06:54:04.8318157+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging level: Information
+2026-05-22T06:54:04.8318187+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION CreateBuilderAsync entry time: 06:54:04.813
+2026-05-22T06:54:04.8318642+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION PID: 4420
+2026-05-22T06:54:04.8318824+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime information: win-x64 - .NET 10.0.7
+2026-05-22T06:54:04.8318914+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\10.0.7\System.Private.CoreLib.dll
+2026-05-22T06:54:04.8318964+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION IsDynamicCodeSupported: True
+2026-05-22T06:54:04.8319418+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Test module: C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\bin\Debug\net10.0\Krepim.Catalog.IntegrationTests.dll
+2026-05-22T06:54:04.8320243+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Command line arguments: '--server --diagnostic --diagnostic-verbosity Information --diagnostic-output-directory C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\bin\Debug\net10.0\Log --results-directory C:\Users\adeos\Source\Repos\Krepim\TestResults --client-port 65059'
+2026-05-22T06:54:04.8325271+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION TESTINGPLATFORM_DEFAULT_HANG_TIMEOUT: ''
+2026-05-22T06:54:04.8433971+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting RegisterEnvironmentVariablesConfigurationSource: 'True'
+2026-05-22T06:54:04.8516418+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting PlatformExitProcessOnUnhandledException: 'False', config file: False environment variable: 
+2026-05-22T06:54:05.0280653+00:00 Microsoft.Testing.Platform.Requests.TestHostTestFrameworkInvoker INFORMATION Test framework UID: '30ea7c6e-dd24-4152-a360-1387158cd41d' Version: '3.2.2' DisplayName: 'xUnit.net v3 Microsoft.Testing.Platform test framework' Description: 'xUnit.net v3 Microsoft.Testing.Platform test framework'
+2026-05-22T06:54:05.0350340+00:00 xUnit.net INFORMATION xUnit.net v3 In-Process Runner v3.2.2+728c1dce01 (64-bit .NET 10.0.7)
+2026-05-22T06:54:05.0651664+00:00 xUnit.net INFORMATION   Discovering: Krepim.Catalog.IntegrationTests
+2026-05-22T06:54:05.0918818+00:00 xUnit.net INFORMATION   Discovered:  Krepim.Catalog.IntegrationTests
+2026-05-22T06:54:05.1100207+00:00 xUnit.net INFORMATION   Starting:    Krepim.Catalog.IntegrationTests
+2026-05-22T06:54:15.5985569+00:00 xUnit.net ERROR     Krepim.Catalog.IntegrationTests.Features.Products.ManagerEndpointsTests.UpdateProduct_Should_ReturnNoContent_WhenDataIsValid [FAIL]
+2026-05-22T06:54:15.5988619+00:00 xUnit.net INFORMATION       Class fixture type 'Krepim.Catalog.IntegrationTests.Infrastructure.CatalogWebApplicationFactory' threw in its constructor
+2026-05-22T06:54:15.5988696+00:00 xUnit.net INFORMATION       ---- DotNet.Testcontainers.Builders.DockerUnavailableException : Docker is either not running or misconfigured. Please ensure that Docker is running and that the endpoint is properly configured.
+2026-05-22T06:54:15.5988709+00:00 xUnit.net INFORMATION       You can customize your configuration using either the environment variables or the ~/.testcontainers.properties file.
+2026-05-22T06:54:15.5988713+00:00 xUnit.net INFORMATION       For more information, visit: https://dotnet.testcontainers.org/custom_configuration/.
+2026-05-22T06:54:15.5988717+00:00 xUnit.net INFORMATION         Details: 
+2026-05-22T06:54:15.5988722+00:00 xUnit.net INFORMATION           Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.
+2026-05-22T06:54:15.5988726+00:00 xUnit.net INFORMATION       -------- System.AggregateException : One or more errors occurred. (Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.)
+2026-05-22T06:54:15.5988783+00:00 xUnit.net INFORMATION       ------------ DotNet.Testcontainers.Builders.DockerUnavailableException : Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.
+2026-05-22T06:54:15.5988787+00:00 xUnit.net INFORMATION       ---------------- System.TimeoutException : The operation has timed out.
+2026-05-22T06:54:15.5991206+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-05-22T06:54:15.5994417+00:00 xUnit.net INFORMATION         
+2026-05-22T06:54:15.5994521+00:00 xUnit.net INFORMATION         ----- Inner Stack Trace -----
+2026-05-22T06:54:15.5994633+00:00 xUnit.net INFORMATION         /_/src/Testcontainers/Guard.Null.cs(62,0): at DotNet.Testcontainers.Guard.ThrowIf[TType](ArgumentInfo`1& argument, Func`2 condition, Func`2 ifClause)
+2026-05-22T06:54:15.5994748+00:00 xUnit.net INFORMATION         /_/src/Testcontainers/Builders/AbstractBuilder`4.cs(153,0): at DotNet.Testcontainers.Builders.AbstractBuilder`4.Validate()
+2026-05-22T06:54:15.5994787+00:00 xUnit.net INFORMATION         /_/src/Testcontainers/Builders/ContainerBuilder`3.cs(497,0): at DotNet.Testcontainers.Builders.ContainerBuilder`3.Validate()
+2026-05-22T06:54:15.5994838+00:00 xUnit.net INFORMATION         /_/src/Testcontainers.PostgreSql/PostgreSqlBuilder.cs(173,0): at Testcontainers.PostgreSql.PostgreSqlBuilder.Validate()
+2026-05-22T06:54:15.5994877+00:00 xUnit.net INFORMATION         /_/src/Testcontainers.PostgreSql/PostgreSqlBuilder.cs(147,0): at Testcontainers.PostgreSql.PostgreSqlBuilder.Build()
+2026-05-22T06:54:15.5994937+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Infrastructure\CatalogWebApplicationFactory.cs(17,0): at Krepim.Catalog.IntegrationTests.Infrastructure.CatalogWebApplicationFactory..ctor()
+2026-05-22T06:54:15.5994976+00:00 xUnit.net INFORMATION            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Constructor(Object obj, IntPtr* args)
+2026-05-22T06:54:15.5995025+00:00 xUnit.net INFORMATION            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-05-22T06:54:15.5995040+00:00 xUnit.net INFORMATION         ----- Inner Stack Trace -----
+2026-05-22T06:54:15.5995044+00:00 xUnit.net INFORMATION         
+2026-05-22T06:54:15.5995049+00:00 xUnit.net INFORMATION         ----- Inner Stack Trace -----
+2026-05-22T06:54:15.5995053+00:00 xUnit.net INFORMATION         
+2026-05-22T06:54:15.5995057+00:00 xUnit.net INFORMATION         ----- Inner Stack Trace -----
+2026-05-22T06:54:15.5995094+00:00 xUnit.net INFORMATION            at System.IO.Pipes.NamedPipeClientStream.ConnectInternal(Int32 timeout, CancellationToken cancellationToken, Int32 startTime)
+2026-05-22T06:54:15.5995141+00:00 xUnit.net INFORMATION            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+2026-05-22T06:54:15.5995156+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-05-22T06:54:15.5995234+00:00 xUnit.net INFORMATION            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+2026-05-22T06:54:15.5995326+00:00 xUnit.net INFORMATION            at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+2026-05-22T06:54:15.5995335+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-05-22T06:54:15.5995385+00:00 xUnit.net INFORMATION         /_/src/Docker.DotNet.NPipe/DockerHandlerFactory.cs(54,0): at Docker.DotNet.NPipe.DockerHandlerFactory.<>c__DisplayClass5_0.<<CreateHandler>b__0>d.MoveNext()
+2026-05-22T06:54:15.5995392+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-05-22T06:54:15.5995421+00:00 xUnit.net INFORMATION         /_/src/Microsoft.Net.Http.Client/ManagedHandler.cs(158,0): at Microsoft.Net.Http.Client.ManagedHandler.ProcessRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+2026-05-22T06:54:15.5995468+00:00 xUnit.net INFORMATION         /_/src/Microsoft.Net.Http.Client/ManagedHandler.cs(75,0): at Microsoft.Net.Http.Client.ManagedHandler.SendAsync(HttpRequestMessage httpRequestMessage, CancellationToken cancellationToken)
+2026-05-22T06:54:15.5995538+00:00 xUnit.net INFORMATION            at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+2026-05-22T06:54:15.5995599+00:00 xUnit.net INFORMATION         /_/src/Docker.DotNet/DockerClient.cs(390,0): at Docker.DotNet.DockerClient.PrivateMakeRequestAsync(TimeSpan timeout, HttpCompletionOption completionOption, HttpMethod method, String path, IQueryString queryString, IDictionary`2 headers, IRequestContent data, CancellationToken cancellationToken)
+2026-05-22T06:54:15.5995635+00:00 xUnit.net INFORMATION         /_/src/Docker.DotNet/DockerClient.cs(170,0): at Docker.DotNet.DockerClient.MakeRequestAsync[T](IEnumerable`1 errorHandlers, HttpMethod method, String path, IQueryString queryString, IRequestContent body, IDictionary`2 headers, TimeSpan timeout, CancellationToken cancellationToken)
+2026-05-22T06:54:15.5995686+00:00 xUnit.net INFORMATION         /_/src/Docker.DotNet/Endpoints/SystemOperations.cs(33,0): at Docker.DotNet.SystemOperations.PingAsync(CancellationToken cancellationToken)
+2026-05-22T06:54:15.5995720+00:00 xUnit.net INFORMATION         /_/src/Testcontainers/Builders/DockerEndpointAuthenticationProvider.cs(46,0): at DotNet.Testcontainers.Builders.DockerEndpointAuthenticationProvider.<>c__DisplayClass5_0.<<IsAvailable>b__0>d.MoveNext()
+2026-05-22T06:54:15.6017024+00:00 xUnit.net ERROR     Krepim.Catalog.IntegrationTests.Features.Products.ManagerEndpointsTests.PublishProduct_Should_ReturnNoContent_WhenProductExists [FAIL]
+2026-05-22T06:54:15.6017125+00:00 xUnit.net INFORMATION       Class fixture type 'Krepim.Catalog.IntegrationTests.Infrastructure.CatalogWebApplicationFactory' threw in its constructor
+2026-05-22T06:54:15.6017131+00:00 xUnit.net INFORMATION       ---- DotNet.Testcontainers.Builders.DockerUnavailableException : Docker is either not running or misconfigured. Please ensure that Docker is running and that the endpoint is properly configured.
+2026-05-22T06:54:15.6017177+00:00 xUnit.net INFORMATION       You can customize your configuration using either the environment variables or the ~/.testcontainers.properties file.
+2026-05-22T06:54:15.6017182+00:00 xUnit.net INFORMATION       For more information, visit: https://dotnet.testcontainers.org/custom_configuration/.
+2026-05-22T06:54:15.6017187+00:00 xUnit.net INFORMATION         Details: 
+2026-05-22T06:54:15.6017193+00:00 xUnit.net INFORMATION           Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.
+2026-05-22T06:54:15.6017198+00:00 xUnit.net INFORMATION       -------- System.AggregateException : One or more errors occurred. (Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.)
+2026-05-22T06:54:15.6017202+00:00 xUnit.net INFORMATION       ------------ DotNet.Testcontainers.Builders.DockerUnavailableException : Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.
+2026-05-22T06:54:15.6017207+00:00 xUnit.net INFORMATION       ---------------- System.TimeoutException : The operation has timed out.
+2026-05-22T06:54:15.6017470+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-05-22T06:54:15.6017533+00:00 xUnit.net INFORMATION         
+2026-05-22T06:54:15.6017541+00:00 xUnit.net INFORMATION         ----- Inner Stack Trace -----
+2026-05-22T06:54:15.6017575+00:00 xUnit.net INFORMATION         /_/src/Testcontainers/Guard.Null.cs(62,0): at DotNet.Testcontainers.Guard.ThrowIf[TType](ArgumentInfo`1& argument, Func`2 condition, Func`2 ifClause)
+2026-05-22T06:54:15.6017622+00:00 xUnit.net INFORMATION         /_/src/Testcontainers/Builders/AbstractBuilder`4.cs(153,0): at DotNet.Testcontainers.Builders.AbstractBuilder`4.Validate()
+2026-05-22T06:54:15.6017654+00:00 xUnit.net INFORMATION         /_/src/Testcontainers/Builders/ContainerBuilder`3.cs(497,0): at DotNet.Testcontainers.Builders.ContainerBuilder`3.Validate()
+2026-05-22T06:54:15.6017684+00:00 xUnit.net INFORMATION         /_/src/Testcontainers.PostgreSql/PostgreSqlBuilder.cs(173,0): at Testcontainers.PostgreSql.PostgreSqlBuilder.Validate()
+2026-05-22T06:54:15.6017713+00:00 xUnit.net INFORMATION         /_/src/Testcontainers.PostgreSql/PostgreSqlBuilder.cs(147,0): at Testcontainers.PostgreSql.PostgreSqlBuilder.Build()
+2026-05-22T06:54:15.6017783+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Infrastructure\CatalogWebApplicationFactory.cs(17,0): at Krepim.Catalog.IntegrationTests.Infrastructure.CatalogWebApplicationFactory..ctor()
+2026-05-22T06:54:15.6017816+00:00 xUnit.net INFORMATION            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Constructor(Object obj, IntPtr* args)
+2026-05-22T06:54:15.6017843+00:00 xUnit.net INFORMATION            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-05-22T06:54:15.6017848+00:00 xUnit.net INFORMATION         ----- Inner Stack Trace -----
+2026-05-22T06:54:15.6017852+00:00 xUnit.net INFORMATION         
+2026-05-22T06:54:15.6017856+00:00 xUnit.net INFORMATION         ----- Inner Stack Trace -----
+2026-05-22T06:54:15.6017860+00:00 xUnit.net INFORMATION         
+2026-05-22T06:54:15.6017865+00:00 xUnit.net INFORMATION         ----- Inner Stack Trace -----
+2026-05-22T06:54:15.6017901+00:00 xUnit.net INFORMATION            at System.IO.Pipes.NamedPipeClientStream.ConnectInternal(Int32 timeout, CancellationToken cancellationToken, Int32 startTime)
+2026-05-22T06:54:15.6017947+00:00 xUnit.net INFORMATION            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+2026-05-22T06:54:15.6017952+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-05-22T06:54:15.6018008+00:00 xUnit.net INFORMATION            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+2026-05-22T06:54:15.6018038+00:00 xUnit.net INFORMATION            at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+2026-05-22T06:54:15.6018043+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-05-22T06:54:15.6018071+00:00 xUnit.net INFORMATION         /_/src/Docker.DotNet.NPipe/DockerHandlerFactory.cs(54,0): at Docker.DotNet.NPipe.DockerHandlerFactory.<>c__DisplayClass5_0.<<CreateHandler>b__0>d.MoveNext()
+2026-05-22T06:54:15.6018077+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-05-22T06:54:15.6018105+00:00 xUnit.net INFORMATION         /_/src/Microsoft.Net.Http.Client/ManagedHandler.cs(158,0): at Microsoft.Net.Http.Client.ManagedHandler.ProcessRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+2026-05-22T06:54:15.6018156+00:00 xUnit.net INFORMATION         /_/src/Microsoft.Net.Http.Client/ManagedHandler.cs(75,0): at Microsoft.Net.Http.Client.ManagedHandler.SendAsync(HttpRequestMessage httpRequestMessage, CancellationToken cancellationToken)
+2026-05-22T06:54:15.6018226+00:00 xUnit.net INFORMATION            at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+2026-05-22T06:54:15.6018252+00:00 xUnit.net INFORMATION         /_/src/Docker.DotNet/DockerClient.cs(390,0): at Docker.DotNet.DockerClient.PrivateMakeRequestAsync(TimeSpan timeout, HttpCompletionOption completionOption, HttpMethod method, String path, IQueryString queryString, IDictionary`2 headers, IRequestContent data, CancellationToken cancellationToken)
+2026-05-22T06:54:15.6018305+00:00 xUnit.net INFORMATION         /_/src/Docker.DotNet/DockerClient.cs(170,0): at Docker.DotNet.DockerClient.MakeRequestAsync[T](IEnumerable`1 errorHandlers, HttpMethod method, String path, IQueryString queryString, IRequestContent body, IDictionary`2 headers, TimeSpan timeout, CancellationToken cancellationToken)
+2026-05-22T06:54:15.6018334+00:00 xUnit.net INFORMATION         /_/src/Docker.DotNet/Endpoints/SystemOperations.cs(33,0): at Docker.DotNet.SystemOperations.PingAsync(CancellationToken cancellationToken)
+2026-05-22T06:54:15.6018373+00:00 xUnit.net INFORMATION         /_/src/Testcontainers/Builders/DockerEndpointAuthenticationProvider.cs(46,0): at DotNet.Testcontainers.Builders.DockerEndpointAuthenticationProvider.<>c__DisplayClass5_0.<<IsAvailable>b__0>d.MoveNext()
+2026-05-22T06:54:15.6019445+00:00 xUnit.net ERROR     Krepim.Catalog.IntegrationTests.Features.Products.ManagerEndpointsTests.DeleteProduct_Should_ReturnNoContent_WhenProductExists [FAIL]
+2026-05-22T06:54:15.6019515+00:00 xUnit.net INFORMATION       Class fixture type 'Krepim.Catalog.IntegrationTests.Infrastructure.CatalogWebApplicationFactory' threw in its constructor
+2026-05-22T06:54:15.6019521+00:00 xUnit.net INFORMATION       ---- DotNet.Testcontainers.Builders.DockerUnavailableException : Docker is either not running or misconfigured. Please ensure that Docker is running and that the endpoint is properly configured.
+2026-05-22T06:54:15.6019526+00:00 xUnit.net INFORMATION       You can customize your configuration using either the environment variables or the ~/.testcontainers.properties file.
+2026-05-22T06:54:15.6019531+00:00 xUnit.net INFORMATION       For more information, visit: https://dotnet.testcontainers.org/custom_configuration/.
+2026-05-22T06:54:15.6019535+00:00 xUnit.net INFORMATION         Details: 
+2026-05-22T06:54:15.6019540+00:00 xUnit.net INFORMATION           Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.
+2026-05-22T06:54:15.6019544+00:00 xUnit.net INFORMATION       -------- System.AggregateException : One or more errors occurred. (Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.)
+2026-05-22T06:54:15.6019548+00:00 xUnit.net INFORMATION       ------------ DotNet.Testcontainers.Builders.DockerUnavailableException : Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.
+2026-05-22T06:54:15.6019575+00:00 xUnit.net INFORMATION       ---------------- System.TimeoutException : The operation has timed out.
+2026-05-22T06:54:15.6019763+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-05-22T06:54:15.6019830+00:00 xUnit.net INFORMATION         
+2026-05-22T06:54:15.6019837+00:00 xUnit.net INFORMATION         ----- Inner Stack Trace -----
+2026-05-22T06:54:15.6019863+00:00 xUnit.net INFORMATION         /_/src/Testcontainers/Guard.Null.cs(62,0): at DotNet.Testcontainers.Guard.ThrowIf[TType](ArgumentInfo`1& argument, Func`2 condition, Func`2 ifClause)
+2026-05-22T06:54:15.6019902+00:00 xUnit.net INFORMATION         /_/src/Testcontainers/Builders/AbstractBuilder`4.cs(153,0): at DotNet.Testcontainers.Builders.AbstractBuilder`4.Validate()
+2026-05-22T06:54:15.6019930+00:00 xUnit.net INFORMATION         /_/src/Testcontainers/Builders/ContainerBuilder`3.cs(497,0): at DotNet.Testcontainers.Builders.ContainerBuilder`3.Validate()
+2026-05-22T06:54:15.6019977+00:00 xUnit.net INFORMATION         /_/src/Testcontainers.PostgreSql/PostgreSqlBuilder.cs(173,0): at Testcontainers.PostgreSql.PostgreSqlBuilder.Validate()
+2026-05-22T06:54:15.6020005+00:00 xUnit.net INFORMATION         /_/src/Testcontainers.PostgreSql/PostgreSqlBuilder.cs(147,0): at Testcontainers.PostgreSql.PostgreSqlBuilder.Build()
+2026-05-22T06:54:15.6020056+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Infrastructure\CatalogWebApplicationFactory.cs(17,0): at Krepim.Catalog.IntegrationTests.Infrastructure.CatalogWebApplicationFactory..ctor()
+2026-05-22T06:54:15.6020096+00:00 xUnit.net INFORMATION            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Constructor(Object obj, IntPtr* args)
+2026-05-22T06:54:15.6020135+00:00 xUnit.net INFORMATION            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-05-22T06:54:15.6020157+00:00 xUnit.net INFORMATION         ----- Inner Stack Trace -----
+2026-05-22T06:54:15.6020161+00:00 xUnit.net INFORMATION         
+2026-05-22T06:54:15.6020166+00:00 xUnit.net INFORMATION         ----- Inner Stack Trace -----
+2026-05-22T06:54:15.6020178+00:00 xUnit.net INFORMATION         
+2026-05-22T06:54:15.6020182+00:00 xUnit.net INFORMATION         ----- Inner Stack Trace -----
+2026-05-22T06:54:15.6020232+00:00 xUnit.net INFORMATION            at System.IO.Pipes.NamedPipeClientStream.ConnectInternal(Int32 timeout, CancellationToken cancellationToken, Int32 startTime)
+2026-05-22T06:54:15.6020297+00:00 xUnit.net INFORMATION            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+2026-05-22T06:54:15.6020335+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-05-22T06:54:15.6020416+00:00 xUnit.net INFORMATION            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+2026-05-22T06:54:15.6020464+00:00 xUnit.net INFORMATION            at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+2026-05-22T06:54:15.6020469+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-05-22T06:54:15.6020534+00:00 xUnit.net INFORMATION         /_/src/Docker.DotNet.NPipe/DockerHandlerFactory.cs(54,0): at Docker.DotNet.NPipe.DockerHandlerFactory.<>c__DisplayClass5_0.<<CreateHandler>b__0>d.MoveNext()
+2026-05-22T06:54:15.6020539+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-05-22T06:54:15.6020576+00:00 xUnit.net INFORMATION         /_/src/Microsoft.Net.Http.Client/ManagedHandler.cs(158,0): at Microsoft.Net.Http.Client.ManagedHandler.ProcessRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+2026-05-22T06:54:15.6020611+00:00 xUnit.net INFORMATION         /_/src/Microsoft.Net.Http.Client/ManagedHandler.cs(75,0): at Microsoft.Net.Http.Client.ManagedHandler.SendAsync(HttpRequestMessage httpRequestMessage, CancellationToken cancellationToken)
+2026-05-22T06:54:15.6020696+00:00 xUnit.net INFORMATION            at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+2026-05-22T06:54:15.6020746+00:00 xUnit.net INFORMATION         /_/src/Docker.DotNet/DockerClient.cs(390,0): at Docker.DotNet.DockerClient.PrivateMakeRequestAsync(TimeSpan timeout, HttpCompletionOption completionOption, HttpMethod method, String path, IQueryString queryString, IDictionary`2 headers, IRequestContent data, CancellationToken cancellationToken)
+2026-05-22T06:54:15.6020772+00:00 xUnit.net INFORMATION         /_/src/Docker.DotNet/DockerClient.cs(170,0): at Docker.DotNet.DockerClient.MakeRequestAsync[T](IEnumerable`1 errorHandlers, HttpMethod method, String path, IQueryString queryString, IRequestContent body, IDictionary`2 headers, TimeSpan timeout, CancellationToken cancellationToken)
+2026-05-22T06:54:15.6020826+00:00 xUnit.net INFORMATION         /_/src/Docker.DotNet/Endpoints/SystemOperations.cs(33,0): at Docker.DotNet.SystemOperations.PingAsync(CancellationToken cancellationToken)
+2026-05-22T06:54:15.6020859+00:00 xUnit.net INFORMATION         /_/src/Testcontainers/Builders/DockerEndpointAuthenticationProvider.cs(46,0): at DotNet.Testcontainers.Builders.DockerEndpointAuthenticationProvider.<>c__DisplayClass5_0.<<IsAvailable>b__0>d.MoveNext()
+2026-05-22T06:54:15.6022036+00:00 xUnit.net ERROR     Krepim.Catalog.IntegrationTests.Features.Products.ManagerEndpointsTests.UpdateProduct_Should_ReturnNotFound_WhenProductDoesNotExist [FAIL]
+2026-05-22T06:54:15.6022095+00:00 xUnit.net INFORMATION       Class fixture type 'Krepim.Catalog.IntegrationTests.Infrastructure.CatalogWebApplicationFactory' threw in its constructor
+2026-05-22T06:54:15.6022101+00:00 xUnit.net INFORMATION       ---- DotNet.Testcontainers.Builders.DockerUnavailableException : Docker is either not running or misconfigured. Please ensure that Docker is running and that the endpoint is properly configured.
+2026-05-22T06:54:15.6022126+00:00 xUnit.net INFORMATION       You can customize your configuration using either the environment variables or the ~/.testcontainers.properties file.
+2026-05-22T06:54:15.6022130+00:00 xUnit.net INFORMATION       For more information, visit: https://dotnet.testcontainers.org/custom_configuration/.
+2026-05-22T06:54:15.6022134+00:00 xUnit.net INFORMATION         Details: 
+2026-05-22T06:54:15.6022139+00:00 xUnit.net INFORMATION           Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.
+2026-05-22T06:54:15.6022143+00:00 xUnit.net INFORMATION       -------- System.AggregateException : One or more errors occurred. (Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.)
+2026-05-22T06:54:15.6022147+00:00 xUnit.net INFORMATION       ------------ DotNet.Testcontainers.Builders.DockerUnavailableException : Failed to connect to Docker endpoint at 'npipe://./pipe/docker_engine'.
+2026-05-22T06:54:15.6022151+00:00 xUnit.net INFORMATION       ---------------- System.TimeoutException : The operation has timed out.
+2026-05-22T06:54:15.6022354+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-05-22T06:54:15.6022406+00:00 xUnit.net INFORMATION         
+2026-05-22T06:54:15.6022411+00:00 xUnit.net INFORMATION         ----- Inner Stack Trace -----
+2026-05-22T06:54:15.6022438+00:00 xUnit.net INFORMATION         /_/src/Testcontainers/Guard.Null.cs(62,0): at DotNet.Testcontainers.Guard.ThrowIf[TType](ArgumentInfo`1& argument, Func`2 condition, Func`2 ifClause)
+2026-05-22T06:54:15.6022485+00:00 xUnit.net INFORMATION         /_/src/Testcontainers/Builders/AbstractBuilder`4.cs(153,0): at DotNet.Testcontainers.Builders.AbstractBuilder`4.Validate()
+2026-05-22T06:54:15.6022514+00:00 xUnit.net INFORMATION         /_/src/Testcontainers/Builders/ContainerBuilder`3.cs(497,0): at DotNet.Testcontainers.Builders.ContainerBuilder`3.Validate()
+2026-05-22T06:54:15.6022542+00:00 xUnit.net INFORMATION         /_/src/Testcontainers.PostgreSql/PostgreSqlBuilder.cs(173,0): at Testcontainers.PostgreSql.PostgreSqlBuilder.Validate()
+2026-05-22T06:54:15.6022570+00:00 xUnit.net INFORMATION         /_/src/Testcontainers.PostgreSql/PostgreSqlBuilder.cs(147,0): at Testcontainers.PostgreSql.PostgreSqlBuilder.Build()
+2026-05-22T06:54:15.6022642+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Infrastructure\CatalogWebApplicationFactory.cs(17,0): at Krepim.Catalog.IntegrationTests.Infrastructure.CatalogWebApplicationFactory..ctor()
+2026-05-22T06:54:15.6022672+00:00 xUnit.net INFORMATION            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Constructor(Object obj, IntPtr* args)
+2026-05-22T06:54:15.6022699+00:00 xUnit.net INFORMATION            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-05-22T06:54:15.6022704+00:00 xUnit.net INFORMATION         ----- Inner Stack Trace -----
+2026-05-22T06:54:15.6022707+00:00 xUnit.net INFORMATION         
+2026-05-22T06:54:15.6022712+00:00 xUnit.net INFORMATION         ----- Inner Stack Trace -----
+2026-05-22T06:54:15.6022715+00:00 xUnit.net INFORMATION         
+2026-05-22T06:54:15.6022719+00:00 xUnit.net INFORMATION         ----- Inner Stack Trace -----
+2026-05-22T06:54:15.6022754+00:00 xUnit.net INFORMATION            at System.IO.Pipes.NamedPipeClientStream.ConnectInternal(Int32 timeout, CancellationToken cancellationToken, Int32 startTime)
+2026-05-22T06:54:15.6022799+00:00 xUnit.net INFORMATION            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+2026-05-22T06:54:15.6022804+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-05-22T06:54:15.6022869+00:00 xUnit.net INFORMATION            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+2026-05-22T06:54:15.6022898+00:00 xUnit.net INFORMATION            at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+2026-05-22T06:54:15.6022903+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-05-22T06:54:15.6022931+00:00 xUnit.net INFORMATION         /_/src/Docker.DotNet.NPipe/DockerHandlerFactory.cs(54,0): at Docker.DotNet.NPipe.DockerHandlerFactory.<>c__DisplayClass5_0.<<CreateHandler>b__0>d.MoveNext()
+2026-05-22T06:54:15.6022936+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-05-22T06:54:15.6022972+00:00 xUnit.net INFORMATION         /_/src/Microsoft.Net.Http.Client/ManagedHandler.cs(158,0): at Microsoft.Net.Http.Client.ManagedHandler.ProcessRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+2026-05-22T06:54:15.6023022+00:00 xUnit.net INFORMATION         /_/src/Microsoft.Net.Http.Client/ManagedHandler.cs(75,0): at Microsoft.Net.Http.Client.ManagedHandler.SendAsync(HttpRequestMessage httpRequestMessage, CancellationToken cancellationToken)
+2026-05-22T06:54:15.6023091+00:00 xUnit.net INFORMATION            at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+2026-05-22T06:54:15.6023117+00:00 xUnit.net INFORMATION         /_/src/Docker.DotNet/DockerClient.cs(390,0): at Docker.DotNet.DockerClient.PrivateMakeRequestAsync(TimeSpan timeout, HttpCompletionOption completionOption, HttpMethod method, String path, IQueryString queryString, IDictionary`2 headers, IRequestContent data, CancellationToken cancellationToken)
+2026-05-22T06:54:15.6023153+00:00 xUnit.net INFORMATION         /_/src/Docker.DotNet/DockerClient.cs(170,0): at Docker.DotNet.DockerClient.MakeRequestAsync[T](IEnumerable`1 errorHandlers, HttpMethod method, String path, IQueryString queryString, IRequestContent body, IDictionary`2 headers, TimeSpan timeout, CancellationToken cancellationToken)
+2026-05-22T06:54:15.6023256+00:00 xUnit.net INFORMATION         /_/src/Docker.DotNet/Endpoints/SystemOperations.cs(33,0): at Docker.DotNet.SystemOperations.PingAsync(CancellationToken cancellationToken)
+2026-05-22T06:54:15.6023289+00:00 xUnit.net INFORMATION         /_/src/Testcontainers/Builders/DockerEndpointAuthenticationProvider.cs(46,0): at DotNet.Testcontainers.Builders.DockerEndpointAuthenticationProvider.<>c__DisplayClass5_0.<<IsAvailable>b__0>d.MoveNext()
+2026-05-22T06:54:15.6034861+00:00 xUnit.net INFORMATION   Finished:    Krepim.Catalog.IntegrationTests (ID = 'b6f6cfc01af6c8e8cdd5a6b6b4f1286fccd669accb960f34a17294a670ef0945')
+2026-05-22T06:54:15.6066524+00:00 xUnit.net INFORMATION === TEST EXECUTION SUMMARY ===
+2026-05-22T06:54:15.6094613+00:00 xUnit.net INFORMATION    Krepim.Catalog.IntegrationTests  Total: 4, Errors: 0, Failed: 4, Skipped: 0, Not Run: 0, Time: 10,496s

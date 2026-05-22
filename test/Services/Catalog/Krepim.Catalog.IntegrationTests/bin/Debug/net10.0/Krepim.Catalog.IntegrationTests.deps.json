@@ -2933,6 +2933,7 @@
         "dependencies": {
           "Krepim.Aspire.ServiceDefaults": "1.0.0",
           "Krepim.Catalog.Infrastructure": "1.0.0",
+          "Krepim.SharedKernel": "1.0.0",
           "Microsoft.AspNetCore.OpenApi": "10.0.8",
           "OpenTelemetry.Exporter.OpenTelemetryProtocol": "1.15.3",
           "SharpCompress": "0.48.1"
