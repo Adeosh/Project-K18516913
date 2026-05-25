@@ -9,6 +9,8 @@ var postgres = builder.AddPostgres("postgres")
 var identityDb = postgres.AddDatabase("identitydb");
 var catalogDb = postgres.AddDatabase("catalogdb");
 var orderingDb = postgres.AddDatabase("orderingdb");
+var inventoryDb = postgres.AddDatabase("inventorydb");
+var paymentDb = postgres.AddDatabase("paymentdb");
 
 var identityApi = builder.AddProject<Projects.Krepim_Identity_Api>("identity-api")
     .WithReference(identityDb)
@@ -26,9 +28,13 @@ var orderingApi = builder.AddProject<Projects.Krepim_Ordering_Api>("ordering-api
     .WithReference(orderingDb)
     .WithReference(rabbitMq);
 
+var inventoryApi = builder.AddProject<Projects.Krepim_Inventory_Api>("inventory-api")
+    .WithReference(inventoryDb)
+    .WithReference(rabbitMq);
 
-var inventoryApi = builder.AddProject<Projects.Krepim_Inventory_Api>("inventory-api");
-var paymentApi = builder.AddProject<Projects.Krepim_Payment_Api>("payment-api");
+var paymentApi = builder.AddProject<Projects.Krepim_Payment_Api>("payment-api")
+    .WithReference(paymentDb)
+    .WithReference(rabbitMq);
 
 var apiGateway = builder.AddProject<Projects.Krepim_ApiGateway>("api-gateway")
     .WithReference(identityApi)

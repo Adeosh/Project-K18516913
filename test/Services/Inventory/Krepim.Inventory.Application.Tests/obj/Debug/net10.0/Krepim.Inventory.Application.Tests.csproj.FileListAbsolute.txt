@@ -172,3 +172,9 @@ C:\Users\adeos\Source\Repos\Krepim\test\Services\Inventory\Krepim.Inventory.Appl
 C:\Users\adeos\Source\Repos\Krepim\test\Services\Inventory\Krepim.Inventory.Application.Tests\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\adeos\Source\Repos\Krepim\test\Services\Inventory\Krepim.Inventory.Application.Tests\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\adeos\Source\Repos\Krepim\test\Services\Inventory\Krepim.Inventory.Application.Tests\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\adeos\Source\Repos\Krepim\test\Services\Inventory\Krepim.Inventory.Application.Tests\bin\Debug\net10.0\MassTransit.dll
+C:\Users\adeos\Source\Repos\Krepim\test\Services\Inventory\Krepim.Inventory.Application.Tests\bin\Debug\net10.0\MassTransit.Abstractions.dll
+C:\Users\adeos\Source\Repos\Krepim\test\Services\Inventory\Krepim.Inventory.Application.Tests\bin\Debug\net10.0\MassTransit.RabbitMqTransport.dll
+C:\Users\adeos\Source\Repos\Krepim\test\Services\Inventory\Krepim.Inventory.Application.Tests\bin\Debug\net10.0\RabbitMQ.Client.dll
+C:\Users\adeos\Source\Repos\Krepim\test\Services\Inventory\Krepim.Inventory.Application.Tests\bin\Debug\net10.0\Krepim.EventBus.dll
+C:\Users\adeos\Source\Repos\Krepim\test\Services\Inventory\Krepim.Inventory.Application.Tests\bin\Debug\net10.0\Krepim.EventBus.pdb

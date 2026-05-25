@@ -18,3 +18,7 @@ C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Infrastru
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Infrastructure\obj\Debug\net10.0\Krepim.Payment.Infrastructure.pdb
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Infrastructure\obj\Debug\net10.0\ref\Krepim.Payment.Infrastructure.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Infrastructure\obj\Debug\net10.0\Krepim.Payment.Infrastructure.sourcelink.json
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Infrastructure\bin\Debug\net10.0\Krepim.Payment.Infrastructure.runtimeconfig.json
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Infrastructure\bin\Debug\net10.0\Krepim.EventBus.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Infrastructure\bin\Debug\net10.0\Krepim.EventBus.pdb
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Infrastructure\obj\Debug\net10.0\Krepim.Payment.Infrastructure.genruntimeconfig.cache

@@ -99,6 +99,7 @@
             "Serilog.AspNetCore": "10.0.0",
             "SharpCompress": "0.48.1",
             "StackExchange.Redis": "2.13.1",
+            "Stripe.net": "51.1.0",
             "System.IdentityModel.Tokens.Jwt": "8.18.0",
             "Testcontainers": "4.12.0",
             "Testcontainers.MongoDb": "4.12.0",
@@ -536,6 +537,7 @@
             "Serilog.AspNetCore": "10.0.0",
             "SharpCompress": "0.48.1",
             "StackExchange.Redis": "2.13.1",
+            "Stripe.net": "51.1.0",
             "System.IdentityModel.Tokens.Jwt": "8.18.0",
             "Testcontainers": "4.12.0",
             "Testcontainers.MongoDb": "4.12.0",
@@ -1096,6 +1098,7 @@
             "Serilog.AspNetCore": "10.0.0",
             "SharpCompress": "0.48.1",
             "StackExchange.Redis": "2.13.1",
+            "Stripe.net": "51.1.0",
             "System.IdentityModel.Tokens.Jwt": "8.18.0",
             "Testcontainers": "4.12.0",
             "Testcontainers.MongoDb": "4.12.0",
@@ -1496,6 +1499,7 @@
             "Serilog.AspNetCore": "10.0.0",
             "SharpCompress": "0.48.1",
             "StackExchange.Redis": "2.13.1",
+            "Stripe.net": "51.1.0",
             "System.IdentityModel.Tokens.Jwt": "8.18.0",
             "Testcontainers": "4.12.0",
             "Testcontainers.MongoDb": "4.12.0",
@@ -1928,6 +1932,7 @@
             "Serilog.AspNetCore": "10.0.0",
             "SharpCompress": "0.48.1",
             "StackExchange.Redis": "2.13.1",
+            "Stripe.net": "51.1.0",
             "System.IdentityModel.Tokens.Jwt": "8.18.0",
             "Testcontainers": "4.12.0",
             "Testcontainers.MongoDb": "4.12.0",
@@ -2332,6 +2337,7 @@
             "Serilog.AspNetCore": "10.0.0",
             "SharpCompress": "0.48.1",
             "StackExchange.Redis": "2.13.1",
+            "Stripe.net": "51.1.0",
             "System.IdentityModel.Tokens.Jwt": "8.18.0",
             "Testcontainers": "4.12.0",
             "Testcontainers.MongoDb": "4.12.0",
@@ -2764,6 +2770,7 @@
             "Serilog.AspNetCore": "10.0.0",
             "SharpCompress": "0.48.1",
             "StackExchange.Redis": "2.13.1",
+            "Stripe.net": "51.1.0",
             "System.IdentityModel.Tokens.Jwt": "8.18.0",
             "Testcontainers": "4.12.0",
             "Testcontainers.MongoDb": "4.12.0",
@@ -3168,6 +3175,7 @@
             "Serilog.AspNetCore": "10.0.0",
             "SharpCompress": "0.48.1",
             "StackExchange.Redis": "2.13.1",
+            "Stripe.net": "51.1.0",
             "System.IdentityModel.Tokens.Jwt": "8.18.0",
             "Testcontainers": "4.12.0",
             "Testcontainers.MongoDb": "4.12.0",
@@ -3504,6 +3512,9 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
+              "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\BuildingBlocks\\Krepim.EventBus\\Krepim.EventBus.csproj": {
+                "projectPath": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\BuildingBlocks\\Krepim.EventBus\\Krepim.EventBus.csproj"
+              },
               "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\BuildingBlocks\\Krepim.SharedKernel\\Krepim.SharedKernel.csproj": {
                 "projectPath": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\BuildingBlocks\\Krepim.SharedKernel\\Krepim.SharedKernel.csproj"
               },
@@ -3529,6 +3540,18 @@
         "net10.0": {
           "framework": "net10.0",
           "targetAlias": "net10.0",
+          "dependencies": {
+            "MassTransit": {
+              "target": "Package",
+              "version": "[8.5.9, )",
+              "versionCentrallyManaged": true
+            },
+            "MassTransit.RabbitMQ": {
+              "target": "Package",
+              "version": "[8.5.9, )",
+              "versionCentrallyManaged": true
+            }
+          },
           "centralPackageVersions": {
             "Amazon.S3": "0.35.1",
             "Aspire.Hosting.PostgreSQL": "13.3.5",
@@ -3575,6 +3598,7 @@
             "Serilog.AspNetCore": "10.0.0",
             "SharpCompress": "0.48.1",
             "StackExchange.Redis": "2.13.1",
+            "Stripe.net": "51.1.0",
             "System.IdentityModel.Tokens.Jwt": "8.18.0",
             "Testcontainers": "4.12.0",
             "Testcontainers.MongoDb": "4.12.0",
@@ -3910,7 +3934,11 @@
           "net10.0": {
             "framework": "net10.0",
             "targetAlias": "net10.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\BuildingBlocks\\Krepim.SharedKernel\\Krepim.SharedKernel.csproj": {
+                "projectPath": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\BuildingBlocks\\Krepim.SharedKernel\\Krepim.SharedKernel.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -3975,6 +4003,7 @@
             "Serilog.AspNetCore": "10.0.0",
             "SharpCompress": "0.48.1",
             "StackExchange.Redis": "2.13.1",
+            "Stripe.net": "51.1.0",
             "System.IdentityModel.Tokens.Jwt": "8.18.0",
             "Testcontainers": "4.12.0",
             "Testcontainers.MongoDb": "4.12.0",
@@ -4392,6 +4421,7 @@
             "Serilog.AspNetCore": "10.0.0",
             "SharpCompress": "0.48.1",
             "StackExchange.Redis": "2.13.1",
+            "Stripe.net": "51.1.0",
             "System.IdentityModel.Tokens.Jwt": "8.18.0",
             "Testcontainers": "4.12.0",
             "Testcontainers.MongoDb": "4.12.0",
@@ -4796,6 +4826,7 @@
             "Serilog.AspNetCore": "10.0.0",
             "SharpCompress": "0.48.1",
             "StackExchange.Redis": "2.13.1",
+            "Stripe.net": "51.1.0",
             "System.IdentityModel.Tokens.Jwt": "8.18.0",
             "Testcontainers": "4.12.0",
             "Testcontainers.MongoDb": "4.12.0",
@@ -5132,6 +5163,9 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
+              "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\BuildingBlocks\\Krepim.EventBus\\Krepim.EventBus.csproj": {
+                "projectPath": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\BuildingBlocks\\Krepim.EventBus\\Krepim.EventBus.csproj"
+              },
               "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\BuildingBlocks\\Krepim.SharedKernel\\Krepim.SharedKernel.csproj": {
                 "projectPath": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\BuildingBlocks\\Krepim.SharedKernel\\Krepim.SharedKernel.csproj"
               },
@@ -5157,6 +5191,18 @@
         "net10.0": {
           "framework": "net10.0",
           "targetAlias": "net10.0",
+          "dependencies": {
+            "MassTransit": {
+              "target": "Package",
+              "version": "[8.5.9, )",
+              "versionCentrallyManaged": true
+            },
+            "MassTransit.RabbitMQ": {
+              "target": "Package",
+              "version": "[8.5.9, )",
+              "versionCentrallyManaged": true
+            }
+          },
           "centralPackageVersions": {
             "Amazon.S3": "0.35.1",
             "Aspire.Hosting.PostgreSQL": "13.3.5",
@@ -5203,6 +5249,7 @@
             "Serilog.AspNetCore": "10.0.0",
             "SharpCompress": "0.48.1",
             "StackExchange.Redis": "2.13.1",
+            "Stripe.net": "51.1.0",
             "System.IdentityModel.Tokens.Jwt": "8.18.0",
             "Testcontainers": "4.12.0",
             "Testcontainers.MongoDb": "4.12.0",
@@ -5538,7 +5585,11 @@
           "net10.0": {
             "framework": "net10.0",
             "targetAlias": "net10.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\BuildingBlocks\\Krepim.SharedKernel\\Krepim.SharedKernel.csproj": {
+                "projectPath": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\BuildingBlocks\\Krepim.SharedKernel\\Krepim.SharedKernel.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -5603,6 +5654,7 @@
             "Serilog.AspNetCore": "10.0.0",
             "SharpCompress": "0.48.1",
             "StackExchange.Redis": "2.13.1",
+            "Stripe.net": "51.1.0",
             "System.IdentityModel.Tokens.Jwt": "8.18.0",
             "Testcontainers": "4.12.0",
             "Testcontainers.MongoDb": "4.12.0",
@@ -6080,6 +6132,7 @@
             "Serilog.AspNetCore": "10.0.0",
             "SharpCompress": "0.48.1",
             "StackExchange.Redis": "2.13.1",
+            "Stripe.net": "51.1.0",
             "System.IdentityModel.Tokens.Jwt": "8.18.0",
             "Testcontainers": "4.12.0",
             "Testcontainers.MongoDb": "4.12.0",
