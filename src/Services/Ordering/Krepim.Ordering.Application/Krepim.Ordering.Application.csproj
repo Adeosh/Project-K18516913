@@ -6,6 +6,7 @@
     <ProjectReference Include="..\..\..\BuildingBlocks\Krepim.EventBus\Krepim.EventBus.csproj" />
     <ProjectReference Include="..\Krepim.Ordering.Domain\Krepim.Ordering.Domain.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\Krepim.SharedKernel\Krepim.SharedKernel.csproj" />
+	<InternalsVisibleTo Include="Krepim.Ordering.Application.Tests" />
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>

@@ -13,9 +13,14 @@ namespace Krepim.Inventory.Application.Features.GetStock
             var stockItem = await repository.GetByProductIdAsync(request.ProductId, ct);
 
             if (stockItem is null)
-                return new StockModel(request.ProductId, 0);
+            {
+                return Result<StockModel>.Failure(new Error(
+                    "Stock.NotFound",
+                    $"Товар с ID {request.ProductId} не найден на складе.",
+                    ErrorType.NotFound));
+            }
 
-            return new StockModel(stockItem.ProductId, stockItem.AvailableQuantity);
+            return Result<StockModel>.Success(new StockModel(stockItem.ProductId, stockItem.AvailableQuantity));
         }
     }
 }

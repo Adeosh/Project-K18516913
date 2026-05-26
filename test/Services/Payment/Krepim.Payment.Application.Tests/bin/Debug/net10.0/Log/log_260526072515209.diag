@@ -1,0 +1,21 @@
+2026-05-26T07:25:15.2130860+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Version: 1.9.1+cb5afc3bb9bb01ebd75b57f89e8358b914ee2a49
+2026-05-26T07:25:15.2189596+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging mode: asynchronous
+2026-05-26T07:25:15.2194756+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging level: Information
+2026-05-26T07:25:15.2194778+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION CreateBuilderAsync entry time: 07:25:15.201
+2026-05-26T07:25:15.2195187+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION PID: 37428
+2026-05-26T07:25:15.2195342+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime information: win-x64 - .NET 10.0.7
+2026-05-26T07:25:15.2195420+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\10.0.7\System.Private.CoreLib.dll
+2026-05-26T07:25:15.2195461+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION IsDynamicCodeSupported: True
+2026-05-26T07:25:15.2195985+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Test module: C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.Application.Tests\bin\Debug\net10.0\Krepim.Payment.Application.Tests.dll
+2026-05-26T07:25:15.2196748+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Command line arguments: '--server --diagnostic --diagnostic-verbosity Information --diagnostic-output-directory C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.Application.Tests\bin\Debug\net10.0\Log --results-directory C:\Users\adeos\Source\Repos\Krepim\TestResults --client-port 60663'
+2026-05-26T07:25:15.2201788+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION TESTINGPLATFORM_DEFAULT_HANG_TIMEOUT: ''
+2026-05-26T07:25:15.2308423+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting RegisterEnvironmentVariablesConfigurationSource: 'True'
+2026-05-26T07:25:15.2388241+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting PlatformExitProcessOnUnhandledException: 'False', config file: False environment variable: 
+2026-05-26T07:25:15.3969360+00:00 Microsoft.Testing.Platform.Requests.TestHostTestFrameworkInvoker INFORMATION Test framework UID: '30ea7c6e-dd24-4152-a360-1387158cd41d' Version: '3.2.2' DisplayName: 'xUnit.net v3 Microsoft.Testing.Platform test framework' Description: 'xUnit.net v3 Microsoft.Testing.Platform test framework'
+2026-05-26T07:25:15.4034734+00:00 xUnit.net INFORMATION xUnit.net v3 In-Process Runner v3.2.2+728c1dce01 (64-bit .NET 10.0.7)
+2026-05-26T07:25:15.4362318+00:00 xUnit.net INFORMATION   Discovering: Krepim.Payment.Application.Tests
+2026-05-26T07:25:15.4654290+00:00 xUnit.net INFORMATION   Discovered:  Krepim.Payment.Application.Tests
+2026-05-26T07:25:15.4805014+00:00 xUnit.net INFORMATION   Starting:    Krepim.Payment.Application.Tests
+2026-05-26T07:25:15.6746250+00:00 xUnit.net INFORMATION   Finished:    Krepim.Payment.Application.Tests (ID = '35bd8a3d33a0c5b0762933a64e812f6f63d0ee0958e30382109e0da7a9ded771')
+2026-05-26T07:25:15.6777460+00:00 xUnit.net INFORMATION === TEST EXECUTION SUMMARY ===
+2026-05-26T07:25:15.6807202+00:00 xUnit.net INFORMATION    Krepim.Payment.Application.Tests  Total: 4, Errors: 0, Failed: 0, Skipped: 0, Not Run: 0, Time: 0,197s

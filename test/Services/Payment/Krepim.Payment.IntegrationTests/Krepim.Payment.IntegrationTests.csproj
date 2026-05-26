@@ -23,5 +23,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\src\Services\Payment\Krepim.Payment.Api\Krepim.Payment.Api.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Krepim.Testing.Shared\Krepim.Testing.Shared.csproj" />
   </ItemGroup>
 </Project>

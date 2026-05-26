@@ -3,6 +3,8 @@
     <ProjectReference Include="..\..\..\BuildingBlocks\Krepim.EventBus\Krepim.EventBus.csproj" />
     <ProjectReference Include="..\Krepim.Payment.Domain\Krepim.Payment.Domain.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\Krepim.SharedKernel\Krepim.SharedKernel.csproj" />
+	<InternalsVisibleTo Include="Krepim.Payment.Application.Tests" />
+	<InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
 	<PackageReference Include="MassTransit" />
 	<PackageReference Include="MassTransit.RabbitMQ" />
   </ItemGroup>

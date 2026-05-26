@@ -3,6 +3,7 @@
     <ProjectReference Include="..\..\..\BuildingBlocks\Krepim.EventBus\Krepim.EventBus.csproj" />
     <ProjectReference Include="..\Krepim.Inventory.Domain\Krepim.Inventory.Domain.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\Krepim.SharedKernel\Krepim.SharedKernel.csproj" />
+	<InternalsVisibleTo Include="Krepim.Inventory.Application.Tests" />
 	<PackageReference Include="MassTransit" />
 	<PackageReference Include="MassTransit.RabbitMQ" />
   </ItemGroup>

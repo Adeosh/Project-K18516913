@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Krepim.Ordering.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e3b8165694fd19fc6defa878c96461cca0627ad4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+91a7a7c74fd879d579a81e4a77ee231179645edd")]
 [assembly: System.Reflection.AssemblyProductAttribute("Krepim.Ordering.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Krepim.Ordering.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
