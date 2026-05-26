@@ -6,10 +6,10 @@
   },
   "servers": [
     {
-      "url": "https://localhost:61489"
+      "url": "https://localhost:59920"
     },
     {
-      "url": "http://localhost:61490"
+      "url": "http://localhost:59921"
     }
   ],
   "paths": {
@@ -31,14 +31,6 @@
           "required": true
         },
         "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": { }
-              }
-            }
-          },
           "201": {
             "description": "Created",
             "content": {
@@ -156,7 +148,9 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": { }
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOfIReadOnlyListOfProductReadModel"
+                }
               }
             }
           }
@@ -191,7 +185,14 @@
         },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
           }
         }
       },
@@ -212,7 +213,14 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
           }
         }
       }
@@ -235,7 +243,14 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
           }
         }
       }
@@ -258,7 +273,14 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
           }
         }
       }
@@ -296,7 +318,9 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": { }
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOfIReadOnlyListOfProductReadModel"
+                }
               }
             }
           }
@@ -324,7 +348,9 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": { }
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOfProductReadModel"
+                }
               }
             }
           }
@@ -366,6 +392,23 @@
             "format": "uuid"
           }
         }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ErrorType"
+          }
+        }
+      },
+      "ErrorType": {
+        "type": "integer"
       },
       "ProblemDetails": {
         "type": "object",
@@ -455,6 +498,60 @@
           },
           "isActive": {
             "type": "boolean"
+          }
+        }
+      },
+      "Result": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean"
+          },
+          "isFailure": {
+            "type": "boolean"
+          },
+          "error": {
+            "$ref": "#/components/schemas/Error"
+          }
+        }
+      },
+      "ResultOfIReadOnlyListOfProductReadModel": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean"
+          },
+          "isFailure": {
+            "type": "boolean"
+          },
+          "error": {
+            "$ref": "#/components/schemas/Error"
+          },
+          "value": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/ProductReadModel"
+            }
+          }
+        }
+      },
+      "ResultOfProductReadModel": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean"
+          },
+          "isFailure": {
+            "type": "boolean"
+          },
+          "error": {
+            "$ref": "#/components/schemas/Error"
+          },
+          "value": {
+            "$ref": "#/components/schemas/ProductReadModel"
           }
         }
       },

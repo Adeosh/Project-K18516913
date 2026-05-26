@@ -1,0 +1,27 @@
+2026-05-25T12:44:51.2940969+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Version: 1.9.1+cb5afc3bb9bb01ebd75b57f89e8358b914ee2a49
+2026-05-25T12:44:51.3010673+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging mode: asynchronous
+2026-05-25T12:44:51.3017155+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging level: Information
+2026-05-25T12:44:51.3017179+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION CreateBuilderAsync entry time: 12:44:51.281
+2026-05-25T12:44:51.3017647+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION PID: 14140
+2026-05-25T12:44:51.3017853+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime information: win-x64 - .NET 10.0.7
+2026-05-25T12:44:51.3017959+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\10.0.7\System.Private.CoreLib.dll
+2026-05-25T12:44:51.3018051+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION IsDynamicCodeSupported: True
+2026-05-25T12:44:51.3018553+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Test module: C:\Users\adeos\Source\Repos\Krepim\test\Services\Inventory\Krepim.Inventory.IntegrationTests\bin\Debug\net10.0\Krepim.Inventory.IntegrationTests.dll
+2026-05-25T12:44:51.3019403+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Command line arguments: '--server --diagnostic --diagnostic-verbosity Information --diagnostic-output-directory C:\Users\adeos\Source\Repos\Krepim\test\Services\Inventory\Krepim.Inventory.IntegrationTests\bin\Debug\net10.0\Log --results-directory C:\Users\adeos\Source\Repos\Krepim\TestResults --client-port 52475'
+2026-05-25T12:44:51.3024642+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION TESTINGPLATFORM_DEFAULT_HANG_TIMEOUT: ''
+2026-05-25T12:44:51.3145106+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting RegisterEnvironmentVariablesConfigurationSource: 'True'
+2026-05-25T12:44:51.3229575+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting PlatformExitProcessOnUnhandledException: 'False', config file: False environment variable: 
+2026-05-25T12:44:51.4567553+00:00 Microsoft.Testing.Platform.Requests.TestHostTestFrameworkInvoker INFORMATION Test framework UID: '30ea7c6e-dd24-4152-a360-1387158cd41d' Version: '3.2.2' DisplayName: 'xUnit.net v3 Microsoft.Testing.Platform test framework' Description: 'xUnit.net v3 Microsoft.Testing.Platform test framework'
+2026-05-25T12:44:51.4629307+00:00 xUnit.net INFORMATION xUnit.net v3 In-Process Runner v3.2.2+728c1dce01 (64-bit .NET 10.0.7)
+2026-05-25T12:44:51.4921154+00:00 xUnit.net INFORMATION   Discovering: Krepim.Inventory.IntegrationTests
+2026-05-25T12:44:51.5185767+00:00 xUnit.net INFORMATION   Discovered:  Krepim.Inventory.IntegrationTests
+2026-05-25T12:44:51.5339751+00:00 xUnit.net INFORMATION   Starting:    Krepim.Inventory.IntegrationTests
+2026-05-25T12:44:57.2190177+00:00 xUnit.net ERROR     Krepim.Inventory.IntegrationTests.Features.InventoryIntegrationTests.OrderCreatedEvent_Should_ReserveStock_And_ApiShould_ReturnCorrectAvailableQuantity [FAIL]
+2026-05-25T12:44:57.2193181+00:00 xUnit.net INFORMATION       Expected response.IsSuccessStatusCode to be True because Эндпоинт упал с ошибкой: {"type":"https://datatracker.ietf.org/doc/html/rfc7231#section-6.6.1","title":"Server Error","status":500,"detail":"An unexpected error occurred while processing your request."}, but found False.
+2026-05-25T12:44:57.2195557+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-05-25T12:44:57.2197521+00:00 xUnit.net INFORMATION            at FluentAssertions.Primitives.BooleanAssertions`1.BeTrue(String because, Object[] becauseArgs)
+2026-05-25T12:44:57.2197757+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Inventory\Krepim.Inventory.IntegrationTests\Features\InventoryIntegrationTests.cs(58,0): at Krepim.Inventory.IntegrationTests.Features.InventoryIntegrationTests.OrderCreatedEvent_Should_ReserveStock_And_ApiShould_ReturnCorrectAvailableQuantity()
+2026-05-25T12:44:57.2197769+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-05-25T12:44:57.4828266+00:00 xUnit.net INFORMATION   Finished:    Krepim.Inventory.IntegrationTests (ID = '3876b3a8e179effbb2e63a59f09b0fa818bdaeed8545f5e8e9a9d6c5d11e96af')
+2026-05-25T12:44:57.4865079+00:00 xUnit.net INFORMATION === TEST EXECUTION SUMMARY ===
+2026-05-25T12:44:57.4899835+00:00 xUnit.net INFORMATION    Krepim.Inventory.IntegrationTests  Total: 1, Errors: 0, Failed: 1, Skipped: 0, Not Run: 0, Time: 5,952s

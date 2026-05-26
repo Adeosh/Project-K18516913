@@ -1,4 +1,4 @@
-﻿using Krepim.Basket.Application.Interfaces;
+﻿using Krepim.Basket.Domain.Interfaces;
 using Krepim.EventBus.Events.Basket;
 using Krepim.SharedKernel.Results;
 using MassTransit;

@@ -15,13 +15,6 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Object",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      },
-      {
         "Type": "System.Guid",
         "MediaTypes": [
           "application/json"
@@ -63,8 +56,10 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "Krepim.SharedKernel.Results.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 200
       }
     ],
@@ -88,8 +83,10 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "Krepim.SharedKernel.Results.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 200
       }
     ],
@@ -113,8 +110,10 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "Krepim.SharedKernel.Results.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 200
       }
     ],
@@ -138,8 +137,10 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "Krepim.SharedKernel.Results.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 200
       }
     ],
@@ -168,7 +169,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Object",
+        "Type": "Krepim.SharedKernel.Results.Result\u00601[[System.Collections.Generic.IReadOnlyList\u00601[[Krepim.Catalog.Application.Models.ProductReadModel, Krepim.Catalog.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "application/json"
         ],
@@ -195,7 +196,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Object",
+        "Type": "Krepim.SharedKernel.Results.Result\u00601[[Krepim.Catalog.Application.Models.ProductReadModel, Krepim.Catalog.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
@@ -227,7 +228,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Object",
+        "Type": "Krepim.SharedKernel.Results.Result\u00601[[System.Collections.Generic.IReadOnlyList\u00601[[Krepim.Catalog.Application.Models.ProductReadModel, Krepim.Catalog.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "application/json"
         ],

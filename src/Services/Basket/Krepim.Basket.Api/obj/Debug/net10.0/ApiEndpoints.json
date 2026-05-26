@@ -9,7 +9,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Object",
+        "Type": "Krepim.SharedKernel.Results.Result\u00601[[Krepim.Basket.Domain.Entities.CustomerBasket, Krepim.Basket.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
@@ -31,8 +31,10 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "Krepim.SharedKernel.Results.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 200
       }
     ],
@@ -59,7 +61,14 @@
       {
         "Type": "System.Void",
         "MediaTypes": [],
-        "StatusCode": 200
+        "StatusCode": 202
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/problem\u002Bjson"
+        ],
+        "StatusCode": 400
       }
     ],
     "Tags": [
@@ -83,7 +92,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Object",
+        "Type": "Krepim.SharedKernel.Results.Result\u00601[[Krepim.Basket.Domain.Entities.CustomerBasket, Krepim.Basket.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
@@ -111,7 +120,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Object",
+        "Type": "Krepim.SharedKernel.Results.Result\u00601[[Krepim.Basket.Domain.Entities.CustomerBasket, Krepim.Basket.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],

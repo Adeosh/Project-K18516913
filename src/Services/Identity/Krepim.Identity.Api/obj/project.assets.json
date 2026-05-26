@@ -1402,7 +1402,10 @@
         "dependencies": {
           "MediatR": "12.4.1",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.8",
-          "Microsoft.AspNetCore.OpenApi": "10.0.8"
+          "Microsoft.AspNetCore.OpenApi": "10.0.8",
+          "Microsoft.EntityFrameworkCore": "10.0.8",
+          "Microsoft.EntityFrameworkCore.Design": "10.0.8",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.1"
         },
         "compile": {
           "bin/placeholder/Krepim.SharedKernel.dll": {}

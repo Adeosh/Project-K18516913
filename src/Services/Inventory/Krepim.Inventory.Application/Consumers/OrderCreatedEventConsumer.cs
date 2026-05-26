@@ -1,5 +1,5 @@
 ﻿using Krepim.EventBus.Events.Inventory;
-using Krepim.Inventory.Application.Interfaces;
+using Krepim.Inventory.Domain.Interfaces;
 using Krepim.SharedKernel.Domain.Abstractions;
 using MassTransit;
 using Microsoft.Extensions.Logging;

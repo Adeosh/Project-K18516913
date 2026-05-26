@@ -1,5 +1,6 @@
 ﻿using Krepim.Catalog.Infrastructure.Database;
 using Krepim.Testing.Shared.Infrastructure;
+using MassTransit;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -31,10 +32,6 @@ namespace Krepim.Catalog.IntegrationTests.Infrastructure
                 _mongoContainer.StartAsync(),
                 _rabbitMqContainer.StartAsync()
             );
-
-            using var scope = Services.CreateScope();
-            var dbContext = scope.ServiceProvider.GetRequiredService<CatalogDbContext>();
-            await dbContext.Database.EnsureCreatedAsync();
         }
 
         protected override async Task StopContainersAsync()
@@ -50,7 +47,10 @@ namespace Krepim.Catalog.IntegrationTests.Infrastructure
             {
                 config.AddInMemoryCollection(new Dictionary<string, string?>
                 {
-                    ["ConnectionStrings:rabbitmq"] = _rabbitMqContainer.GetConnectionString()
+                    ["ConnectionStrings:rabbitmq"] = _rabbitMqContainer.GetConnectionString(),
+                    ["Jwt:SecretKey"] = "Super_Secret_Key_For_Krepim_System_Must_Be_Long_Enough_256bits!",
+                    ["Jwt:Issuer"] = "Krepim.Identity",
+                    ["Jwt:Audience"] = "Krepim.Clients"
                 });
             });
 
@@ -69,6 +69,14 @@ namespace Krepim.Catalog.IntegrationTests.Infrastructure
             var mongoClient = new MongoClient(_mongoContainer.GetConnectionString());
             services.AddScoped<IMongoClient>(_ => mongoClient);
             services.AddScoped<IMongoDatabase>(_ => mongoClient.GetDatabase("KrepimCatalogTestDb"));
+
+            services.AddMassTransitTestHarness(x =>
+            {
+                x.UsingInMemory((context, cfg) =>
+                {
+                    cfg.ConfigureEndpoints(context);
+                });
+            });
         }
     }
 }

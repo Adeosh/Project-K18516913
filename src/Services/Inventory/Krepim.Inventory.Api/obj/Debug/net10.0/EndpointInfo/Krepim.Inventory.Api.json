@@ -1,0 +1,112 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "Krepim.Inventory.Api | v1",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://localhost:59908"
+    },
+    {
+      "url": "http://localhost:59910"
+    }
+  ],
+  "paths": {
+    "/api/inventory/{productId}": {
+      "get": {
+        "tags": [
+          "Inventory"
+        ],
+        "operationId": "GetStock",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOfStockModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ErrorType"
+          }
+        }
+      },
+      "ErrorType": {
+        "type": "integer"
+      },
+      "ResultOfStockModel": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean"
+          },
+          "isFailure": {
+            "type": "boolean"
+          },
+          "error": {
+            "$ref": "#/components/schemas/Error"
+          },
+          "value": {
+            "$ref": "#/components/schemas/StockModel"
+          }
+        }
+      },
+      "StockModel": {
+        "required": [
+          "productId",
+          "availableQuantity"
+        ],
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "availableQuantity": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Inventory"
+    }
+  ]
+}

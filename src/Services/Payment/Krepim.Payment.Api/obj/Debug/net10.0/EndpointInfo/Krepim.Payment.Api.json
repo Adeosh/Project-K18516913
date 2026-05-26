@@ -6,29 +6,51 @@
   },
   "servers": [
     {
-      "url": "https://localhost:61496"
+      "url": "https://localhost:59922"
     },
     {
-      "url": "http://localhost:61497"
+      "url": "http://localhost:59923"
     }
   ],
   "paths": {
-    "/weatherforecast": {
+    "/api/payments/webhook": {
+      "post": {
+        "tags": [
+          "Webhooks"
+        ],
+        "summary": "Прием вебхуков от платежной системы Stripe",
+        "operationId": "StripeWebhook",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/payments/{orderId}/url": {
       "get": {
         "tags": [
-          "Krepim.Payment.Api"
+          "Payments"
         ],
-        "operationId": "GetWeatherForecast",
+        "operationId": "GetPaymentUrl",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
-                  }
+                  "$ref": "#/components/schemas/ResultOfstring"
                 }
               }
             }
@@ -39,39 +61,40 @@
   },
   "components": {
     "schemas": {
-      "WeatherForecast": {
-        "required": [
-          "date",
-          "temperatureC",
-          "summary"
-        ],
+      "Error": {
         "type": "object",
         "properties": {
-          "date": {
-            "type": "string",
-            "format": "date"
+          "code": {
+            "type": "string"
           },
-          "temperatureC": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
-            "format": "int32"
+          "description": {
+            "type": "string"
           },
-          "summary": {
+          "type": {
+            "$ref": "#/components/schemas/ErrorType"
+          }
+        }
+      },
+      "ErrorType": {
+        "type": "integer"
+      },
+      "ResultOfstring": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean"
+          },
+          "isFailure": {
+            "type": "boolean"
+          },
+          "error": {
+            "$ref": "#/components/schemas/Error"
+          },
+          "value": {
             "type": [
               "null",
               "string"
             ]
-          },
-          "temperatureF": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
-            "format": "int32"
           }
         }
       }
@@ -79,7 +102,10 @@
   },
   "tags": [
     {
-      "name": "Krepim.Payment.Api"
+      "name": "Webhooks"
+    },
+    {
+      "name": "Payments"
     }
   ]
 }

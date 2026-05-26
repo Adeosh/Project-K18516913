@@ -1,4 +1,5 @@
 ﻿using Krepim.Identity.Application.Interfaces;
+using Krepim.Identity.Domain.Interfaces;
 using Krepim.Identity.Infrastructure.Authentication;
 using Krepim.Identity.Infrastructure.Database;
 using Krepim.Identity.Infrastructure.Database.Repositories;

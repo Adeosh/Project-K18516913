@@ -1,7 +1,9 @@
 using Krepim.Catalog.Api.Endpoints.Products;
 using Krepim.Catalog.Application;
 using Krepim.Catalog.Infrastructure;
+using Krepim.Catalog.Infrastructure.Database;
 using Krepim.SharedKernel.Exceptions;
+using Krepim.SharedKernel.Extensions;
 using Krepim.SharedKernel.Results.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +19,8 @@ builder.Services.AddOpenApi();
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
+
+await app.ApplyMigrationsAsync<CatalogDbContext>();
 
 app.MapDefaultEndpoints();
 

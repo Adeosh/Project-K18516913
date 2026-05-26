@@ -30,9 +30,7 @@ namespace Krepim.Payment.Api.Endpoints
                     if (stripeEvent.Type == EventTypes.CheckoutSessionCompleted)
                     {
                         var session = stripeEvent.Data.Object as Stripe.Checkout.Session;
-
                         var externalId = session!.PaymentIntentId;
-
                         var result = await sender.Send(new CompletePaymentCommand(externalId), ct);
 
                         if (result.IsFailure)
@@ -47,7 +45,8 @@ namespace Krepim.Payment.Api.Endpoints
                     return Microsoft.AspNetCore.Http.Results.BadRequest();
                 }
             })
-            .WithName("StripeWebhook");
+            .WithName("StripeWebhook")
+            .WithSummary("Прием вебхуков от платежной системы Stripe");
         }
     }
 }

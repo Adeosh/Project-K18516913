@@ -1,5 +1,5 @@
-﻿using Krepim.Identity.Application.Interfaces;
-using Krepim.Identity.Domain.Aggregates;
+﻿using Krepim.Identity.Domain.Aggregates;
+using Krepim.Identity.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Krepim.Identity.Infrastructure.Database.Repositories

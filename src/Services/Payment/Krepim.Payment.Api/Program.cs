@@ -1,9 +1,11 @@
 using Krepim.Payment.Api.Endpoints;
 using Krepim.Payment.Application;
 using Krepim.Payment.Infrastructure;
+using Krepim.Payment.Infrastructure.Database;
 using Krepim.SharedKernel.Exceptions;
 using Krepim.SharedKernel.Extensions;
 using Krepim.SharedKernel.Results.Filters;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +22,8 @@ builder.Services.AddOpenApi();
 builder.Services.AddKrepimJwtAuth(builder.Configuration);
 
 var app = builder.Build();
+
+await app.ApplyMigrationsAsync<PaymentDbContext>();
 
 app.MapDefaultEndpoints();
 

@@ -1,5 +1,6 @@
 ﻿using Krepim.Ordering.Domain.Entities;
 using Krepim.SharedKernel.Domain.Abstractions;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 
 namespace Krepim.Ordering.Infrastructure.Database
@@ -13,6 +14,10 @@ namespace Krepim.Ordering.Infrastructure.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(OrderingDbContext).Assembly);
+
+            modelBuilder.AddInboxStateEntity();
+            modelBuilder.AddOutboxMessageEntity();
+            modelBuilder.AddOutboxStateEntity();
 
             base.OnModelCreating(modelBuilder);
         }

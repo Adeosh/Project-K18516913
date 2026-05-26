@@ -5,6 +5,7 @@ using Krepim.Basket.Application.Features.GetBasket;
 using Krepim.Basket.Application.Features.RemoveItem;
 using Krepim.Basket.Application.Models;
 using Krepim.SharedKernel.Extensions;
+using Krepim.SharedKernel.Results.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -17,50 +18,30 @@ namespace Krepim.Basket.Api.Endpoints
         {
             var group = builder.MapGroup("/api/basket")
                 .WithTags("Basket")
-                .RequireAuthorization();
+                .RequireAuthorization()
+                .AddEndpointFilter<ResultEndpointFilter>();
 
             group.MapGet("/", async (ClaimsPrincipal user, [FromServices] ISender sender, CancellationToken ct) =>
-            {
-                var result = await sender.Send(new GetBasketQuery(GetUserId(user)), ct);
-                return result.Match(basket => Microsoft.AspNetCore.Http.Results.Ok(basket));
-            })
+                await sender.Send(new GetBasketQuery(GetUserId(user)), ct))
             .WithName("GetBasket");
 
             group.MapPost("/items", async (
                 ClaimsPrincipal user,
-                [FromBody] Application.Models.AddItemRequest request,
+                [FromBody] AddItemRequest request,
                 [FromServices] ISender sender,
                 CancellationToken ct) =>
             {
-                var command = new AddItemToBasketCommand(
-                    GetUserId(user),
-                    request.ProductId,
-                    request.ProductName,
-                    request.Sku,
-                    request.UnitPrice,
-                    request.Quantity);
-
-                var result = await sender.Send(command, ct);
-                return result.Match(basket => Microsoft.AspNetCore.Http.Results.Ok(basket));
+                return await sender.Send(new AddItemToBasketCommand(
+                    GetUserId(user), request.ProductId, request.ProductName, request.Sku, request.UnitPrice, request.Quantity), ct);
             })
             .WithName("AddItemToBasket");
 
-            group.MapDelete("/items/{productId:guid}", async (
-                ClaimsPrincipal user,
-                Guid productId,
-                [FromServices] ISender sender,
-                CancellationToken ct) =>
-            {
-                var result = await sender.Send(new RemoveItemFromBasketCommand(GetUserId(user), productId), ct);
-                return result.Match(basket => Microsoft.AspNetCore.Http.Results.Ok(basket));
-            })
+            group.MapDelete("/items/{productId:guid}", async (ClaimsPrincipal user, Guid productId, [FromServices] ISender sender, CancellationToken ct) =>
+                await sender.Send(new RemoveItemFromBasketCommand(GetUserId(user), productId), ct))
             .WithName("RemoveItemFromBasket");
 
             group.MapDelete("/", async (ClaimsPrincipal user, [FromServices] ISender sender, CancellationToken ct) =>
-            {
-                var result = await sender.Send(new ClearBasketCommand(GetUserId(user)), ct);
-                return result.Match(() => Microsoft.AspNetCore.Http.Results.NoContent());
-            })
+                await sender.Send(new ClearBasketCommand(GetUserId(user)), ct))
             .WithName("ClearBasket");
 
             group.MapPost("/checkout", async (
@@ -69,17 +50,14 @@ namespace Krepim.Basket.Api.Endpoints
                 [FromServices] ISender sender,
                 CancellationToken ct) =>
             {
-                var command = new CheckoutBasketCommand(
-                    GetUserId(user),
-                    request.City,
-                    request.Street,
-                    request.ZipCode);
-
-                var result = await sender.Send(command, ct);
+                var result = await sender.Send(new CheckoutBasketCommand(
+                    GetUserId(user), request.City, request.Street, request.ZipCode), ct);
 
                 return result.Match(() => Microsoft.AspNetCore.Http.Results.Accepted());
             })
-            .WithName("CheckoutBasket");
+            .WithName("CheckoutBasket")
+            .Produces(StatusCodes.Status202Accepted)
+            .ProducesProblem(StatusCodes.Status400BadRequest);
         }
 
         private static Guid GetUserId(ClaimsPrincipal user)

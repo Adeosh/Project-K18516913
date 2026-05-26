@@ -1,21 +1,24 @@
 [
   {
-    "ContainingType": "Program\u002B\u003C\u003Ec__DisplayClass0_0",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0",
-    "RelativePath": "weatherforecast",
+    "ContainingType": "Krepim.Ordering.Api.Endpoints.OrderEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapOrderEndpoints\u003Eb__0_0",
+    "RelativePath": "api/orders/",
     "HttpMethod": "GET",
     "IsController": false,
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "WeatherForecast[]",
+        "Type": "Krepim.SharedKernel.Results.Result\u00601[[System.Collections.Generic.List\u00601[[Krepim.Ordering.Application.Models.OrderModel, Krepim.Ordering.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 200
       }
     ],
-    "EndpointName": "GetWeatherForecast"
+    "Tags": [
+      "Orders"
+    ],
+    "EndpointName": "GetMyOrders"
   }
 ]

@@ -1,5 +1,5 @@
 ﻿using Krepim.EventBus.Events.Payment;
-using Krepim.Payment.Application.Interfaces;
+using Krepim.Payment.Domain.Interfaces;
 using Krepim.SharedKernel.Domain.Abstractions;
 using Krepim.SharedKernel.Results;
 using MassTransit;

@@ -1,5 +1,5 @@
 ﻿using Krepim.Identity.Application.Features.Authentication;
-using Krepim.SharedKernel.Extensions;
+using Krepim.SharedKernel.Results.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,10 +14,9 @@ namespace Krepim.Identity.Api.Endpoints.Authentication
                 [FromServices] ISender sender,
                 CancellationToken ct) =>
             {
-                var result = await sender.Send(command, ct);
-
-                return result.Match(token => Microsoft.AspNetCore.Http.Results.Ok(token));
+                return await sender.Send(command, ct);
             })
+            .AddEndpointFilter<ResultEndpointFilter>()
             .WithName("LoginUser")
             .WithSummary("Аутентификация пользователя")
             .Produces<string>(StatusCodes.Status200OK)

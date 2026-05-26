@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Krepim.Basket.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+deab921844d29eccaa0bed3d5f0826104d68a66a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e3b8165694fd19fc6defa878c96461cca0627ad4")]
 [assembly: System.Reflection.AssemblyProductAttribute("Krepim.Basket.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Krepim.Basket.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,4 +1,4 @@
-﻿using Krepim.Basket.Application.Interfaces;
+﻿using Krepim.Basket.Domain.Interfaces;
 using Krepim.Basket.Infrastructure.Database.Repositories;
 using MassTransit;
 using Microsoft.Extensions.Configuration;

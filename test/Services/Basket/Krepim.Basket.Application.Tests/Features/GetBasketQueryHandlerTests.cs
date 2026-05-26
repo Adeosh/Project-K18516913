@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Krepim.Basket.Application.Features.GetBasket;
-using Krepim.Basket.Application.Interfaces;
 using Krepim.Basket.Domain.Entities;
+using Krepim.Basket.Domain.Interfaces;
 using Moq;
 
 namespace Krepim.Basket.Application.Tests.Features

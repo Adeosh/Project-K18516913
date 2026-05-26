@@ -1,4 +1,5 @@
 ﻿using Krepim.Payment.Application.Features.GetPaymentUrl;
+using Krepim.SharedKernel.Results.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,16 +11,15 @@ namespace Krepim.Payment.Api.Endpoints
         {
             var group = builder.MapGroup("/api/payments")
                 .WithTags("Payments")
-                .RequireAuthorization();
+                .RequireAuthorization()
+                .AddEndpointFilter<ResultEndpointFilter>(); ;
 
             group.MapGet("/{orderId:guid}/url", async (
                 Guid orderId,
                 [FromServices] ISender sender,
                 CancellationToken ct) =>
             {
-                var result = await sender.Send(new GetPaymentUrlQuery(orderId), ct);
-
-                return result.Match(url => Microsoft.AspNetCore.Http.Results.Ok(new { Url = url }));
+                return await sender.Send(new GetPaymentUrlQuery(orderId), ct);
             })
             .WithName("GetPaymentUrl");
         }

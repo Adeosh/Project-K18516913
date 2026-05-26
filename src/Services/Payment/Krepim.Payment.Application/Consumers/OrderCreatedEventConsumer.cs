@@ -1,6 +1,7 @@
-﻿using Krepim.EventBus.Events.Payment;
+﻿using Krepim.EventBus.Events.Inventory;
 using Krepim.Payment.Application.Interfaces;
 using Krepim.Payment.Domain.Entities;
+using Krepim.Payment.Domain.Interfaces;
 using Krepim.SharedKernel.Domain.Abstractions;
 using MassTransit;
 using Microsoft.Extensions.Logging;

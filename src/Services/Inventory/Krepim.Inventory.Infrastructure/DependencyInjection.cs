@@ -1,4 +1,4 @@
-﻿using Krepim.Inventory.Application.Interfaces;
+﻿using Krepim.Inventory.Domain.Interfaces;
 using Krepim.Inventory.Infrastructure.Database;
 using Krepim.Inventory.Infrastructure.Database.Repositories;
 using Krepim.SharedKernel.Domain.Abstractions;

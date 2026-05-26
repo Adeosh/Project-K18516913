@@ -1,5 +1,6 @@
 ﻿using Krepim.Identity.Application.Interfaces;
 using Krepim.Identity.Domain.Errors;
+using Krepim.Identity.Domain.Interfaces;
 using Krepim.SharedKernel.Results;
 using MediatR;
 

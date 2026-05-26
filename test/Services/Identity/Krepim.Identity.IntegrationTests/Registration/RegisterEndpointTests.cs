@@ -26,7 +26,7 @@ namespace Krepim.Identity.IntegrationTests.Registration
             var response = await _client.PostAsJsonAsync("/api/users/register", command, cancellationToken: TestContext.Current.CancellationToken);
 
             // Assert
-            response.StatusCode.Should().Be(HttpStatusCode.OK);
+            response.StatusCode.Should().Be(HttpStatusCode.Created);
 
             var userId = await response.Content.ReadFromJsonAsync<Guid>(cancellationToken: TestContext.Current.CancellationToken);
             userId.Should().NotBeEmpty();

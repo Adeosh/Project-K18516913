@@ -1,0 +1,65 @@
+2026-05-25T12:33:20.1324302+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Version: 1.9.1+cb5afc3bb9bb01ebd75b57f89e8358b914ee2a49
+2026-05-25T12:33:20.1382373+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging mode: asynchronous
+2026-05-25T12:33:20.1387388+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging level: Information
+2026-05-25T12:33:20.1387413+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION CreateBuilderAsync entry time: 12:33:20.121
+2026-05-25T12:33:20.1387894+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION PID: 25544
+2026-05-25T12:33:20.1388038+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime information: win-x64 - .NET 10.0.7
+2026-05-25T12:33:20.1388116+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\10.0.7\System.Private.CoreLib.dll
+2026-05-25T12:33:20.1388153+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION IsDynamicCodeSupported: True
+2026-05-25T12:33:20.1388611+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Test module: C:\Users\adeos\Source\Repos\Krepim\test\Services\Inventory\Krepim.Inventory.IntegrationTests\bin\Debug\net10.0\Krepim.Inventory.IntegrationTests.dll
+2026-05-25T12:33:20.1389365+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Command line arguments: '--server --diagnostic --diagnostic-verbosity Information --diagnostic-output-directory C:\Users\adeos\Source\Repos\Krepim\test\Services\Inventory\Krepim.Inventory.IntegrationTests\bin\Debug\net10.0\Log --results-directory C:\Users\adeos\Source\Repos\Krepim\TestResults --client-port 52295'
+2026-05-25T12:33:20.1394002+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION TESTINGPLATFORM_DEFAULT_HANG_TIMEOUT: ''
+2026-05-25T12:33:20.1497005+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting RegisterEnvironmentVariablesConfigurationSource: 'True'
+2026-05-25T12:33:20.1573819+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting PlatformExitProcessOnUnhandledException: 'False', config file: False environment variable: 
+2026-05-25T12:33:20.3361884+00:00 Microsoft.Testing.Platform.Requests.TestHostTestFrameworkInvoker INFORMATION Test framework UID: '30ea7c6e-dd24-4152-a360-1387158cd41d' Version: '3.2.2' DisplayName: 'xUnit.net v3 Microsoft.Testing.Platform test framework' Description: 'xUnit.net v3 Microsoft.Testing.Platform test framework'
+2026-05-25T12:33:20.3438621+00:00 xUnit.net INFORMATION xUnit.net v3 In-Process Runner v3.2.2+728c1dce01 (64-bit .NET 10.0.7)
+2026-05-25T12:33:20.3787829+00:00 xUnit.net INFORMATION   Discovering: Krepim.Inventory.IntegrationTests
+2026-05-25T12:33:20.4061641+00:00 xUnit.net INFORMATION   Discovered:  Krepim.Inventory.IntegrationTests
+2026-05-25T12:33:20.4205554+00:00 xUnit.net INFORMATION   Starting:    Krepim.Inventory.IntegrationTests
+2026-05-25T12:33:37.3441901+00:00 xUnit.net ERROR     Krepim.Inventory.IntegrationTests.Features.InventoryIntegrationTests.OrderCreatedEvent_Should_ReserveStock_And_ApiShould_ReturnCorrectAvailableQuantity [FAIL]
+2026-05-25T12:33:37.3448888+00:00 xUnit.net INFORMATION       Npgsql.PostgresException : 42P07: relation "InboxState" already exists
+2026-05-25T12:33:37.3451316+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-05-25T12:33:37.3453730+00:00 xUnit.net INFORMATION            at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+2026-05-25T12:33:37.3453834+00:00 xUnit.net INFORMATION            at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+2026-05-25T12:33:37.3453875+00:00 xUnit.net INFORMATION            at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+2026-05-25T12:33:37.3453910+00:00 xUnit.net INFORMATION            at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+2026-05-25T12:33:37.3453953+00:00 xUnit.net INFORMATION            at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+2026-05-25T12:33:37.3453988+00:00 xUnit.net INFORMATION            at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+2026-05-25T12:33:37.3454023+00:00 xUnit.net INFORMATION            at Npgsql.NpgsqlCommand.ExecuteNonQuery(Boolean async, CancellationToken cancellationToken)
+2026-05-25T12:33:37.3454073+00:00 xUnit.net INFORMATION            at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQueryAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+2026-05-25T12:33:37.3454120+00:00 xUnit.net INFORMATION            at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQueryAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+2026-05-25T12:33:37.3454174+00:00 xUnit.net INFORMATION            at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQueryAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+2026-05-25T12:33:37.3454261+00:00 xUnit.net INFORMATION            at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteAsync(IReadOnlyList`1 migrationCommands, IRelationalConnection connection, MigrationExecutionState executionState, Boolean beginTransaction, Boolean commitTransaction, Nullable`1 isolationLevel, CancellationToken cancellationToken)
+2026-05-25T12:33:37.3454431+00:00 xUnit.net INFORMATION            at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteAsync(IReadOnlyList`1 migrationCommands, IRelationalConnection connection, MigrationExecutionState executionState, Boolean beginTransaction, Boolean commitTransaction, Nullable`1 isolationLevel, CancellationToken cancellationToken)
+2026-05-25T12:33:37.3454491+00:00 xUnit.net INFORMATION            at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+2026-05-25T12:33:37.3454574+00:00 xUnit.net INFORMATION            at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteNonQueryAsync(IReadOnlyList`1 migrationCommands, IRelationalConnection connection, MigrationExecutionState executionState, Boolean commitTransaction, Nullable`1 isolationLevel, CancellationToken cancellationToken)
+2026-05-25T12:33:37.3454645+00:00 xUnit.net INFORMATION            at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateImplementationAsync(DbContext context, String targetMigration, MigrationExecutionState state, Boolean useTransaction, CancellationToken cancellationToken)
+2026-05-25T12:33:37.3454716+00:00 xUnit.net INFORMATION            at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateImplementationAsync(DbContext context, String targetMigration, MigrationExecutionState state, Boolean useTransaction, CancellationToken cancellationToken)
+2026-05-25T12:33:37.3454747+00:00 xUnit.net INFORMATION            at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.<>c.<<MigrateAsync>b__22_1>d.MoveNext()
+2026-05-25T12:33:37.3454754+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-05-25T12:33:37.3454811+00:00 xUnit.net INFORMATION            at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+2026-05-25T12:33:37.3454850+00:00 xUnit.net INFORMATION            at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+2026-05-25T12:33:37.3454890+00:00 xUnit.net INFORMATION            at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+2026-05-25T12:33:37.3454934+00:00 xUnit.net INFORMATION            at Npgsql.EntityFrameworkCore.PostgreSQL.Migrations.Internal.NpgsqlMigrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+2026-05-25T12:33:37.3455055+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\src\Services\Inventory\Krepim.Inventory.Api\Program.cs(42,0): at Program.<Main>$(String[] args)
+2026-05-25T12:33:37.3455102+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\src\Services\Inventory\Krepim.Inventory.Api\Program.cs(53,0): at Program.<Main>$(String[] args)
+2026-05-25T12:33:37.3455146+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\src\Services\Inventory\Krepim.Inventory.Api\Program.cs(61,0): at Program.<Main>$(String[] args)
+2026-05-25T12:33:37.3455168+00:00 xUnit.net INFORMATION            at Program.<Main>(String[] args)
+2026-05-25T12:33:37.3455234+00:00 xUnit.net INFORMATION            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+2026-05-25T12:33:37.3455362+00:00 xUnit.net INFORMATION            at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+2026-05-25T12:33:37.3455376+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-05-25T12:33:37.3455418+00:00 xUnit.net INFORMATION            at Microsoft.AspNetCore.Mvc.Testing.DeferredHostBuilder.DeferredHost.StartAsync(CancellationToken cancellationToken)
+2026-05-25T12:33:37.3455444+00:00 xUnit.net INFORMATION            at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Start(IHost host)
+2026-05-25T12:33:37.3455473+00:00 xUnit.net INFORMATION            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateHost(IHostBuilder builder)
+2026-05-25T12:33:37.3455505+00:00 xUnit.net INFORMATION            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+2026-05-25T12:33:37.3455532+00:00 xUnit.net INFORMATION            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.StartServer()
+2026-05-25T12:33:37.3455564+00:00 xUnit.net INFORMATION            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+2026-05-25T12:33:37.3455601+00:00 xUnit.net INFORMATION            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+2026-05-25T12:33:37.3455635+00:00 xUnit.net INFORMATION            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+2026-05-25T12:33:37.3455659+00:00 xUnit.net INFORMATION            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+2026-05-25T12:33:37.3455730+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Inventory\Krepim.Inventory.IntegrationTests\Features\InventoryIntegrationTests.cs(22,0): at Krepim.Inventory.IntegrationTests.Features.InventoryIntegrationTests..ctor(InventoryWebApplicationFactory factory)
+2026-05-25T12:33:37.3455762+00:00 xUnit.net INFORMATION            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Constructor(Object obj, IntPtr* args)
+2026-05-25T12:33:37.3455799+00:00 xUnit.net INFORMATION            at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+2026-05-25T12:33:37.5830673+00:00 xUnit.net INFORMATION   Finished:    Krepim.Inventory.IntegrationTests (ID = '3876b3a8e179effbb2e63a59f09b0fa818bdaeed8545f5e8e9a9d6c5d11e96af')
+2026-05-25T12:33:37.5862716+00:00 xUnit.net INFORMATION === TEST EXECUTION SUMMARY ===
+2026-05-25T12:33:37.5891775+00:00 xUnit.net INFORMATION    Krepim.Inventory.IntegrationTests  Total: 1, Errors: 0, Failed: 1, Skipped: 0, Not Run: 0, Time: 17,166s

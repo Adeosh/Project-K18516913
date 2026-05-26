@@ -2,6 +2,7 @@
 using Krepim.Identity.Application.Interfaces;
 using Krepim.Identity.Domain.Aggregates;
 using Krepim.Identity.Domain.Errors;
+using Krepim.Identity.Domain.Interfaces;
 using Krepim.SharedKernel.Domain.Abstractions;
 using Krepim.SharedKernel.Results;
 using MassTransit;

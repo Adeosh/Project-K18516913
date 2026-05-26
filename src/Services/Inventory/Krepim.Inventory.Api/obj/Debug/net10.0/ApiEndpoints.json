@@ -1,21 +1,30 @@
 [
   {
-    "ContainingType": "Program\u002B\u003C\u003Ec__DisplayClass0_0",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0",
-    "RelativePath": "weatherforecast",
+    "ContainingType": "Krepim.Inventory.Api.Endpoints.InventoryEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapInventoryEndpoints\u003Eb__0_0",
+    "RelativePath": "api/inventory/{productId:guid}",
     "HttpMethod": "GET",
     "IsController": false,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "productId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": [
       {
-        "Type": "WeatherForecast[]",
+        "Type": "Krepim.SharedKernel.Results.Result\u00601[[Krepim.Inventory.Application.Models.StockModel, Krepim.Inventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
         "StatusCode": 200
       }
     ],
-    "EndpointName": "GetWeatherForecast"
+    "Tags": [
+      "Inventory"
+    ],
+    "EndpointName": "GetStock"
   }
 ]

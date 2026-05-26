@@ -1,5 +1,6 @@
 ﻿using Krepim.Inventory.Domain.Entities;
 using Krepim.SharedKernel.Domain.Abstractions;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 
 namespace Krepim.Inventory.Infrastructure.Database
@@ -12,6 +13,11 @@ namespace Krepim.Inventory.Infrastructure.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(InventoryDbContext).Assembly);
+
+            modelBuilder.AddInboxStateEntity();
+            modelBuilder.AddOutboxMessageEntity();
+            modelBuilder.AddOutboxStateEntity();
+
             base.OnModelCreating(modelBuilder);
         }
     }

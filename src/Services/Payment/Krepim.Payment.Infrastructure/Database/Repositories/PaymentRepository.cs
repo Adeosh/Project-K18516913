@@ -1,5 +1,5 @@
-﻿using Krepim.Payment.Application.Interfaces;
-using Krepim.Payment.Domain.Entities;
+﻿using Krepim.Payment.Domain.Entities;
+using Krepim.Payment.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Krepim.Payment.Infrastructure.Database.Repositories

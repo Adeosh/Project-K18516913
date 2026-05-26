@@ -1,5 +1,5 @@
-﻿using Krepim.Ordering.Application.Interfaces;
-using Krepim.Ordering.Domain.Entities;
+﻿using Krepim.Ordering.Domain.Entities;
+using Krepim.Ordering.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Krepim.Ordering.Infrastructure.Database.Repositories

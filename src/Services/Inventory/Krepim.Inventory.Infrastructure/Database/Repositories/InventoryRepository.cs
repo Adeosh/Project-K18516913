@@ -1,5 +1,5 @@
-﻿using Krepim.Inventory.Application.Interfaces;
-using Krepim.Inventory.Domain.Entities;
+﻿using Krepim.Inventory.Domain.Entities;
+using Krepim.Inventory.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Krepim.Inventory.Infrastructure.Database.Repositories

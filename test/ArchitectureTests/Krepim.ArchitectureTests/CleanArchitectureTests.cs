@@ -1,8 +1,16 @@
 ﻿using FluentAssertions;
+using Krepim.Basket.Application.Features.Checkout;
+using Krepim.Basket.Domain.Interfaces;
 using Krepim.Catalog.Application.Features.CreateProduct;
 using Krepim.Catalog.Domain.Aggregates;
 using Krepim.Identity.Application.Features.Registration;
 using Krepim.Identity.Domain.Aggregates;
+using Krepim.Inventory.Application.Features.GetStock;
+using Krepim.Inventory.Domain.Entities;
+using Krepim.Ordering.Application.Features.GetMyOrders;
+using Krepim.Ordering.Domain.Entities;
+using Krepim.Payment.Application.Features.CompletePayment;
+using Krepim.Payment.Domain.Entities;
 using NetArchTest.Rules;
 using System.Reflection;
 
@@ -13,28 +21,60 @@ namespace Krepim.ArchitectureTests
         private static readonly Assembly[] DomainAssemblies =
         [
             typeof(User).Assembly,
-            typeof(Product).Assembly
+            typeof(Product).Assembly,
+            typeof(IBasketRepository).Assembly,
+            typeof(StockItem).Assembly,
+            typeof(Order).Assembly,
+            typeof(PaymentTransaction).Assembly
         ];
 
         private static readonly Assembly[] ApplicationAssemblies =
         [
             typeof(RegisterCommand).Assembly,
-            typeof(CreateProductCommand).Assembly
+            typeof(CreateProductCommand).Assembly,
+            typeof(CheckoutBasketCommand).Assembly,
+            typeof(GetStockQuery).Assembly,
+            typeof(GetMyOrdersQuery).Assembly,
+            typeof(CompletePaymentCommand).Assembly
+        ];
+
+        private static readonly string[] ApplicationNamespaces =
+        [
+            "Krepim.Identity.Application", "Krepim.Catalog.Application", "Krepim.Basket.Application",
+            "Krepim.Inventory.Application", "Krepim.Ordering.Application", "Krepim.Payment.Application"
+        ];
+
+        private static readonly string[] InfrastructureAndApiNamespaces =
+        [
+            "Krepim.Identity.Infrastructure", "Krepim.Identity.Api",
+            "Krepim.Catalog.Infrastructure", "Krepim.Catalog.Api",
+            "Krepim.Basket.Infrastructure", "Krepim.Basket.Api",
+            "Krepim.Inventory.Infrastructure", "Krepim.Inventory.Api",
+            "Krepim.Ordering.Infrastructure", "Krepim.Ordering.Api",
+            "Krepim.Payment.Infrastructure", "Krepim.Payment.Api"
+        ];
+
+        private static readonly string[] DomainNamespaces =
+        [
+            "Krepim.Identity.Domain", "Krepim.Catalog.Domain", "Krepim.Basket.Domain",
+            "Krepim.Inventory.Domain", "Krepim.Ordering.Domain", "Krepim.Payment.Domain"
         ];
 
         [Fact]
         public void Domain_Should_NotHaveDependencyOn_OtherLayers()
         {
+            var forbiddenNamespaces = ApplicationNamespaces.Concat(InfrastructureAndApiNamespaces).ToArray();
+
             foreach (var assembly in DomainAssemblies)
             {
                 var result = Types
                     .InAssembly(assembly)
                     .ShouldNot()
-                    .HaveDependencyOnAny("Krepim.Identity.Application", "Krepim.Identity.Infrastructure", "Krepim.Identity.Api",
-                                         "Krepim.Catalog.Application", "Krepim.Catalog.Infrastructure", "Krepim.Catalog.Api")
+                    .HaveDependencyOnAny(forbiddenNamespaces)
                     .GetResult();
 
-                result.IsSuccessful.Should().BeTrue($"Сборка {assembly.GetName().Name} нарушает Clean Architecture: зависит от внешних слоев. Нарушители: {string.Join(", ", result.FailingTypeNames ?? [])}");
+                result.IsSuccessful.Should().BeTrue(
+                    $"Сборка {assembly.GetName().Name} нарушает Clean Architecture: зависит от внешних слоев. Нарушители: {string.Join(", ", result.FailingTypeNames ?? [])}");
             }
         }
 
@@ -46,11 +86,11 @@ namespace Krepim.ArchitectureTests
                 var result = Types
                     .InAssembly(assembly)
                     .ShouldNot()
-                    .HaveDependencyOnAny("Krepim.Identity.Infrastructure", "Krepim.Identity.Api",
-                                         "Krepim.Catalog.Infrastructure", "Krepim.Catalog.Api")
+                    .HaveDependencyOnAny(InfrastructureAndApiNamespaces)
                     .GetResult();
 
-                result.IsSuccessful.Should().BeTrue($"Сборка {assembly.GetName().Name} нарушает Clean Architecture: зависит от Infrastructure или API. Нарушители: {string.Join(", ", result.FailingTypeNames ?? [])}");
+                result.IsSuccessful.Should().BeTrue(
+                    $"Сборка {assembly.GetName().Name} нарушает Clean Architecture: зависит от Infrastructure или API. Нарушители: {string.Join(", ", result.FailingTypeNames ?? [])}");
             }
         }
 
@@ -64,10 +104,11 @@ namespace Krepim.ArchitectureTests
                     .That()
                     .HaveNameEndingWith("CommandHandler")
                     .Should()
-                    .HaveDependencyOnAny("Krepim.Identity.Domain", "Krepim.Catalog.Domain")
+                    .HaveDependencyOnAny(DomainNamespaces)
                     .GetResult();
 
-                result.IsSuccessful.Should().BeTrue($"В сборке {assembly.GetName().Name} найдены Command-хэндлеры без связи с Доменом. Нарушители: {string.Join(", ", result.FailingTypeNames ?? [])}");
+                result.IsSuccessful.Should().BeTrue(
+                    $"В сборке {assembly.GetName().Name} найдены Command-хэндлеры без связи с Доменом. Нарушители: {string.Join(", ", result.FailingTypeNames ?? [])}");
             }
         }
     }

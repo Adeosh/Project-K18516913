@@ -1,6 +1,7 @@
 using Krepim.Ordering.Api.Endpoints;
 using Krepim.Ordering.Application;
 using Krepim.Ordering.Infrastructure;
+using Krepim.Ordering.Infrastructure.Database;
 using Krepim.SharedKernel.Exceptions;
 using Krepim.SharedKernel.Extensions;
 using Krepim.SharedKernel.Results.Filters;
@@ -20,6 +21,8 @@ builder.Services.AddOpenApi();
 builder.Services.AddKrepimJwtAuth(builder.Configuration);
 
 var app = builder.Build();
+
+await app.ApplyMigrationsAsync<OrderingDbContext>();
 
 app.MapDefaultEndpoints();
 

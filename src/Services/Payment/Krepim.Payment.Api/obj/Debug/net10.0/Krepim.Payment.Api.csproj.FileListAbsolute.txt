@@ -57,7 +57,6 @@ C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\obj\D
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\obj\Debug\net10.0\staticwebassets.development.json
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\obj\Debug\net10.0\staticwebassets.build.endpoints.json
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\obj\Debug\net10.0\swae.build.ex.cache
-C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\obj\Debug\net10.0\Krepim.P.AE9D6CC6.Up2Date
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\obj\Debug\net10.0\Krepim.Payment.Api.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\obj\Debug\net10.0\refint\Krepim.Payment.Api.dll
@@ -174,3 +173,4 @@ C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\bin\D
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\bin\Debug\net10.0\Krepim.EventBus.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\bin\Debug\net10.0\Krepim.EventBus.pdb
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

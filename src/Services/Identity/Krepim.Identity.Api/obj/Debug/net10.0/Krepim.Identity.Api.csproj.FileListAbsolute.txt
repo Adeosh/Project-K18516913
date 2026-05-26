@@ -57,7 +57,6 @@ C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\obj
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\obj\Debug\net10.0\staticwebassets.development.json
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\obj\Debug\net10.0\staticwebassets.build.endpoints.json
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\obj\Debug\net10.0\swae.build.ex.cache
-C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\obj\Debug\net10.0\Krepim.I.A0683417.Up2Date
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\obj\Debug\net10.0\Krepim.Identity.Api.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\obj\Debug\net10.0\refint\Krepim.Identity.Api.dll
@@ -174,3 +173,4 @@ C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\obj
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

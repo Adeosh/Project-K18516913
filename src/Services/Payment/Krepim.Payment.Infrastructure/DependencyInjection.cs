@@ -1,8 +1,11 @@
-﻿using Krepim.Payment.Application.Interfaces;
+﻿using Krepim.Payment.Application.Consumers;
+using Krepim.Payment.Application.Interfaces;
+using Krepim.Payment.Domain.Interfaces;
 using Krepim.Payment.Infrastructure.Database;
 using Krepim.Payment.Infrastructure.Database.Repositories;
 using Krepim.Payment.Infrastructure.ExternalServices;
 using Krepim.SharedKernel.Domain.Abstractions;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,21 +23,32 @@ namespace Krepim.Payment.Infrastructure
             services.AddScoped<IPaymentRepository, PaymentRepository>();
 
 
-            services.AddHttpClient<StripePaymentService>(client =>
+            services.AddHttpClient<IPaymentGateway, StripePaymentService>(client =>
             {
-                client.BaseAddress = new Uri(configuration["PaymentSettings:GatewayUrl"] ?? "[https://api.stripe.com](https://api.stripe.com)");
-                client.Timeout = TimeSpan.FromSeconds(10); // тайм-аут на один запрос
+                client.BaseAddress = new Uri(configuration["PaymentSettings:GatewayUrl"] ?? "https://api.stripe.com");
+                client.Timeout = TimeSpan.FromSeconds(10);
             })
-            .AddStandardResilienceHandler(options => // Настройка Retry (Повторные попытки)
+            .AddStandardResilienceHandler(options =>
             {
                 options.Retry.MaxRetryAttempts = 3;
                 options.Retry.Delay = TimeSpan.FromSeconds(2);
-                options.Retry.BackoffType = Polly.DelayBackoffType.Exponential; // Экспоненциальное увеличение задержки
+                options.Retry.BackoffType = Polly.DelayBackoffType.Exponential;
 
-                options.CircuitBreaker.FailureRatio = 0.5; // Если 50% запросов за окно падают — размыкаем цепь
-                options.CircuitBreaker.SamplingDuration = TimeSpan.FromSeconds(30); // Окно сбора статистики
-                options.CircuitBreaker.MinimumThroughput = 4; // Минимальное количество запросов в окне для срабатывания
-                options.CircuitBreaker.BreakDuration = TimeSpan.FromSeconds(15); // Время, на которое предохранитель закрывает доступ к банку
+                options.CircuitBreaker.FailureRatio = 0.5;
+                options.CircuitBreaker.SamplingDuration = TimeSpan.FromSeconds(30);
+                options.CircuitBreaker.MinimumThroughput = 4;
+                options.CircuitBreaker.BreakDuration = TimeSpan.FromSeconds(15);
+            });
+
+            services.AddMassTransit(x =>
+            {
+                x.AddConsumer<OrderCreatedEventConsumer>();
+
+                x.UsingRabbitMq((context, cfg) =>
+                {
+                    cfg.Host(configuration.GetConnectionString("rabbitmq"));
+                    cfg.ConfigureEndpoints(context);
+                });
             });
 
             return services;

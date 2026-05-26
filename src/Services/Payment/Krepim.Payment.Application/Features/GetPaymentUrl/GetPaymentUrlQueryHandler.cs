@@ -1,4 +1,4 @@
-﻿using Krepim.Payment.Application.Interfaces;
+﻿using Krepim.Payment.Domain.Interfaces;
 using Krepim.SharedKernel.Results;
 using MediatR;
 

@@ -1,0 +1,42 @@
+2026-05-25T12:06:17.9480886+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Version: 1.9.1+cb5afc3bb9bb01ebd75b57f89e8358b914ee2a49
+2026-05-25T12:06:17.9540500+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging mode: asynchronous
+2026-05-25T12:06:17.9545892+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging level: Information
+2026-05-25T12:06:17.9545920+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION CreateBuilderAsync entry time: 12:06:17.936
+2026-05-25T12:06:17.9546364+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION PID: 3356
+2026-05-25T12:06:17.9546525+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime information: win-x64 - .NET 10.0.7
+2026-05-25T12:06:17.9546644+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\10.0.7\System.Private.CoreLib.dll
+2026-05-25T12:06:17.9546697+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION IsDynamicCodeSupported: True
+2026-05-25T12:06:17.9547141+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Test module: C:\Users\adeos\Source\Repos\Krepim\test\Services\Inventory\Krepim.Inventory.IntegrationTests\bin\Debug\net10.0\Krepim.Inventory.IntegrationTests.dll
+2026-05-25T12:06:17.9548012+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Command line arguments: '--server --diagnostic --diagnostic-verbosity Information --diagnostic-output-directory C:\Users\adeos\Source\Repos\Krepim\test\Services\Inventory\Krepim.Inventory.IntegrationTests\bin\Debug\net10.0\Log --results-directory C:\Users\adeos\Source\Repos\Krepim\TestResults --client-port 49520'
+2026-05-25T12:06:17.9553505+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION TESTINGPLATFORM_DEFAULT_HANG_TIMEOUT: ''
+2026-05-25T12:06:17.9674840+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting RegisterEnvironmentVariablesConfigurationSource: 'True'
+2026-05-25T12:06:17.9760154+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting PlatformExitProcessOnUnhandledException: 'False', config file: False environment variable: 
+2026-05-25T12:06:18.1107157+00:00 Microsoft.Testing.Platform.Requests.TestHostTestFrameworkInvoker INFORMATION Test framework UID: '30ea7c6e-dd24-4152-a360-1387158cd41d' Version: '3.2.2' DisplayName: 'xUnit.net v3 Microsoft.Testing.Platform test framework' Description: 'xUnit.net v3 Microsoft.Testing.Platform test framework'
+2026-05-25T12:06:18.1166536+00:00 xUnit.net INFORMATION xUnit.net v3 In-Process Runner v3.2.2+728c1dce01 (64-bit .NET 10.0.7)
+2026-05-25T12:06:18.1442920+00:00 xUnit.net INFORMATION   Discovering: Krepim.Inventory.IntegrationTests
+2026-05-25T12:06:18.1699357+00:00 xUnit.net INFORMATION   Discovered:  Krepim.Inventory.IntegrationTests
+2026-05-25T12:06:18.1841842+00:00 xUnit.net INFORMATION   Starting:    Krepim.Inventory.IntegrationTests
+2026-05-25T12:06:22.2747326+00:00 xUnit.net ERROR     Krepim.Inventory.IntegrationTests.Features.InventoryIntegrationTests.OrderCreatedEvent_Should_ReserveStock_And_ApiShould_ReturnCorrectAvailableQuantity [FAIL]
+2026-05-25T12:06:22.2750578+00:00 xUnit.net INFORMATION       System.InvalidOperationException : Настройки JWT не найдены в конфигурации (секция 'Jwt').
+2026-05-25T12:06:22.2753147+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-05-25T12:06:22.2755397+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\src\BuildingBlocks\Krepim.SharedKernel\Extensions\AuthenticationExtensions.cs(18,0): at Krepim.SharedKernel.Extensions.AuthenticationExtensions.AddKrepimJwtAuth(IServiceCollection services, IConfiguration configuration)
+2026-05-25T12:06:22.2755520+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\src\Services\Inventory\Krepim.Inventory.Api\Program.cs(20,0): at Program.<Main>$(String[] args)
+2026-05-25T12:06:22.2755551+00:00 xUnit.net INFORMATION            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+2026-05-25T12:06:22.2755591+00:00 xUnit.net INFORMATION            at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+2026-05-25T12:06:22.2755598+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-05-25T12:06:22.2755623+00:00 xUnit.net INFORMATION            at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.CreateHost()
+2026-05-25T12:06:22.2755666+00:00 xUnit.net INFORMATION            at Microsoft.Extensions.Hosting.HostFactoryResolver.<>c__DisplayClass10_0.<ResolveHostFactory>b__0(String[] args)
+2026-05-25T12:06:22.2755687+00:00 xUnit.net INFORMATION            at Microsoft.AspNetCore.Mvc.Testing.DeferredHostBuilder.Build()
+2026-05-25T12:06:22.2755716+00:00 xUnit.net INFORMATION            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateHost(IHostBuilder builder)
+2026-05-25T12:06:22.2755746+00:00 xUnit.net INFORMATION            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+2026-05-25T12:06:22.2755802+00:00 xUnit.net INFORMATION            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.StartServer()
+2026-05-25T12:06:22.2755913+00:00 xUnit.net INFORMATION            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+2026-05-25T12:06:22.2755958+00:00 xUnit.net INFORMATION            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+2026-05-25T12:06:22.2756000+00:00 xUnit.net INFORMATION            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+2026-05-25T12:06:22.2756032+00:00 xUnit.net INFORMATION            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+2026-05-25T12:06:22.2756099+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Inventory\Krepim.Inventory.IntegrationTests\Features\InventoryIntegrationTests.cs(22,0): at Krepim.Inventory.IntegrationTests.Features.InventoryIntegrationTests..ctor(InventoryWebApplicationFactory factory)
+2026-05-25T12:06:22.2756130+00:00 xUnit.net INFORMATION            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Constructor(Object obj, IntPtr* args)
+2026-05-25T12:06:22.2756203+00:00 xUnit.net INFORMATION            at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+2026-05-25T12:06:22.5115148+00:00 xUnit.net INFORMATION   Finished:    Krepim.Inventory.IntegrationTests (ID = '3876b3a8e179effbb2e63a59f09b0fa818bdaeed8545f5e8e9a9d6c5d11e96af')
+2026-05-25T12:06:22.5146590+00:00 xUnit.net INFORMATION === TEST EXECUTION SUMMARY ===
+2026-05-25T12:06:22.5175443+00:00 xUnit.net INFORMATION    Krepim.Inventory.IntegrationTests  Total: 1, Errors: 0, Failed: 1, Skipped: 0, Not Run: 0, Time: 4,330s

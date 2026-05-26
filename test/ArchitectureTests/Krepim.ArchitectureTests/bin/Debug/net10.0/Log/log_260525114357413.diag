@@ -1,0 +1,35 @@
+2026-05-25T11:43:57.4182383+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Version: 1.9.1+cb5afc3bb9bb01ebd75b57f89e8358b914ee2a49
+2026-05-25T11:43:57.4243685+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging mode: asynchronous
+2026-05-25T11:43:57.4249278+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging level: Information
+2026-05-25T11:43:57.4249301+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION CreateBuilderAsync entry time: 11:43:57.405
+2026-05-25T11:43:57.4249757+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION PID: 34108
+2026-05-25T11:43:57.4249944+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime information: win-x64 - .NET 10.0.7
+2026-05-25T11:43:57.4250034+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\10.0.7\System.Private.CoreLib.dll
+2026-05-25T11:43:57.4250087+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION IsDynamicCodeSupported: True
+2026-05-25T11:43:57.4250557+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Test module: C:\Users\adeos\Source\Repos\Krepim\test\ArchitectureTests\Krepim.ArchitectureTests\bin\Debug\net10.0\Krepim.ArchitectureTests.dll
+2026-05-25T11:43:57.4251301+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Command line arguments: '--server --diagnostic --diagnostic-verbosity Information --diagnostic-output-directory C:\Users\adeos\Source\Repos\Krepim\test\ArchitectureTests\Krepim.ArchitectureTests\bin\Debug\net10.0\Log --results-directory C:\Users\adeos\Source\Repos\Krepim\TestResults --client-port 65247'
+2026-05-25T11:43:57.4257005+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION TESTINGPLATFORM_DEFAULT_HANG_TIMEOUT: ''
+2026-05-25T11:43:57.4371185+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting RegisterEnvironmentVariablesConfigurationSource: 'True'
+2026-05-25T11:43:57.4455877+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting PlatformExitProcessOnUnhandledException: 'False', config file: False environment variable: 
+2026-05-25T11:43:57.5807945+00:00 Microsoft.Testing.Platform.Requests.TestHostTestFrameworkInvoker INFORMATION Test framework UID: '30ea7c6e-dd24-4152-a360-1387158cd41d' Version: '3.2.2' DisplayName: 'xUnit.net v3 Microsoft.Testing.Platform test framework' Description: 'xUnit.net v3 Microsoft.Testing.Platform test framework'
+2026-05-25T11:43:57.5868025+00:00 xUnit.net INFORMATION xUnit.net v3 In-Process Runner v3.2.2+728c1dce01 (64-bit .NET 10.0.7)
+2026-05-25T11:43:57.6153750+00:00 xUnit.net INFORMATION   Discovering: Krepim.ArchitectureTests
+2026-05-25T11:43:57.6377635+00:00 xUnit.net INFORMATION   Discovered:  Krepim.ArchitectureTests
+2026-05-25T11:43:57.6518899+00:00 xUnit.net INFORMATION   Starting:    Krepim.ArchitectureTests
+2026-05-25T11:43:58.2824379+00:00 xUnit.net ERROR     Krepim.ArchitectureTests.CleanArchitectureTests.CommandHandlers_Should_HaveDependencyOnDomain [FAIL]
+2026-05-25T11:43:58.2827337+00:00 xUnit.net INFORMATION       Expected result.IsSuccessful to be True because В сборке Krepim.Basket.Application найдены Command-хэндлеры без связи с Доменом. Нарушители: Krepim.Basket.Application.Features.ClearBasket.ClearBasketCommandHandler, but found False.
+2026-05-25T11:43:58.2829572+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-05-25T11:43:58.2832512+00:00 xUnit.net INFORMATION            at FluentAssertions.Primitives.BooleanAssertions`1.BeTrue(String because, Object[] becauseArgs)
+2026-05-25T11:43:58.2832682+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\ArchitectureTests\Krepim.ArchitectureTests\CleanArchitectureTests.cs(110,0): at Krepim.ArchitectureTests.CleanArchitectureTests.CommandHandlers_Should_HaveDependencyOnDomain()
+2026-05-25T11:43:58.2832717+00:00 xUnit.net INFORMATION            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+2026-05-25T11:43:58.2832750+00:00 xUnit.net INFORMATION            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-05-25T11:43:58.3013797+00:00 xUnit.net ERROR     Krepim.ArchitectureTests.CleanArchitectureTests.Domain_Should_NotHaveDependencyOn_OtherLayers [FAIL]
+2026-05-25T11:43:58.3013949+00:00 xUnit.net INFORMATION       Expected result.IsSuccessful to be True because Сборка Krepim.Basket.Application нарушает Clean Architecture: зависит от внешних слоев. Нарушители: Krepim.Basket.Application.DependencyInjection, Krepim.Basket.Application.Models.AddItemRequest, Krepim.Basket.Application.Models.CheckoutRequest, Krepim.Basket.Application.Features.RemoveItem.RemoveItemFromBasketCommand, Krepim.Basket.Application.Features.RemoveItem.RemoveItemFromBasketCommandHandler, Krepim.Basket.Application.Features.GetBasket.GetBasketQuery, Krepim.Basket.Application.Features.GetBasket.GetBasketQueryHandler, Krepim.Basket.Application.Features.ClearBasket.ClearBasketCommand, Krepim.Basket.Application.Features.ClearBasket.ClearBasketCommandHandler, Krepim.Basket.Application.Features.Checkout.CheckoutBasketCommand, Krepim.Basket.Application.Features.Checkout.CheckoutBasketCommandHandler, Krepim.Basket.Application.Features.AddItem.AddItemToBasketCommand, Krepim.Basket.Application.Features.AddItem.AddItemToBasketCommandHandler, but found False.
+2026-05-25T11:43:58.3014009+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-05-25T11:43:58.3014090+00:00 xUnit.net INFORMATION            at FluentAssertions.Primitives.BooleanAssertions`1.BeTrue(String because, Object[] becauseArgs)
+2026-05-25T11:43:58.3014166+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\ArchitectureTests\Krepim.ArchitectureTests\CleanArchitectureTests.cs(76,0): at Krepim.ArchitectureTests.CleanArchitectureTests.Domain_Should_NotHaveDependencyOn_OtherLayers()
+2026-05-25T11:43:58.3014196+00:00 xUnit.net INFORMATION            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+2026-05-25T11:43:58.3014222+00:00 xUnit.net INFORMATION            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-05-25T11:43:58.3091556+00:00 xUnit.net INFORMATION   Finished:    Krepim.ArchitectureTests (ID = 'ce19ee9f45b803668a7afb44e6522e339f77dcb9167c4835fe76c3868bd402ed')
+2026-05-25T11:43:58.3122345+00:00 xUnit.net INFORMATION === TEST EXECUTION SUMMARY ===
+2026-05-25T11:43:58.3150897+00:00 xUnit.net INFORMATION    Krepim.ArchitectureTests  Total: 3, Errors: 0, Failed: 2, Skipped: 0, Not Run: 0, Time: 0,660s

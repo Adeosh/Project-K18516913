@@ -1,5 +1,5 @@
-﻿using Krepim.Inventory.Application.Interfaces;
-using Krepim.Inventory.Application.Models;
+﻿using Krepim.Inventory.Application.Models;
+using Krepim.Inventory.Domain.Interfaces;
 using Krepim.SharedKernel.Results;
 using MediatR;
 

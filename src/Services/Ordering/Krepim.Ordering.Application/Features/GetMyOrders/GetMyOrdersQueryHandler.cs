@@ -1,5 +1,5 @@
-﻿using Krepim.Ordering.Application.Interfaces;
-using Krepim.Ordering.Application.Models;
+﻿using Krepim.Ordering.Application.Models;
+using Krepim.Ordering.Domain.Interfaces;
 using Krepim.SharedKernel.Results;
 using MediatR;
 

@@ -1,5 +1,5 @@
 ﻿using Krepim.Ordering.Application.Consumers;
-using Krepim.Ordering.Application.Interfaces;
+using Krepim.Ordering.Domain.Interfaces;
 using Krepim.Ordering.Infrastructure.Database;
 using Krepim.Ordering.Infrastructure.Database.Repositories;
 using Krepim.SharedKernel.Domain.Abstractions;

@@ -4,6 +4,7 @@ using Krepim.Identity.Application.Interfaces;
 using Krepim.Identity.Domain.Aggregates;
 using Krepim.Identity.Domain.Enums;
 using Krepim.Identity.Domain.Errors;
+using Krepim.Identity.Domain.Interfaces;
 using NSubstitute;
 
 namespace Krepim.Identity.Application.Tests.Features.Authentication

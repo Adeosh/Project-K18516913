@@ -57,7 +57,6 @@ C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Api\obj
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Api\obj\Debug\net10.0\staticwebassets.development.json
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Api\obj\Debug\net10.0\staticwebassets.build.endpoints.json
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Api\obj\Debug\net10.0\swae.build.ex.cache
-C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Api\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Api\obj\Debug\net10.0\Krepim.O.CA0B4C0F.Up2Date
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Api\obj\Debug\net10.0\Krepim.Ordering.Api.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Api\obj\Debug\net10.0\refint\Krepim.Ordering.Api.dll
@@ -171,3 +170,4 @@ C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Api\bin
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Api\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Api\bin\Debug\net10.0\Krepim.EventBus.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Api\bin\Debug\net10.0\Krepim.EventBus.pdb
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Api\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

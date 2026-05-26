@@ -1,4 +1,5 @@
 ﻿using Krepim.Ordering.Application.Features.GetMyOrders;
+using Krepim.SharedKernel.Results.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -11,12 +12,12 @@ namespace Krepim.Ordering.Api.Endpoints
         {
             var group = builder.MapGroup("/api/orders")
                 .WithTags("Orders")
-                .RequireAuthorization();
+                .RequireAuthorization()
+                .AddEndpointFilter<ResultEndpointFilter>(); ;
 
             group.MapGet("/", async (ClaimsPrincipal user, [FromServices] ISender sender, CancellationToken ct) =>
             {
-                var result = await sender.Send(new GetMyOrdersQuery(GetUserId(user)), ct);
-                return result.Match(orders => Microsoft.AspNetCore.Http.Results.Ok(orders));
+                return await sender.Send(new GetMyOrdersQuery(GetUserId(user)), ct);
             })
             .WithName("GetMyOrders");
         }

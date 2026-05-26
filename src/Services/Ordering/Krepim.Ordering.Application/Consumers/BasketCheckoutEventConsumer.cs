@@ -1,6 +1,6 @@
 ﻿using Krepim.EventBus.Events.Basket;
-using Krepim.Ordering.Application.Interfaces;
 using Krepim.Ordering.Domain.Entities;
+using Krepim.Ordering.Domain.Interfaces;
 using Krepim.Ordering.Domain.ValueObjects;
 using Krepim.SharedKernel.Domain.Abstractions;
 using MassTransit;
