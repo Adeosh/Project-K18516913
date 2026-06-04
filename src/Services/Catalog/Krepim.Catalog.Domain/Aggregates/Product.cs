@@ -1,6 +1,6 @@
-﻿using Krepim.Catalog.Domain.ValueObjects;
-using Krepim.SharedKernel.Domain;
+﻿using Krepim.SharedKernel.Domain;
 using Krepim.SharedKernel.Results;
+using Krepim.SharedKernel.ValueObjects;
 
 namespace Krepim.Catalog.Domain.Aggregates
 {

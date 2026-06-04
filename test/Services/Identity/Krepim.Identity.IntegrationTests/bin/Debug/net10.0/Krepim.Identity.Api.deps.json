@@ -8,14 +8,59 @@
     ".NETCoreApp,Version=v10.0": {
       "Krepim.Identity.Api/1.0.0": {
         "dependencies": {
+          "Aspire.StackExchange.Redis.DistributedCaching": "13.4.2",
           "Krepim.Aspire.ServiceDefaults": "1.0.0",
           "Krepim.Identity.Infrastructure": "1.0.0",
           "Krepim.SharedKernel": "1.0.0",
           "Microsoft.AspNetCore.OpenApi": "10.0.8",
-          "OpenTelemetry.Exporter.OpenTelemetryProtocol": "1.15.3"
+          "OpenTelemetry.Exporter.OpenTelemetryProtocol": "1.15.3",
+          "StackExchange.Redis": "2.13.1"
         },
         "runtime": {
           "Krepim.Identity.Api.dll": {}
+        }
+      },
+      "Aspire.StackExchange.Redis/13.4.2": {
+        "dependencies": {
+          "AspNetCore.HealthChecks.Redis": "9.0.0",
+          "Microsoft.Extensions.DependencyInjection.AutoActivation": "10.6.0",
+          "OpenTelemetry.Extensions.Hosting": "1.15.3",
+          "StackExchange.Redis": "2.13.1",
+          "System.IO.Hashing": "10.0.8"
+        },
+        "runtime": {
+          "lib/net10.0/Aspire.StackExchange.Redis.dll": {
+            "assemblyVersion": "13.4.2.0",
+            "fileVersion": "13.400.226.30306"
+          }
+        }
+      },
+      "Aspire.StackExchange.Redis.DistributedCaching/13.4.2": {
+        "dependencies": {
+          "AspNetCore.HealthChecks.Redis": "9.0.0",
+          "Aspire.StackExchange.Redis": "13.4.2",
+          "Microsoft.Extensions.Caching.StackExchangeRedis": "10.0.8",
+          "Microsoft.Extensions.DependencyInjection.AutoActivation": "10.6.0",
+          "OpenTelemetry.Extensions.Hosting": "1.15.3",
+          "StackExchange.Redis": "2.13.1",
+          "System.IO.Hashing": "10.0.8"
+        },
+        "runtime": {
+          "lib/net10.0/Aspire.StackExchange.Redis.DistributedCaching.dll": {
+            "assemblyVersion": "13.4.2.0",
+            "fileVersion": "13.400.226.30306"
+          }
+        }
+      },
+      "AspNetCore.HealthChecks.Redis/9.0.0": {
+        "dependencies": {
+          "StackExchange.Redis": "2.13.1"
+        },
+        "runtime": {
+          "lib/net8.0/HealthChecks.Redis.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.0.0"
+          }
         }
       },
       "BCrypt.Net-Next/4.2.0": {
@@ -474,6 +519,17 @@
           }
         }
       },
+      "Microsoft.Extensions.Caching.StackExchangeRedis/10.0.8": {
+        "dependencies": {
+          "StackExchange.Redis": "2.13.1"
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.Extensions.Caching.StackExchangeRedis.dll": {
+            "assemblyVersion": "10.0.8.0",
+            "fileVersion": "10.0.826.23019"
+          }
+        }
+      },
       "Microsoft.Extensions.Compliance.Abstractions/10.6.0": {
         "runtime": {
           "lib/net10.0/Microsoft.Extensions.Compliance.Abstractions.dll": {
@@ -747,14 +803,14 @@
           }
         }
       },
-      "OpenTelemetry.Extensions.Hosting/1.15.1": {
+      "OpenTelemetry.Extensions.Hosting/1.15.3": {
         "dependencies": {
           "OpenTelemetry": "1.15.3"
         },
         "runtime": {
           "lib/net10.0/OpenTelemetry.Extensions.Hosting.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.15.1.1988"
+            "fileVersion": "1.15.3.2017"
           }
         }
       },
@@ -788,6 +844,14 @@
           "lib/net10.0/OpenTelemetry.Instrumentation.Runtime.dll": {
             "assemblyVersion": "1.15.1.1029",
             "fileVersion": "1.15.1.1029"
+          }
+        }
+      },
+      "Pipelines.Sockets.Unofficial/2.2.16": {
+        "runtime": {
+          "lib/net9.0/Pipelines.Sockets.Unofficial.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "2.2.16.21791"
           }
         }
       },
@@ -826,6 +890,18 @@
           "lib/net8.0/RabbitMQ.Client.dll": {
             "assemblyVersion": "7.0.0.0",
             "fileVersion": "7.2.1.0"
+          }
+        }
+      },
+      "StackExchange.Redis/2.13.1": {
+        "dependencies": {
+          "Pipelines.Sockets.Unofficial": "2.2.16",
+          "System.IO.Hashing": "10.0.8"
+        },
+        "runtime": {
+          "lib/net10.0/StackExchange.Redis.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.13.1.38939"
           }
         }
       },
@@ -909,12 +985,20 @@
           }
         }
       },
+      "System.IO.Hashing/10.0.8": {
+        "runtime": {
+          "lib/net10.0/System.IO.Hashing.dll": {
+            "assemblyVersion": "10.0.0.8",
+            "fileVersion": "10.0.826.23019"
+          }
+        }
+      },
       "Krepim.Aspire.ServiceDefaults/1.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Http.Resilience": "10.6.0",
           "Microsoft.Extensions.ServiceDiscovery": "10.6.0",
           "OpenTelemetry.Exporter.OpenTelemetryProtocol": "1.15.3",
-          "OpenTelemetry.Extensions.Hosting": "1.15.1",
+          "OpenTelemetry.Extensions.Hosting": "1.15.3",
           "OpenTelemetry.Instrumentation.AspNetCore": "1.15.1",
           "OpenTelemetry.Instrumentation.Http": "1.15.1",
           "OpenTelemetry.Instrumentation.Runtime": "1.15.1"
@@ -971,8 +1055,10 @@
           "MassTransit.EntityFrameworkCore": "8.3.4",
           "Microsoft.EntityFrameworkCore": "10.0.8",
           "Microsoft.EntityFrameworkCore.Design": "10.0.8",
+          "Microsoft.Extensions.Caching.StackExchangeRedis": "10.0.8",
           "Microsoft.IdentityModel.Tokens": "8.18.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.1",
+          "StackExchange.Redis": "2.13.1",
           "System.IdentityModel.Tokens.Jwt": "8.18.0"
         },
         "runtime": {
@@ -1005,6 +1091,27 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Aspire.StackExchange.Redis/13.4.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yjYre7VGrTfnmoO8Q6hIZ1XkOms1SGt+jXWpQffcHCNgVXi0CcxhTkHGpjVYBjeRyzr7tdXXkgcKPye1H2aDTw==",
+      "path": "aspire.stackexchange.redis/13.4.2",
+      "hashPath": "aspire.stackexchange.redis.13.4.2.nupkg.sha512"
+    },
+    "Aspire.StackExchange.Redis.DistributedCaching/13.4.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HSSVw4VFbqcV3/Gf8A+2cFqzd0Don9SShSM+i8eo//TClSiLGoNbe6PGy+9rOAQtIG0u2G5gbl0iQQVRDf2e7g==",
+      "path": "aspire.stackexchange.redis.distributedcaching/13.4.2",
+      "hashPath": "aspire.stackexchange.redis.distributedcaching.13.4.2.nupkg.sha512"
+    },
+    "AspNetCore.HealthChecks.Redis/9.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yNH0h8GLRbAf+PU5HNVLZ5hNeyq9mDVmRKO9xuZsme/znUYoBJlQvI0gq45gaZNlLncCHkMhR4o90MuT+gxxPw==",
+      "path": "aspnetcore.healthchecks.redis/9.0.0",
+      "hashPath": "aspnetcore.healthchecks.redis.9.0.0.nupkg.sha512"
     },
     "BCrypt.Net-Next/4.2.0": {
       "type": "package",
@@ -1166,6 +1273,13 @@
       "sha512": "sha512-MPAI1c5QqkDgEyEvsSj7KPPWHlTCqvXxtfp7JISul4P54GfDkSs+S7Vyq7tmS7MzpEjuH/6xrsFlUqAPlLyTUA==",
       "path": "microsoft.extensions.ambientmetadata.application/10.6.0",
       "hashPath": "microsoft.extensions.ambientmetadata.application.10.6.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Caching.StackExchangeRedis/10.0.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fle9ns3q2kk63vt/wHFtLw1U9kiEbM42vTk2Sar8VBjiGJFkXAgm0QEKFx15YMHkJIPRVdknWaovpvgGEgn10g==",
+      "path": "microsoft.extensions.caching.stackexchangeredis/10.0.8",
+      "hashPath": "microsoft.extensions.caching.stackexchangeredis.10.0.8.nupkg.sha512"
     },
     "Microsoft.Extensions.Compliance.Abstractions/10.6.0": {
       "type": "package",
@@ -1356,12 +1470,12 @@
       "path": "opentelemetry.exporter.opentelemetryprotocol/1.15.3",
       "hashPath": "opentelemetry.exporter.opentelemetryprotocol.1.15.3.nupkg.sha512"
     },
-    "OpenTelemetry.Extensions.Hosting/1.15.1": {
+    "OpenTelemetry.Extensions.Hosting/1.15.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-/mN9I16P8miDSHogFC0OFyPzUvYXibk/rLFLXW3Io50IN+XEQx7E6dSyUdMRdY+NKmOCo/oS5ICXkjdoFrwq2A==",
-      "path": "opentelemetry.extensions.hosting/1.15.1",
-      "hashPath": "opentelemetry.extensions.hosting.1.15.1.nupkg.sha512"
+      "sha512": "sha512-u8n/W8yIlqv0BXZmvId1iVaeWXG42tGKdTkuLYg5g57Y/r9CeUNzqtrSHNdG5IoO8iPX79w3v+WsbAHgUQbfeg==",
+      "path": "opentelemetry.extensions.hosting/1.15.3",
+      "hashPath": "opentelemetry.extensions.hosting.1.15.3.nupkg.sha512"
     },
     "OpenTelemetry.Instrumentation.AspNetCore/1.15.1": {
       "type": "package",
@@ -1383,6 +1497,13 @@
       "sha512": "sha512-cpPwlUT5HXcLGPaIgsbSy0W9eFYAPGVbTP1p8/uyQ4Osvf5BJuPpEXE7crL09SmEd44r0DGNKDtsqxaAz0HxQw==",
       "path": "opentelemetry.instrumentation.runtime/1.15.1",
       "hashPath": "opentelemetry.instrumentation.runtime.1.15.1.nupkg.sha512"
+    },
+    "Pipelines.Sockets.Unofficial/2.2.16": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nonu9l0YrZH6krVYbskBjE7uG0VMAnvOQ9PU+RmzUsy+++vHkqzzCkHRoP877OiA3iRTxJyNDLfpcU8hrJ3/YQ==",
+      "path": "pipelines.sockets.unofficial/2.2.16",
+      "hashPath": "pipelines.sockets.unofficial.2.2.16.nupkg.sha512"
     },
     "Polly.Core/8.4.2": {
       "type": "package",
@@ -1411,6 +1532,13 @@
       "sha512": "sha512-YKXEfg9fVQiTKgZlvIhAfPSFaamEgi8DsQmisCH0IAsU4FYLrtoguDrDj6JtJVGUt40QPnBLRH6fTQcAC4qsOg==",
       "path": "rabbitmq.client/7.2.1",
       "hashPath": "rabbitmq.client.7.2.1.nupkg.sha512"
+    },
+    "StackExchange.Redis/2.13.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jC5wkRe8K6HPoDENUws+fl2d7+GKz+ky8SWEDzYzPx6hHt2EwxWm01gmYPWLzlT49jfYYap0guB5bExtyX9aIQ==",
+      "path": "stackexchange.redis/2.13.1",
+      "hashPath": "stackexchange.redis.2.13.1.nupkg.sha512"
     },
     "System.CodeDom/6.0.0": {
       "type": "package",
@@ -1467,6 +1595,13 @@
       "sha512": "sha512-JxKlBca3/eXeH4koAGjEXOwrBdtwyDXwHXdYT5TQunp64TcVBl4wBCfmlGwhSG017Q/Qrz24leLxV6v2eknnJg==",
       "path": "system.identitymodel.tokens.jwt/8.18.0",
       "hashPath": "system.identitymodel.tokens.jwt.8.18.0.nupkg.sha512"
+    },
+    "System.IO.Hashing/10.0.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+dJsbPJ3FyUbTZNplFj0RCKePFizmv6ewDV46JE9q/IVH4c3xTCftHfHelLsAKf0jryIPqgMb5GpS0x7TAY3mg==",
+      "path": "system.io.hashing/10.0.8",
+      "hashPath": "system.io.hashing.10.0.8.nupkg.sha512"
     },
     "Krepim.Aspire.ServiceDefaults/1.0.0": {
       "type": "project",

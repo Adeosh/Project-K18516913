@@ -51,7 +51,7 @@ namespace Krepim.Basket.Api.Endpoints
                 CancellationToken ct) =>
             {
                 var result = await sender.Send(new CheckoutBasketCommand(
-                    GetUserId(user), request.City, request.Street, request.ZipCode), ct);
+                    GetUserId(user), request.FullAddress, request.Latitude, request.Longitude, request.Flat), ct);
 
                 return result.Match(() => Microsoft.AspNetCore.Http.Results.Accepted());
             })

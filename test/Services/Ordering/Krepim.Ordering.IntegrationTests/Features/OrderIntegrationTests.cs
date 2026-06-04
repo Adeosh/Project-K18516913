@@ -36,9 +36,10 @@ namespace Krepim.Ordering.IntegrationTests.Features
             var integrationEvent = new BasketCheckoutIntegrationEvent(
                 userId,
                 750.00m,
-                "Казань",
-                "Баумана",
-                "420000",
+                "Казань, ул.Баумана",
+                10000.00,
+                10434.00,
+                "12",
                 checkoutItems);
 
             // Act 1
@@ -48,7 +49,6 @@ namespace Krepim.Ordering.IntegrationTests.Features
             var consumed = await consumerHarness.Consumed.Any<BasketCheckoutIntegrationEvent>(TestContext.Current.CancellationToken);
             consumed.Should().BeTrue();
 
-            // Микро-пауза для фиксации транзакции в Postgres контейнере
             await Task.Delay(200, TestContext.Current.CancellationToken);
 
             // Act 2
@@ -65,9 +65,10 @@ namespace Krepim.Ordering.IntegrationTests.Features
             var order = orders!.First();
             order.Status.Should().Be("Pending");
             order.TotalPrice.Should().Be(750.00m);
-            order.City.Should().Be("Казань");
-            order.Street.Should().Be("Баумана");
-            order.ZipCode.Should().Be("420000");
+            order.FullAddress.Should().Be("Казань, ул.Баумана");
+            order.Latitude.Should().Be(10000.00);
+            order.Longitude.Should().Be(10434.00);
+            order.Flat.Should().Be("12");
 
             order.Items.Should().ContainSingle();
             order.Items.First().ProductId.Should().Be(productId);

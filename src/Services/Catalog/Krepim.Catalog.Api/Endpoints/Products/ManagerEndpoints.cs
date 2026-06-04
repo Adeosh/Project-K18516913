@@ -18,8 +18,8 @@ namespace Krepim.Catalog.Api.Endpoints.Products
                 .RequireAuthorization(policy => policy.RequireRole("Manager"))
                 .AddEndpointFilter<ResultEndpointFilter>();
 
-            group.MapGet("/search", async ([FromQuery] string term, [FromQuery] int page, [FromServices] ISender sender, CancellationToken ct) =>
-                await sender.Send(new SearchProductsQuery(term, OnlyActive: false, page, 20), ct));
+            group.MapGet("/search", async ([FromQuery] string? term, [FromQuery] int? page, [FromServices] ISender sender, CancellationToken ct) =>
+                await sender.Send(new SearchProductsQuery(term ?? string.Empty, OnlyActive: false, page ?? 1, 20), ct));
 
             group.MapPut("/{id:guid}", async (Guid id, [FromBody] UpdateProductCommand command, [FromServices] ISender sender, CancellationToken ct) =>
                 await sender.Send(command with { Id = id }, ct));

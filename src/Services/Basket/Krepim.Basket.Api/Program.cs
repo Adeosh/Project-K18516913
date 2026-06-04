@@ -28,9 +28,7 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
 app.UseExceptionHandler();
-
 app.UseAuthorization();
 
 var apiGroup = app.MapGroup("")

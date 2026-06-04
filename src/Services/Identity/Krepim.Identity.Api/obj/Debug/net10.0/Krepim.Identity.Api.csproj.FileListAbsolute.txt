@@ -174,3 +174,10 @@ C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\Pipelines.Sockets.Unofficial.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\StackExchange.Redis.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\System.IO.Hashing.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\Aspire.StackExchange.Redis.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\Aspire.StackExchange.Redis.DistributedCaching.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\bin\Debug\net10.0\HealthChecks.Redis.dll

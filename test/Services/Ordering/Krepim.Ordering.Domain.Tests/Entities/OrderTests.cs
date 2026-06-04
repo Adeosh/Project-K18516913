@@ -1,13 +1,14 @@
 ﻿using FluentAssertions;
 using Krepim.Ordering.Domain.Entities;
 using Krepim.Ordering.Domain.Enums;
-using Krepim.Ordering.Domain.ValueObjects;
+using Krepim.SharedKernel.ValueObjects;
+
 
 namespace Krepim.Ordering.Domain.Tests.Entities
 {
     public class OrderTests
     {
-        private readonly Address _testAddress = new("Москва", "Русаковская", "101000");
+        private readonly Address _testAddress = new("Москва, ул.Русаковская", 10000.00, 10550.00, "12");
 
         [Fact]
         public void Create_Should_InitializeOrderWithCorrectDefaults()

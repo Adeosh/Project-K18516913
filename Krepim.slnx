@@ -19,7 +19,6 @@
     <Project Path="src/Clients/Krepim.Web/krepim.web.client/krepim.web.client.esproj">
       <Build />
     </Project>
-    <Project Path="src/Clients/Krepim.Web/Krepim.Web.Server/Krepim.Web.Server.csproj" />
   </Folder>
   <Folder Name="/src/Gateways/">
     <Project Path="src/Gateways/Krepim.ApiGateway/Krepim.ApiGateway.csproj" />

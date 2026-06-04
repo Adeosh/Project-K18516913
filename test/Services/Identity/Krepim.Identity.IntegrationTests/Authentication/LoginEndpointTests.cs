@@ -24,13 +24,13 @@ namespace Krepim.Identity.IntegrationTests.Authentication
             // Arrange
             var email = "login_success@krepim.pro";
             var password = "ValidPassword123!";
-            var registerCommand = new RegisterCommand(email, password, Role.Client);
-            await _client.PostAsJsonAsync("/api/users/register", registerCommand, cancellationToken: TestContext.Current.CancellationToken);
+            var registerCommand = new RegisterCommand(email, password, Role.Client, "+7 (999) 000-00-00");
+            await _client.PostAsJsonAsync("/api/identity/register", registerCommand, cancellationToken: TestContext.Current.CancellationToken);
 
             var loginCommand = new LoginCommand(email, password);
 
             // Act
-            var response = await _client.PostAsJsonAsync("/api/users/login", loginCommand, cancellationToken: TestContext.Current.CancellationToken);
+            var response = await _client.PostAsJsonAsync("/api/identity/login", loginCommand, cancellationToken: TestContext.Current.CancellationToken);
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -50,12 +50,12 @@ namespace Krepim.Identity.IntegrationTests.Authentication
             var correctPassword = "ValidPassword123!";
             var wrongPassword = "WrongPassword123!";
 
-            await _client.PostAsJsonAsync("/api/users/register", new RegisterCommand(email, correctPassword, Role.Client), cancellationToken: TestContext.Current.CancellationToken);
+            await _client.PostAsJsonAsync("/api/identity/register", new RegisterCommand(email, correctPassword, Role.Client, "+7 (999) 000-00-00"), cancellationToken: TestContext.Current.CancellationToken);
 
             var loginCommand = new LoginCommand(email, wrongPassword);
 
             // Act
-            var response = await _client.PostAsJsonAsync("/api/users/login", loginCommand, cancellationToken: TestContext.Current.CancellationToken);
+            var response = await _client.PostAsJsonAsync("/api/identity/login", loginCommand, cancellationToken: TestContext.Current.CancellationToken);
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.BadRequest);

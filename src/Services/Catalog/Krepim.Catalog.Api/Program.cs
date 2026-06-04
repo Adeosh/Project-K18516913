@@ -9,6 +9,7 @@ using Krepim.SharedKernel.Results.Filters;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
+builder.AddMongoDBClient("catalog-mongodb");
 builder.Services
     .AddApplication()
     .AddInfrastructure(builder.Configuration);
@@ -29,7 +30,6 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
 app.UseExceptionHandler();
 app.UseAuthorization();
 

@@ -3,9 +3,10 @@
     public sealed record BasketCheckoutIntegrationEvent(
         Guid UserId,
         decimal TotalPrice,
-        string City,
-        string Street,
-        string ZipCode,
+        string FullAddress,
+        double? Latitude,
+        double? Longitude,
+        string? Flat,
         List<BasketCheckoutItem> Items
     );
 }

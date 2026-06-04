@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Krepim.Ordering.Application.Features.GetMyOrders;
 using Krepim.Ordering.Domain.Entities;
-using Krepim.Ordering.Domain.ValueObjects;
+using Krepim.SharedKernel.ValueObjects;
 using Moq;
 
 namespace Krepim.Ordering.Application.Tests.Features
@@ -20,7 +20,7 @@ namespace Krepim.Ordering.Application.Tests.Features
         {
             // Arrange
             var userId = Guid.NewGuid();
-            var address = new Address("Санкт-Петербург", "Невский", "190000");
+            var address = new Address("Санкт-Петербург, Невский пр-кт", 10003.00, 104345.00, "33");
 
             var order = Order.Create(userId, address);
             order.AddOrderItem(Guid.NewGuid(), 200m, 3);
@@ -45,9 +45,10 @@ namespace Krepim.Ordering.Application.Tests.Features
             mappedOrder.Id.Should().Be(order.Id);
             mappedOrder.Status.Should().Be("Pending");
             mappedOrder.TotalPrice.Should().Be(600m);
-            mappedOrder.City.Should().Be("Санкт-Петербург");
-            mappedOrder.Street.Should().Be("Невский");
-            mappedOrder.ZipCode.Should().Be("190000");
+            mappedOrder.FullAddress.Should().Be("Санкт-Петербург, Невский пр-кт");
+            mappedOrder.Latitude.Should().Be(10003.00);
+            mappedOrder.Longitude.Should().Be(104345.00);
+            mappedOrder.Flat.Should().Be("33");
             mappedOrder.Items.Should().HaveCount(1);
             mappedOrder.Items.First().UnitPrice.Should().Be(200m);
             mappedOrder.Items.First().Quantity.Should().Be(3);

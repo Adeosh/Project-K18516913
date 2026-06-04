@@ -1,6 +1,6 @@
 ﻿using Krepim.Ordering.Domain.Enums;
-using Krepim.Ordering.Domain.ValueObjects;
 using Krepim.SharedKernel.Domain;
+using Krepim.SharedKernel.ValueObjects;
 
 namespace Krepim.Ordering.Domain.Entities
 {

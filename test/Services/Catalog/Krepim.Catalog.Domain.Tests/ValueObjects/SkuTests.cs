@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
-using Krepim.Catalog.Domain.ValueObjects;
+using Krepim.SharedKernel.ValueObjects;
+
 
 namespace Krepim.Catalog.Domain.Tests.ValueObjects
 {

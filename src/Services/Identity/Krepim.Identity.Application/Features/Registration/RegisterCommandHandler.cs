@@ -1,6 +1,7 @@
 ﻿using Krepim.EventBus.Events.Identity;
 using Krepim.Identity.Application.Interfaces;
 using Krepim.Identity.Domain.Aggregates;
+using Krepim.Identity.Domain.Enums;
 using Krepim.Identity.Domain.Errors;
 using Krepim.Identity.Domain.Interfaces;
 using Krepim.SharedKernel.Domain.Abstractions;
@@ -23,7 +24,7 @@ namespace Krepim.Identity.Application.Features.Registration
 
             string passwordHash = passwordHasher.Hash(request.Password);
 
-            Result<User> userResult = User.Create(request.Email, passwordHash, request.Role);
+            Result<User> userResult = User.Create(request.Email, passwordHash, Role.Client, request.PhoneNumber);
 
             if (userResult.IsFailure)
                 return Result<Guid>.Failure(userResult.Error);

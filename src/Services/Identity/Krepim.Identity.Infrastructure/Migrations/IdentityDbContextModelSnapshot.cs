@@ -37,6 +37,10 @@ namespace Krepim.Identity.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("PhoneNumber")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
                     b.Property<int>("Role")
                         .HasColumnType("integer");
 
@@ -214,6 +218,33 @@ namespace Krepim.Identity.Infrastructure.Migrations
                     b.HasIndex("Created");
 
                     b.ToTable("OutboxState");
+                });
+
+            modelBuilder.Entity("Krepim.Identity.Domain.Aggregates.User", b =>
+                {
+                    b.OwnsOne("Krepim.Identity.Domain.ValueObjects.Address", "DefaultAddress", b1 =>
+                        {
+                            b1.Property<Guid>("UserId");
+
+                            b1.Property<string>("City");
+
+                            b1.Property<string>("Street");
+
+                            b1.Property<string>("ZipCode");
+
+                            b1.HasKey("UserId");
+
+                            b1.ToTable("Users");
+
+                            b1
+                                .ToJson("DefaultAddress")
+                                .HasColumnType("jsonb");
+
+                            b1.WithOwner()
+                                .HasForeignKey("UserId");
+                        });
+
+                    b.Navigation("DefaultAddress");
                 });
 
             modelBuilder.Entity("MassTransit.EntityFrameworkCoreIntegration.OutboxMessage", b =>

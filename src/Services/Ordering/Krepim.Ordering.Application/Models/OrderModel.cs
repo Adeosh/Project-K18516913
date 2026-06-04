@@ -4,9 +4,10 @@
         Guid Id,
         string Status,
         decimal TotalPrice,
-        string City,
-        string Street,
-        string ZipCode,
+        string FullAddress,
+        double? Latitude,
+        double? Longitude,
+        string? Flat,
         DateTime CreatedAt,
         List<OrderItemModel> Items);
 }

@@ -16,6 +16,11 @@ namespace Krepim.Identity.Infrastructure.Database.Repositories
             await dbContext.Users.AddAsync(user, cancellationToken);
         }
 
+        public async Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+        {
+            return await dbContext.Users.FirstOrDefaultAsync(u => u.Id == id, cancellationToken);
+        }
+
         public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken)
         {
             return await dbContext.Users.FirstOrDefaultAsync(u => u.Email == email, cancellationToken);

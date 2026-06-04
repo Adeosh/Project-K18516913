@@ -8,12 +8,12 @@
     ".NETCoreApp,Version=v10.0": {
       "Krepim.Catalog.Api/1.0.0": {
         "dependencies": {
+          "Aspire.MongoDB.Driver": "13.4.2",
           "Krepim.Aspire.ServiceDefaults": "1.0.0",
           "Krepim.Catalog.Infrastructure": "1.0.0",
           "Krepim.SharedKernel": "1.0.0",
           "Microsoft.AspNetCore.OpenApi": "10.0.8",
-          "OpenTelemetry.Exporter.OpenTelemetryProtocol": "1.15.3",
-          "SharpCompress": "0.48.1"
+          "OpenTelemetry.Exporter.OpenTelemetryProtocol": "1.15.3"
         },
         "runtime": {
           "Krepim.Catalog.Api.dll": {}
@@ -36,6 +36,34 @@
           "lib/net10.0/Amazon.S3.dll": {
             "assemblyVersion": "0.35.1.0",
             "fileVersion": "0.35.1.0"
+          }
+        }
+      },
+      "Aspire.MongoDB.Driver/13.4.2": {
+        "dependencies": {
+          "AspNetCore.HealthChecks.MongoDb": "9.0.0",
+          "DnsClient": "1.8.0",
+          "MongoDB.Driver": "3.8.1",
+          "MongoDB.Driver.Core.Extensions.DiagnosticSources": "3.0.0",
+          "OpenTelemetry.Extensions.Hosting": "1.15.3",
+          "SharpCompress": "1.0.0",
+          "Snappier": "1.3.1"
+        },
+        "runtime": {
+          "lib/net10.0/Aspire.MongoDB.Driver.dll": {
+            "assemblyVersion": "13.4.2.0",
+            "fileVersion": "13.400.226.30306"
+          }
+        }
+      },
+      "AspNetCore.HealthChecks.MongoDb/9.0.0": {
+        "dependencies": {
+          "MongoDB.Driver": "3.8.1"
+        },
+        "runtime": {
+          "lib/net8.0/HealthChecks.MongoDb.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.0.0"
           }
         }
       },
@@ -66,11 +94,11 @@
           }
         }
       },
-      "DnsClient/1.6.1": {
+      "DnsClient/1.8.0": {
         "runtime": {
-          "lib/net5.0/DnsClient.dll": {
-            "assemblyVersion": "1.6.1.0",
-            "fileVersion": "1.6.1.0"
+          "lib/net8.0/DnsClient.dll": {
+            "assemblyVersion": "1.8.0.0",
+            "fileVersion": "1.8.0.0"
           }
         }
       },
@@ -120,15 +148,15 @@
           }
         }
       },
-      "MassTransit.EntityFrameworkCore/8.3.4": {
+      "MassTransit.EntityFrameworkCore/8.5.9": {
         "dependencies": {
           "MassTransit": "8.5.9",
           "Microsoft.EntityFrameworkCore.Relational": "10.0.8"
         },
         "runtime": {
-          "lib/net9.0/MassTransit.EntityFrameworkCoreIntegration.dll": {
-            "assemblyVersion": "8.3.4.0",
-            "fileVersion": "8.3.4.0"
+          "lib/net10.0/MassTransit.EntityFrameworkCoreIntegration.dll": {
+            "assemblyVersion": "8.5.9.0",
+            "fileVersion": "8.5.9.0"
           }
         }
       },
@@ -724,9 +752,9 @@
       },
       "MongoDB.Driver/3.8.1": {
         "dependencies": {
-          "DnsClient": "1.6.1",
+          "DnsClient": "1.8.0",
           "MongoDB.Bson": "3.8.1",
-          "SharpCompress": "0.48.1",
+          "SharpCompress": "1.0.0",
           "Snappier": "1.3.1",
           "ZstdSharp.Port": "0.7.3"
         },
@@ -734,6 +762,17 @@
           "lib/net6.0/MongoDB.Driver.dll": {
             "assemblyVersion": "3.8.1.0",
             "fileVersion": "3.8.1.0"
+          }
+        }
+      },
+      "MongoDB.Driver.Core.Extensions.DiagnosticSources/3.0.0": {
+        "dependencies": {
+          "MongoDB.Driver": "3.8.1"
+        },
+        "runtime": {
+          "lib/net10.0/MongoDB.Driver.Core.Extensions.DiagnosticSources.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.0.0"
           }
         }
       },
@@ -818,14 +857,14 @@
           }
         }
       },
-      "OpenTelemetry.Extensions.Hosting/1.15.1": {
+      "OpenTelemetry.Extensions.Hosting/1.15.3": {
         "dependencies": {
           "OpenTelemetry": "1.15.3"
         },
         "runtime": {
           "lib/net10.0/OpenTelemetry.Extensions.Hosting.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.15.1.1988"
+            "fileVersion": "1.15.3.2017"
           }
         }
       },
@@ -900,11 +939,11 @@
           }
         }
       },
-      "SharpCompress/0.48.1": {
+      "SharpCompress/1.0.0": {
         "runtime": {
           "lib/net10.0/SharpCompress.dll": {
-            "assemblyVersion": "0.48.1.0",
-            "fileVersion": "0.48.1.0"
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -1009,7 +1048,7 @@
           "Microsoft.Extensions.Http.Resilience": "10.6.0",
           "Microsoft.Extensions.ServiceDiscovery": "10.6.0",
           "OpenTelemetry.Exporter.OpenTelemetryProtocol": "1.15.3",
-          "OpenTelemetry.Extensions.Hosting": "1.15.1",
+          "OpenTelemetry.Extensions.Hosting": "1.15.3",
           "OpenTelemetry.Instrumentation.AspNetCore": "1.15.1",
           "OpenTelemetry.Instrumentation.Http": "1.15.1",
           "OpenTelemetry.Instrumentation.Runtime": "1.15.1"
@@ -1054,12 +1093,11 @@
           "AWSSDK.S3": "4.0.23.3",
           "Amazon.S3": "0.35.1",
           "Krepim.Catalog.Application": "1.0.0",
-          "MassTransit.EntityFrameworkCore": "8.3.4",
+          "MassTransit.EntityFrameworkCore": "8.5.9",
           "Microsoft.EntityFrameworkCore": "10.0.8",
           "Microsoft.EntityFrameworkCore.Design": "10.0.8",
           "MongoDB.Driver": "3.8.1",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.1",
-          "SharpCompress": "0.48.1"
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.1"
         },
         "runtime": {
           "Krepim.Catalog.Infrastructure.dll": {
@@ -1114,6 +1152,20 @@
       "path": "amazon.s3/0.35.1",
       "hashPath": "amazon.s3.0.35.1.nupkg.sha512"
     },
+    "Aspire.MongoDB.Driver/13.4.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Hy05adwER0nMxiQohxaXqHBsbh5yBrKluIZtqn1BVoPmJq3H9u3VFCaKkjFtLmIUsEozZI5VrVc9dFpC352K3Q==",
+      "path": "aspire.mongodb.driver/13.4.2",
+      "hashPath": "aspire.mongodb.driver.13.4.2.nupkg.sha512"
+    },
+    "AspNetCore.HealthChecks.MongoDb/9.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-WAmROqEXlVzjgCdEa9Zor2l6T29jsnKMJQPGbTnkrgpyqPcjwOomuh91CiAebmeWJ/CKenVX+fV/VFffnskgvw==",
+      "path": "aspnetcore.healthchecks.mongodb/9.0.0",
+      "hashPath": "aspnetcore.healthchecks.mongodb.9.0.0.nupkg.sha512"
+    },
     "AWSSDK.Core/4.0.7.1": {
       "type": "package",
       "serviceable": true,
@@ -1135,12 +1187,12 @@
       "path": "carbon.storage/3.16.0",
       "hashPath": "carbon.storage.3.16.0.nupkg.sha512"
     },
-    "DnsClient/1.6.1": {
+    "DnsClient/1.8.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-4H/f2uYJOZ+YObZjpY9ABrKZI+JNw3uizp6oMzTXwDw6F+2qIPhpRl/1t68O/6e98+vqNiYGu+lswmwdYUy3gg==",
-      "path": "dnsclient/1.6.1",
-      "hashPath": "dnsclient.1.6.1.nupkg.sha512"
+      "sha512": "sha512-RRwtaCXkXWsx0mmsReGDqCbRLtItfUbkRJlet1FpdciVhyMGKcPd57T1+8Jki9ojHlq9fntVhXQroOOgRak8DQ==",
+      "path": "dnsclient/1.8.0",
+      "hashPath": "dnsclient.1.8.0.nupkg.sha512"
     },
     "FluentValidation/12.1.0": {
       "type": "package",
@@ -1177,12 +1229,12 @@
       "path": "masstransit.abstractions/8.5.9",
       "hashPath": "masstransit.abstractions.8.5.9.nupkg.sha512"
     },
-    "MassTransit.EntityFrameworkCore/8.3.4": {
+    "MassTransit.EntityFrameworkCore/8.5.9": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-KpwpJxpXSKspnuVu1uQs9Nhse1VqX7UvVRUyt6AWQgeLS11RZ508dEzNv/yzzrGoSvBvtem+aala1CVjNFSgvg==",
-      "path": "masstransit.entityframeworkcore/8.3.4",
-      "hashPath": "masstransit.entityframeworkcore.8.3.4.nupkg.sha512"
+      "sha512": "sha512-+82AnsnC87fA0U0RJHfOQtgNUNu/wneAL44Rz/yFhLodNTeAAnuIC1hK8GWru8M6xgoffNL7bEMjAvo13WnavA==",
+      "path": "masstransit.entityframeworkcore/8.5.9",
+      "hashPath": "masstransit.entityframeworkcore.8.5.9.nupkg.sha512"
     },
     "MassTransit.RabbitMQ/8.5.9": {
       "type": "package",
@@ -1443,6 +1495,13 @@
       "path": "mongodb.driver/3.8.1",
       "hashPath": "mongodb.driver.3.8.1.nupkg.sha512"
     },
+    "MongoDB.Driver.Core.Extensions.DiagnosticSources/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TVkI/XM/wNlK4YtNaprf4nuPGSg2bNR5EqemvuVCjWzol04ynWjZdNJacIlwj7pLqZsXjbgGVbtg+ph4erYVBg==",
+      "path": "mongodb.driver.core.extensions.diagnosticsources/3.0.0",
+      "hashPath": "mongodb.driver.core.extensions.diagnosticsources.3.0.0.nupkg.sha512"
+    },
     "Mono.TextTemplating/3.0.0": {
       "type": "package",
       "serviceable": true,
@@ -1499,12 +1558,12 @@
       "path": "opentelemetry.exporter.opentelemetryprotocol/1.15.3",
       "hashPath": "opentelemetry.exporter.opentelemetryprotocol.1.15.3.nupkg.sha512"
     },
-    "OpenTelemetry.Extensions.Hosting/1.15.1": {
+    "OpenTelemetry.Extensions.Hosting/1.15.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-/mN9I16P8miDSHogFC0OFyPzUvYXibk/rLFLXW3Io50IN+XEQx7E6dSyUdMRdY+NKmOCo/oS5ICXkjdoFrwq2A==",
-      "path": "opentelemetry.extensions.hosting/1.15.1",
-      "hashPath": "opentelemetry.extensions.hosting.1.15.1.nupkg.sha512"
+      "sha512": "sha512-u8n/W8yIlqv0BXZmvId1iVaeWXG42tGKdTkuLYg5g57Y/r9CeUNzqtrSHNdG5IoO8iPX79w3v+WsbAHgUQbfeg==",
+      "path": "opentelemetry.extensions.hosting/1.15.3",
+      "hashPath": "opentelemetry.extensions.hosting.1.15.3.nupkg.sha512"
     },
     "OpenTelemetry.Instrumentation.AspNetCore/1.15.1": {
       "type": "package",
@@ -1555,12 +1614,12 @@
       "path": "rabbitmq.client/7.2.1",
       "hashPath": "rabbitmq.client.7.2.1.nupkg.sha512"
     },
-    "SharpCompress/0.48.1": {
+    "SharpCompress/1.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-SqGaVniGG943Gph/gHhUQUiZPyC7y0tXZyMf0/B2oGsMav9dqs7JJOuUA+xOkwKYaWM2TM7aZQjNK91f4bX71A==",
-      "path": "sharpcompress/0.48.1",
-      "hashPath": "sharpcompress.0.48.1.nupkg.sha512"
+      "sha512": "sha512-bdBq9V2epw7KBX3TeA+lxnKU8dD61tsqVuyuo5cAXj4d+9+fcIQObTr0705oTWnPDRhjRx3TpgOFbYYAMObpaw==",
+      "path": "sharpcompress/1.0.0",
+      "hashPath": "sharpcompress.1.0.0.nupkg.sha512"
     },
     "Snappier/1.3.1": {
       "type": "package",

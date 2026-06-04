@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jkWBJ8St4RU=",
+  "dgSpecHash": "dKSin1JKp8o=",
   "success": true,
   "projectFilePath": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\Gateways\\Krepim.ApiGateway\\Krepim.ApiGateway.csproj",
   "expectedPackageFiles": [
@@ -13,6 +13,7 @@
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.extensions.resilience\\10.6.0\\microsoft.extensions.resilience.10.6.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.extensions.servicediscovery\\10.6.0\\microsoft.extensions.servicediscovery.10.6.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.extensions.servicediscovery.abstractions\\10.6.0\\microsoft.extensions.servicediscovery.abstractions.10.6.0.nupkg.sha512",
+    "C:\\Users\\adeos\\.nuget\\packages\\microsoft.extensions.servicediscovery.yarp\\10.6.0\\microsoft.extensions.servicediscovery.yarp.10.6.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.extensions.telemetry\\10.6.0\\microsoft.extensions.telemetry.10.6.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.extensions.telemetry.abstractions\\10.6.0\\microsoft.extensions.telemetry.abstractions.10.6.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\opentelemetry\\1.15.3\\opentelemetry.1.15.3.nupkg.sha512",

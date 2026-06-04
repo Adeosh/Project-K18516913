@@ -43,9 +43,10 @@ namespace Krepim.Ordering.Application.Tests.Consumers
             var message = new BasketCheckoutIntegrationEvent(
                 userId,
                 550.00m,
-                "Москва",
-                "Русаковская",
-                "101000",
+                "Санкт-Петербург, Невский пр-кт",
+                10003.00,
+                104345.00,
+                "33",
                 checkoutItems);
 
             _consumeContextMock.Setup(x => x.Message).Returns(message);
@@ -65,9 +66,10 @@ namespace Krepim.Ordering.Application.Tests.Consumers
             savedOrder.Status.Should().Be(OrderStatus.Pending);
             savedOrder.TotalPrice.Should().Be(550.00m);
             savedOrder.Items.Should().HaveCount(2);
-            savedOrder.ShippingAddress.City.Should().Be("Москва");
-            savedOrder.ShippingAddress.Street.Should().Be("Русаковская");
-            savedOrder.ShippingAddress.ZipCode.Should().Be("101000");
+            savedOrder.ShippingAddress.FullAddress.Should().Be("Санкт-Петербург, Невский пр-кт");
+            savedOrder.ShippingAddress.Latitude.Should().Be(10003.00);
+            savedOrder.ShippingAddress.Longitude.Should().Be(104345.00);
+            savedOrder.ShippingAddress.Flat.Should().Be("33");
 
             UnitOfWorkMock.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
         }

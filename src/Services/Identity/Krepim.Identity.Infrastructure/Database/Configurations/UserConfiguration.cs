@@ -22,6 +22,15 @@ namespace Krepim.Identity.Infrastructure.Database.Configurations
 
             builder.Property(u => u.Role).HasConversion<int>();
 
+            builder.Property(u => u.PhoneNumber)
+                .HasMaxLength(20)
+                .IsRequired(false);
+
+            builder.OwnsOne(u => u.DefaultAddress, addressBuilder =>
+            {
+                addressBuilder.ToJson();
+            });
+
             builder.Ignore(u => u.DomainEvents);
         }
     }

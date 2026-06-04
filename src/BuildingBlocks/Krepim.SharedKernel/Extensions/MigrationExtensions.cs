@@ -10,7 +10,7 @@ namespace Krepim.SharedKernel.Extensions
         /// <summary>
         /// Автоматически проверяет и загружает миграции для указанного DbContext с защитой от сбоя старта СУБД.
         /// </summary>
-        public static async Task ApplyMigrationsAsync<TDbContext>(this IApplicationBuilder app, int maxRetries = 5, int delaySeconds = 3)
+        public static async Task ApplyMigrationsAsync<TDbContext>(this IApplicationBuilder app, int maxRetries = 5, int delaySeconds = 2)
             where TDbContext : DbContext
         {
             await using var scope = app.ApplicationServices.CreateAsyncScope();

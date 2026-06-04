@@ -7,5 +7,6 @@ namespace Krepim.Identity.Application.Features.Registration
     public sealed record RegisterCommand(
         string Email,
         string Password,
-        Role Role) : IRequest<Result<Guid>>;
+        Role Role,
+        string? PhoneNumber) : IRequest<Result<Guid>>;
 }

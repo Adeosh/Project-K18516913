@@ -9,6 +9,7 @@
       "Krepim.ApiGateway/1.0.0": {
         "dependencies": {
           "Krepim.Aspire.ServiceDefaults": "1.0.0",
+          "Microsoft.Extensions.ServiceDiscovery.Yarp": "10.6.0",
           "OpenTelemetry.Exporter.OpenTelemetryProtocol": "1.15.3",
           "Yarp.ReverseProxy": "2.3.0"
         },
@@ -99,6 +100,19 @@
       "Microsoft.Extensions.ServiceDiscovery.Abstractions/10.6.0": {
         "runtime": {
           "lib/net10.0/Microsoft.Extensions.ServiceDiscovery.Abstractions.dll": {
+            "assemblyVersion": "10.6.0.0",
+            "fileVersion": "10.600.26.26104"
+          }
+        }
+      },
+      "Microsoft.Extensions.ServiceDiscovery.Yarp/10.6.0": {
+        "dependencies": {
+          "Microsoft.Extensions.ServiceDiscovery": "10.6.0",
+          "Microsoft.Extensions.ServiceDiscovery.Abstractions": "10.6.0",
+          "Yarp.ReverseProxy": "2.3.0"
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.Extensions.ServiceDiscovery.Yarp.dll": {
             "assemblyVersion": "10.6.0.0",
             "fileVersion": "10.600.26.26104"
           }
@@ -349,6 +363,13 @@
       "sha512": "sha512-zD6cX/qP0wR9LONlwS+dPBv9N6rs0eGm/pPNPeqy3LGKmgODDG1AmvK4Q0Aa6CWDq5SGlSuO3bJOonnJ7+Z1qQ==",
       "path": "microsoft.extensions.servicediscovery.abstractions/10.6.0",
       "hashPath": "microsoft.extensions.servicediscovery.abstractions.10.6.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.ServiceDiscovery.Yarp/10.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-STD45ylH4MfYT5w71v2B54Cz1TIXiG5yFHrju8EwuvTHh2BmDCyonck7utRC/8HUB6EuAG5PDI6FQo2pqBaHpA==",
+      "path": "microsoft.extensions.servicediscovery.yarp/10.6.0",
+      "hashPath": "microsoft.extensions.servicediscovery.yarp.10.6.0.nupkg.sha512"
     },
     "Microsoft.Extensions.Telemetry/10.6.0": {
       "type": "package",

@@ -29,9 +29,10 @@ namespace Krepim.Basket.Application.Features.Checkout
             var checkoutEvent = new BasketCheckoutIntegrationEvent(
                 request.UserId,
                 basket.TotalPrice,
-                request.City,
-                request.Street,
-                request.ZipCode,
+                request.FullAddress,
+                request.Latitude,
+                request.Longitude,
+                request.Flat,
                 eventItems);
 
             await publishEndpoint.Publish(checkoutEvent, ct);

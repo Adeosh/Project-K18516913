@@ -15,9 +15,10 @@ namespace Krepim.Ordering.Application.Features.GetMyOrders
                 o.Id,
                 o.Status.ToString(),
                 o.TotalPrice,
-                o.ShippingAddress.City,
-                o.ShippingAddress.Street,
-                o.ShippingAddress.ZipCode,
+                o.ShippingAddress.FullAddress,
+                o.ShippingAddress.Latitude,
+                o.ShippingAddress.Longitude,
+                o.ShippingAddress.Flat,
                 o.CreatedAt,
                 o.Items.Select(i => new OrderItemModel(i.ProductId, i.UnitPrice, i.Quantity)).ToList()
             )).ToList();

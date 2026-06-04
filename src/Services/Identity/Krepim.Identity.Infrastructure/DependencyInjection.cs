@@ -41,6 +41,11 @@ namespace Krepim.Identity.Infrastructure
                 });
             });
 
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = configuration.GetConnectionString("redis");
+            });
+
             return services;
         }
     }

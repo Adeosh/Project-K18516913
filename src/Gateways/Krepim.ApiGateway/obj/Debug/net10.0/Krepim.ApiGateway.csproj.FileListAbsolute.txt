@@ -56,3 +56,4 @@ C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\obj\Debug\net1
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\obj\Debug\net10.0\Krepim.ApiGateway.sourcelink.json
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\bin\Debug\net10.0\System.IO.Hashing.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\bin\Debug\net10.0\Yarp.ReverseProxy.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\bin\Debug\net10.0\Microsoft.Extensions.ServiceDiscovery.Yarp.dll

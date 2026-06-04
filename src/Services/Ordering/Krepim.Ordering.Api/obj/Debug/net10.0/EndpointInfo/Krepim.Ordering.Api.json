@@ -6,10 +6,10 @@
   },
   "servers": [
     {
-      "url": "https://localhost:59926"
+      "url": "https://localhost:55590"
     },
     {
-      "url": "http://localhost:59927"
+      "url": "http://localhost:55591"
     }
   ],
   "paths": {
@@ -88,9 +88,10 @@
           "id",
           "status",
           "totalPrice",
-          "city",
-          "street",
-          "zipCode",
+          "fullAddress",
+          "latitude",
+          "longitude",
+          "flat",
           "createdAt",
           "items"
         ],
@@ -111,14 +112,32 @@
             ],
             "format": "double"
           },
-          "city": {
+          "fullAddress": {
             "type": "string"
           },
-          "street": {
-            "type": "string"
+          "latitude": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$",
+            "type": [
+              "null",
+              "number",
+              "string"
+            ],
+            "format": "double"
           },
-          "zipCode": {
-            "type": "string"
+          "longitude": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$",
+            "type": [
+              "null",
+              "number",
+              "string"
+            ],
+            "format": "double"
+          },
+          "flat": {
+            "type": [
+              "null",
+              "string"
+            ]
           },
           "createdAt": {
             "type": "string",

@@ -1,8 +1,8 @@
 ﻿using Krepim.EventBus.Events.Basket;
 using Krepim.Ordering.Domain.Entities;
 using Krepim.Ordering.Domain.Interfaces;
-using Krepim.Ordering.Domain.ValueObjects;
 using Krepim.SharedKernel.Domain.Abstractions;
+using Krepim.SharedKernel.ValueObjects;
 using MassTransit;
 using Microsoft.Extensions.Logging;
 
@@ -18,7 +18,7 @@ namespace Krepim.Ordering.Application.Consumers
             var message = context.Message;
             logger.LogInformation("Получено событие оформления заказа для пользователя {UserId}", message.UserId);
 
-            var address = new Address(message.City, message.Street, message.ZipCode);
+            var address = new Address(message.FullAddress, message.Latitude, message.Longitude, message.Flat);
             var order = Order.Create(message.UserId, address);
 
             foreach (var item in message.Items)

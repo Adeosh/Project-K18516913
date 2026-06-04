@@ -7,7 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" />
-    <PackageReference Include="SharpCompress" />
+	<PackageReference Include="Aspire.MongoDB.Driver" />
 	<InternalsVisibleTo Include="Krepim.Catalog.IntegrationTests" />
   </ItemGroup>
   <ItemGroup>

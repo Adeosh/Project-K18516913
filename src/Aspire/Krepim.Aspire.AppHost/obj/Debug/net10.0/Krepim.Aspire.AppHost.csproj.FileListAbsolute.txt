@@ -92,7 +92,6 @@ C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\obj\Debug\ne
 C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\obj\Debug\net10.0\Krepim.Aspire.AppHost.AssemblyInfo.cs
 C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\obj\Debug\net10.0\Krepim.Aspire.AppHost.csproj.CoreCompileInputs.cache
 C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\obj\Debug\net10.0\Aspire\references\Krepim_Mobile.ProjectMetadata.g.cs
-C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\obj\Debug\net10.0\Aspire\references\Krepim_Web_Server.ProjectMetadata.g.cs
 C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\obj\Debug\net10.0\Aspire\references\Krepim_Identity_Api.ProjectMetadata.g.cs
 C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\obj\Debug\net10.0\Aspire\references\Krepim_Catalog_Api.ProjectMetadata.g.cs
 C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\obj\Debug\net10.0\Aspire\references\Krepim_Basket_Api.ProjectMetadata.g.cs
@@ -118,3 +117,19 @@ C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\ne
 C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\Pipelines.Sockets.Unofficial.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\RabbitMQ.Client.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\StackExchange.Redis.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\Aspire.Hosting.JavaScript.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\Aspire.Hosting.NodeJs.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\CommunityToolkit.Aspire.Hosting.NodeJS.Extensions.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\Aspire.Hosting.MongoDB.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\HealthChecks.MongoDb.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\DnsClient.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\MongoDB.Bson.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\MongoDB.Driver.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\OpenTelemetry.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\OpenTelemetry.Api.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\OpenTelemetry.Api.ProviderBuilderExtensions.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\OpenTelemetry.Exporter.OpenTelemetryProtocol.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\OpenTelemetry.Extensions.Hosting.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\SharpCompress.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\Snappier.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\ZstdSharp.dll

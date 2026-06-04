@@ -20,10 +20,10 @@ namespace Krepim.Identity.IntegrationTests.Registration
         public async Task Register_Should_ReturnOkAndCreateUser_WhenDataIsValid()
         {
             // Arrange
-            var command = new RegisterCommand("integration@krepim.pro", "StrongPass123!", Role.Client);
+            var command = new RegisterCommand("integration@krepim.pro", "StrongPass123!", Role.Client, "+7 (999) 000-00-00");
 
             // Act
-            var response = await _client.PostAsJsonAsync("/api/users/register", command, cancellationToken: TestContext.Current.CancellationToken);
+            var response = await _client.PostAsJsonAsync("/api/identity/register", command, cancellationToken: TestContext.Current.CancellationToken);
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.Created);
@@ -36,12 +36,12 @@ namespace Krepim.Identity.IntegrationTests.Registration
         public async Task Register_Should_ReturnConflict_WhenEmailAlreadyExists()
         {
             // Arrange
-            var command = new RegisterCommand("duplicate@krepim.pro", "Pass123!", Role.Client);
+            var command = new RegisterCommand("duplicate@krepim.pro", "Pass123!", Role.Client, "+7 (999) 000-00-00");
 
-            await _client.PostAsJsonAsync("/api/users/register", command, cancellationToken: TestContext.Current.CancellationToken);
+            await _client.PostAsJsonAsync("/api/identity/register", command, cancellationToken: TestContext.Current.CancellationToken);
 
             // Act
-            var duplicateResponse = await _client.PostAsJsonAsync("/api/users/register", command, cancellationToken: TestContext.Current.CancellationToken);
+            var duplicateResponse = await _client.PostAsJsonAsync("/api/identity/register", command, cancellationToken: TestContext.Current.CancellationToken);
 
             // Assert
             duplicateResponse.StatusCode.Should().Be(HttpStatusCode.Conflict);

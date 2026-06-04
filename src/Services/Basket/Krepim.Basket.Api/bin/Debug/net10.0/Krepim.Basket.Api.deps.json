@@ -44,15 +44,15 @@
           }
         }
       },
-      "MassTransit.EntityFrameworkCore/8.3.4": {
+      "MassTransit.EntityFrameworkCore/8.5.9": {
         "dependencies": {
           "MassTransit": "8.5.9",
           "Microsoft.EntityFrameworkCore.Relational": "10.0.8"
         },
         "runtime": {
-          "lib/net9.0/MassTransit.EntityFrameworkCoreIntegration.dll": {
-            "assemblyVersion": "8.3.4.0",
-            "fileVersion": "8.3.4.0"
+          "lib/net10.0/MassTransit.EntityFrameworkCoreIntegration.dll": {
+            "assemblyVersion": "8.5.9.0",
+            "fileVersion": "8.5.9.0"
           }
         }
       },
@@ -962,7 +962,7 @@
       "Krepim.Basket.Infrastructure/1.0.0": {
         "dependencies": {
           "Krepim.Basket.Application": "1.0.0",
-          "MassTransit.EntityFrameworkCore": "8.3.4",
+          "MassTransit.EntityFrameworkCore": "8.5.9",
           "MassTransit.RabbitMQ": "8.5.9",
           "Microsoft.Extensions.Caching.StackExchangeRedis": "10.0.8",
           "StackExchange.Redis": "2.13.1"
@@ -1027,12 +1027,12 @@
       "path": "masstransit.abstractions/8.5.9",
       "hashPath": "masstransit.abstractions.8.5.9.nupkg.sha512"
     },
-    "MassTransit.EntityFrameworkCore/8.3.4": {
+    "MassTransit.EntityFrameworkCore/8.5.9": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-KpwpJxpXSKspnuVu1uQs9Nhse1VqX7UvVRUyt6AWQgeLS11RZ508dEzNv/yzzrGoSvBvtem+aala1CVjNFSgvg==",
-      "path": "masstransit.entityframeworkcore/8.3.4",
-      "hashPath": "masstransit.entityframeworkcore.8.3.4.nupkg.sha512"
+      "sha512": "sha512-+82AnsnC87fA0U0RJHfOQtgNUNu/wneAL44Rz/yFhLodNTeAAnuIC1hK8GWru8M6xgoffNL7bEMjAvo13WnavA==",
+      "path": "masstransit.entityframeworkcore/8.5.9",
+      "hashPath": "masstransit.entityframeworkcore.8.5.9.nupkg.sha512"
     },
     "MassTransit.RabbitMQ/8.5.9": {
       "type": "package",

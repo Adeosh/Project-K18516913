@@ -1,6 +1,6 @@
 {
   "Krepim.Aspire.ServiceDefaults, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\Aspire\\Krepim.Aspire.ServiceDefaults",
-  "Krepim.Catalog.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\Services\\Catalog\\Krepim.Catalog.Api",
+  "Krepim.Catalog.Api": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\Services\\Catalog\\Krepim.Catalog.Api",
   "Krepim.Catalog.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\Services\\Catalog\\Krepim.Catalog.Application",
   "Krepim.Catalog.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\Services\\Catalog\\Krepim.Catalog.Domain",
   "Krepim.Catalog.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\Services\\Catalog\\Krepim.Catalog.Infrastructure",

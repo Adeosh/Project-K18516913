@@ -16,10 +16,10 @@ namespace Krepim.Identity.Api.Endpoints.Registration
             {
                 var result = await sender.Send(command, ct);
 
-                return result.Match(userId => Microsoft.AspNetCore.Http.Results.Created($"/api/users/{userId}", userId));
+                return result.Match(userId => Microsoft.AspNetCore.Http.Results.Created($"/api/identity/{userId}", userId));
             })
             .WithName("RegisterUser")
-            .WithSummary("Регистрация нового пользователя (Client или Manager)")
+            .WithSummary("Регистрация нового пользователя")
             .WithDescription("Создает учетную запись и возвращает ID пользователя.")
             .Produces<Guid>(StatusCodes.Status201Created)
             .ProducesProblem(StatusCodes.Status400BadRequest)

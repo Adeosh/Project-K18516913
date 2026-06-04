@@ -1,5 +1,5 @@
 ﻿using Krepim.Catalog.Domain.Aggregates;
-using Krepim.Catalog.Domain.ValueObjects;
+using Krepim.SharedKernel.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

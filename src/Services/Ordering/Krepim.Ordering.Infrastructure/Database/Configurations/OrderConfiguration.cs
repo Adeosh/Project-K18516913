@@ -12,11 +12,9 @@ namespace Krepim.Ordering.Infrastructure.Database.Configurations
 
             builder.HasKey(x => x.Id);
 
-            builder.ComplexProperty(x => x.ShippingAddress, addressBuilder =>
+            builder.OwnsOne(u => u.ShippingAddress, addressBuilder =>
             {
-                addressBuilder.Property(a => a.City).HasMaxLength(100).IsRequired();
-                addressBuilder.Property(a => a.Street).HasMaxLength(200).IsRequired();
-                addressBuilder.Property(a => a.ZipCode).HasMaxLength(20).IsRequired();
+                addressBuilder.ToJson();
             });
 
             builder.Property(x => x.Status)

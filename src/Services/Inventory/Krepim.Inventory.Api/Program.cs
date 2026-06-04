@@ -5,7 +5,6 @@ using Krepim.Inventory.Infrastructure.Database;
 using Krepim.SharedKernel.Exceptions;
 using Krepim.SharedKernel.Extensions;
 using Krepim.SharedKernel.Results.Filters;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,9 +31,7 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
 app.UseExceptionHandler();
-
 app.UseAuthentication();
 app.UseAuthorization();
 

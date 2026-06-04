@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "B+AELBLldnA=",
+  "dgSpecHash": "z+AO8cgIFkg=",
   "success": true,
   "projectFilePath": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\Services\\Inventory\\Krepim.Inventory.Api\\Krepim.Inventory.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\adeos\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\masstransit\\8.5.9\\masstransit.8.5.9.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\masstransit.abstractions\\8.5.9\\masstransit.abstractions.8.5.9.nupkg.sha512",
-    "C:\\Users\\adeos\\.nuget\\packages\\masstransit.entityframeworkcore\\8.3.4\\masstransit.entityframeworkcore.8.3.4.nupkg.sha512",
+    "C:\\Users\\adeos\\.nuget\\packages\\masstransit.entityframeworkcore\\8.5.9\\masstransit.entityframeworkcore.8.5.9.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\masstransit.rabbitmq\\8.5.9\\masstransit.rabbitmq.8.5.9.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",

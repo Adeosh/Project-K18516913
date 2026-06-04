@@ -1,0 +1,91 @@
+import { create } from 'zustand';
+import { apiClient } from '@/api/apiClient';
+import type { CustomerBasket, BasketItem } from '../types/basket';
+
+interface BasketState {
+    basket: CustomerBasket | null;
+    isLoading: boolean;
+    error: string | null;
+    fetchBasket: () => Promise<void>;
+    addItem: (item: Omit<BasketItem, 'quantity'>) => Promise<void>;
+    updateQuantity: (productId: string, quantity: number) => Promise<void>;
+    removeItem: (productId: string) => Promise<void>;
+    clearBasket: () => void;
+}
+
+export const useBasketStore = create<BasketState>((set, get) => ({
+    basket: null,
+    isLoading: false,
+    error: null,
+
+    fetchBasket: async () => {
+        set({ isLoading: true, error: null });
+        try {
+            const response = await apiClient.get<CustomerBasket>('/api/basket');
+            set({ basket: response.data, isLoading: false });
+        } catch (err: unknown) {
+            const errorObj = err as Record<string, string> | null;
+            set({ error: errorObj?.detail || 'Не удалось загрузить корзину.', isLoading: false });
+        }
+    },
+
+    addItem: async (newItem) => {
+        const currentBasket = get().basket;
+        const items = currentBasket ? [...currentBasket.items] : [];
+        const existingItemIndex = items.findIndex((i) => i.productId === newItem.productId);
+
+        if (existingItemIndex > -1) {
+            items[existingItemIndex].quantity += 1;
+        } else {
+            items.push({ ...newItem, quantity: 1 });
+        }
+
+        const updatedBasket: CustomerBasket = {
+            buyerId: currentBasket?.buyerId || '',
+            items,
+        };
+
+        set({ basket: updatedBasket });
+
+        try {
+            await apiClient.post('/api/basket', updatedBasket);
+        } catch {
+            set({ error: 'Ошибка синхронизации корзины с сервером.' });
+        }
+    },
+
+    updateQuantity: async (productId, quantity) => {
+        const currentBasket = get().basket;
+        if (!currentBasket) return;
+
+        const items = currentBasket.items
+            .map((item) => (item.productId === productId ? { ...item, quantity } : item))
+            .filter((item) => item.quantity > 0);
+
+        const updatedBasket = { ...currentBasket, items };
+        set({ basket: updatedBasket });
+
+        try {
+            await apiClient.post('/api/basket', updatedBasket);
+        } catch {
+            set({ error: 'Ошибка обновления количества товара.' });
+        }
+    },
+
+    removeItem: async (productId) => {
+        const currentBasket = get().basket;
+        if (!currentBasket) return;
+
+        const items = currentBasket.items.filter((item) => item.productId !== productId);
+        const updatedBasket = { ...currentBasket, items };
+        set({ basket: updatedBasket });
+
+        try {
+            await apiClient.delete(`/api/basket/${productId}`);
+        } catch {
+            set({ error: 'Не удалось удалить товар из корзины.' });
+        }
+    },
+
+    clearBasket: () => set({ basket: null, error: null }),
+}));
