@@ -14,7 +14,8 @@
           "Aspire.Hosting.PostgreSQL": "13.3.5",
           "Aspire.Hosting.RabbitMQ": "13.3.5",
           "Aspire.Hosting.Redis": "13.3.5",
-          "CommunityToolkit.Aspire.Hosting.NodeJS.Extensions": "9.9.0"
+          "CommunityToolkit.Aspire.Hosting.NodeJS.Extensions": "9.9.0",
+          "Scalar.Aspire": "0.9.37"
         },
         "runtime": {
           "Krepim.Aspire.AppHost.dll": {}
@@ -760,6 +761,17 @@
           }
         }
       },
+      "Scalar.Aspire/0.9.37": {
+        "dependencies": {
+          "Aspire.Hosting": "13.4.2"
+        },
+        "runtime": {
+          "lib/net10.0/Scalar.Aspire.dll": {
+            "assemblyVersion": "0.9.37.0",
+            "fileVersion": "0.9.37.0"
+          }
+        }
+      },
       "Semver/3.0.0": {
         "runtime": {
           "lib/net5.0/Semver.dll": {
@@ -1233,6 +1245,13 @@
       "sha512": "sha512-PPQ7cF7lwbhqC4up6en1bTUZlz06YqQwJecOJzsguTtyhNA7oL5uNDZIx/h6ZfcyPZV4V3DYKSCxfm4RUFLcbA==",
       "path": "rabbitmq.client/7.2.0",
       "hashPath": "rabbitmq.client.7.2.0.nupkg.sha512"
+    },
+    "Scalar.Aspire/0.9.37": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-m6aGfgB8M7uVepVReQSMjYrf5WdJ/Iyaed0ScL6PSSjfD7I/8MOz1LVgtO6hyBBCK+96hUa4B2dG5wjaHa9D6g==",
+      "path": "scalar.aspire/0.9.37",
+      "hashPath": "scalar.aspire.0.9.37.nupkg.sha512"
     },
     "Semver/3.0.0": {
       "type": "package",

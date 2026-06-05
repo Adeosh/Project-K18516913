@@ -1818,6 +1818,22 @@
           }
         }
       },
+      "Scalar.Aspire/0.9.37": {
+        "type": "package",
+        "dependencies": {
+          "Aspire.Hosting": "13.2.1"
+        },
+        "compile": {
+          "lib/net10.0/Scalar.Aspire.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/Scalar.Aspire.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Semver/3.0.0": {
         "type": "package",
         "dependencies": {
@@ -4383,6 +4399,25 @@
         "rabbitmq.client.nuspec"
       ]
     },
+    "Scalar.Aspire/0.9.37": {
+      "sha512": "m6aGfgB8M7uVepVReQSMjYrf5WdJ/Iyaed0ScL6PSSjfD7I/8MOz1LVgtO6hyBBCK+96hUa4B2dG5wjaHa9D6g==",
+      "type": "package",
+      "path": "scalar.aspire/0.9.37",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "icon.png",
+        "lib/net10.0/Scalar.Aspire.dll",
+        "lib/net10.0/Scalar.Aspire.xml",
+        "lib/net8.0/Scalar.Aspire.dll",
+        "lib/net8.0/Scalar.Aspire.xml",
+        "lib/net9.0/Scalar.Aspire.dll",
+        "lib/net9.0/Scalar.Aspire.xml",
+        "scalar.aspire.0.9.37.nupkg.sha512",
+        "scalar.aspire.nuspec"
+      ]
+    },
     "Semver/3.0.0": {
       "sha512": "9jZCicsVgTebqkAujRWtC9J1A5EQVlu0TVKHcgoCuv345ve5DYf4D1MjhKEnQjdRZo6x/vdv6QQrYFs7ilGzLA==",
       "type": "package",
@@ -4669,7 +4704,8 @@
       "Aspire.Hosting.PostgreSQL >= 13.3.5",
       "Aspire.Hosting.RabbitMQ >= 13.3.5",
       "Aspire.Hosting.Redis >= 13.3.5",
-      "CommunityToolkit.Aspire.Hosting.NodeJS.Extensions >= 9.9.0"
+      "CommunityToolkit.Aspire.Hosting.NodeJS.Extensions >= 9.9.0",
+      "Scalar.Aspire >= 0.9.37"
     ]
   },
   "packageFolders": {
@@ -4770,6 +4806,11 @@
             "target": "Package",
             "version": "[9.9.0, )",
             "versionCentrallyManaged": true
+          },
+          "Scalar.Aspire": {
+            "target": "Package",
+            "version": "[0.9.37, )",
+            "versionCentrallyManaged": true
           }
         },
         "centralPackageVersions": {
@@ -4821,6 +4862,7 @@
           "OpenTelemetry.Instrumentation.AspNetCore": "1.15.1",
           "OpenTelemetry.Instrumentation.Http": "1.15.1",
           "OpenTelemetry.Instrumentation.Runtime": "1.15.1",
+          "Scalar.Aspire": "0.9.37",
           "Serilog.AspNetCore": "10.0.0",
           "StackExchange.Redis": "2.13.1",
           "Stripe.net": "51.1.0",

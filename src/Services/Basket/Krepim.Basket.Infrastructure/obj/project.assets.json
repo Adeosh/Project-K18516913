@@ -3863,6 +3863,7 @@
           "OpenTelemetry.Instrumentation.AspNetCore": "1.15.1",
           "OpenTelemetry.Instrumentation.Http": "1.15.1",
           "OpenTelemetry.Instrumentation.Runtime": "1.15.1",
+          "Scalar.Aspire": "0.9.37",
           "Serilog.AspNetCore": "10.0.0",
           "StackExchange.Redis": "2.13.1",
           "Stripe.net": "51.1.0",

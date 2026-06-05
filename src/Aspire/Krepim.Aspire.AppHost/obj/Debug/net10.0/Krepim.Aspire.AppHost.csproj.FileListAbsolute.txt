@@ -133,3 +133,4 @@ C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\ne
 C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\SharpCompress.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\Snappier.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\ZstdSharp.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Aspire\Krepim.Aspire.AppHost\bin\Debug\net10.0\Scalar.Aspire.dll

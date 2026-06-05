@@ -17,12 +17,18 @@ builder.Services
     .AddApplication()
     .AddInfrastructure(builder.Configuration);
 
+builder.Services.AddOpenApi();
 builder.Services.AddKrepimJwtAuth(builder.Configuration);
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
 builder.AddRedisDistributedCache("redis");
 
 var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+}
 
 await app.ApplyMigrationsAsync<IdentityDbContext>();
 

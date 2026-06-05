@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ufVQf6nHJPM=",
+  "dgSpecHash": "2bezs6bITlo=",
   "success": true,
   "projectFilePath": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\Aspire\\Krepim.Aspire.AppHost\\Krepim.Aspire.AppHost.csproj",
   "expectedPackageFiles": [
@@ -88,6 +88,7 @@
     "C:\\Users\\adeos\\.nuget\\packages\\pipelines.sockets.unofficial\\2.2.8\\pipelines.sockets.unofficial.2.2.8.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\polly.core\\8.6.6\\polly.core.8.6.6.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\rabbitmq.client\\7.2.0\\rabbitmq.client.7.2.0.nupkg.sha512",
+    "C:\\Users\\adeos\\.nuget\\packages\\scalar.aspire\\0.9.37\\scalar.aspire.0.9.37.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\semver\\3.0.0\\semver.3.0.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\sharpcompress\\1.0.0\\sharpcompress.1.0.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\snappier\\1.3.1\\snappier.1.3.1.nupkg.sha512",
