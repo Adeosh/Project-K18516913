@@ -1,8 +1,10 @@
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Application\bin\Debug\net10.0\Krepim.Ordering.Application.deps.json
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Application\bin\Debug\net10.0\Krepim.Ordering.Application.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Application\bin\Debug\net10.0\Krepim.Ordering.Application.pdb
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Application\bin\Debug\net10.0\Krepim.EventBus.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Application\bin\Debug\net10.0\Krepim.Ordering.Domain.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Application\bin\Debug\net10.0\Krepim.SharedKernel.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Application\bin\Debug\net10.0\Krepim.EventBus.pdb
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Application\bin\Debug\net10.0\Krepim.Ordering.Domain.pdb
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Application\bin\Debug\net10.0\Krepim.SharedKernel.pdb
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Application\obj\Debug\net10.0\Krepim.Ordering.Application.csproj.AssemblyReference.cache
@@ -10,11 +12,9 @@ C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Applica
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Application\obj\Debug\net10.0\Krepim.Ordering.Application.AssemblyInfoInputs.cache
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Application\obj\Debug\net10.0\Krepim.Ordering.Application.AssemblyInfo.cs
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Application\obj\Debug\net10.0\Krepim.Ordering.Application.csproj.CoreCompileInputs.cache
+C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Application\obj\Debug\net10.0\Krepim.Ordering.Application.sourcelink.json
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Application\obj\Debug\net10.0\Krepim.O.858AACEA.Up2Date
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Application\obj\Debug\net10.0\Krepim.Ordering.Application.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Application\obj\Debug\net10.0\refint\Krepim.Ordering.Application.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Application\obj\Debug\net10.0\Krepim.Ordering.Application.pdb
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Application\obj\Debug\net10.0\ref\Krepim.Ordering.Application.dll
-C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Application\obj\Debug\net10.0\Krepim.Ordering.Application.sourcelink.json
-C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Application\bin\Debug\net10.0\Krepim.EventBus.dll
-C:\Users\adeos\Source\Repos\Krepim\src\Services\Ordering\Krepim.Ordering.Application\bin\Debug\net10.0\Krepim.EventBus.pdb

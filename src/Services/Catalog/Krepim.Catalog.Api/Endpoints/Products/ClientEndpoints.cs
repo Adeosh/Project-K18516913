@@ -1,5 +1,6 @@
 ﻿using Krepim.Catalog.Application.Features.GetProduct;
 using Krepim.Catalog.Application.Features.SearchProduct;
+using Krepim.SharedKernel.Results.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,7 +10,8 @@ namespace Krepim.Catalog.Api.Endpoints.Products
     {
         public static void MapClientEndpoints(this IEndpointRouteBuilder builder)
         {
-            var group = builder.MapGroup("/public");
+            var group = builder.MapGroup("/public")
+                               .AddEndpointFilter<ResultEndpointFilter>();
 
             group.MapGet("/search", async ([FromQuery] string? term, [FromQuery] int? page, [FromServices] ISender sender, CancellationToken ct) =>
             {

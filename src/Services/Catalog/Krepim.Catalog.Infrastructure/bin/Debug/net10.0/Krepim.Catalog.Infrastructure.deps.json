@@ -787,7 +787,8 @@
           "Krepim.EventBus": "1.0.0",
           "Krepim.SharedKernel": "1.0.0",
           "MassTransit": "8.5.9",
-          "MassTransit.RabbitMQ": "8.5.9"
+          "MassTransit.RabbitMQ": "8.5.9",
+          "MongoDB.Bson": "3.8.1"
         },
         "runtime": {
           "Krepim.Catalog.Application.dll": {

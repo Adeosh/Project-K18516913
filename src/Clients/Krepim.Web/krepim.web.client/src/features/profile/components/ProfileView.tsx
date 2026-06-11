@@ -3,6 +3,7 @@ import type { FC, FormEvent } from 'react';
 import { useProfileStore } from '../store/profileStore';
 import { AddressMapPicker } from '../../../components/ui/AddressMapPicker';
 import { profileApi } from '../api/profileApi';
+import { ManagerDashboard } from '../../catalog/components/ManagerDashboard';
 
 type Tab = 'profile' | 'orders' | 'catalog_crud';
 
@@ -246,9 +247,8 @@ export const ProfileView: FC = () => {
                     )}
 
                     {activeTab === 'catalog_crud' && (
-                        <div>
-                            <h3 className="text-2xl font-bold text-accent mb-6">Панель управления каталогом</h3>
-                            <div className="text-center py-20 border-2 border-dashed border-border rounded-2xl text-text-muted font-medium">Модуль CRUD в разработке</div>
+                        <div className="animate-fadeIn">
+                            <ManagerDashboard />
                         </div>
                     )}
                 </main>

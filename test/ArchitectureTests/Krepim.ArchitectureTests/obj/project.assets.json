@@ -1533,6 +1533,19 @@
           }
         }
       },
+      "MongoDB.Bson/3.8.1": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/MongoDB.Bson.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/MongoDB.Bson.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Mono.Cecil/0.11.3": {
         "type": "package",
         "compile": {
@@ -2036,7 +2049,8 @@
           "Krepim.EventBus": "1.0.0",
           "Krepim.SharedKernel": "1.0.0",
           "MassTransit": "8.5.9",
-          "MassTransit.RabbitMQ": "8.5.9"
+          "MassTransit.RabbitMQ": "8.5.9",
+          "MongoDB.Bson": "3.8.1"
         },
         "compile": {
           "bin/placeholder/Krepim.Catalog.Application.dll": {}
@@ -5121,6 +5135,25 @@
         "version.txt"
       ]
     },
+    "MongoDB.Bson/3.8.1": {
+      "sha512": "b4jm2QxBQcB3zBBM+l0Jdjmn8TYBB+J0QDNaJypkmR1qDC6v5w8IMeYaFPvn/kqo0PvCUGVSQkXm0nVCBjjNYg==",
+      "type": "package",
+      "path": "mongodb.bson/3.8.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net472/MongoDB.Bson.dll",
+        "lib/net472/MongoDB.Bson.xml",
+        "lib/net6.0/MongoDB.Bson.dll",
+        "lib/net6.0/MongoDB.Bson.xml",
+        "lib/netstandard2.1/MongoDB.Bson.dll",
+        "lib/netstandard2.1/MongoDB.Bson.xml",
+        "mongodb.bson.3.8.1.nupkg.sha512",
+        "mongodb.bson.nuspec",
+        "packageIcon.png"
+      ]
+    },
     "Mono.Cecil/0.11.3": {
       "sha512": "DNYE+io5XfEE8+E+5padThTPHJARJHbz1mhbhMPNrrWGKVKKqj/KEeLvbawAmbIcT73NuxLV7itHZaYCZcVWGg==",
       "type": "package",
@@ -5957,6 +5990,7 @@
           "Aspire.StackExchange.Redis.DistributedCaching": "13.4.2",
           "AWSSDK.S3": "4.0.23.3",
           "BCrypt.Net-Next": "4.2.0",
+          "CommunityToolkit.Aspire.Hosting.Minio": "13.4.0",
           "CommunityToolkit.Aspire.Hosting.NodeJS.Extensions": "9.9.0",
           "coverlet.collector": "10.0.1",
           "FluentAssertions": "8.10.0",
@@ -5984,6 +6018,7 @@
           "Microsoft.Extensions.ServiceDiscovery.Yarp": "10.6.0",
           "Microsoft.IdentityModel.Tokens": "8.18.0",
           "Microsoft.NET.Test.Sdk": "18.5.1",
+          "MongoDB.Bson": "3.8.1",
           "MongoDB.Driver": "3.8.1",
           "Moq": "4.20.72",
           "Net.Codecrete.QrCodeGenerator": "2.1.0",

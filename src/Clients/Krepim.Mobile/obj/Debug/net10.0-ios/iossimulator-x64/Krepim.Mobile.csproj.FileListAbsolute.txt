@@ -309,6 +309,7 @@ C:\Users\adeos\Source\Repos\Krepim\src\Clients\Krepim.Mobile\obj\Debug\net10.0-i
 C:\Users\adeos\Source\Repos\Krepim\src\Clients\Krepim.Mobile\obj\Debug\net10.0-ios\iossimulator-x64\Krepim.Mobile.AssemblyInfoInputs.cache
 C:\Users\adeos\Source\Repos\Krepim\src\Clients\Krepim.Mobile\obj\Debug\net10.0-ios\iossimulator-x64\Krepim.Mobile.AssemblyInfo.cs
 C:\Users\adeos\Source\Repos\Krepim\src\Clients\Krepim.Mobile\obj\Debug\net10.0-ios\iossimulator-x64\Krepim.Mobile.csproj.CoreCompileInputs.cache
+C:\Users\adeos\Source\Repos\Krepim\src\Clients\Krepim.Mobile\obj\Debug\net10.0-ios\iossimulator-x64\Krepim.Mobile.sourcelink.json
 C:\Users\adeos\Source\Repos\Krepim\src\Clients\Krepim.Mobile\obj\Debug\net10.0-ios\iossimulator-x64\XamlC.stamp
 C:\Users\adeos\Source\Repos\Krepim\src\Clients\Krepim.Mobile\obj\Debug\net10.0-ios\iossimulator-x64\Krepim.M.FF59CB54.Up2Date
 C:\Users\adeos\Source\Repos\Krepim\src\Clients\Krepim.Mobile\obj\Debug\net10.0-ios\iossimulator-x64\Krepim.Mobile.dll
@@ -316,4 +317,3 @@ C:\Users\adeos\Source\Repos\Krepim\src\Clients\Krepim.Mobile\obj\Debug\net10.0-i
 C:\Users\adeos\Source\Repos\Krepim\src\Clients\Krepim.Mobile\obj\Debug\net10.0-ios\iossimulator-x64\Krepim.Mobile.pdb
 C:\Users\adeos\Source\Repos\Krepim\src\Clients\Krepim.Mobile\obj\Debug\net10.0-ios\iossimulator-x64\Krepim.Mobile.genruntimeconfig.cache
 C:\Users\adeos\Source\Repos\Krepim\src\Clients\Krepim.Mobile\obj\Debug\net10.0-ios\iossimulator-x64\ref\Krepim.Mobile.dll
-C:\Users\adeos\Source\Repos\Krepim\src\Clients\Krepim.Mobile\obj\Debug\net10.0-ios\iossimulator-x64\Krepim.Mobile.sourcelink.json

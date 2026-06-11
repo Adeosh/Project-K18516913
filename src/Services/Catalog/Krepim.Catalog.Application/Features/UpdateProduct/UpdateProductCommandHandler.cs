@@ -19,9 +19,16 @@ namespace Krepim.Catalog.Application.Features.UpdateProduct
                 return Result.Failure(new Error("Product.NotFound", "Not found", ErrorType.NotFound));
 
             product.UpdateDetails(request.Name, request.Description, request.CategoryId);
+            product.SetImages(request.ImageUrls ?? Array.Empty<string>());
 
             await publishEndpoint.Publish(new ProductUpdatedIntegrationEvent(
-                product.Id, product.Name, product.Description, product.Price.Amount, product.Price.Currency, product.CategoryId), ct);
+                product.Id, 
+                product.Name,
+                product.Description, 
+                product.Price.Amount, 
+                product.Price.Currency,
+                product.CategoryId,
+                request.ImageUrls ?? Array.Empty<string>()), ct);
 
             await unitOfWork.SaveChangesAsync(ct);
             return Result.Success();

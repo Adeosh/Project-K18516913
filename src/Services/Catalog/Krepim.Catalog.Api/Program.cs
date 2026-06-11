@@ -1,3 +1,4 @@
+using Krepim.Catalog.Api.Endpoints.Categories;
 using Krepim.Catalog.Api.Endpoints.Products;
 using Krepim.Catalog.Application;
 using Krepim.Catalog.Infrastructure;
@@ -9,7 +10,7 @@ using Krepim.SharedKernel.Results.Filters;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
-builder.AddMongoDBClient("catalog-mongodb");
+builder.AddMongoDBClient("Catalog-MongoDb");
 builder.Services
     .AddApplication()
     .AddInfrastructure(builder.Configuration);
@@ -17,6 +18,7 @@ builder.Services
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
 builder.Services.AddOpenApi();
+builder.Services.AddKrepimJwtAuth(builder.Configuration);
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
@@ -31,6 +33,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseExceptionHandler();
+app.UseAuthentication();
 app.UseAuthorization();
 
 var apiGroup = app.MapGroup("/api/products")
@@ -41,5 +44,7 @@ apiGroup.MapCreateProductEndpoint();
 apiGroup.MapSearchProductsEndpoint();
 apiGroup.MapManagerEndpoints();
 apiGroup.MapClientEndpoints();
+apiGroup.MapCategoryEndpoints();
+apiGroup.MapImageEndpoints();
 
 app.Run();

@@ -21,6 +21,8 @@ namespace Krepim.Catalog.Infrastructure
 
             services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<CatalogDbContext>());
             services.AddScoped<IProductWriteRepository, ProductWriteRepository>();
+            services.AddScoped<ICategoryReadRepository, CategoryReadRepository>();
+            services.AddScoped<ICategoryWriteRepository, CategoryWriteRepository>();
             services.AddScoped<IMongoDatabase>(sp =>
             {
                 var client = sp.GetRequiredService<IMongoClient>();

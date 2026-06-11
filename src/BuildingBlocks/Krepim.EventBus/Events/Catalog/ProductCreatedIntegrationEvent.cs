@@ -9,7 +9,8 @@ namespace Krepim.EventBus.Events.Catalog
         string Sku,
         decimal PriceAmount,
         string PriceCurrency,
-        Guid CategoryId) : IIntegrationEvent
+        Guid CategoryId,
+        string[] ImageUrls) : IIntegrationEvent
     {
         public Guid EventId { get; init; } = Guid.NewGuid();
         public DateTime OccurredOn { get; init; } = DateTime.UtcNow;

@@ -7,6 +7,7 @@ namespace Krepim.Catalog.Application.Features.CreateProduct
         string Name, 
         string Description, 
         string Sku, 
-        decimal Price, 
-        Guid CategoryId) : IRequest<Result<Guid>>;
+        decimal Price,
+        Guid CategoryId,
+        string[] ImageUrls) : IRequest<Result<Guid>>;
 }

@@ -46,6 +46,11 @@ namespace Krepim.Catalog.Infrastructure.Database.Configurations
             builder.Property(p => p.IsActive)
                 .HasDefaultValue(false);
 
+            builder.Property(p => p.ImageUrls)
+               .HasColumnName("ImageUrls")
+               .HasColumnType("text[]")
+               .IsRequired(false);
+
             builder.Ignore(p => p.DomainEvents);
         }
     }

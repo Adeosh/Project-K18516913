@@ -6,10 +6,10 @@
   },
   "servers": [
     {
-      "url": "https://localhost:52204"
+      "url": "https://localhost:64222"
     },
     {
-      "url": "http://localhost:52208"
+      "url": "http://localhost:64229"
     }
   ],
   "paths": {
@@ -66,7 +66,6 @@
           {
             "name": "searchTerm",
             "in": "query",
-            "required": true,
             "schema": {
               "type": "string"
             }
@@ -74,7 +73,6 @@
           {
             "name": "page",
             "in": "query",
-            "required": true,
             "schema": {
               "pattern": "^-?(?:0|[1-9]\\d*)$",
               "type": [
@@ -87,7 +85,6 @@
           {
             "name": "pageSize",
             "in": "query",
-            "required": true,
             "schema": {
               "pattern": "^-?(?:0|[1-9]\\d*)$",
               "type": [
@@ -111,6 +108,20 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/products/manager/images": {
+      "post": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Загрузить галерею изображений товара в MinIO",
+        "operationId": "UploadProductImages",
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
@@ -352,17 +363,123 @@
           }
         }
       }
+    },
+    "/api/products/categories": {
+      "post": {
+        "tags": [
+          "Categories"
+        ],
+        "operationId": "CreateCategory",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCategoryCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Получить список активных категорий",
+        "operationId": "GetCategories",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CategoryModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/products/categories/{id}": {
+      "delete": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Мягкое удаление категории",
+        "operationId": "DeleteCategory",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "CategoryModel": {
+        "required": [
+          "id",
+          "name",
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateCategoryCommand": {
+        "required": [
+          "name",
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
       "CreateProductCommand": {
         "required": [
           "name",
           "description",
           "sku",
           "price",
-          "categoryId"
+          "categoryId",
+          "imageUrls"
         ],
         "type": "object",
         "properties": {
@@ -386,6 +503,12 @@
           "categoryId": {
             "type": "string",
             "format": "uuid"
+          },
+          "imageUrls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -452,9 +575,9 @@
           "sku",
           "price",
           "currency",
-          "primaryImageUrl",
           "categoryId",
-          "isActive"
+          "isActive",
+          "imageUrls"
         ],
         "type": "object",
         "properties": {
@@ -482,18 +605,18 @@
           "currency": {
             "type": "string"
           },
-          "primaryImageUrl": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
           "categoryId": {
             "type": "string",
             "format": "uuid"
           },
           "isActive": {
             "type": "boolean"
+          },
+          "imageUrls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -556,7 +679,8 @@
           "id",
           "name",
           "description",
-          "categoryId"
+          "categoryId",
+          "imageUrls"
         ],
         "type": "object",
         "properties": {
@@ -573,6 +697,12 @@
           "categoryId": {
             "type": "string",
             "format": "uuid"
+          },
+          "imageUrls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       }
@@ -581,6 +711,9 @@
   "tags": [
     {
       "name": "Products"
+    },
+    {
+      "name": "Categories"
     }
   ]
 }

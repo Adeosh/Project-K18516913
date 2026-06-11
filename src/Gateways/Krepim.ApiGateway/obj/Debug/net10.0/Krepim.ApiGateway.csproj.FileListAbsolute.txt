@@ -15,6 +15,7 @@ C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\bin\Debug\net1
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\bin\Debug\net10.0\Microsoft.Extensions.Resilience.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\bin\Debug\net10.0\Microsoft.Extensions.ServiceDiscovery.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\bin\Debug\net10.0\Microsoft.Extensions.ServiceDiscovery.Abstractions.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\bin\Debug\net10.0\Microsoft.Extensions.ServiceDiscovery.Yarp.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\bin\Debug\net10.0\Microsoft.Extensions.Telemetry.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\bin\Debug\net10.0\Microsoft.Extensions.Telemetry.Abstractions.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\bin\Debug\net10.0\OpenTelemetry.dll
@@ -28,6 +29,8 @@ C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\bin\Debug\net1
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\bin\Debug\net10.0\Polly.Core.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\bin\Debug\net10.0\Polly.Extensions.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\bin\Debug\net10.0\Polly.RateLimiting.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\bin\Debug\net10.0\System.IO.Hashing.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\bin\Debug\net10.0\Yarp.ReverseProxy.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\bin\Debug\net10.0\Krepim.Aspire.ServiceDefaults.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\bin\Debug\net10.0\Krepim.Aspire.ServiceDefaults.pdb
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\obj\Debug\net10.0\Krepim.ApiGateway.csproj.AssemblyReference.cache
@@ -37,6 +40,7 @@ C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\obj\Debug\net1
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\obj\Debug\net10.0\Krepim.ApiGateway.AssemblyInfo.cs
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\obj\Debug\net10.0\Krepim.ApiGateway.csproj.CoreCompileInputs.cache
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\obj\Debug\net10.0\Krepim.ApiGateway.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\obj\Debug\net10.0\Krepim.ApiGateway.sourcelink.json
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\obj\Debug\net10.0\rjimswa.dswa.cache.json
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
@@ -53,7 +57,3 @@ C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\obj\Debug\net1
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\obj\Debug\net10.0\Krepim.ApiGateway.pdb
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\obj\Debug\net10.0\Krepim.ApiGateway.genruntimeconfig.cache
 C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\obj\Debug\net10.0\ref\Krepim.ApiGateway.dll
-C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\obj\Debug\net10.0\Krepim.ApiGateway.sourcelink.json
-C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\bin\Debug\net10.0\System.IO.Hashing.dll
-C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\bin\Debug\net10.0\Yarp.ReverseProxy.dll
-C:\Users\adeos\Source\Repos\Krepim\src\Gateways\Krepim.ApiGateway\bin\Debug\net10.0\Microsoft.Extensions.ServiceDiscovery.Yarp.dll

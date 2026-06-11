@@ -11,8 +11,9 @@ using Krepim.SharedKernel.Results.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("Jwt"));
+builder.AddServiceDefaults();
 
+builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("Jwt"));
 builder.Services
     .AddApplication()
     .AddInfrastructure(builder.Configuration);

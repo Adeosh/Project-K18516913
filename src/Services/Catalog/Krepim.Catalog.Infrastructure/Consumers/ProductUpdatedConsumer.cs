@@ -15,7 +15,8 @@ namespace Krepim.Catalog.Infrastructure.Consumers
             var update = Builders<ProductReadModel>.Update
                 .Set(p => p.Name, msg.Name)
                 .Set(p => p.Description, msg.Description)
-                .Set(p => p.CategoryId, msg.CategoryId);
+                .Set(p => p.CategoryId, msg.CategoryId)
+                .Set(p => p.ImageUrls, msg.ImageUrls ?? Array.Empty<string>());
 
             await collection.UpdateOneAsync(x => x.Id == msg.ProductId, update);
         }

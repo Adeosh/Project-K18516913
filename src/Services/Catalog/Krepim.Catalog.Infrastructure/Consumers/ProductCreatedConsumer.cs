@@ -19,9 +19,9 @@ namespace Krepim.Catalog.Infrastructure.Consumers
                 Sku: message.Sku,
                 Price: message.PriceAmount,
                 Currency: message.PriceCurrency,
-                PrimaryImageUrl: null,
                 CategoryId: message.CategoryId,
-                IsActive: false
+                IsActive: false,
+                ImageUrls: message.ImageUrls ?? Array.Empty<string>()
             );
 
             var filter = Builders<ProductReadModel>.Filter.Eq(x => x.Id, readModel.Id);

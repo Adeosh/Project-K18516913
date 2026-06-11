@@ -36,6 +36,12 @@ if (builder.Configuration.GetValue<bool>("AppHostConfiguration:Mongo:UseExpress"
 
 var scalar = builder.AddScalarApiReference("scalar");
 
+var minio = builder.AddMinioContainer("minio")
+                   .WithHttpEndpoint(port: 9000, targetPort: 9000)
+                   .WithEnvironment("MINIO_ROOT_USER", "minioadmin")
+                   .WithEnvironment("MINIO_ROOT_PASSWORD", "minioadmin")
+                   .WithDataVolume("krepim-minio-data");
+
 #endregion
 
 #region DataBases

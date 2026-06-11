@@ -1,14 +1,20 @@
-﻿namespace Krepim.Catalog.Application.Models
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace Krepim.Catalog.Application.Models
 {
     public record ProductReadModel(
+        [property: BsonId]
+        [property: BsonGuidRepresentation(GuidRepresentation.Standard)]
         Guid Id,
         string Name,
         string Description,
         string Sku,
         decimal Price,
         string Currency,
-        string? PrimaryImageUrl,
+        [property: BsonGuidRepresentation(GuidRepresentation.Standard)]
         Guid CategoryId,
-        bool IsActive
+        bool IsActive,
+        IReadOnlyList<string> ImageUrls
     );
 }

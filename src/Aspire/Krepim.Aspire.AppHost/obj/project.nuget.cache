@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "2bezs6bITlo=",
+  "dgSpecHash": "OV4KVHGVoiY=",
   "success": true,
   "projectFilePath": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\Aspire\\Krepim.Aspire.AppHost\\Krepim.Aspire.AppHost.csproj",
   "expectedPackageFiles": [
@@ -19,7 +19,9 @@
     "C:\\Users\\adeos\\.nuget\\packages\\aspnetcore.healthchecks.rabbitmq\\9.0.0\\aspnetcore.healthchecks.rabbitmq.9.0.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\aspnetcore.healthchecks.redis\\9.0.0\\aspnetcore.healthchecks.redis.9.0.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\aspnetcore.healthchecks.uris\\9.0.0\\aspnetcore.healthchecks.uris.9.0.0.nupkg.sha512",
+    "C:\\Users\\adeos\\.nuget\\packages\\communitytoolkit.aspire.hosting.minio\\13.4.0\\communitytoolkit.aspire.hosting.minio.13.4.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\communitytoolkit.aspire.hosting.nodejs.extensions\\9.9.0\\communitytoolkit.aspire.hosting.nodejs.extensions.9.9.0.nupkg.sha512",
+    "C:\\Users\\adeos\\.nuget\\packages\\communitytoolkit.highperformance\\8.4.0\\communitytoolkit.highperformance.8.4.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\dnsclient\\1.8.0\\dnsclient.1.8.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\fractions\\7.3.0\\fractions.7.3.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\google.protobuf\\3.34.1\\google.protobuf.3.34.1.nupkg.sha512",
@@ -73,6 +75,7 @@
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.net.stringtools\\17.6.3\\microsoft.net.stringtools.17.6.3.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.visualstudio.threading.only\\17.13.61\\microsoft.visualstudio.threading.only.17.13.61.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\microsoft.visualstudio.validation\\17.8.8\\microsoft.visualstudio.validation.17.8.8.nupkg.sha512",
+    "C:\\Users\\adeos\\.nuget\\packages\\minio\\6.0.5\\minio.6.0.5.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\modelcontextprotocol\\1.3.0\\modelcontextprotocol.1.3.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\modelcontextprotocol.core\\1.3.0\\modelcontextprotocol.core.1.3.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\mongodb.bson\\3.8.1\\mongodb.bson.3.8.1.nupkg.sha512",
@@ -96,6 +99,7 @@
     "C:\\Users\\adeos\\.nuget\\packages\\streamjsonrpc\\2.22.23\\streamjsonrpc.2.22.23.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\system.diagnostics.eventlog\\10.0.8\\system.diagnostics.eventlog.10.0.8.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\system.io.hashing\\10.0.8\\system.io.hashing.10.0.8.nupkg.sha512",
+    "C:\\Users\\adeos\\.nuget\\packages\\system.reactive\\6.0.1\\system.reactive.6.0.1.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\system.threading.ratelimiting\\8.0.0\\system.threading.ratelimiting.8.0.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\yamldotnet\\16.3.0\\yamldotnet.16.3.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\zstdsharp.port\\0.7.3\\zstdsharp.port.0.7.3.nupkg.sha512"

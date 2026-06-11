@@ -16,10 +16,13 @@ namespace Krepim.Catalog.Application.Features.CreateProduct
         public async Task<Result<Guid>> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
             var result = Product.Create(request.Name, request.Description, request.Sku, request.Price, request.CategoryId);
-            if (result.IsFailure) 
+            if (result.IsFailure)
                 return Result<Guid>.Failure(result.Error);
 
             var product = result.Value;
+
+            if (request.ImageUrls != null && request.ImageUrls.Any())
+                product.SetImages(request.ImageUrls);
 
             await productRepository.AddAsync(product, cancellationToken);
 
@@ -29,8 +32,9 @@ namespace Krepim.Catalog.Application.Features.CreateProduct
                 product.Description,
                 product.Sku.Value,
                 product.Price.Amount,
-                product.Price.Currency,
-                product.CategoryId);
+                product.Price.Currency,              
+                product.CategoryId,
+                request.ImageUrls ?? Array.Empty<string>());
 
             await publishEndpoint.Publish(integrationEvent, cancellationToken);
             await unitOfWork.SaveChangesAsync(cancellationToken);

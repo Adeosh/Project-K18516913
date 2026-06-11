@@ -19,6 +19,7 @@ builder.Services.AddReverseProxy()
 var app = builder.Build();
 
 app.MapDefaultEndpoints();
+app.UseCors();
 app.MapReverseProxy();
 
 app.Run();

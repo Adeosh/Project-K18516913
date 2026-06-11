@@ -14,6 +14,7 @@
           "Aspire.Hosting.PostgreSQL": "13.3.5",
           "Aspire.Hosting.RabbitMQ": "13.3.5",
           "Aspire.Hosting.Redis": "13.3.5",
+          "CommunityToolkit.Aspire.Hosting.Minio": "13.4.0",
           "CommunityToolkit.Aspire.Hosting.NodeJS.Extensions": "9.9.0",
           "Scalar.Aspire": "0.9.37"
         },
@@ -318,6 +319,18 @@
           }
         }
       },
+      "CommunityToolkit.Aspire.Hosting.Minio/13.4.0": {
+        "dependencies": {
+          "Aspire.Hosting": "13.4.2",
+          "Minio": "6.0.5"
+        },
+        "runtime": {
+          "lib/net10.0/CommunityToolkit.Aspire.Hosting.Minio.dll": {
+            "assemblyVersion": "13.4.0.0",
+            "fileVersion": "13.4.0.0"
+          }
+        }
+      },
       "CommunityToolkit.Aspire.Hosting.NodeJS.Extensions/9.9.0": {
         "dependencies": {
           "Aspire.Hosting": "13.4.2",
@@ -327,6 +340,14 @@
           "lib/net9.0/CommunityToolkit.Aspire.Hosting.NodeJS.Extensions.dll": {
             "assemblyVersion": "9.9.0.0",
             "fileVersion": "9.9.0.0"
+          }
+        }
+      },
+      "CommunityToolkit.HighPerformance/8.4.0": {
+        "runtime": {
+          "lib/net8.0/CommunityToolkit.HighPerformance.dll": {
+            "assemblyVersion": "8.4.0.0",
+            "fileVersion": "8.4.0.1"
           }
         }
       },
@@ -612,6 +633,19 @@
           }
         }
       },
+      "Minio/6.0.5": {
+        "dependencies": {
+          "CommunityToolkit.HighPerformance": "8.4.0",
+          "System.IO.Hashing": "10.0.8",
+          "System.Reactive": "6.0.1"
+        },
+        "runtime": {
+          "lib/net8.0/Minio.dll": {
+            "assemblyVersion": "6.0.5.0",
+            "fileVersion": "6.0.5.0"
+          }
+        }
+      },
       "ModelContextProtocol/1.3.0": {
         "dependencies": {
           "ModelContextProtocol.Core": "1.3.0"
@@ -872,6 +906,14 @@
           }
         }
       },
+      "System.Reactive/6.0.1": {
+        "runtime": {
+          "lib/net6.0/System.Reactive.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.1.7420"
+          }
+        }
+      },
       "YamlDotNet/16.3.0": {
         "runtime": {
           "lib/net8.0/YamlDotNet.dll": {
@@ -987,12 +1029,26 @@
       "path": "aspnetcore.healthchecks.uris/9.0.0",
       "hashPath": "aspnetcore.healthchecks.uris.9.0.0.nupkg.sha512"
     },
+    "CommunityToolkit.Aspire.Hosting.Minio/13.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-PeW8URY3iTzoFSN7cp3Kl+rStChA4O21Df/JXb0HVshNTT2uuVMlSSpGKj5CEe+3GfRJCICNtIF1S8/duBJBiw==",
+      "path": "communitytoolkit.aspire.hosting.minio/13.4.0",
+      "hashPath": "communitytoolkit.aspire.hosting.minio.13.4.0.nupkg.sha512"
+    },
     "CommunityToolkit.Aspire.Hosting.NodeJS.Extensions/9.9.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-49bA/w0xDflWWLre7NkqDIdbCNRtmm2kgQJ5dlXt7mjDsVKkIaY1vRE8IkXpyECOtcTW3WthTsP/09W5VjvKdw==",
       "path": "communitytoolkit.aspire.hosting.nodejs.extensions/9.9.0",
       "hashPath": "communitytoolkit.aspire.hosting.nodejs.extensions.9.9.0.nupkg.sha512"
+    },
+    "CommunityToolkit.HighPerformance/8.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-flxspiBs0G/0GMp7IK2J2ijV9bTG6hEwFc/z6ekHqB6nwRJ4Ry2yLdx+TkbCUYFCl4XhABkAwomeKbT6zM2Zlg==",
+      "path": "communitytoolkit.highperformance/8.4.0",
+      "hashPath": "communitytoolkit.highperformance.8.4.0.nupkg.sha512"
     },
     "DnsClient/1.8.0": {
       "type": "package",
@@ -1140,6 +1196,13 @@
       "sha512": "sha512-rWXThIpyQd4YIXghNkiv2+VLvzS+MCMKVRDR0GAMlflsdo+YcAN2g2r5U1Ah98OFjQMRexTFtXQQ2LkajxZi3g==",
       "path": "microsoft.visualstudio.validation/17.8.8",
       "hashPath": "microsoft.visualstudio.validation.17.8.8.nupkg.sha512"
+    },
+    "Minio/6.0.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-AK3JIDZnFZg2Hpkqo6vlzyiEC4OifG+jQbuqpAtXePnIo49G4pNn27THh3DI8s4o84b/MMBQF+n1DEwBNenxsg==",
+      "path": "minio/6.0.5",
+      "hashPath": "minio.6.0.5.nupkg.sha512"
     },
     "ModelContextProtocol/1.3.0": {
       "type": "package",
@@ -1294,6 +1357,13 @@
       "sha512": "sha512-+dJsbPJ3FyUbTZNplFj0RCKePFizmv6ewDV46JE9q/IVH4c3xTCftHfHelLsAKf0jryIPqgMb5GpS0x7TAY3mg==",
       "path": "system.io.hashing/10.0.8",
       "hashPath": "system.io.hashing.10.0.8.nupkg.sha512"
+    },
+    "System.Reactive/6.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rHaWtKDwCi9qJ3ObKo8LHPMuuwv33YbmQi7TcUK1C264V3MFnOr5Im7QgCTdLniztP3GJyeiSg5x8NqYJFqRmg==",
+      "path": "system.reactive/6.0.1",
+      "hashPath": "system.reactive.6.0.1.nupkg.sha512"
     },
     "YamlDotNet/16.3.0": {
       "type": "package",

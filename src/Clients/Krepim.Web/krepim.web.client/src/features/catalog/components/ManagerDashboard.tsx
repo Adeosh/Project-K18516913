@@ -1,0 +1,440 @@
+import { useState, useEffect } from 'react';
+import type { FC, SyntheticEvent } from 'react';
+import { managerCatalogApi, type CreateProductCommand, type CategoryDto } from '../api/managerCatalogApi';
+import type { Product } from '../types/product';
+
+export const ManagerDashboard: FC = () => {
+    const [categories, setCategories] = useState<CategoryDto[]>([]);
+    const [products, setProducts] = useState<Product[]>([]);
+
+    const [formData, setFormData] = useState<CreateProductCommand>({
+        name: '', sku: '', price: 0, description: '', categoryId: '', imageUrls: []
+    });
+
+    const [isCreateFormOpen, setIsCreateFormOpen] = useState(false);
+    const [editingProductId, setEditingProductId] = useState<string | null>(null);
+
+    const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
+    const [newCategoryName, setNewCategoryName] = useState('');
+    const [newCategoryDescription, setNewCategoryDescription] = useState('');
+    const [isCategorySubmitting, setIsCategorySubmitting] = useState(false);
+
+    const [searchQuery, setSearchQuery] = useState('');
+    const [selectedCategoryFilter, setSelectedCategoryFilter] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [isListLoading, setIsListLoading] = useState(false);
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isUploading, setIsUploading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    const loadInitialData = async () => {
+        try {
+            const catsData = await managerCatalogApi.getCategories();
+            setCategories(catsData);
+            if (catsData.length > 0 && !formData.categoryId) {
+                setFormData(prev => ({ ...prev, categoryId: catsData[0].id }));
+            }
+        } catch (err) {
+            console.error('Ошибка загрузки категорий', err);
+        }
+    };
+
+    const fetchProductsList = async (page: number, term: string) => {
+        setIsListLoading(true);
+        try {
+            const prodsData = await managerCatalogApi.searchManagedProducts(term, page);
+            setProducts(prodsData.items);
+        } catch (err) {
+            console.error('Ошибка загрузки товаров', err);
+        } finally {
+            setIsListLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        void loadInitialData();
+        void fetchProductsList(1, '');
+    }, []);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setCurrentPage(1);
+            void fetchProductsList(1, searchQuery);
+        }, 500);
+        return () => clearTimeout(timer);
+    }, [searchQuery]);
+
+    const handlePageChange = (newPage: number) => {
+        setCurrentPage(newPage);
+        void fetchProductsList(newPage, searchQuery);
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: name === 'price' ? parseFloat(value) || 0 : value }));
+    };
+
+    const handleEditClick = (product: Product) => {
+        setFormData({
+            name: product.name,
+            sku: product.sku,
+            price: product.price,
+            description: product.description || '',
+            categoryId: product.categoryId || categories[0]?.id || '',
+            imageUrls: product.imageUrls || []
+        });
+        setEditingProductId(product.id);
+        setIsCreateFormOpen(true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const resetForm = () => {
+        setFormData({ name: '', sku: '', price: 0, description: '', categoryId: categories[0]?.id || '', imageUrls: [] });
+        setEditingProductId(null);
+        setIsCreateFormOpen(false);
+        setError(null);
+    };
+
+    const handleCreateCategory = async (e: SyntheticEvent) => {
+        e.preventDefault();
+        if (!newCategoryName.trim()) return;
+        setIsCategorySubmitting(true);
+        try {
+            const newId = await managerCatalogApi.createCategory(newCategoryName, newCategoryDescription);
+            const catsData = await managerCatalogApi.getCategories();
+            setCategories(catsData);
+            setFormData(prev => ({ ...prev, categoryId: newId }));
+            setIsCategoryModalOpen(false);
+            setNewCategoryName('');
+            setNewCategoryDescription('');
+        } catch (err) {
+            alert('Ошибка создания категории');
+        } finally {
+            setIsCategorySubmitting(false);
+        }
+    };
+
+    const handleDeleteCategory = async (categoryId: string) => {
+        if (!categoryId) return;
+
+        if (!window.confirm('Удалить эту категорию? (Товары в ней останутся, но категория будет скрыта)')) {
+            return;
+        }
+
+        try {
+            await managerCatalogApi.deleteCategory(categoryId);
+            await loadInitialData();
+
+            if (formData.categoryId === categoryId) {
+                const catsData = await managerCatalogApi.getCategories();
+                setFormData(prev => ({ ...prev, categoryId: catsData[0]?.id || '' }));
+            }
+        } catch (err) {
+            alert('Не удалось удалить категорию. Возможно, у вас нет прав.');
+        }
+    };
+
+    const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!e.target.files || e.target.files.length === 0) return;
+        setIsUploading(true);
+        setError(null);
+        try {
+            const urls = await managerCatalogApi.uploadImages(e.target.files);
+            setFormData(prev => ({ ...prev, imageUrls: [...prev.imageUrls, ...urls] }));
+        } catch (err) {
+            setError('Ошибка загрузки изображений.');
+        } finally {
+            setIsUploading(false);
+            e.target.value = '';
+        }
+    };
+
+    const removeImage = (indexToRemove: number) => {
+        setFormData(prev => ({ ...prev, imageUrls: prev.imageUrls.filter((_, index) => index !== indexToRemove) }));
+    };
+
+    const handleSubmit = async (e: SyntheticEvent) => {
+        e.preventDefault();
+        setError(null);
+        if (!formData.name.trim() || !formData.sku.trim() || !formData.categoryId) {
+            setError('Заполните обязательные поля');
+            return;
+        }
+        setIsSubmitting(true);
+        try {
+            if (editingProductId) {
+                await managerCatalogApi.updateProduct(editingProductId, formData);
+            } else {
+                await managerCatalogApi.createProduct(formData);
+            }
+
+            resetForm();
+
+            setTimeout(() => {
+                setCurrentPage(1);
+                void fetchProductsList(1, searchQuery);
+            }, 400);
+
+        } catch (err: any) {
+            setError(err.detail || 'Ошибка сохранения товара');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    const handleToggleStatus = async (id: string, isActive: boolean) => {
+        try {
+            if (isActive) {
+                await managerCatalogApi.deactivateProduct(id);
+            } else {
+                await managerCatalogApi.publishProduct(id);
+            }
+            setProducts(prev => prev.map(p => p.id === id ? { ...p, isActive: !isActive } : p));
+        } catch (err) {
+            alert('Не удалось изменить статус товара.');
+        }
+    };
+
+    const handleDeleteProduct = async (id: string) => {
+        if (!window.confirm('Вы уверены, что хотите безвозвратно удалить этот товар?')) return;
+
+        try {
+            await managerCatalogApi.deleteProduct(id);
+            setProducts(prev => prev.filter(p => p.id !== id));
+        } catch (err) {
+            alert('Ошибка удаления товара');
+        }
+    };
+
+    const filteredProducts = products.filter(product => {
+        if (!selectedCategoryFilter) return true;
+        return product.categoryId === selectedCategoryFilter;
+    });
+
+    return (
+        <div className="max-w-7xl mx-auto p-4 space-y-6 relative">
+
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-surface p-6 rounded-2xl border border-border shadow-sm">
+                <div>
+                    <h2 className="text-2xl font-bold text-text">Управление каталогом</h2>
+                    <p className="text-sm text-text-muted mt-1">Создание, редактирование и публикация номенклатуры</p>
+                </div>
+                <button
+                    onClick={() => isCreateFormOpen ? resetForm() : setIsCreateFormOpen(true)}
+                    className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all whitespace-nowrap ${isCreateFormOpen
+                        ? 'bg-bg text-text hover:bg-border/50 border border-border'
+                        : 'bg-accent text-surface shadow-md hover:scale-[1.02]'
+                        }`}
+                >
+                    {isCreateFormOpen ? 'Скрыть панель ✕' : '+ Новый товар'}
+                </button>
+            </div>
+
+            {isCreateFormOpen && (
+                <section className={`p-6 rounded-2xl border-2 shadow-md animate-fadeIn ${editingProductId ? 'bg-orange-50/30 border-orange-200' : 'bg-accent/5 border-accent/20'}`}>
+                    <h3 className="text-lg font-bold text-text mb-6">
+                        {editingProductId ? 'Редактирование товара' : 'Создание новой карточки товара'}
+                    </h3>
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div className="space-y-1.5">
+                                <label className="text-sm font-bold text-text-muted">Название товара</label>
+                                <input type="text" name="name" value={formData.name} onChange={handleChange} className="w-full px-4 py-3 bg-surface border border-border rounded-xl text-text focus:border-accent outline-none" />
+                            </div>
+                            <div className="space-y-1.5">
+                                <label className="text-sm font-bold text-text-muted">Артикул</label>
+                                <input type="text" name="sku" value={formData.sku} onChange={handleChange} disabled={!!editingProductId} className="w-full px-4 py-3 bg-surface border border-border rounded-xl text-text focus:border-accent outline-none disabled:opacity-50" title={editingProductId ? "Артикул нельзя изменить" : ""} />
+                            </div>
+                            <div className="space-y-1.5">
+                                <label className="text-sm font-bold text-text-muted">Цена (руб.)</label>
+                                <input type="number" name="price" value={formData.price || ''} onChange={handleChange} className="w-full px-4 py-3 bg-surface border border-border rounded-xl text-text focus:border-accent outline-none" />
+                            </div>
+                            <div className="space-y-1.5">
+                                <label className="text-sm font-bold text-text-muted">Категория</label>
+                                <div className="flex gap-2">
+                                    <select
+                                        name="categoryId"
+                                        value={formData.categoryId}
+                                        onChange={handleChange}
+                                        className="flex-1 px-4 py-3 bg-surface border border-border rounded-xl text-text focus:border-accent outline-none cursor-pointer"
+                                    >
+                                        {categories.length === 0 ? <option value="" disabled>Нет категорий</option> : categories.map(cat => <option key={cat.id} value={cat.id}>{cat.name}</option>)}
+                                    </select>
+
+                                    <button
+                                        type="button"
+                                        onClick={() => setIsCategoryModalOpen(true)}
+                                        className="px-4 py-3 bg-surface border border-border rounded-xl text-text-muted hover:border-accent hover:text-accent font-bold transition-all"
+                                        title="Создать категорию"
+                                    >
+                                        +
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        onClick={() => handleDeleteCategory(formData.categoryId)}
+                                        disabled={!formData.categoryId || categories.length === 0}
+                                        className="px-4 py-3 bg-error/10 border border-error/20 text-error rounded-xl hover:bg-error/20 font-bold transition-all disabled:opacity-50"
+                                        title="Удалить выбранную категорию"
+                                    >
+                                        🗑️
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="space-y-3 p-5 border-2 border-dashed border-border rounded-xl bg-surface">
+                            <div className="flex justify-between items-center">
+                                <label className="text-sm font-bold text-text-muted">Изображения товара</label>
+                                <label className="cursor-pointer bg-bg border border-border px-4 py-2 rounded-lg hover:border-accent text-sm font-bold transition-all text-text">
+                                    {isUploading ? 'Загрузка...' : 'Выбрать файлы'}
+                                    <input type="file" multiple accept="image/*" onChange={handleImageUpload} className="hidden" disabled={isUploading} />
+                                </label>
+                            </div>
+                            {formData.imageUrls.length > 0 && (
+                                <div className="flex gap-4 overflow-x-auto py-2">
+                                    {formData.imageUrls.map((url, idx) => (
+                                        <div key={idx} className="relative w-24 h-24 flex-shrink-0 border border-border rounded-lg overflow-hidden group">
+                                            <img src={url} alt="Preview" className="w-full h-full object-cover" />
+                                            <button type="button" onClick={() => removeImage(idx)} className="absolute top-1 right-1 bg-red-500 text-white w-5 h-5 rounded-full flex items-center justify-center text-xs">✕</button>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="space-y-1.5">
+                            <label className="text-sm font-bold text-text-muted">Описание</label>
+                            <textarea name="description" value={formData.description} onChange={handleChange} rows={3} className="w-full px-4 py-3 bg-surface border border-border rounded-xl text-text focus:border-accent outline-none resize-none" />
+                        </div>
+
+                        <div className="flex justify-end gap-3">
+                            <button type="button" onClick={resetForm} className="px-6 py-3 border border-border rounded-xl text-sm font-bold hover:bg-bg transition-colors">Отмена</button>
+                            <button type="submit" disabled={isSubmitting || isUploading} className={`px-8 py-3 text-surface font-bold rounded-xl hover:shadow-md transition-all ${editingProductId ? 'bg-orange-500' : 'bg-accent'}`}>
+                                {isSubmitting ? 'Сохранение...' : (editingProductId ? 'Обновить товар' : 'Сохранить товар')}
+                            </button>
+                        </div>
+                    </form>
+                </section>
+            )}
+
+            <section className="bg-surface p-6 rounded-2xl border border-border shadow-sm">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                    <h3 className="text-lg font-bold text-text">Номенклатурный список</h3>
+                    <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                        <select value={selectedCategoryFilter} onChange={(e) => setSelectedCategoryFilter(e.target.value)} className="px-4 py-2 bg-bg border-2 border-border rounded-xl text-sm focus:border-accent outline-none cursor-pointer">
+                            <option value="">Все категории</option>
+                            {categories.map(cat => <option key={cat.id} value={cat.id}>{cat.name}</option>)}
+                        </select>
+                        <input type="text" placeholder="Поиск по артикулу..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="px-4 py-2 bg-bg border-2 border-border rounded-xl text-sm focus:border-accent outline-none" />
+                    </div>
+                </div>
+
+                <div className="overflow-x-auto">
+                    <table className="w-full text-left border-collapse">
+                        <thead>
+                            <tr className="border-b-2 border-border text-sm text-text-muted">
+                                <th className="pb-3 pl-2">Артикул</th>
+                                <th className="pb-3">Название</th>
+                                <th className="pb-3">Цена</th>
+                                <th className="pb-3">Статус</th>
+                                <th className="pb-3 pr-2 text-right">Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody className="text-sm">
+                            {isListLoading ? (
+                                <tr><td colSpan={5} className="text-center py-10 text-text-muted">Загрузка данных...</td></tr>
+                            ) : filteredProducts.length === 0 ? (
+                                <tr><td colSpan={5} className="text-center py-10 text-text-muted">Товары не найдены</td></tr>
+                            ) : (
+                                filteredProducts.map(product => (
+                                    <tr key={product.id} className={`border-b border-border hover:bg-bg/50 transition-colors ${editingProductId === product.id ? 'bg-orange-50/50' : ''}`}>
+                                        <td className="py-4 pl-2 font-mono text-xs">{product.sku}</td>
+                                        <td className="py-4 font-semibold text-text max-w-[200px] truncate" title={product.name}>{product.name}</td>
+                                        <td className="py-4 font-medium">{product.price.toLocaleString('ru-RU')} ₽</td>
+                                        <td className="py-4">
+                                            {product.isActive ? (
+                                                <span className="bg-green-100 text-green-700 border border-green-200 px-2 py-1 rounded-md text-xs font-bold">Опубликован</span>
+                                            ) : (
+                                                <span className="bg-orange-100 text-orange-700 border border-orange-200 px-2 py-1 rounded-md text-xs font-bold">Скрыт</span>
+                                            )}
+                                        </td>
+                                        <td className="py-4 pr-2 text-right space-x-2 whitespace-nowrap">
+                                            <button onClick={() => handleEditClick(product)} className="text-xs bg-bg text-text border border-border px-3 py-1.5 rounded-lg hover:border-accent font-semibold transition-colors">
+                                                Ред.
+                                            </button>
+
+                                            {product.isActive ? (
+                                                <button onClick={() => handleToggleStatus(product.id, true)} className="text-xs bg-orange-50 text-orange-600 border border-orange-200 px-3 py-1.5 rounded-lg hover:bg-orange-100 font-semibold transition-colors">
+                                                    Скрыть
+                                                </button>
+                                            ) : (
+                                                <button onClick={() => handleToggleStatus(product.id, false)} className="text-xs bg-green-50 text-green-600 border border-green-200 px-3 py-1.5 rounded-lg hover:bg-green-100 font-semibold transition-colors">
+                                                    Опубл.
+                                                </button>
+                                            )}
+
+                                            <button onClick={() => handleDeleteProduct(product.id)} className="text-xs bg-error/10 text-error px-3 py-1.5 rounded-lg hover:bg-error/20 font-semibold transition-colors">
+                                                Удалить
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))
+                            )}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div className="flex justify-between items-center mt-6">
+                    <button onClick={() => handlePageChange(Math.max(currentPage - 1, 1))} disabled={currentPage === 1 || isListLoading} className="px-5 py-2.5 border border-border rounded-lg text-sm font-semibold disabled:opacity-50 hover:bg-bg transition-colors">Назад</button>
+                    <span className="text-sm font-medium text-text-muted">Страница <span className="text-text font-bold">{currentPage}</span></span>
+                    <button onClick={() => handlePageChange(currentPage + 1)} disabled={products.length < 20 || isListLoading} className="px-5 py-2.5 border border-border rounded-lg text-sm font-semibold disabled:opacity-50 hover:bg-bg transition-colors">Вперед</button>
+                </div>
+            </section>
+
+            {isCategoryModalOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-text/20 backdrop-blur-sm">
+                    <div className="bg-surface w-full max-w-sm rounded-3xl shadow-2xl border border-border p-6 relative animate-fadeIn">
+                        <button
+                            onClick={() => setIsCategoryModalOpen(false)}
+                            className="absolute top-5 right-5 text-text-muted hover:text-error text-xl transition-colors"
+                        >
+                            ✕
+                        </button>
+                        <h3 className="text-xl font-bold text-text mb-6">Новая категория</h3>
+
+                        <form onSubmit={handleCreateCategory} className="space-y-5">
+                            <div>
+                                <label className="block text-sm font-semibold text-text mb-1.5">Название</label>
+                                <input
+                                    type="text"
+                                    value={newCategoryName}
+                                    onChange={(e) => setNewCategoryName(e.target.value)}
+                                    autoFocus
+                                    className="w-full px-4 py-3 bg-bg border-2 border-border rounded-xl focus:border-accent outline-none transition-colors"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-semibold text-text mb-1.5">Описание</label>
+                                <textarea
+                                    value={newCategoryDescription}
+                                    onChange={(e) => setNewCategoryDescription(e.target.value)}
+                                    rows={3}
+                                    className="w-full px-4 py-3 bg-bg border-2 border-border rounded-xl focus:border-accent outline-none resize-none transition-colors"
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                disabled={!newCategoryName.trim() || isCategorySubmitting}
+                                className="w-full mt-2 py-3.5 bg-text text-surface font-bold rounded-xl hover:bg-accent disabled:opacity-50 transition-all"
+                            >
+                                {isCategorySubmitting ? 'Создание...' : 'Добавить категорию'}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};

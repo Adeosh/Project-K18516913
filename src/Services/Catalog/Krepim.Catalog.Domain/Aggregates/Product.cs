@@ -14,6 +14,9 @@ namespace Krepim.Catalog.Domain.Aggregates
         public bool IsActive { get; private set; }
         public bool IsDeleted { get; private set; }
 
+        private readonly List<string> _imageUrls = new();
+        public IReadOnlyList<string> ImageUrls => _imageUrls.AsReadOnly();
+
         private Product(Guid id, string name, string description, Sku sku, Money price, Guid categoryId)
             : base(id)
         {
@@ -58,6 +61,23 @@ namespace Krepim.Catalog.Domain.Aggregates
         public void UpdatePrice(Money newPrice)
         {
             Price = newPrice;
+        }
+
+        public void SetImages(IEnumerable<string> imageUrls)
+        {
+            _imageUrls.Clear();
+            _imageUrls.AddRange(imageUrls);
+        }
+
+        public void AddImage(string imageUrl)
+        {
+            if (!_imageUrls.Contains(imageUrl))
+                _imageUrls.Add(imageUrl);
+        }
+
+        public void RemoveImage(string imageUrl)
+        {
+            _imageUrls.Remove(imageUrl);
         }
 
         public void Publish() => IsActive = true;

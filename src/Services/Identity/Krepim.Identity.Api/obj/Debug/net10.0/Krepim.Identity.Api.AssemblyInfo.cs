@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Krepim.Identity.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+86b07324caa16bef7fa2e1fbed92dab3824bd36b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+36efa533653704637a8e72e5ebd692f73c177def")]
 [assembly: System.Reflection.AssemblyProductAttribute("Krepim.Identity.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Krepim.Identity.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

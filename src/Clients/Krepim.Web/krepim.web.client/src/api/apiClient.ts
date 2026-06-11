@@ -56,6 +56,10 @@ apiClient.interceptors.response.use(
                 case 500:
                     console.error('Критическая ошибка сервера. Обратитесь к администратору.');
                     break;
+                case 502:
+                    console.error('Шлюз недоступен (502). Один из микросервисов упал.');
+                    problem.detail = 'Сервис временно недоступен. Повторите попытку позже.';
+                    break;
             }
             return Promise.reject(problem);
         }

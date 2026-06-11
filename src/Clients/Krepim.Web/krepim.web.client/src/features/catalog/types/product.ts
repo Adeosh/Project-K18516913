@@ -5,8 +5,9 @@ export interface Product {
     brand: string;
     description: string;
     price: number;
-    imageUrl?: string;
+    imageUrls: string[];
     attributes: Record<string, string>;
+    isActive: boolean;
 }
 
 export interface CatalogSearchFilters {

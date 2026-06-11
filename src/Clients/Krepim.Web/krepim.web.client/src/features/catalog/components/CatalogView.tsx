@@ -21,11 +21,13 @@ export const CatalogView: FC = () => {
                 page: pageNumber,
                 pageSize: 8,
             });
-            setProducts(data?.items || []);
-            setTotalCount(data?.totalCount || 0);
+
+            setProducts(data.items);
+            setTotalCount(data.totalCount);
         } catch {
             console.error('Не удалось загрузить данные каталога');
             setProducts([]);
+            setTotalCount(0);
         } finally {
             setIsLoading(false);
         }
@@ -63,7 +65,9 @@ export const CatalogView: FC = () => {
             name: targetProduct.name,
             brand: targetProduct.brand,
             price: targetProduct.price,
-            imageUrl: targetProduct.imageUrl,
+            imageUrl: targetProduct.imageUrls && targetProduct.imageUrls.length > 0
+                ? targetProduct.imageUrls[0]
+                : undefined,
         });
     };
 
