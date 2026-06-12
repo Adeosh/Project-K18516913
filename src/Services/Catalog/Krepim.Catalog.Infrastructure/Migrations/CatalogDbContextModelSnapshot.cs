@@ -61,6 +61,10 @@ namespace Krepim.Catalog.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<string>("Attributes")
+                        .IsRequired()
+                        .HasColumnType("jsonb");
+
                     b.Property<Guid>("CategoryId")
                         .HasColumnType("uuid");
 
@@ -86,11 +90,24 @@ namespace Krepim.Catalog.Infrastructure.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)");
 
+                    b.Property<string>("PriceTiers")
+                        .IsRequired()
+                        .HasColumnType("jsonb");
+
+                    b.Property<decimal>("SalesStep")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("SalesUnit")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Sku")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
                         .HasColumnName("Sku");
+
+                    b.Property<string>("Standard")
+                        .HasColumnType("text");
 
                     b.ComplexProperty(typeof(Dictionary<string, object>), "Price", "Krepim.Catalog.Domain.Aggregates.Product.Price#Money", b1 =>
                         {
@@ -110,7 +127,8 @@ namespace Krepim.Catalog.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("Sku")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = false");
 
                     b.ToTable("Products", (string)null);
                 });

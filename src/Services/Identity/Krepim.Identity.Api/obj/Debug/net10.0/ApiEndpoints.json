@@ -64,7 +64,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "Krepim.Identity.Application.Models.UpdateProfileRequest",
+        "Type": "Krepim.Identity.Application.Models.Exchange.UpdateProfileRequest",
         "IsRequired": true
       }
     ],
@@ -89,7 +89,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "Krepim.Identity.Application.Models.ChangePasswordRequest",
+        "Type": "Krepim.Identity.Application.Models.Exchange.ChangePasswordRequest",
         "IsRequired": true
       }
     ],

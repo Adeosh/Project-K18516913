@@ -52,5 +52,17 @@ namespace Krepim.Basket.Domain.Entities
 
             Quantity = newQuantity;
         }
+
+        public void UpdateQuantityAndPrice(int newQuantity, decimal newPrice)
+        {
+            if (newQuantity <= 0)
+                throw new ArgumentException("Quantity must be greater than zero", nameof(newQuantity));
+
+            if (newPrice < 0)
+                throw new ArgumentException("Price cannot be negative", nameof(newPrice));
+
+            Quantity = newQuantity;
+            UnitPrice = newPrice;
+        }
     }
 }

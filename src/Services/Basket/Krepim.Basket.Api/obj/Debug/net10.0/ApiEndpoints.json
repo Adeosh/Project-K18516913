@@ -23,7 +23,7 @@
   },
   {
     "ContainingType": "Krepim.Basket.Api.Endpoints.BasketEndpoints\u002B\u003C\u003Ec",
-    "Method": "\u003CMapBasketEndpoints\u003Eb__0_3",
+    "Method": "\u003CMapBasketEndpoints\u003Eb__0_4",
     "RelativePath": "api/basket/",
     "HttpMethod": "DELETE",
     "IsController": false,
@@ -45,7 +45,7 @@
   },
   {
     "ContainingType": "Krepim.Basket.Api.Endpoints.BasketEndpoints\u002B\u003C\u003Ec",
-    "Method": "\u003CMapBasketEndpoints\u003Eb__0_4",
+    "Method": "\u003CMapBasketEndpoints\u003Eb__0_5",
     "RelativePath": "api/basket/checkout",
     "HttpMethod": "POST",
     "IsController": false,
@@ -53,7 +53,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "Krepim.Basket.Application.Models.CheckoutRequest",
+        "Type": "Krepim.Basket.Application.Models.Exchange.CheckoutRequest",
         "IsRequired": true
       }
     ],
@@ -86,7 +86,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "Krepim.Basket.Application.Models.AddItemRequest",
+        "Type": "Krepim.Basket.Application.Models.Exchange.AddItemRequest",
         "IsRequired": true
       }
     ],
@@ -107,6 +107,39 @@
   {
     "ContainingType": "Krepim.Basket.Api.Endpoints.BasketEndpoints\u002B\u003C\u003Ec",
     "Method": "\u003CMapBasketEndpoints\u003Eb__0_2",
+    "RelativePath": "api/basket/items/{productId:guid}",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "Krepim.Basket.Application.Models.Exchange.UpdateQuantityRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Krepim.SharedKernel.Results.Result\u00601[[Krepim.Basket.Domain.Entities.CustomerBasket, Krepim.Basket.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Basket"
+    ],
+    "EndpointName": "UpdateItemQuantity"
+  },
+  {
+    "ContainingType": "Krepim.Basket.Api.Endpoints.BasketEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapBasketEndpoints\u003Eb__0_3",
     "RelativePath": "api/basket/items/{productId:guid}",
     "HttpMethod": "DELETE",
     "IsController": false,

@@ -162,7 +162,6 @@ C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\obj
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\obj\Debug\net10.0\Krepim.Identity.Api.AssemblyInfoInputs.cache
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\obj\Debug\net10.0\Krepim.Identity.Api.AssemblyInfo.cs
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\obj\Debug\net10.0\Krepim.Identity.Api.csproj.CoreCompileInputs.cache
-C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\obj\Debug\net10.0\Krepim.Identity.Api.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\obj\Debug\net10.0\Krepim.Identity.Api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\obj\Debug\net10.0\Krepim.Identity.Api.sourcelink.json
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Identity\Krepim.Identity.Api\obj\Debug\net10.0\rjimswa.dswa.cache.json

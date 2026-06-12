@@ -15,7 +15,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Krepim.SharedKernel.Results.Result\u00601[[Krepim.Inventory.Application.Models.StockModel, Krepim.Inventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "Krepim.SharedKernel.Results.Result\u00601[[Krepim.Inventory.Application.Models.DTOs.StockDto, Krepim.Inventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],

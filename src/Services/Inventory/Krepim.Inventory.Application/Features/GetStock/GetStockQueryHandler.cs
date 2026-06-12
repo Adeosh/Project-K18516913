@@ -1,4 +1,4 @@
-﻿using Krepim.Inventory.Application.Models;
+﻿using Krepim.Inventory.Application.Models.DTOs;
 using Krepim.Inventory.Domain.Interfaces;
 using Krepim.SharedKernel.Results;
 using MediatR;
@@ -6,21 +6,21 @@ using MediatR;
 namespace Krepim.Inventory.Application.Features.GetStock
 {
     internal sealed class GetStockQueryHandler(IInventoryRepository repository)
-        : IRequestHandler<GetStockQuery, Result<StockModel>>
+        : IRequestHandler<GetStockQuery, Result<StockDto>>
     {
-        public async Task<Result<StockModel>> Handle(GetStockQuery request, CancellationToken ct)
+        public async Task<Result<StockDto>> Handle(GetStockQuery request, CancellationToken ct)
         {
             var stockItem = await repository.GetByProductIdAsync(request.ProductId, ct);
 
             if (stockItem is null)
             {
-                return Result<StockModel>.Failure(new Error(
+                return Result<StockDto>.Failure(new Error(
                     "Stock.NotFound",
                     $"Товар с ID {request.ProductId} не найден на складе.",
                     ErrorType.NotFound));
             }
 
-            return Result<StockModel>.Success(new StockModel(stockItem.ProductId, stockItem.AvailableQuantity));
+            return Result<StockDto>.Success(new StockDto(stockItem.ProductId, stockItem.AvailableQuantity));
         }
     }
 }

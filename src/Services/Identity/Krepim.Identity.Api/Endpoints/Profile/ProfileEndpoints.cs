@@ -1,7 +1,7 @@
 ﻿using Krepim.Identity.Application.Features.Profile.ChangePassword;
 using Krepim.Identity.Application.Features.Profile.GetUserProfile;
 using Krepim.Identity.Application.Features.Profile.UpdateUserProfile;
-using Krepim.Identity.Application.Models;
+using Krepim.Identity.Application.Models.Exchange;
 using Krepim.SharedKernel.Results;
 using MediatR;
 using System.Security.Claims;

@@ -1,4 +1,5 @@
-﻿using Krepim.Identity.Application.Models;
+﻿using Krepim.Identity.Application.Models.DTOs;
+using Krepim.Identity.Application.Models.Exchange;
 using Krepim.Identity.Domain.Interfaces;
 using Krepim.SharedKernel.Results;
 using MediatR;
@@ -16,7 +17,7 @@ namespace Krepim.Identity.Application.Features.Profile.GetUserProfile
                 return Result<UserProfileResponse>.Failure(new Error("User.NotFound", "User not found", ErrorType.NotFound));
 
             var addressDto = user.DefaultAddress is not null
-                ? new AddressModel(user.DefaultAddress.FullAddress, user.DefaultAddress.Latitude, user.DefaultAddress.Longitude, user.DefaultAddress.Flat)
+                ? new AddressDto(user.DefaultAddress.FullAddress, user.DefaultAddress.Latitude, user.DefaultAddress.Longitude, user.DefaultAddress.Flat)
                 : null;
 
             var response = new UserProfileResponse(

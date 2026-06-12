@@ -12,7 +12,9 @@ namespace Krepim.Basket.Domain.Entities
 
         public decimal TotalPrice => Items.Sum(x => x.UnitPrice * x.Quantity);
 
+        #region For EF
         public CustomerBasket() { }
+        #endregion
 
         public CustomerBasket(Guid userId)
         {

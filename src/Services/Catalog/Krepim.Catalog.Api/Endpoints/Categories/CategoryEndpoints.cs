@@ -1,5 +1,5 @@
 ﻿using Krepim.Catalog.Application.Features.GetCategories;
-using Krepim.Catalog.Application.Models;
+using Krepim.Catalog.Application.Models.DTOs;
 using Krepim.SharedKernel.Results.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +28,7 @@ namespace Krepim.Catalog.Api.Endpoints.Categories
             })
             .WithName("GetCategories")
             .WithSummary("Получить список активных категорий")
-            .Produces<IReadOnlyList<CategoryModel>>(StatusCodes.Status200OK);
+            .Produces<IReadOnlyList<CategoryDto>>(StatusCodes.Status200OK);
 
             group.MapDelete("/{id:guid}", async (Guid id, [FromServices] ISender sender, CancellationToken ct) =>
             {

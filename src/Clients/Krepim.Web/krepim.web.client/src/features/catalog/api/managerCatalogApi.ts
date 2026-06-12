@@ -1,13 +1,18 @@
 import { apiClient } from '@/api/apiClient';
-import type { Product, PagedList } from '../types/product';
+import type { Product, PagedList, SalesUnit, PriceTierDto } from '../types/product';
 
 export interface CreateProductCommand {
     name: string;
-    description: string;
     sku: string;
     price: number;
+    description: string;
     categoryId: string;
     imageUrls: string[];
+    standard?: string;
+    salesUnit: SalesUnit;
+    salesStep: number;
+    attributes?: Record<string, string>;
+    priceTiers?: PriceTierDto[];
 }
 
 export interface CategoryDto {

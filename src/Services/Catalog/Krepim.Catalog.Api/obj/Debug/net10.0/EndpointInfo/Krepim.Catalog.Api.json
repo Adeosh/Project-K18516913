@@ -6,10 +6,10 @@
   },
   "servers": [
     {
-      "url": "https://localhost:64222"
+      "url": "https://localhost:64027"
     },
     {
-      "url": "http://localhost:64229"
+      "url": "http://localhost:64029"
     }
   ],
   "paths": {
@@ -103,7 +103,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/ProductReadModel"
+                    "$ref": "#/components/schemas/ProductReadDto"
                   }
                 }
               }
@@ -158,7 +158,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResultOfIReadOnlyListOfProductReadModel"
+                  "$ref": "#/components/schemas/ResultOfIReadOnlyListOfProductReadDto"
                 }
               }
             }
@@ -326,7 +326,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResultOfIReadOnlyListOfProductReadModel"
+                  "$ref": "#/components/schemas/ResultOfIReadOnlyListOfProductReadDto"
                 }
               }
             }
@@ -356,7 +356,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResultOfProductReadModel"
+                  "$ref": "#/components/schemas/ResultOfProductReadDto"
                 }
               }
             }
@@ -400,7 +400,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/CategoryModel"
+                    "$ref": "#/components/schemas/CategoryDto"
                   }
                 }
               }
@@ -437,7 +437,7 @@
   },
   "components": {
     "schemas": {
-      "CategoryModel": {
+      "CategoryDto": {
         "required": [
           "id",
           "name",
@@ -479,7 +479,12 @@
           "sku",
           "price",
           "categoryId",
-          "imageUrls"
+          "imageUrls",
+          "standard",
+          "salesUnit",
+          "salesStep",
+          "attributes",
+          "priceTiers"
         ],
         "type": "object",
         "properties": {
@@ -505,9 +510,47 @@
             "format": "uuid"
           },
           "imageUrls": {
-            "type": "array",
+            "type": [
+              "null",
+              "array"
+            ],
             "items": {
               "type": "string"
+            }
+          },
+          "standard": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "salesUnit": {
+            "$ref": "#/components/schemas/SalesUnit"
+          },
+          "salesStep": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double"
+          },
+          "attributes": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "priceTiers": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/PriceTierDto"
             }
           }
         }
@@ -528,6 +571,35 @@
       },
       "ErrorType": {
         "type": "integer"
+      },
+      "PriceTierDto": {
+        "required": [
+          "minQuantity",
+          "amount",
+          "currency"
+        ],
+        "type": "object",
+        "properties": {
+          "minQuantity": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "amount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double"
+          },
+          "currency": {
+            "type": "string"
+          }
+        }
       },
       "ProblemDetails": {
         "type": "object",
@@ -567,7 +639,7 @@
           }
         }
       },
-      "ProductReadModel": {
+      "ProductReadDto": {
         "required": [
           "id",
           "name",
@@ -577,7 +649,12 @@
           "currency",
           "categoryId",
           "isActive",
-          "imageUrls"
+          "imageUrls",
+          "standard",
+          "salesUnit",
+          "salesStep",
+          "attributes",
+          "priceTiers"
         ],
         "type": "object",
         "properties": {
@@ -617,6 +694,40 @@
             "items": {
               "type": "string"
             }
+          },
+          "standard": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "salesUnit": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "salesStep": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double"
+          },
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "priceTiers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PriceTierDto"
+            }
           }
         }
       },
@@ -634,7 +745,7 @@
           }
         }
       },
-      "ResultOfIReadOnlyListOfProductReadModel": {
+      "ResultOfIReadOnlyListOfProductReadDto": {
         "type": "object",
         "properties": {
           "isSuccess": {
@@ -652,12 +763,12 @@
               "array"
             ],
             "items": {
-              "$ref": "#/components/schemas/ProductReadModel"
+              "$ref": "#/components/schemas/ProductReadDto"
             }
           }
         }
       },
-      "ResultOfProductReadModel": {
+      "ResultOfProductReadDto": {
         "type": "object",
         "properties": {
           "isSuccess": {
@@ -670,9 +781,12 @@
             "$ref": "#/components/schemas/Error"
           },
           "value": {
-            "$ref": "#/components/schemas/ProductReadModel"
+            "$ref": "#/components/schemas/ProductReadDto"
           }
         }
+      },
+      "SalesUnit": {
+        "type": "integer"
       },
       "UpdateProductCommand": {
         "required": [
@@ -680,7 +794,12 @@
           "name",
           "description",
           "categoryId",
-          "imageUrls"
+          "imageUrls",
+          "standard",
+          "salesUnit",
+          "salesStep",
+          "attributes",
+          "priceTiers"
         ],
         "type": "object",
         "properties": {
@@ -699,9 +818,47 @@
             "format": "uuid"
           },
           "imageUrls": {
-            "type": "array",
+            "type": [
+              "null",
+              "array"
+            ],
             "items": {
               "type": "string"
+            }
+          },
+          "standard": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "salesUnit": {
+            "$ref": "#/components/schemas/SalesUnit"
+          },
+          "salesStep": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double"
+          },
+          "attributes": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "priceTiers": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/PriceTierDto"
             }
           }
         }

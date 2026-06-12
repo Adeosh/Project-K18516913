@@ -1,7 +1,9 @@
 ﻿using Krepim.Catalog.Application.Interfaces;
 using Krepim.EventBus.Events.Catalog;
+using Krepim.EventBus.Events.Catalog.Models;
 using Krepim.SharedKernel.Domain.Abstractions;
 using Krepim.SharedKernel.Results;
+using Krepim.SharedKernel.ValueObjects;
 using MassTransit;
 using MediatR;
 
@@ -18,17 +20,43 @@ namespace Krepim.Catalog.Application.Features.UpdateProduct
             if (product is null || product.IsDeleted) 
                 return Result.Failure(new Error("Product.NotFound", "Not found", ErrorType.NotFound));
 
-            product.UpdateDetails(request.Name, request.Description, request.CategoryId);
+            product.UpdateDetails(
+                request.Name,
+                request.Description,
+                request.CategoryId,
+                request.Standard,
+                request.SalesUnit,
+                request.SalesStep);
+
             product.SetImages(request.ImageUrls ?? Array.Empty<string>());
 
-            await publishEndpoint.Publish(new ProductUpdatedIntegrationEvent(
-                product.Id, 
+            if (request.Attributes != null)
+                product.SetAttributes(request.Attributes);
+
+            if (request.PriceTiers != null)
+            {
+                var domainTiers = request.PriceTiers.Select(pt =>
+                    new PriceTier(pt.MinQuantity, new Money(pt.Amount, pt.Currency)));
+
+                product.UpdatePriceTiers(domainTiers);
+            }
+
+            var integrationEvent = new ProductUpdatedIntegrationEvent(
+                product.Id,
                 product.Name,
-                product.Description, 
-                product.Price.Amount, 
+                product.Description,
+                product.Price.Amount,
                 product.Price.Currency,
                 product.CategoryId,
-                request.ImageUrls ?? Array.Empty<string>()), ct);
+                request.ImageUrls ?? Array.Empty<string>(),
+                product.Standard,
+                (int)product.SalesUnit,
+                product.SalesStep,
+                product.Attributes.ToDictionary(k => k.Key, v => v.Value),
+                product.PriceTiers.Select(pt => new PriceTierModel(pt.MinQuantity, pt.Price.Amount, pt.Price.Currency)).ToList()
+            );
+
+            await publishEndpoint.Publish(integrationEvent, ct);
 
             await unitOfWork.SaveChangesAsync(ct);
             return Result.Success();

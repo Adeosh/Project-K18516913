@@ -1,5 +1,5 @@
 import { apiClient } from '@/api/apiClient';
-import type { Product, CatalogSearchFilters, PagedList } from '../types/product';
+import type { Product, CatalogSearchFilters, PagedList, SalesUnit } from '../types/product';
 
 export const catalogApi = {
     search: async (filters: CatalogSearchFilters): Promise<PagedList<Product>> => {
@@ -12,17 +12,21 @@ export const catalogApi = {
 
         const data = response.data;
         const rawItems = Array.isArray(data) ? data : (data?.value || data?.items || []);
+
         const safeItems: Product[] = rawItems.map((item: any) => ({
             id: item.id,
             sku: item.sku || 'N/A',
             name: item.name || 'Без названия',
             description: item.description || '',
             price: item.price || 0,
-
             brand: item.brand || 'Крепим.PRO',
             imageUrls: item.imageUrls || [],
             attributes: item.attributes || {},
-            isActive: item.isActive ?? true
+            isActive: item.isActive ?? true,
+            standard: item.standard,
+            salesUnit: item.salesUnit ?? 1,
+            salesStep: item.salesStep ?? 1,
+            priceTiers: item.priceTiers ?? item.PriceTiers ?? []
         }));
 
         return {
@@ -47,7 +51,11 @@ export const catalogApi = {
             brand: item.brand || 'Крепим.PRO',
             imageUrls: item.imageUrls || [],
             attributes: item.attributes || {},
-            isActive: item.isActive ?? true
+            isActive: item.isActive ?? true,
+            standard: item.standard,
+            salesUnit: item.salesUnit ?? 1,
+            salesStep: item.salesStep ?? 1,
+            priceTiers: item.priceTiers ?? item.PriceTiers ?? []
         };
     },
 };

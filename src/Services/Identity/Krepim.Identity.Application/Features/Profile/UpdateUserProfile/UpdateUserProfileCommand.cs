@@ -1,4 +1,4 @@
-﻿using Krepim.Identity.Application.Models;
+﻿using Krepim.Identity.Application.Models.DTOs;
 using Krepim.SharedKernel.Results;
 using MediatR;
 
@@ -8,5 +8,5 @@ namespace Krepim.Identity.Application.Features.Profile.UpdateUserProfile
         Guid UserId,
         string Email,
         string? PhoneNumber,
-        AddressModel? DefaultAddress) : IRequest<Result>;
+        AddressDto? DefaultAddress) : IRequest<Result>;
 }

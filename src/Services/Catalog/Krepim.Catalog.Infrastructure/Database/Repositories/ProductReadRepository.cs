@@ -1,23 +1,23 @@
 ﻿using Krepim.Catalog.Application.Interfaces;
-using Krepim.Catalog.Application.Models;
+using Krepim.Catalog.Application.Models.DTOs;
 using MongoDB.Driver;
 
 namespace Krepim.Catalog.Infrastructure.Database.Repositories
 {
     internal sealed class ProductReadRepository(IMongoDatabase mongoDatabase) : IProductReadRepository
     {
-        private readonly IMongoCollection<ProductReadModel> _collection =
-            mongoDatabase.GetCollection<ProductReadModel>("ProductsView");
+        private readonly IMongoCollection<ProductReadDto> _collection =
+            mongoDatabase.GetCollection<ProductReadDto>("ProductsView");
 
-        public async Task<ProductReadModel?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+        public async Task<ProductReadDto?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
-            var filter = Builders<ProductReadModel>.Filter.Eq(x => x.Id, id);
+            var filter = Builders<ProductReadDto>.Filter.Eq(x => x.Id, id);
             return await _collection.Find(filter).FirstOrDefaultAsync(cancellationToken);
         }
 
-        public async Task<IReadOnlyList<ProductReadModel>> SearchAsync(string searchTerm, bool onlyActive, int page, int pageSize, CancellationToken cancellationToken)
+        public async Task<IReadOnlyList<ProductReadDto>> SearchAsync(string searchTerm, bool onlyActive, int page, int pageSize, CancellationToken cancellationToken)
         {
-            var filterBuilder = Builders<ProductReadModel>.Filter;
+            var filterBuilder = Builders<ProductReadDto>.Filter;
             var filter = filterBuilder.Empty;
 
             if (onlyActive)

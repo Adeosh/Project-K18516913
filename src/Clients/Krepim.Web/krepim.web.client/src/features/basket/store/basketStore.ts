@@ -7,8 +7,8 @@ interface BasketState {
     isLoading: boolean;
     error: string | null;
     fetchBasket: () => Promise<void>;
-    addItem: (item: Omit<BasketItem, 'quantity'>) => Promise<void>;
-    updateQuantity: (productId: string, quantity: number) => Promise<void>;
+    addItem: (item: Omit<BasketItem, 'quantity'> & { quantity?: number }) => Promise<void>;
+    updateQuantity: (productId: string, quantity: number, price: number) => Promise<void>;
     removeItem: (productId: string) => Promise<void>;
     clearBasket: () => void;
 }
@@ -30,14 +30,15 @@ export const useBasketStore = create<BasketState>((set, get) => ({
     },
 
     addItem: async (newItem) => {
+        const qtyToAdd = newItem.quantity || 1;
         const currentBasket = get().basket;
         const items = currentBasket ? [...currentBasket.items] : [];
         const existingItemIndex = items.findIndex((i) => i.productId === newItem.productId);
 
         if (existingItemIndex > -1) {
-            items[existingItemIndex].quantity += 1;
+            items[existingItemIndex].quantity += qtyToAdd;
         } else {
-            items.push({ ...newItem, quantity: 1 });
+            items.push({ ...newItem, quantity: qtyToAdd });
         }
 
         const updatedBasket: CustomerBasket = {
@@ -48,27 +49,37 @@ export const useBasketStore = create<BasketState>((set, get) => ({
         set({ basket: updatedBasket });
 
         try {
-            await apiClient.post('/api/basket', updatedBasket);
+            await apiClient.post('/api/basket/items', {
+                productId: newItem.productId,
+                productName: newItem.name,
+                sku: newItem.sku,
+                unitPrice: newItem.price,
+                quantity: qtyToAdd
+            });
         } catch {
-            set({ error: 'Ошибка синхронизации корзины с сервером.' });
+            set({ error: 'Ошибка добавления товара в корзину.' });
         }
     },
 
-    updateQuantity: async (productId, quantity) => {
+    updateQuantity: async (productId, quantity, price) => {
         const currentBasket = get().basket;
         if (!currentBasket) return;
 
-        const items = currentBasket.items
-            .map((item) => (item.productId === productId ? { ...item, quantity } : item))
-            .filter((item) => item.quantity > 0);
+        if (quantity <= 0) {
+            await get().removeItem(productId);
+            return;
+        }
 
-        const updatedBasket = { ...currentBasket, items };
-        set({ basket: updatedBasket });
+        const items = currentBasket.items.map((item) =>
+            item.productId === productId ? { ...item, quantity, price } : item
+        );
+
+        set({ basket: { ...currentBasket, items } });
 
         try {
-            await apiClient.post('/api/basket', updatedBasket);
+            await apiClient.put(`/api/basket/items/${productId}`, { quantity, price });
         } catch {
-            set({ error: 'Ошибка обновления количества товара.' });
+            set({ error: 'Ошибка обновления количества.' });
         }
     },
 

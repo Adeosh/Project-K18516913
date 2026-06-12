@@ -1,4 +1,4 @@
-﻿using Krepim.Payment.Application.Models;
+﻿using Krepim.Payment.Application.Models.Exchange;
 
 namespace Krepim.Payment.Application.Interfaces
 {

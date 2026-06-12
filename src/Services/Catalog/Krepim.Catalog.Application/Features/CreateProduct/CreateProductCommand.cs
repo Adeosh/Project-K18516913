@@ -1,13 +1,20 @@
-﻿using Krepim.SharedKernel.Results;
+﻿using Krepim.Catalog.Application.Models.DTOs;
+using Krepim.Catalog.Domain.Enums;
+using Krepim.SharedKernel.Results;
 using MediatR;
 
 namespace Krepim.Catalog.Application.Features.CreateProduct
 {
     public sealed record CreateProductCommand(
-        string Name, 
-        string Description, 
-        string Sku, 
+        string Name,
+        string Description,
+        string Sku,
         decimal Price,
         Guid CategoryId,
-        string[] ImageUrls) : IRequest<Result<Guid>>;
+        string[]? ImageUrls,
+        string? Standard,
+        SalesUnit SalesUnit,
+        decimal SalesStep,
+        Dictionary<string, string>? Attributes,
+        List<PriceTierDto>? PriceTiers) : IRequest<Result<Guid>>;
 }

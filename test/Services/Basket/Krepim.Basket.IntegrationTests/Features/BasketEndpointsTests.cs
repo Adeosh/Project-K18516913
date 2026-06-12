@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Krepim.Basket.Application.Models;
+using Krepim.Basket.Application.Models.Exchange;
 using Krepim.Basket.Domain.Entities;
 using Krepim.Basket.IntegrationTests.Infrastructure;
 using Krepim.Testing.Shared.Authentication;

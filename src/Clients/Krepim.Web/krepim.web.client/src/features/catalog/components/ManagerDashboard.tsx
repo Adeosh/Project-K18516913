@@ -1,15 +1,19 @@
 import { useState, useEffect } from 'react';
 import type { FC, SyntheticEvent } from 'react';
 import { managerCatalogApi, type CreateProductCommand, type CategoryDto } from '../api/managerCatalogApi';
-import type { Product } from '../types/product';
+import { SalesUnit, type Product, type PriceTierDto } from '../types/product';
 
 export const ManagerDashboard: FC = () => {
     const [categories, setCategories] = useState<CategoryDto[]>([]);
     const [products, setProducts] = useState<Product[]>([]);
 
     const [formData, setFormData] = useState<CreateProductCommand>({
-        name: '', sku: '', price: 0, description: '', categoryId: '', imageUrls: []
+        name: '', sku: '', price: 0, description: '', categoryId: '', imageUrls: [],
+        standard: '', salesUnit: SalesUnit.Pcs, salesStep: 1, attributes: {}, priceTiers: []
     });
+
+    const [attrList, setAttrList] = useState<{ k: string; v: string }[]>([]);
+    const [tierList, setTierList] = useState<PriceTierDto[]>([]);
 
     const [isCreateFormOpen, setIsCreateFormOpen] = useState(false);
     const [editingProductId, setEditingProductId] = useState<string | null>(null);
@@ -71,8 +75,27 @@ export const ManagerDashboard: FC = () => {
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: name === 'price' ? parseFloat(value) || 0 : value }));
+        const { name, value, type } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: type === 'number' ? (parseFloat(value) || 0) : value
+        }));
+    };
+
+    const addAttribute = () => setAttrList([...attrList, { k: '', v: '' }]);
+    const removeAttribute = (index: number) => setAttrList(attrList.filter((_, i) => i !== index));
+    const updateAttribute = (index: number, field: 'k' | 'v', value: string) => {
+        const newList = [...attrList];
+        newList[index][field] = value;
+        setAttrList(newList);
+    };
+
+    const addPriceTier = () => setTierList([...tierList, { minQuantity: 0, amount: 0, currency: 'RUB' }]);
+    const removePriceTier = (index: number) => setTierList(tierList.filter((_, i) => i !== index));
+    const updatePriceTier = (index: number, field: keyof PriceTierDto, value: number | string) => {
+        const newList = [...tierList];
+        newList[index] = { ...newList[index], [field]: value };
+        setTierList(newList);
     };
 
     const handleEditClick = (product: Product) => {
@@ -82,15 +105,27 @@ export const ManagerDashboard: FC = () => {
             price: product.price,
             description: product.description || '',
             categoryId: product.categoryId || categories[0]?.id || '',
-            imageUrls: product.imageUrls || []
+            imageUrls: product.imageUrls || [],
+            standard: product.standard || '',
+            salesUnit: product.salesUnit || SalesUnit.Pcs,
+            salesStep: product.salesStep || 1,
         });
+
+        setAttrList(Object.entries(product.attributes || {}).map(([k, v]) => ({ k, v })));
+        setTierList(product.priceTiers || []);
+
         setEditingProductId(product.id);
         setIsCreateFormOpen(true);
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     const resetForm = () => {
-        setFormData({ name: '', sku: '', price: 0, description: '', categoryId: categories[0]?.id || '', imageUrls: [] });
+        setFormData({
+            name: '', sku: '', price: 0, description: '', categoryId: categories[0]?.id || '', imageUrls: [],
+            standard: '', salesUnit: SalesUnit.Pcs, salesStep: 1
+        });
+        setAttrList([]);
+        setTierList([]);
         setEditingProductId(null);
         setIsCreateFormOpen(false);
         setError(null);
@@ -117,15 +152,11 @@ export const ManagerDashboard: FC = () => {
 
     const handleDeleteCategory = async (categoryId: string) => {
         if (!categoryId) return;
-
-        if (!window.confirm('Удалить эту категорию? (Товары в ней останутся, но категория будет скрыта)')) {
-            return;
-        }
+        if (!window.confirm('Удалить эту категорию? (Товары в ней останутся, но категория будет скрыта)')) return;
 
         try {
             await managerCatalogApi.deleteCategory(categoryId);
             await loadInitialData();
-
             if (formData.categoryId === categoryId) {
                 const catsData = await managerCatalogApi.getCategories();
                 setFormData(prev => ({ ...prev, categoryId: catsData[0]?.id || '' }));
@@ -141,7 +172,7 @@ export const ManagerDashboard: FC = () => {
         setError(null);
         try {
             const urls = await managerCatalogApi.uploadImages(e.target.files);
-            setFormData(prev => ({ ...prev, imageUrls: [...prev.imageUrls, ...urls] }));
+            setFormData(prev => ({ ...prev, imageUrls: [...(prev.imageUrls || []), ...urls] }));
         } catch (err) {
             setError('Ошибка загрузки изображений.');
         } finally {
@@ -151,7 +182,7 @@ export const ManagerDashboard: FC = () => {
     };
 
     const removeImage = (indexToRemove: number) => {
-        setFormData(prev => ({ ...prev, imageUrls: prev.imageUrls.filter((_, index) => index !== indexToRemove) }));
+        setFormData(prev => ({ ...prev, imageUrls: (prev.imageUrls || []).filter((_, index) => index !== indexToRemove) }));
     };
 
     const handleSubmit = async (e: SyntheticEvent) => {
@@ -161,16 +192,30 @@ export const ManagerDashboard: FC = () => {
             setError('Заполните обязательные поля');
             return;
         }
+
+        const finalAttributes: Record<string, string> = {};
+        attrList.forEach(a => {
+            if (a.k.trim() && a.v.trim()) {
+                finalAttributes[a.k.trim()] = a.v.trim();
+            }
+        });
+
+        const payload: CreateProductCommand = {
+            ...formData,
+            salesUnit: Number(formData.salesUnit),
+            attributes: finalAttributes,
+            priceTiers: tierList.filter(t => t.minQuantity > 0 && t.amount > 0)
+        };
+
         setIsSubmitting(true);
         try {
             if (editingProductId) {
-                await managerCatalogApi.updateProduct(editingProductId, formData);
+                await managerCatalogApi.updateProduct(editingProductId, payload);
             } else {
-                await managerCatalogApi.createProduct(formData);
+                await managerCatalogApi.createProduct(payload);
             }
 
             resetForm();
-
             setTimeout(() => {
                 setCurrentPage(1);
                 void fetchProductsList(1, searchQuery);
@@ -198,7 +243,6 @@ export const ManagerDashboard: FC = () => {
 
     const handleDeleteProduct = async (id: string) => {
         if (!window.confirm('Вы уверены, что хотите безвозвратно удалить этот товар?')) return;
-
         try {
             await managerCatalogApi.deleteProduct(id);
             setProducts(prev => prev.filter(p => p.id !== id));
@@ -214,7 +258,6 @@ export const ManagerDashboard: FC = () => {
 
     return (
         <div className="max-w-7xl mx-auto p-4 space-y-6 relative">
-
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-surface p-6 rounded-2xl border border-border shadow-sm">
                 <div>
                     <h2 className="text-2xl font-bold text-text">Управление каталогом</h2>
@@ -233,85 +276,138 @@ export const ManagerDashboard: FC = () => {
 
             {isCreateFormOpen && (
                 <section className={`p-6 rounded-2xl border-2 shadow-md animate-fadeIn ${editingProductId ? 'bg-orange-50/30 border-orange-200' : 'bg-accent/5 border-accent/20'}`}>
-                    <h3 className="text-lg font-bold text-text mb-6">
+                    <h3 className="text-xl font-bold text-text mb-6">
                         {editingProductId ? 'Редактирование товара' : 'Создание новой карточки товара'}
                     </h3>
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <div className="space-y-1.5">
-                                <label className="text-sm font-bold text-text-muted">Название товара</label>
-                                <input type="text" name="name" value={formData.name} onChange={handleChange} className="w-full px-4 py-3 bg-surface border border-border rounded-xl text-text focus:border-accent outline-none" />
-                            </div>
-                            <div className="space-y-1.5">
-                                <label className="text-sm font-bold text-text-muted">Артикул</label>
-                                <input type="text" name="sku" value={formData.sku} onChange={handleChange} disabled={!!editingProductId} className="w-full px-4 py-3 bg-surface border border-border rounded-xl text-text focus:border-accent outline-none disabled:opacity-50" title={editingProductId ? "Артикул нельзя изменить" : ""} />
-                            </div>
-                            <div className="space-y-1.5">
-                                <label className="text-sm font-bold text-text-muted">Цена (руб.)</label>
-                                <input type="number" name="price" value={formData.price || ''} onChange={handleChange} className="w-full px-4 py-3 bg-surface border border-border rounded-xl text-text focus:border-accent outline-none" />
-                            </div>
-                            <div className="space-y-1.5">
-                                <label className="text-sm font-bold text-text-muted">Категория</label>
-                                <div className="flex gap-2">
-                                    <select
-                                        name="categoryId"
-                                        value={formData.categoryId}
-                                        onChange={handleChange}
-                                        className="flex-1 px-4 py-3 bg-surface border border-border rounded-xl text-text focus:border-accent outline-none cursor-pointer"
-                                    >
-                                        {categories.length === 0 ? <option value="" disabled>Нет категорий</option> : categories.map(cat => <option key={cat.id} value={cat.id}>{cat.name}</option>)}
-                                    </select>
 
-                                    <button
-                                        type="button"
-                                        onClick={() => setIsCategoryModalOpen(true)}
-                                        className="px-4 py-3 bg-surface border border-border rounded-xl text-text-muted hover:border-accent hover:text-accent font-bold transition-all"
-                                        title="Создать категорию"
-                                    >
-                                        +
-                                    </button>
+                    {error && <div className="mb-6 p-4 bg-error/10 text-error rounded-xl border border-error/20 text-sm font-bold">{error}</div>}
 
-                                    <button
-                                        type="button"
-                                        onClick={() => handleDeleteCategory(formData.categoryId)}
-                                        disabled={!formData.categoryId || categories.length === 0}
-                                        className="px-4 py-3 bg-error/10 border border-error/20 text-error rounded-xl hover:bg-error/20 font-bold transition-all disabled:opacity-50"
-                                        title="Удалить выбранную категорию"
-                                    >
-                                        🗑️
-                                    </button>
+                    <form onSubmit={handleSubmit} className="space-y-8">
+                        <div className="space-y-4">
+                            <h4 className="font-bold text-text-muted uppercase text-xs tracking-wider">Базовая информация</h4>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div className="space-y-1.5">
+                                    <label className="text-sm font-bold text-text-muted">Название товара <span className="text-error">*</span></label>
+                                    <input type="text" name="name" value={formData.name} onChange={handleChange} className="w-full px-4 py-3 bg-surface border border-border rounded-xl text-text focus:border-accent outline-none" required />
+                                </div>
+                                <div className="space-y-1.5">
+                                    <label className="text-sm font-bold text-text-muted">Артикул <span className="text-error">*</span></label>
+                                    <input type="text" name="sku" value={formData.sku} onChange={handleChange} disabled={!!editingProductId} className="w-full px-4 py-3 bg-surface border border-border rounded-xl text-text focus:border-accent outline-none disabled:opacity-50" required />
+                                </div>
+                                <div className="space-y-1.5">
+                                    <label className="text-sm font-bold text-text-muted">Базовая цена (₽) <span className="text-error">*</span></label>
+                                    <input type="number" name="price" value={formData.price || ''} onChange={handleChange} className="w-full px-4 py-3 bg-surface border border-border rounded-xl text-text focus:border-accent outline-none" required min="0" step="0.01" />
+                                </div>
+                                <div className="space-y-1.5">
+                                    <label className="text-sm font-bold text-text-muted">Категория <span className="text-error">*</span></label>
+                                    <div className="flex gap-2">
+                                        <select name="categoryId" value={formData.categoryId} onChange={handleChange} className="flex-1 px-4 py-3 bg-surface border border-border rounded-xl text-text focus:border-accent outline-none cursor-pointer" required>
+                                            {categories.length === 0 ? <option value="" disabled>Нет категорий</option> : categories.map(cat => <option key={cat.id} value={cat.id}>{cat.name}</option>)}
+                                        </select>
+                                        <button type="button" onClick={() => setIsCategoryModalOpen(true)} className="px-4 py-3 bg-surface border border-border rounded-xl text-text-muted hover:border-accent hover:text-accent font-bold transition-all" title="Создать категорию">+</button>
+                                        <button type="button" onClick={() => handleDeleteCategory(formData.categoryId)} disabled={!formData.categoryId || categories.length === 0} className="px-4 py-3 bg-error/10 border border-error/20 text-error rounded-xl hover:bg-error/20 font-bold transition-all disabled:opacity-50" title="Удалить категорию">🗑️</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="space-y-3 p-5 border-2 border-dashed border-border rounded-xl bg-surface">
-                            <div className="flex justify-between items-center">
-                                <label className="text-sm font-bold text-text-muted">Изображения товара</label>
-                                <label className="cursor-pointer bg-bg border border-border px-4 py-2 rounded-lg hover:border-accent text-sm font-bold transition-all text-text">
-                                    {isUploading ? 'Загрузка...' : 'Выбрать файлы'}
-                                    <input type="file" multiple accept="image/*" onChange={handleImageUpload} className="hidden" disabled={isUploading} />
-                                </label>
+                        <div className="space-y-4 pt-4 border-t border-border/50">
+                            <h4 className="font-bold text-text-muted uppercase text-xs tracking-wider">Фасовка и стандарты</h4>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                                <div className="space-y-1.5">
+                                    <label className="text-sm font-bold text-text-muted">Стандарт (ГОСТ, DIN)</label>
+                                    <input type="text" name="standard" value={formData.standard || ''} onChange={handleChange} placeholder="Напр: DIN 933" className="w-full px-4 py-3 bg-surface border border-border rounded-xl text-text focus:border-accent outline-none" />
+                                </div>
+                                <div className="space-y-1.5">
+                                    <label className="text-sm font-bold text-text-muted">Ед. измерения</label>
+                                    <select name="salesUnit" value={formData.salesUnit} onChange={handleChange} className="w-full px-4 py-3 bg-surface border border-border rounded-xl text-text focus:border-accent outline-none cursor-pointer">
+                                        <option value={SalesUnit.Pcs}>Штуки (шт)</option>
+                                        <option value={SalesUnit.Pack}>Упаковки (упак)</option>
+                                        <option value={SalesUnit.Kg}>Килограммы (кг)</option>
+                                    </select>
+                                </div>
+                                <div className="space-y-1.5">
+                                    <label className="text-sm font-bold text-text-muted">Шаг добавления (кратность)</label>
+                                    <input type="number" name="salesStep" value={formData.salesStep || ''} onChange={handleChange} className="w-full px-4 py-3 bg-surface border border-border rounded-xl text-text focus:border-accent outline-none" min="0.001" step="0.001" />
+                                </div>
                             </div>
-                            {formData.imageUrls.length > 0 && (
-                                <div className="flex gap-4 overflow-x-auto py-2">
-                                    {formData.imageUrls.map((url, idx) => (
-                                        <div key={idx} className="relative w-24 h-24 flex-shrink-0 border border-border rounded-lg overflow-hidden group">
-                                            <img src={url} alt="Preview" className="w-full h-full object-cover" />
-                                            <button type="button" onClick={() => removeImage(idx)} className="absolute top-1 right-1 bg-red-500 text-white w-5 h-5 rounded-full flex items-center justify-center text-xs">✕</button>
+                        </div>
+
+                        <div className="space-y-4 pt-4 border-t border-border/50">
+                            <div className="flex justify-between items-center">
+                                <h4 className="font-bold text-text-muted uppercase text-xs tracking-wider">Оптовые цены</h4>
+                                <button type="button" onClick={addPriceTier} className="text-xs bg-bg border border-border px-3 py-1.5 rounded-lg font-bold hover:text-accent hover:border-accent transition-colors">+ Добавить уровень цен</button>
+                            </div>
+                            {tierList.length === 0 ? (
+                                <p className="text-sm text-text-muted italic">Оптовые цены не заданы. Будет использоваться базовая цена.</p>
+                            ) : (
+                                <div className="space-y-3">
+                                    {tierList.map((tier, idx) => (
+                                        <div key={idx} className="flex gap-3 items-center bg-surface p-3 border border-border rounded-xl">
+                                            <div className="flex-1 space-y-1">
+                                                <label className="text-xs font-bold text-text-muted">От кол-ва</label>
+                                                <input type="number" value={tier.minQuantity || ''} onChange={(e) => updatePriceTier(idx, 'minQuantity', parseFloat(e.target.value) || 0)} className="w-full px-3 py-2 bg-bg border border-border rounded-lg text-sm outline-none focus:border-accent" min="1" placeholder="Напр: 1000" />
+                                            </div>
+                                            <div className="flex-1 space-y-1">
+                                                <label className="text-xs font-bold text-text-muted">Цена за ед.</label>
+                                                <input type="number" value={tier.amount || ''} onChange={(e) => updatePriceTier(idx, 'amount', parseFloat(e.target.value) || 0)} className="w-full px-3 py-2 bg-bg border border-border rounded-lg text-sm outline-none focus:border-accent" min="0" step="0.01" placeholder="Напр: 1.50" />
+                                            </div>
+                                            <button type="button" onClick={() => removePriceTier(idx)} className="mt-5 w-10 h-10 flex items-center justify-center bg-error/10 text-error rounded-lg hover:bg-error hover:text-surface transition-colors">✕</button>
                                         </div>
                                     ))}
                                 </div>
                             )}
                         </div>
 
-                        <div className="space-y-1.5">
-                            <label className="text-sm font-bold text-text-muted">Описание</label>
-                            <textarea name="description" value={formData.description} onChange={handleChange} rows={3} className="w-full px-4 py-3 bg-surface border border-border rounded-xl text-text focus:border-accent outline-none resize-none" />
+                        <div className="space-y-4 pt-4 border-t border-border/50">
+                            <div className="flex justify-between items-center">
+                                <h4 className="font-bold text-text-muted uppercase text-xs tracking-wider">Характеристики</h4>
+                                <button type="button" onClick={addAttribute} className="text-xs bg-bg border border-border px-3 py-1.5 rounded-lg font-bold hover:text-accent hover:border-accent transition-colors">+ Добавить свойство</button>
+                            </div>
+                            {attrList.length === 0 ? (
+                                <p className="text-sm text-text-muted italic">Характеристики не заданы.</p>
+                            ) : (
+                                <div className="space-y-3">
+                                    {attrList.map((attr, idx) => (
+                                        <div key={idx} className="flex gap-3">
+                                            <input type="text" value={attr.k} onChange={(e) => updateAttribute(idx, 'k', e.target.value)} placeholder="Свойство (напр. Диаметр)" className="flex-1 px-4 py-2 bg-surface border border-border rounded-xl text-sm outline-none focus:border-accent" />
+                                            <input type="text" value={attr.v} onChange={(e) => updateAttribute(idx, 'v', e.target.value)} placeholder="Значение (напр. M8)" className="flex-1 px-4 py-2 bg-surface border border-border rounded-xl text-sm outline-none focus:border-accent" />
+                                            <button type="button" onClick={() => removeAttribute(idx)} className="w-10 h-10 flex items-center justify-center bg-error/10 text-error rounded-xl hover:bg-error hover:text-surface transition-colors">✕</button>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
 
-                        <div className="flex justify-end gap-3">
+                        <div className="space-y-4 pt-4 border-t border-border/50">
+                            <h4 className="font-bold text-text-muted uppercase text-xs tracking-wider">Медиа и Описание</h4>
+
+                            <div className="space-y-3 p-5 border-2 border-dashed border-border rounded-xl bg-surface">
+                                <div className="flex justify-between items-center">
+                                    <label className="text-sm font-bold text-text-muted">Изображения товара</label>
+                                    <label className="cursor-pointer bg-bg border border-border px-4 py-2 rounded-lg hover:border-accent text-sm font-bold transition-all text-text">
+                                        {isUploading ? 'Загрузка...' : 'Выбрать файлы'}
+                                        <input type="file" multiple accept="image/*" onChange={handleImageUpload} className="hidden" disabled={isUploading} />
+                                    </label>
+                                </div>
+                                {(formData.imageUrls || []).length > 0 && (
+                                    <div className="flex gap-4 overflow-x-auto py-2">
+                                        {(formData.imageUrls || []).map((url, idx) => (
+                                            <div key={idx} className="relative w-24 h-24 flex-shrink-0 border border-border rounded-lg overflow-hidden group">
+                                                <img src={url} alt="Preview" className="w-full h-full object-cover" />
+                                                <button type="button" onClick={() => removeImage(idx)} className="absolute top-1 right-1 bg-error text-surface w-5 h-5 rounded-full flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-opacity">✕</button>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+
+                            <textarea name="description" value={formData.description} onChange={handleChange} rows={4} placeholder="Подробное описание товара..." className="w-full px-4 py-3 bg-surface border border-border rounded-xl text-text focus:border-accent outline-none resize-none" />
+                        </div>
+
+                        <div className="flex justify-end gap-3 pt-4 border-t border-border/50">
                             <button type="button" onClick={resetForm} className="px-6 py-3 border border-border rounded-xl text-sm font-bold hover:bg-bg transition-colors">Отмена</button>
-                            <button type="submit" disabled={isSubmitting || isUploading} className={`px-8 py-3 text-surface font-bold rounded-xl hover:shadow-md transition-all ${editingProductId ? 'bg-orange-500' : 'bg-accent'}`}>
+                            <button type="submit" disabled={isSubmitting || isUploading} className={`px-8 py-3 text-surface font-bold rounded-xl shadow-md hover:shadow-lg transition-all ${editingProductId ? 'bg-orange-500 hover:bg-orange-600' : 'bg-accent hover:bg-accent/90'}`}>
                                 {isSubmitting ? 'Сохранение...' : (editingProductId ? 'Обновить товар' : 'Сохранить товар')}
                             </button>
                         </div>
@@ -364,7 +460,6 @@ export const ManagerDashboard: FC = () => {
                                             <button onClick={() => handleEditClick(product)} className="text-xs bg-bg text-text border border-border px-3 py-1.5 rounded-lg hover:border-accent font-semibold transition-colors">
                                                 Ред.
                                             </button>
-
                                             {product.isActive ? (
                                                 <button onClick={() => handleToggleStatus(product.id, true)} className="text-xs bg-orange-50 text-orange-600 border border-orange-200 px-3 py-1.5 rounded-lg hover:bg-orange-100 font-semibold transition-colors">
                                                     Скрыть
@@ -374,7 +469,6 @@ export const ManagerDashboard: FC = () => {
                                                     Опубл.
                                                 </button>
                                             )}
-
                                             <button onClick={() => handleDeleteProduct(product.id)} className="text-xs bg-error/10 text-error px-3 py-1.5 rounded-lg hover:bg-error/20 font-semibold transition-colors">
                                                 Удалить
                                             </button>

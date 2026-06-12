@@ -1,7 +1,9 @@
 ﻿using Krepim.Catalog.Domain.Aggregates;
 using Krepim.SharedKernel.ValueObjects;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Text.Json;
 
 namespace Krepim.Catalog.Infrastructure.Database.Configurations
 {
@@ -28,7 +30,9 @@ namespace Krepim.Catalog.Infrastructure.Database.Configurations
                 .HasMaxLength(50)
                 .IsRequired();
 
-            builder.HasIndex(p => p.Sku).IsUnique();
+            builder.HasIndex(p => p.Sku)
+                .IsUnique()
+                .HasFilter("\"IsDeleted\" = false"); ;
 
             builder.ComplexProperty(p => p.Price, priceBuilder =>
             {
@@ -50,6 +54,32 @@ namespace Krepim.Catalog.Infrastructure.Database.Configurations
                .HasColumnName("ImageUrls")
                .HasColumnType("text[]")
                .IsRequired(false);
+
+            ValueComparer<IReadOnlyDictionary<string, string>> attributesComparer = new ValueComparer<IReadOnlyDictionary<string, string>>(
+                (c1, c2) => JsonSerializer.Serialize(c1, JsonSerializerOptions.Default) == JsonSerializer.Serialize(c2, JsonSerializerOptions.Default),
+                c => c == null ? 0 : JsonSerializer.Serialize(c, JsonSerializerOptions.Default).GetHashCode(),
+                c => JsonSerializer.Deserialize<Dictionary<string, string>>(JsonSerializer.Serialize(c, JsonSerializerOptions.Default), JsonSerializerOptions.Default) ?? new Dictionary<string, string>()
+            );
+
+            builder.Property(x => x.Attributes)
+                .HasColumnType("jsonb")
+                .HasConversion(
+                    v => JsonSerializer.Serialize(v, JsonSerializerOptions.Default),
+                    v => JsonSerializer.Deserialize<Dictionary<string, string>>(v, JsonSerializerOptions.Default) ?? new Dictionary<string, string>())
+                .Metadata.SetValueComparer(attributesComparer);
+
+            ValueComparer<IReadOnlyList<PriceTier>> priceTiersComparer = new ValueComparer<IReadOnlyList<PriceTier>>(
+                (c1, c2) => JsonSerializer.Serialize(c1, JsonSerializerOptions.Default) == JsonSerializer.Serialize(c2, JsonSerializerOptions.Default),
+                c => c == null ? 0 : JsonSerializer.Serialize(c, JsonSerializerOptions.Default).GetHashCode(),
+                c => JsonSerializer.Deserialize<List<PriceTier>>(JsonSerializer.Serialize(c, JsonSerializerOptions.Default), JsonSerializerOptions.Default) ?? new List<PriceTier>()
+            );
+
+            builder.Property(x => x.PriceTiers)
+                .HasColumnType("jsonb")
+                .HasConversion(
+                    v => JsonSerializer.Serialize(v, JsonSerializerOptions.Default),
+                    v => JsonSerializer.Deserialize<List<PriceTier>>(v, JsonSerializerOptions.Default) ?? new List<PriceTier>())
+                .Metadata.SetValueComparer(priceTiersComparer);
 
             builder.Ignore(p => p.DomainEvents);
         }

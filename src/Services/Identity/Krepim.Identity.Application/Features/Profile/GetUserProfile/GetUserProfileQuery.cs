@@ -1,4 +1,4 @@
-﻿using Krepim.Identity.Application.Models;
+﻿using Krepim.Identity.Application.Models.Exchange;
 using Krepim.SharedKernel.Results;
 using MediatR;
 

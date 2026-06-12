@@ -1,4 +1,5 @@
-﻿using Krepim.SharedKernel.Domain;
+﻿using Krepim.Catalog.Domain.Enums;
+using Krepim.SharedKernel.Domain;
 using Krepim.SharedKernel.Results;
 using Krepim.SharedKernel.ValueObjects;
 
@@ -13,18 +14,38 @@ namespace Krepim.Catalog.Domain.Aggregates
         public Guid CategoryId { get; private set; }
         public bool IsActive { get; private set; }
         public bool IsDeleted { get; private set; }
+        public string? Standard { get; private set; } // "DIN 933", "ГОСТ 7798-70"
+        public SalesUnit SalesUnit { get; private set; } // Шт, Кг, Упак
+        public decimal SalesStep { get; private set; } // Шаг (например, 0.5 для кг или 100 для заклепок в пачке)
+
+        private readonly Dictionary<string, string> _attributes = new();
+        public IReadOnlyDictionary<string, string> Attributes => _attributes;
+
+        private readonly List<PriceTier> _priceTiers = new();
+        public IReadOnlyList<PriceTier> PriceTiers => _priceTiers.AsReadOnly();
 
         private readonly List<string> _imageUrls = new();
         public IReadOnlyList<string> ImageUrls => _imageUrls.AsReadOnly();
 
-        private Product(Guid id, string name, string description, Sku sku, Money price, Guid categoryId)
-            : base(id)
+        private Product(
+            Guid id,
+            string name, 
+            string description, 
+            Sku sku, 
+            Money price, 
+            Guid categoryId,
+            string? standard,
+            SalesUnit salesUnit,
+            decimal salesStep) : base(id)
         {
             Name = name;
             Description = description;
             Sku = sku;
             Price = price;
             CategoryId = categoryId;
+            Standard = standard;
+            SalesUnit = salesUnit;
+            SalesStep = salesStep <= 0 ? 1 : salesStep;
             IsActive = false; // По умолчанию товар скрыт, пока менеджер не добавит фото/описание
         }
 
@@ -37,30 +58,62 @@ namespace Krepim.Catalog.Domain.Aggregates
         }
         #endregion
 
-        public static Result<Product> Create(string name, string description, string skuValue, decimal price, Guid categoryId)
+        public static Result<Product> Create(
+            string name,
+            string description,
+            string skuValue,
+            decimal price,
+            Guid categoryId,
+            string? standard,
+            SalesUnit salesUnit,
+            decimal salesStep)
         {
             var sku = Sku.Create(skuValue);
+
             if (sku is null)
-                return Result<Product>.Failure(new Error("Product.InvalidSku", "Invalid SKU format.", ErrorType.Validation));
+                return Result<Product>.Failure(new Error("Product.InvalidSku", "Неверный формат артикула.", ErrorType.Validation));
 
             if (price <= 0)
-                return Result<Product>.Failure(new Error("Product.InvalidPrice", "Price must be greater than zero.", ErrorType.Validation));
+                return Result<Product>.Failure(new Error("Product.InvalidPrice", "Цена должна быть больше нуля.", ErrorType.Validation));
 
-            var product = new Product(Guid.NewGuid(), name, description, sku, Money.Rubles(price), categoryId);
-
-            return product;
+            return new Product(Guid.NewGuid(), name, description, sku, Money.Rubles(price), categoryId, standard, salesUnit, salesStep);
         }
 
-        public void UpdateDetails(string name, string description, Guid categoryId)
+        public void UpdateDetails(
+            string name,
+            string description,
+            Guid categoryId,
+            string? standard,
+            SalesUnit salesUnit,
+            decimal salesStep)
         {
             Name = name;
             Description = description;
             CategoryId = categoryId;
+            Standard = standard;
+            SalesUnit = salesUnit;
+            SalesStep = salesStep <= 0 ? 1 : salesStep;
         }
 
         public void UpdatePrice(Money newPrice)
         {
             Price = newPrice;
+        }
+
+        public void SetAttributes(Dictionary<string, string> attributes)
+        {
+            _attributes.Clear();
+            foreach (var attr in attributes)
+            {
+                if (!string.IsNullOrWhiteSpace(attr.Key))
+                    _attributes[attr.Key] = attr.Value;
+            }
+        }
+
+        public void UpdatePriceTiers(IEnumerable<PriceTier> tiers)
+        {
+            _priceTiers.Clear();
+            _priceTiers.AddRange(tiers.OrderBy(t => t.MinQuantity));
         }
 
         public void SetImages(IEnumerable<string> imageUrls)

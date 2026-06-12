@@ -1,9 +1,9 @@
-﻿using Krepim.Catalog.Application.Models;
+﻿using Krepim.Catalog.Application.Models.DTOs;
 
 namespace Krepim.Catalog.Application.Interfaces
 {
     public interface ICategoryReadRepository
     {
-        Task<IReadOnlyList<CategoryModel>> GetAllActiveAsync(CancellationToken cancellationToken);
+        Task<IReadOnlyList<CategoryDto>> GetAllActiveAsync(CancellationToken cancellationToken);
     }
 }

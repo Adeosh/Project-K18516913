@@ -1,5 +1,5 @@
 ﻿using Krepim.Payment.Application.Interfaces;
-using Krepim.Payment.Application.Models;
+using Krepim.Payment.Application.Models.Exchange;
 using System.Net.Http.Json;
 
 namespace Krepim.Payment.Infrastructure.ExternalServices

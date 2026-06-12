@@ -1,4 +1,4 @@
-﻿using Krepim.Catalog.Application.Models;
+﻿using Krepim.Catalog.Application.Models.DTOs;
 using Krepim.EventBus.Events.Catalog;
 using MassTransit;
 using MongoDB.Driver;
@@ -10,9 +10,9 @@ namespace Krepim.Catalog.Infrastructure.Consumers
         public async Task Consume(ConsumeContext<ProductCreatedIntegrationEvent> context)
         {
             var message = context.Message;
-            var collection = mongoDatabase.GetCollection<ProductReadModel>("ProductsView");
+            var collection = mongoDatabase.GetCollection<ProductReadDto>("ProductsView");
 
-            var readModel = new ProductReadModel(
+            var readModel = new ProductReadDto(
                 Id: message.ProductId,
                 Name: message.Name,
                 Description: message.Description,
@@ -21,10 +21,15 @@ namespace Krepim.Catalog.Infrastructure.Consumers
                 Currency: message.PriceCurrency,
                 CategoryId: message.CategoryId,
                 IsActive: false,
-                ImageUrls: message.ImageUrls ?? Array.Empty<string>()
+                ImageUrls: message.ImageUrls ?? Array.Empty<string>(),
+                Standard: message.Standard,
+                SalesUnit: message.SalesUnit,
+                SalesStep: message.SalesStep,
+                Attributes: message.Attributes ?? new Dictionary<string, string>(),
+                PriceTiers: message.PriceTiers?.Select(pt => new PriceTierDto(pt.MinQuantity, pt.Amount, pt.Currency)).ToList() ?? new List<PriceTierDto>()
             );
 
-            var filter = Builders<ProductReadModel>.Filter.Eq(x => x.Id, readModel.Id);
+            var filter = Builders<ProductReadDto>.Filter.Eq(x => x.Id, readModel.Id);
 
             await collection.ReplaceOneAsync(filter, readModel, new ReplaceOptions { IsUpsert = true });
         }

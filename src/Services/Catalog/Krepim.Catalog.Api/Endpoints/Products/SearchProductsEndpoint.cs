@@ -1,5 +1,5 @@
 ﻿using Krepim.Catalog.Application.Features.SearchProduct;
-using Krepim.Catalog.Application.Models;
+using Krepim.Catalog.Application.Models.DTOs;
 using Krepim.SharedKernel.Results.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +28,7 @@ namespace Krepim.Catalog.Api.Endpoints.Products
             .AddEndpointFilter<ResultEndpointFilter>()
             .WithName("SearchProducts")
             .WithSummary("Быстрый поиск товаров (Read Model / MongoDB)")
-            .Produces<IReadOnlyList<ProductReadModel>>(StatusCodes.Status200OK);
+            .Produces<IReadOnlyList<ProductReadDto>>(StatusCodes.Status200OK);
         }
     }
 }

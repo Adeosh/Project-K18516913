@@ -7,7 +7,7 @@ export const MainLayout: FC = () => {
     const { user, logout } = useAuthStore();
     const basket = useBasketStore((state) => state.basket);
 
-    const totalItems = basket?.items.reduce((sum, item) => sum + item.quantity, 0) || 0;
+    const totalItems = basket?.items.length || 0;
 
     return (
         <div className="min-h-screen bg-bg text-text flex flex-col">

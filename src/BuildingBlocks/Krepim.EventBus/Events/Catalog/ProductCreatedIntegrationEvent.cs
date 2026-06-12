@@ -1,4 +1,5 @@
-﻿using Krepim.EventBus.Interfaces;
+﻿using Krepim.EventBus.Events.Catalog.Models;
+using Krepim.EventBus.Interfaces;
 
 namespace Krepim.EventBus.Events.Catalog
 {
@@ -10,7 +11,12 @@ namespace Krepim.EventBus.Events.Catalog
         decimal PriceAmount,
         string PriceCurrency,
         Guid CategoryId,
-        string[] ImageUrls) : IIntegrationEvent
+        string[] ImageUrls,
+        string? Standard,
+        int SalesUnit,
+        decimal SalesStep,
+        Dictionary<string, string> Attributes,
+        List<PriceTierModel> PriceTiers) : IIntegrationEvent
     {
         public Guid EventId { get; init; } = Guid.NewGuid();
         public DateTime OccurredOn { get; init; } = DateTime.UtcNow;

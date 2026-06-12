@@ -317,3 +317,4 @@ C:\Users\adeos\Source\Repos\Krepim\src\Clients\Krepim.Mobile\obj\Debug\net10.0-i
 C:\Users\adeos\Source\Repos\Krepim\src\Clients\Krepim.Mobile\obj\Debug\net10.0-ios\iossimulator-x64\Krepim.Mobile.pdb
 C:\Users\adeos\Source\Repos\Krepim\src\Clients\Krepim.Mobile\obj\Debug\net10.0-ios\iossimulator-x64\Krepim.Mobile.genruntimeconfig.cache
 C:\Users\adeos\Source\Repos\Krepim\src\Clients\Krepim.Mobile\obj\Debug\net10.0-ios\iossimulator-x64\ref\Krepim.Mobile.dll
+C:\Users\adeos\Source\Repos\Krepim\src\Clients\Krepim.Mobile\obj\Debug\net10.0-ios\iossimulator-x64\build-signature\signature

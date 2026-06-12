@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Krepim.EventBus.Events.Inventory;
 using Krepim.Payment.Application.Consumers;
-using Krepim.Payment.Application.Models;
+using Krepim.Payment.Application.Models.Exchange;
 using Krepim.Payment.Domain.Entities;
 using MassTransit;
 using Microsoft.Extensions.Logging;

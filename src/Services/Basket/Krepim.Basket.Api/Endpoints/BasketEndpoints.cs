@@ -3,7 +3,8 @@ using Krepim.Basket.Application.Features.Checkout;
 using Krepim.Basket.Application.Features.ClearBasket;
 using Krepim.Basket.Application.Features.GetBasket;
 using Krepim.Basket.Application.Features.RemoveItem;
-using Krepim.Basket.Application.Models;
+using Krepim.Basket.Application.Features.UpdateItemQuantity;
+using Krepim.Basket.Application.Models.Exchange;
 using Krepim.SharedKernel.Extensions;
 using Krepim.SharedKernel.Results.Filters;
 using MediatR;
@@ -35,6 +36,17 @@ namespace Krepim.Basket.Api.Endpoints
                     GetUserId(user), request.ProductId, request.ProductName, request.Sku, request.UnitPrice, request.Quantity), ct);
             })
             .WithName("AddItemToBasket");
+
+            group.MapPut("/items/{productId:guid}", async (
+                ClaimsPrincipal user,
+                Guid productId,
+                [FromBody] UpdateQuantityRequest request,
+                [FromServices] ISender sender,
+                CancellationToken ct) =>
+            {
+                return await sender.Send(new UpdateItemQuantityCommand(GetUserId(user), productId, request.Quantity, request.Price), ct);
+            })
+            .WithName("UpdateItemQuantity");
 
             group.MapDelete("/items/{productId:guid}", async (ClaimsPrincipal user, Guid productId, [FromServices] ISender sender, CancellationToken ct) =>
                 await sender.Send(new RemoveItemFromBasketCommand(GetUserId(user), productId), ct))

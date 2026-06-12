@@ -9,7 +9,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "Krepim.SharedKernel.Results.Result\u00601[[System.Collections.Generic.List\u00601[[Krepim.Ordering.Application.Models.OrderModel, Krepim.Ordering.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Type": "Krepim.SharedKernel.Results.Result\u00601[[System.Collections.Generic.List\u00601[[Krepim.Ordering.Application.Models.DTOs.OrderDto, Krepim.Ordering.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "application/json"
         ],
