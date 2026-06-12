@@ -3,9 +3,8 @@ import type { FC, FormEvent } from 'react';
 import { useProfileStore } from '../store/profileStore';
 import { AddressMapPicker } from '../../../components/ui/AddressMapPicker';
 import { profileApi } from '../api/profileApi';
-import { ManagerDashboard } from '../../catalog/components/ManagerDashboard';
 
-type Tab = 'profile' | 'orders' | 'catalog_crud';
+type Tab = 'profile' | 'orders';
 
 export const ProfileView: FC = () => {
     const { profile, fetchProfile, updateProfile, isLoading } = useProfileStore();
@@ -141,15 +140,6 @@ export const ProfileView: FC = () => {
                         >
                             История заказов
                         </button>
-
-                        {profile?.role === 'Manager' && (
-                            <button
-                                onClick={() => setActiveTab('catalog_crud')}
-                                className={`w-full text-left px-5 py-3 rounded-xl font-bold transition-all mt-4 border-2 border-accent/20 ${activeTab === 'catalog_crud' ? 'bg-accent text-surface shadow-md border-transparent' : 'bg-surface text-accent hover:bg-accent/10'}`}
-                            >
-                                Управление каталогом
-                            </button>
-                        )}
                     </nav>
                 </aside>
 
@@ -246,11 +236,6 @@ export const ProfileView: FC = () => {
                         </div>
                     )}
 
-                    {activeTab === 'catalog_crud' && (
-                        <div className="animate-fadeIn">
-                            <ManagerDashboard />
-                        </div>
-                    )}
                 </main>
             </div>
 

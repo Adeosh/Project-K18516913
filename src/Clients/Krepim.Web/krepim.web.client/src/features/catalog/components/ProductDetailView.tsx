@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import type { FC } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { catalogApi } from '../api/catalogApi';
+import { inventoryApi } from '../api/inventoryApi';
 import type { Product } from '../types/product';
 import { useBasketStore } from '../../basket/store/basketStore';
 
@@ -31,32 +32,39 @@ export const ProductDetailView: FC = () => {
 
     const [inputQty, setInputQty] = useState<string>('0');
     const [isPackageMode, setIsPackageMode] = useState(false);
+    const [availableStock, setAvailableStock] = useState<number | null>(null);
 
     const addItemToBasket = useBasketStore((state) => state.addItem);
 
     useEffect(() => {
         if (!id) return;
-        const loadProduct = async () => {
+        const loadData = async () => {
             setIsLoading(true);
             try {
-                const data = await catalogApi.getById(id);
-                data.priceTiers = parseJsonField(data.priceTiers ?? (data as any).PriceTiers, []);
-                data.attributes = parseJsonField(data.attributes ?? (data as any).Attributes, {});
+                const [catalogData, stockData] = await Promise.all([
+                    catalogApi.getById(id),
+                    inventoryApi.getStock(id)
+                ]);
 
-                setProduct(data);
-                if (data.imageUrls && data.imageUrls.length > 0) {
-                    setMainImage(data.imageUrls[0]);
+                catalogData.priceTiers = parseJsonField(catalogData.priceTiers ?? (catalogData as any).PriceTiers, []);
+                catalogData.attributes = parseJsonField(catalogData.attributes ?? (catalogData as any).Attributes, {});
+
+                setProduct(catalogData);
+                setAvailableStock(stockData);
+
+                if (catalogData.imageUrls && catalogData.imageUrls.length > 0) {
+                    setMainImage(catalogData.imageUrls[0]);
                 }
 
                 setInputQty('0');
                 setIsPackageMode(false);
             } catch (err) {
-                console.error('Ошибка загрузки товара', err);
+                console.error('Ошибка загрузки данных товара', err);
             } finally {
                 setIsLoading(false);
             }
         };
-        void loadProduct();
+        void loadData();
     }, [id]);
 
     const quantity = useMemo(() => {
@@ -117,13 +125,23 @@ export const ProductDetailView: FC = () => {
 
     const handleQuantityButtons = (delta: number) => {
         const startVal = quantity === 0 ? 0 : quantity;
-        const next = Math.max(0, startVal + delta * currentStep);
+        let next = Math.max(0, startVal + delta * currentStep);
+
+        if (availableStock !== null && next > availableStock) {
+            next = availableStock;
+        }
+
         setInputQty(String(next));
     };
 
     const handleInputBlur = () => {
         let val = parseInt(inputQty, 10);
         if (isNaN(val) || val < 0) val = 0;
+
+        if (availableStock !== null && val > availableStock) {
+            val = availableStock;
+        }
+
         setInputQty(String(val));
     };
 
@@ -181,6 +199,11 @@ export const ProductDetailView: FC = () => {
                             <span className="bg-bg text-text-muted px-3 py-1 rounded-lg text-sm font-mono font-bold border border-border">Арт: {product.sku}</span>
                             {product.standard && <span className="bg-sand/30 text-text-muted px-3 py-1 rounded-lg text-sm font-bold border border-border">{product.standard}</span>}
                             {product.brand && <span className="text-accent text-sm font-bold">{product.brand}</span>}
+                            {availableStock !== null && (
+                                <span className={`px-3 py-1 rounded-lg text-sm font-bold border ${availableStock > 0 ? 'bg-success/10 text-success border-success/20' : 'bg-error/10 text-error border-error/20'}`}>
+                                    {availableStock > 0 ? `В наличии: ${availableStock.toLocaleString('ru-RU')} ${getUnitText(product.salesUnit)}` : 'Нет в наличии'}
+                                </span>
+                            )}
                         </div>
 
                         <h1 className="text-3xl sm:text-4xl font-extrabold text-text mb-6 leading-tight">{product.name}</h1>
@@ -255,13 +278,13 @@ export const ProductDetailView: FC = () => {
 
                                     <button
                                         onClick={handleAddToCart}
-                                        disabled={quantity < 1}
+                                        disabled={quantity < 1 || availableStock === 0}
                                         className={`w-full sm:w-auto px-8 py-3.5 font-bold text-lg rounded-xl shadow-md transition-all 
-                                                ${quantity < 1
+                                                ${quantity < 1 || availableStock === 0
                                                 ? 'bg-border text-text-muted cursor-not-allowed opacity-60'
                                                 : 'bg-accent text-surface hover:shadow-lg hover:bg-accent/90 hover:-translate-y-0.5'}`}
-                                    >
-                                        В корзину
+                                        >
+                                        {availableStock === 0 ? 'Нет в наличии' : 'В корзину'}
                                     </button>
                                 </div>
                             </div>

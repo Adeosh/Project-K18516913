@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { MainLayout } from './components/Layout/MainLayout';
 import { ProtectedRoute } from './components/Router/ProtectedRoute';
 import { LoginForm } from './features/auth/components/LoginForm';
@@ -8,6 +8,9 @@ import { ProfileView } from './features/profile/components/ProfileView';
 import { CatalogView } from './features/catalog/components/CatalogView';
 import { BasketView } from './features/basket/components/BasketView';
 import { ProductDetailView } from './features/catalog/components/ProductDetailView';
+import { ManagerLayout } from './layouts/ManagerLayout';
+import { ManagerDashboard } from './features/catalog/components/ManagerDashboard';
+import { InventoryDashboard } from './features/catalog/components/InventoryDashboard';
 
 export const App: FC = () => {
     return (
@@ -28,7 +31,11 @@ export const App: FC = () => {
                             </ProtectedRoute>
                         }
                     />
-
+                    <Route path="/manager" element={<ManagerLayout />}>
+                        <Route index element={<Navigate to="catalog" replace />} />
+                        <Route path="catalog" element={<ManagerDashboard />} />
+                        <Route path="inventory" element={<InventoryDashboard />} />
+                    </Route>
                 </Route>
             </Routes>
         </BrowserRouter>

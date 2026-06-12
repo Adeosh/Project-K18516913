@@ -26,5 +26,33 @@
       "Inventory"
     ],
     "EndpointName": "GetStock"
+  },
+  {
+    "ContainingType": "Krepim.Inventory.Api.Endpoints.InventoryEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapInventoryEndpoints\u003Eb__0_1",
+    "RelativePath": "api/inventory/credit",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "Krepim.Inventory.Application.Features.CreditStock.CreditStockCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Krepim.SharedKernel.Results.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Inventory"
+    ],
+    "EndpointName": "CreditStock"
   }
 ]

@@ -1,4 +1,5 @@
-﻿using Krepim.Inventory.Application.Features.GetStock;
+﻿using Krepim.Inventory.Application.Features.CreditStock;
+using Krepim.Inventory.Application.Features.GetStock;
 using Krepim.SharedKernel.Results.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,15 @@ namespace Krepim.Inventory.Api.Endpoints
                 return await sender.Send(new GetStockQuery(productId), ct);
             })
             .WithName("GetStock");
+
+            group.MapPost("/credit", async (
+                [FromBody] CreditStockCommand command,
+                [FromServices] ISender sender,
+                CancellationToken ct) =>
+            {
+                return await sender.Send(command, ct);
+            })
+            .WithName("CreditStock");
         }
     }
 }
