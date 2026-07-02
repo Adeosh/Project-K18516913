@@ -31,9 +31,9 @@ namespace Krepim.Ordering.Domain.Entities
             CreatedAt = DateTime.UtcNow;
         }
 
-        public static Order Create(Guid userId, Address shippingAddress)
+        public static Order Create(Guid id, Guid userId, Address shippingAddress)
         {
-            return new Order(Guid.NewGuid(), userId, shippingAddress);
+            return new Order(id, userId, shippingAddress);
         }
 
         public void AddOrderItem(Guid productId, decimal unitPrice, int quantity)

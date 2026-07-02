@@ -4473,6 +4473,11 @@
               "target": "Package",
               "version": "[8.5.9, )",
               "versionCentrallyManaged": true
+            },
+            "Net.Codecrete.QrCodeGenerator": {
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "versionCentrallyManaged": true
             }
           },
           "centralPackageVersions": {

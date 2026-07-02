@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using Krepim.EventBus.Events.Basket;
-using Krepim.Ordering.Application.Models;
+using Krepim.Ordering.Application.Models.DTOs;
 using Krepim.Ordering.IntegrationTests.Infrastructure;
 using Krepim.Testing.Shared.Authentication;
 using MassTransit.Testing;
@@ -27,6 +27,7 @@ namespace Krepim.Ordering.IntegrationTests.Features
             // Arrange
             var userId = Guid.Parse(TestAuthHandler.DefaultUserId);
             var productId = Guid.NewGuid();
+            var orderId = Guid.NewGuid();
 
             var checkoutItems = new List<BasketCheckoutItem>
             {
@@ -34,6 +35,7 @@ namespace Krepim.Ordering.IntegrationTests.Features
             };
 
             var integrationEvent = new BasketCheckoutIntegrationEvent(
+                orderId,
                 userId,
                 750.00m,
                 "Казань, ул.Баумана",
@@ -57,7 +59,7 @@ namespace Krepim.Ordering.IntegrationTests.Features
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            var orders = await response.Content.ReadFromJsonAsync<List<OrderModel>>(cancellationToken: TestContext.Current.CancellationToken);
+            var orders = await response.Content.ReadFromJsonAsync<List<OrderDto>>(cancellationToken: TestContext.Current.CancellationToken);
 
             orders.Should().NotBeNull();
             orders.Should().ContainSingle();

@@ -2,6 +2,7 @@ using Krepim.Basket.Api.Endpoints;
 using Krepim.Basket.Application;
 using Krepim.Basket.Infrastructure;
 using Krepim.SharedKernel.Exceptions;
+using Krepim.SharedKernel.Extensions;
 using Krepim.SharedKernel.Results.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,7 @@ builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
 builder.Services.AddOpenApi();
 
+builder.Services.AddKrepimJwtAuth(builder.Configuration);
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication();
 

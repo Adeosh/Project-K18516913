@@ -6,10 +6,10 @@
   },
   "servers": [
     {
-      "url": "https://localhost:51829"
+      "url": "https://localhost:53016"
     },
     {
-      "url": "http://localhost:51833"
+      "url": "http://localhost:53017"
     }
   ],
   "paths": {
@@ -29,6 +29,29 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/orders/{id}": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
@@ -118,6 +141,12 @@
             "items": {
               "$ref": "#/components/schemas/OrderItemDto"
             }
+          },
+          "qrCodeUrl": {
+            "type": [
+              "null",
+              "string"
+            ]
           }
         }
       },

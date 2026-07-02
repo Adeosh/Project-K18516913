@@ -61,7 +61,7 @@
       {
         "Type": "System.Void",
         "MediaTypes": [],
-        "StatusCode": 202
+        "StatusCode": 200
       },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",

@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import type { FC, FormEvent } from 'react';
+import { Link } from 'react-router-dom';
 import { useProfileStore } from '../store/profileStore';
 import { AddressMapPicker } from '../../../components/ui/AddressMapPicker';
 import { profileApi } from '../api/profileApi';
+import { orderApi, type OrderDto } from '../../ordering/api/orderApi';
 
 type Tab = 'profile' | 'orders';
 
@@ -29,6 +31,16 @@ export const ProfileView: FC = () => {
     const [isPasswordSuccess, setIsPasswordSuccess] = useState(false);
     const [isPasswordLoading, setIsPasswordLoading] = useState(false);
 
+    const [orders, setOrders] = useState<OrderDto[]>([]);
+    const [isOrdersLoading, setIsOrdersLoading] = useState(false);
+    const orderStatusMap: Record<string, { label: string, color: string }> = {
+        'Pending': { label: 'Ожидает обработки', color: 'bg-orange-100 text-orange-700 border-orange-200' },
+        'AwaitingValidation': { label: 'Проверка остатков', color: 'bg-blue-100 text-blue-700 border-blue-200' },
+        'Paid': { label: 'Оплачен', color: 'bg-green-100 text-green-700 border-green-200' },
+        'Shipped': { label: 'Отправлен', color: 'bg-purple-100 text-purple-700 border-purple-200' },
+        'Cancelled': { label: 'Отменен', color: 'bg-error/10 text-error border-error/20' }
+    };
+
     useEffect(() => {
         void fetchProfile();
     }, []);
@@ -47,6 +59,23 @@ export const ProfileView: FC = () => {
             setFlat(profile.defaultAddress?.flat || '');
         }
     }, [profile]);
+
+    useEffect(() => {
+        if (activeTab === 'orders') {
+            const fetchOrders = async () => {
+                setIsOrdersLoading(true);
+                try {
+                    const data = await orderApi.getMyOrders();
+                    setOrders(data);
+                } catch (err) {
+                    console.error('Ошибка загрузки заказов:', err);
+                } finally {
+                    setIsOrdersLoading(false);
+                }
+            };
+            void fetchOrders();
+        }
+    }, [activeTab]);
 
     const handlePhoneChange = (value: string) => {
         const digits = value.replace(/\D/g, '');
@@ -230,9 +259,58 @@ export const ProfileView: FC = () => {
                     )}
 
                     {activeTab === 'orders' && (
-                        <div>
+                        <div className="animate-fadeIn">
                             <h3 className="text-2xl font-bold text-text mb-6">История заказов</h3>
-                            <div className="text-center py-20 border-2 border-dashed border-border rounded-2xl text-text-muted font-medium">У вас пока нет заказов</div>
+
+                            {isOrdersLoading ? (
+                                <div className="text-center py-20 animate-pulse text-text-muted font-medium">Загрузка истории...</div>
+                            ) : orders.length === 0 ? (
+                                <div className="text-center py-20 border-2 border-dashed border-border rounded-2xl text-text-muted font-medium">
+                                    У вас пока нет заказов
+                                </div>
+                            ) : (
+                                <div className="space-y-6">
+                                    {orders.map((order) => {
+                                        const statusConfig = orderStatusMap[order.status] || { label: order.status, color: 'bg-bg text-text-muted border-border' };
+
+                                        return (
+                                            <div key={order.id} className="bg-surface border border-border rounded-2xl p-6 shadow-sm hover:border-border-focus transition-colors">
+                                                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 pb-4 border-b border-border/50">
+                                                    <div>
+                                                        <div className="text-xs text-text-muted font-bold mb-1">
+                                                            Заказ от {new Date(order.createdAt).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                                                        </div>
+                                                        <div className="font-mono text-sm font-semibold text-accent hover:underline">
+                                                            <Link to={`/order/${order.id}`}>
+                                                                #{order.id.split('-')[0].toUpperCase()}
+                                                            </Link>
+                                                        </div>
+                                                    </div>
+                                                    <span className={`px-3 py-1 rounded-lg text-xs font-bold border ${statusConfig.color}`}>
+                                                        {statusConfig.label}
+                                                    </span>
+                                                </div>
+
+                                                <div className="space-y-3 mb-4">
+                                                    <div className="text-sm text-text">
+                                                        <span className="text-text-muted font-medium">Адрес доставки:</span> {order.fullAddress} {order.flat ? `(Кв/Офис: ${order.flat})` : ''}
+                                                    </div>
+                                                    <div className="text-sm text-text">
+                                                        <span className="text-text-muted font-medium">Товаров:</span> {order.items.reduce((sum, item) => sum + item.quantity, 0)} шт.
+                                                    </div>
+                                                </div>
+
+                                                <div className="flex justify-end pt-4 border-t border-border/50">
+                                                    <div className="text-right">
+                                                        <div className="text-xs text-text-muted font-medium mb-0.5">Итого</div>
+                                                        <div className="text-xl font-extrabold text-text">{order.totalPrice.toLocaleString('ru-RU')} ₽</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            )}
                         </div>
                     )}
 

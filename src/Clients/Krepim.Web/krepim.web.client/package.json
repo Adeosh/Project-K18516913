@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@pbe/react-yandex-maps": "^1.2.5",
     "axios": "^1.7.9",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",

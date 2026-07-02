@@ -11,6 +11,7 @@ interface BasketState {
     updateQuantity: (productId: string, quantity: number, price: number) => Promise<void>;
     removeItem: (productId: string) => Promise<void>;
     clearBasket: () => void;
+    checkout: (addressData: { fullAddress: string; latitude: number; longitude: number; flat: string | null }) => Promise<void>;
 }
 
 export const useBasketStore = create<BasketState>((set, get) => ({
@@ -99,4 +100,18 @@ export const useBasketStore = create<BasketState>((set, get) => ({
     },
 
     clearBasket: () => set({ basket: null, error: null }),
+
+    checkout: async (addressData) => {
+        set({ isLoading: true, error: null });
+        try {
+            const response = await apiClient.post<{ orderId: string }>('/api/basket/checkout', addressData);
+            
+            set({ basket: null, isLoading: false });
+            
+            return response.data.orderId; 
+        } catch (err: any) {
+            set({ error: err.message || 'Ошибка', isLoading: false });
+            return null;
+        }
+    },
 }));

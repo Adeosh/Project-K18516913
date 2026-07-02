@@ -19,7 +19,7 @@ namespace Krepim.Ordering.Application.Consumers
             logger.LogInformation("Получено событие оформления заказа для пользователя {UserId}", message.UserId);
 
             var address = new Address(message.FullAddress, message.Latitude, message.Longitude, message.Flat);
-            var order = Order.Create(message.UserId, address);
+            var order = Order.Create(message.OrderId, message.UserId, address);
 
             foreach (var item in message.Items)
                 order.AddOrderItem(item.ProductId, item.UnitPrice, item.Quantity);

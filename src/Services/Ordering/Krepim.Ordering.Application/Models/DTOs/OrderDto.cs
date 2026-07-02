@@ -9,5 +9,6 @@
         double? Longitude,
         string? Flat,
         DateTime CreatedAt,
-        List<OrderItemDto> Items);
+        List<OrderItemDto> Items,
+        string? QrCodeUrl = null);
 }

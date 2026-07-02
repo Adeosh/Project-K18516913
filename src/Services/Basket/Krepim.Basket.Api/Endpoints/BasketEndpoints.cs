@@ -57,18 +57,20 @@ namespace Krepim.Basket.Api.Endpoints
             .WithName("ClearBasket");
 
             group.MapPost("/checkout", async (
-                ClaimsPrincipal user,
-                [FromBody] CheckoutRequest request,
-                [FromServices] ISender sender,
-                CancellationToken ct) =>
+            ClaimsPrincipal user,
+            [FromBody] CheckoutRequest request,
+            [FromServices] ISender sender,
+            CancellationToken ct) =>
             {
-                var result = await sender.Send(new CheckoutBasketCommand(
-                    GetUserId(user), request.FullAddress, request.Latitude, request.Longitude, request.Flat), ct);
+                var generatedOrderId = Guid.NewGuid();
 
-                return result.Match(() => Microsoft.AspNetCore.Http.Results.Accepted());
+                var result = await sender.Send(new CheckoutBasketCommand(
+                    GetUserId(user), generatedOrderId, request.FullAddress, request.Latitude, request.Longitude, request.Flat), ct);
+
+                return result.Match(() => Microsoft.AspNetCore.Http.Results.Ok(new { orderId = generatedOrderId }));
             })
             .WithName("CheckoutBasket")
-            .Produces(StatusCodes.Status202Accepted)
+            .Produces(StatusCodes.Status200OK)
             .ProducesProblem(StatusCodes.Status400BadRequest);
         }
 

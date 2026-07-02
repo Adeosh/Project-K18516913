@@ -31,6 +31,7 @@ namespace Krepim.Ordering.Application.Tests.Consumers
         {
             // Arrange
             var userId = Guid.NewGuid();
+            var orderId = Guid.NewGuid();
             var productId1 = Guid.NewGuid();
             var productId2 = Guid.NewGuid();
 
@@ -41,6 +42,7 @@ namespace Krepim.Ordering.Application.Tests.Consumers
             };
 
             var message = new BasketCheckoutIntegrationEvent(
+                orderId,
                 userId,
                 550.00m,
                 "Санкт-Петербург, Невский пр-кт",

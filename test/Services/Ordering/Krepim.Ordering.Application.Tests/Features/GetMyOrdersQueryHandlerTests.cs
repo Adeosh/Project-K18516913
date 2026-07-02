@@ -20,9 +20,10 @@ namespace Krepim.Ordering.Application.Tests.Features
         {
             // Arrange
             var userId = Guid.NewGuid();
+            var orderId = Guid.NewGuid();
             var address = new Address("Санкт-Петербург, Невский пр-кт", 10003.00, 104345.00, "33");
 
-            var order = Order.Create(userId, address);
+            var order = Order.Create(orderId, userId, address);
             order.AddOrderItem(Guid.NewGuid(), 200m, 3);
 
             var dbOrders = new List<Order> { order };

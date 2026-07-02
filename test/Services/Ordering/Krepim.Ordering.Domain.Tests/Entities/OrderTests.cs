@@ -15,9 +15,10 @@ namespace Krepim.Ordering.Domain.Tests.Entities
         {
             // Arrange
             var userId = Guid.NewGuid();
+            var orderId = Guid.NewGuid();
 
             // Act
-            var order = Order.Create(userId, _testAddress);
+            var order = Order.Create(orderId, userId, _testAddress);
 
             // Assert
             order.Id.Should().NotBeEmpty();
@@ -33,7 +34,7 @@ namespace Krepim.Ordering.Domain.Tests.Entities
         public void AddOrderItem_Should_AddItemAndCalculateTotalPriceCorrectly()
         {
             // Arrange
-            var order = Order.Create(Guid.NewGuid(), _testAddress);
+            var order = Order.Create(Guid.NewGuid(), Guid.NewGuid(), _testAddress);
             var product1 = Guid.NewGuid();
             var product2 = Guid.NewGuid();
 
@@ -55,7 +56,7 @@ namespace Krepim.Ordering.Domain.Tests.Entities
         public void AddOrderItem_Should_ThrowArgumentException_When_QuantityIsZeroOrNegative()
         {
             // Arrange
-            var order = Order.Create(Guid.NewGuid(), _testAddress);
+            var order = Order.Create(Guid.NewGuid(), Guid.NewGuid(), _testAddress);
 
             // Act
             Action actZero = () => order.AddOrderItem(Guid.NewGuid(), 100m, 0);
@@ -73,7 +74,7 @@ namespace Krepim.Ordering.Domain.Tests.Entities
         public void AddOrderItem_Should_ThrowInvalidOperationException_When_OrderStatusIsNotPending()
         {
             // Arrange
-            var order = Order.Create(Guid.NewGuid(), _testAddress);
+            var order = Order.Create(Guid.NewGuid(), Guid.NewGuid(), _testAddress);
             order.MarkAsPaid();
 
             // Act
@@ -88,7 +89,7 @@ namespace Krepim.Ordering.Domain.Tests.Entities
         public void MarkAsPaid_Should_ChangeStatusToPaid_When_OrderIsPending()
         {
             // Arrange
-            var order = Order.Create(Guid.NewGuid(), _testAddress);
+            var order = Order.Create(Guid.NewGuid(), Guid.NewGuid(), _testAddress);
 
             // Act
             order.MarkAsPaid();
@@ -101,7 +102,7 @@ namespace Krepim.Ordering.Domain.Tests.Entities
         public void MarkAsPaid_Should_ThrowInvalidOperationException_When_OrderIsCancelled()
         {
             // Arrange
-            var order = Order.Create(Guid.NewGuid(), _testAddress);
+            var order = Order.Create(Guid.NewGuid(), Guid.NewGuid(), _testAddress);
             order.Cancel();
 
             // Act
@@ -116,7 +117,7 @@ namespace Krepim.Ordering.Domain.Tests.Entities
         public void Cancel_Should_ChangeStatusToCancelled_When_OrderIsPending()
         {
             // Arrange
-            var order = Order.Create(Guid.NewGuid(), _testAddress);
+            var order = Order.Create(Guid.NewGuid(), Guid.NewGuid(), _testAddress);
 
             // Act
             order.Cancel();
@@ -129,7 +130,7 @@ namespace Krepim.Ordering.Domain.Tests.Entities
         public void Cancel_Should_ThrowInvalidOperationException_When_OrderIsAlreadyPaidOrShipped()
         {
             // Arrange
-            var orderPaid = Order.Create(Guid.NewGuid(), _testAddress);
+            var orderPaid = Order.Create(Guid.NewGuid(), Guid.NewGuid(), _testAddress);
             orderPaid.MarkAsPaid();
 
             // Act

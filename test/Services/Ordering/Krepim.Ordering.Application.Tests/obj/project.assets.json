@@ -1513,6 +1513,19 @@
           "lib/net6.0/Moq.dll": {}
         }
       },
+      "Net.Codecrete.QrCodeGenerator/2.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/QrCodeGenerator.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/QrCodeGenerator.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Newtonsoft.Json/13.0.3": {
         "type": "package",
         "compile": {
@@ -1903,7 +1916,8 @@
           "Krepim.EventBus": "1.0.0",
           "Krepim.Ordering.Domain": "1.0.0",
           "Krepim.SharedKernel": "1.0.0",
-          "MassTransit": "8.5.9"
+          "MassTransit": "8.5.9",
+          "Net.Codecrete.QrCodeGenerator": "2.1.0"
         },
         "compile": {
           "bin/placeholder/Krepim.Ordering.Application.dll": {}
@@ -4838,6 +4852,23 @@
         "readme.md"
       ]
     },
+    "Net.Codecrete.QrCodeGenerator/2.1.0": {
+      "sha512": "xqjXmZzBAytqpm+ONG+Y8ojM9GBE22lSc7jQrki40W14EutNmDoLSOd2i2hCOTaGvRAvQLbEN2vH/HDU+95wxw==",
+      "type": "package",
+      "path": "net.codecrete.qrcodegenerator/2.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net6.0/QrCodeGenerator.dll",
+        "lib/net6.0/QrCodeGenerator.xml",
+        "lib/netstandard2.0/QrCodeGenerator.dll",
+        "lib/netstandard2.0/QrCodeGenerator.xml",
+        "logo.png",
+        "net.codecrete.qrcodegenerator.2.1.0.nupkg.sha512",
+        "net.codecrete.qrcodegenerator.nuspec"
+      ]
+    },
     "Newtonsoft.Json/13.0.3": {
       "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
       "type": "package",
@@ -5820,5 +5851,17 @@
         }
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.OpenApi' 2.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-v5pm-xwqc-g5wc",
+      "libraryId": "Microsoft.OpenApi",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
 }

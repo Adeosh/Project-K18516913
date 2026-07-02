@@ -20,5 +20,30 @@
       "Orders"
     ],
     "EndpointName": "GetMyOrders"
+  },
+  {
+    "ContainingType": "Krepim.Ordering.Api.Endpoints.OrderEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapOrderEndpoints\u003Eb__0_1",
+    "RelativePath": "api/orders/{id:guid}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Orders"
+    ]
   }
 ]

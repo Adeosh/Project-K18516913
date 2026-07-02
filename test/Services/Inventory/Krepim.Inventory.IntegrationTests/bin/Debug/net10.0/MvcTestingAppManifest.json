@@ -1,0 +1,10 @@
+{
+  "Krepim.Aspire.ServiceDefaults, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\Aspire\\Krepim.Aspire.ServiceDefaults",
+  "Krepim.EventBus, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\BuildingBlocks\\Krepim.EventBus",
+  "Krepim.Inventory.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\Services\\Inventory\\Krepim.Inventory.Api",
+  "Krepim.Inventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\Services\\Inventory\\Krepim.Inventory.Application",
+  "Krepim.Inventory.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\Services\\Inventory\\Krepim.Inventory.Domain",
+  "Krepim.Inventory.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\Services\\Inventory\\Krepim.Inventory.Infrastructure",
+  "Krepim.SharedKernel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\BuildingBlocks\\Krepim.SharedKernel",
+  "Krepim.Testing.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\test\\Shared\\Krepim.Testing.Shared"
+}

@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using Krepim.EventBus.Events.Inventory;
-using Krepim.Inventory.Application.Models;
+using Krepim.Inventory.Application.Models.DTOs;
 using Krepim.Inventory.Domain.Entities;
 using Krepim.Inventory.Infrastructure.Database;
 using Krepim.Inventory.IntegrationTests.Infrastructure;
@@ -58,7 +58,7 @@ namespace Krepim.Inventory.IntegrationTests.Features
             response.IsSuccessStatusCode.Should().BeTrue($"Эндпоинт упал с ошибкой: {errorBody}");
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            var stockDto = await response.Content.ReadFromJsonAsync<StockModel>(cancellationToken: TestContext.Current.CancellationToken);
+            var stockDto = await response.Content.ReadFromJsonAsync<StockDto>(cancellationToken: TestContext.Current.CancellationToken);
 
             // Assert 2
             stockDto.Should().NotBeNull();

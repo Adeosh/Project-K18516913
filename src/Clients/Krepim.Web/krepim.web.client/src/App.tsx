@@ -11,6 +11,7 @@ import { ProductDetailView } from './features/catalog/components/ProductDetailVi
 import { ManagerLayout } from './layouts/ManagerLayout';
 import { ManagerDashboard } from './features/catalog/components/ManagerDashboard';
 import { InventoryDashboard } from './features/catalog/components/InventoryDashboard';
+import { OrderDetailView } from './features/ordering/components/OrderDetailView';
 
 export const App: FC = () => {
     return (
@@ -23,6 +24,7 @@ export const App: FC = () => {
                     <Route index element={<CatalogView />} />
                     <Route path="product/:id" element={<ProductDetailView />} />
                     <Route path="basket" element={<BasketView />} />
+                    <Route path="order/:id" element={<OrderDetailView />} />
                     <Route
                         path="profile"
                         element={
