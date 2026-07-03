@@ -23,6 +23,7 @@ namespace Krepim.Ordering.Infrastructure
             services.AddMassTransit(x =>
             {
                 x.AddConsumer<BasketCheckoutEventConsumer>();
+                x.AddConsumer<PaymentStatusChangedEventConsumer>();
 
                 x.UsingRabbitMq((context, cfg) =>
                 {

@@ -2542,6 +2542,9 @@
         }
       },
       "Krepim.EventBus/1.0.0": {
+        "dependencies": {
+          "Krepim.SharedKernel": "1.0.0"
+        },
         "runtime": {
           "Krepim.EventBus.dll": {
             "assemblyVersion": "1.0.0.0",

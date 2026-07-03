@@ -1,5 +1,5 @@
-﻿using Krepim.Ordering.Domain.Enums;
-using Krepim.SharedKernel.Domain;
+﻿using Krepim.SharedKernel.Domain;
+using Krepim.SharedKernel.Enums;
 using Krepim.SharedKernel.ValueObjects;
 
 namespace Krepim.Ordering.Domain.Entities
@@ -48,7 +48,13 @@ namespace Krepim.Ordering.Domain.Entities
         public void MarkAsPaid()
         {
             if (Status == OrderStatus.Cancelled)
-                throw new InvalidOperationException("Cannot pay for a cancelled order.");
+                throw new InvalidOperationException("Нельзя оплатить отмененный заказ.");
+
+            if (Status == OrderStatus.Shipped)
+                throw new InvalidOperationException("Нельзя оплатить заказ, который уже был отправлен.");
+
+            if (Status == OrderStatus.Paid)
+                return;
 
             Status = OrderStatus.Paid;
         }
@@ -59,6 +65,38 @@ namespace Krepim.Ordering.Domain.Entities
                 throw new InvalidOperationException("Cannot cancel an order that is already paid or shipped.");
 
             Status = OrderStatus.Cancelled;
+        }
+
+        public void HandlePaymentResult(PaymentStatus paymentStatus)
+        {
+            if (Status is OrderStatus.Cancelled or OrderStatus.Shipped)
+                return;
+
+            switch (paymentStatus)
+            {
+                case PaymentStatus.Pending:
+                    if (Status == OrderStatus.Pending)
+                        Status = OrderStatus.AwaitingValidation;
+                    break;
+
+                case PaymentStatus.Succeeded:
+                    if (Status is OrderStatus.Pending or OrderStatus.AwaitingValidation)
+                        MarkAsPaid();
+                    break;
+
+                case PaymentStatus.Failed:
+                    if (Status is OrderStatus.Pending or OrderStatus.AwaitingValidation)
+                        Cancel();
+                    break;
+
+                case PaymentStatus.Refunded:
+                    if (Status == OrderStatus.Paid)
+                        Cancel();
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(paymentStatus), paymentStatus, "Неизвестный статус оплаты");
+            }
         }
     }
 }

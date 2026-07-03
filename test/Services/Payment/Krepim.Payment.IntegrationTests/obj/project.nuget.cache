@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "qm+TZ0IDS5w=",
+  "dgSpecHash": "RhbRlE2M3Vc=",
   "success": true,
   "projectFilePath": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\test\\Services\\Payment\\Krepim.Payment.IntegrationTests\\Krepim.Payment.IntegrationTests.csproj",
   "expectedPackageFiles": [
@@ -122,7 +122,6 @@
     "C:\\Users\\adeos\\.nuget\\packages\\rabbitmq.client\\7.2.1\\rabbitmq.client.7.2.1.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\sharpziplib\\1.4.2\\sharpziplib.1.4.2.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\ssh.net\\2025.1.0\\ssh.net.2025.1.0.nupkg.sha512",
-    "C:\\Users\\adeos\\.nuget\\packages\\stripe.net\\51.1.0\\stripe.net.51.1.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\system.codedom\\6.0.0\\system.codedom.6.0.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\system.composition\\9.0.0\\system.composition.9.0.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\system.composition.attributedmodel\\9.0.0\\system.composition.attributedmodel.9.0.0.nupkg.sha512",
@@ -130,10 +129,8 @@
     "C:\\Users\\adeos\\.nuget\\packages\\system.composition.hosting\\9.0.0\\system.composition.hosting.9.0.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\system.composition.runtime\\9.0.0\\system.composition.runtime.9.0.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\system.composition.typedparts\\9.0.0\\system.composition.typedparts.9.0.0.nupkg.sha512",
-    "C:\\Users\\adeos\\.nuget\\packages\\system.configuration.configurationmanager\\9.0.0\\system.configuration.configurationmanager.9.0.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\system.diagnostics.eventlog\\10.0.8\\system.diagnostics.eventlog.10.0.8.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\system.identitymodel.tokens.jwt\\8.0.1\\system.identitymodel.tokens.jwt.8.0.1.nupkg.sha512",
-    "C:\\Users\\adeos\\.nuget\\packages\\system.security.cryptography.protecteddata\\9.0.0\\system.security.cryptography.protecteddata.9.0.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\system.threading.ratelimiting\\8.0.0\\system.threading.ratelimiting.8.0.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\testcontainers\\4.12.0\\testcontainers.4.12.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\testcontainers.mongodb\\4.12.0\\testcontainers.mongodb.4.12.0.nupkg.sha512",

@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using Krepim.Payment.Domain.Entities;
-using Krepim.Payment.Domain.Enums;
+using Krepim.SharedKernel.Enums;
 using Krepim.SharedKernel.Results;
 
 namespace Krepim.Payment.Domain.Tests.Entities

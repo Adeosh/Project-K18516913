@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using Krepim.Ordering.Domain.Entities;
-using Krepim.Ordering.Domain.Enums;
+using Krepim.SharedKernel.Enums;
 using Krepim.SharedKernel.ValueObjects;
 
 

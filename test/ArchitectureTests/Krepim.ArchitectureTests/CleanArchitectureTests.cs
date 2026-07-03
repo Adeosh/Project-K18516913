@@ -35,7 +35,7 @@ namespace Krepim.ArchitectureTests
             typeof(CheckoutBasketCommand).Assembly,
             typeof(GetStockQuery).Assembly,
             typeof(GetMyOrdersQuery).Assembly,
-            typeof(CompletePaymentCommand).Assembly
+            typeof(ProcessPaymentWebhookCommand).Assembly
         ];
 
         private static readonly string[] ApplicationNamespaces =

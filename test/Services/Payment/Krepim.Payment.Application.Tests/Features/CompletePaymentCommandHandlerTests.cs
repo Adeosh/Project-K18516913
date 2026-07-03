@@ -2,6 +2,7 @@
 using Krepim.EventBus.Events.Payment;
 using Krepim.Payment.Application.Features.CompletePayment;
 using Krepim.Payment.Domain.Entities;
+using Krepim.SharedKernel.Enums;
 using Krepim.SharedKernel.Results;
 using MassTransit;
 using Microsoft.Extensions.Logging;
@@ -11,16 +12,16 @@ namespace Krepim.Payment.Application.Tests.Features
 {
     public class CompletePaymentCommandHandlerTests : PaymentApplicationTestBase
     {
-        private readonly CompletePaymentCommandHandler _handler;
+        private readonly ProcessPaymentWebhookCommandHandler _handler;
         private readonly Mock<IPublishEndpoint> _publishEndpointMock;
-        private readonly Mock<ILogger<CompletePaymentCommandHandler>> _loggerMock;
+        private readonly Mock<ILogger<ProcessPaymentWebhookCommandHandler>> _loggerMock;
 
         public CompletePaymentCommandHandlerTests()
         {
             _publishEndpointMock = new Mock<IPublishEndpoint>();
-            _loggerMock = new Mock<ILogger<CompletePaymentCommandHandler>>();
+            _loggerMock = new Mock<ILogger<ProcessPaymentWebhookCommandHandler>>();
 
-            _handler = new CompletePaymentCommandHandler(
+            _handler = new ProcessPaymentWebhookCommandHandler(
                 PaymentRepositoryMock.Object,
                 UnitOfWorkMock.Object,
                 _publishEndpointMock.Object,
@@ -47,10 +48,10 @@ namespace Krepim.Payment.Application.Tests.Features
 
             // Assert
             result.IsSuccess.Should().BeTrue();
-            transaction.Status.Should().Be(Domain.Enums.PaymentStatus.Succeeded);
+            transaction.Status.Should().Be(PaymentStatus.Succeeded);
 
             _publishEndpointMock.Verify(x =>
-                x.Publish(It.Is<PaymentSucceededIntegrationEvent>(e => e.OrderId == orderId), It.IsAny<CancellationToken>()),
+                x.Publish(It.Is<PaymentStatusChangedIntegrationEvent>(e => e.OrderId == orderId), It.IsAny<CancellationToken>()),
                 Times.Once);
 
             UnitOfWorkMock.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
@@ -75,7 +76,7 @@ namespace Krepim.Payment.Application.Tests.Features
             result.Error.Type.Should().Be(ErrorType.NotFound);
             result.Error.Code.Should().Be("Payment.NotFound");
 
-            _publishEndpointMock.Verify(x => x.Publish(It.IsAny<PaymentSucceededIntegrationEvent>(), It.IsAny<CancellationToken>()), Times.Never);
+            _publishEndpointMock.Verify(x => x.Publish(It.IsAny<PaymentStatusChangedIntegrationEvent>(), It.IsAny<CancellationToken>()), Times.Never);
             UnitOfWorkMock.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Never);
         }
     }

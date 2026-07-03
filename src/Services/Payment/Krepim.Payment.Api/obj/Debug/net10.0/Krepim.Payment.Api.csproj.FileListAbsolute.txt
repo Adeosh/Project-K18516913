@@ -62,16 +62,13 @@ C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\bin\D
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\bin\Debug\net10.0\Polly.Extensions.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\bin\Debug\net10.0\Polly.RateLimiting.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\bin\Debug\net10.0\RabbitMQ.Client.dll
-C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\bin\Debug\net10.0\Stripe.net.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\bin\Debug\net10.0\System.CodeDom.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\bin\Debug\net10.0\System.Composition.AttributedModel.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\bin\Debug\net10.0\System.Composition.Convention.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\bin\Debug\net10.0\System.Composition.Hosting.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\bin\Debug\net10.0\System.Composition.Runtime.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\bin\Debug\net10.0\System.Composition.TypedParts.dll
-C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\bin\Debug\net10.0\System.Configuration.ConfigurationManager.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll
-C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\bin\Debug\net10.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\bin\Debug\net10.0\cs\Microsoft.CodeAnalysis.resources.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\bin\Debug\net10.0\de\Microsoft.CodeAnalysis.resources.dll
 C:\Users\adeos\Source\Repos\Krepim\src\Services\Payment\Krepim.Payment.Api\bin\Debug\net10.0\es\Microsoft.CodeAnalysis.resources.dll

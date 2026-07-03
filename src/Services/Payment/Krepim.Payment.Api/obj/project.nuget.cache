@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "FtgD5A5z8eI=",
+  "dgSpecHash": "yld+l7LI3Ng=",
   "success": true,
   "projectFilePath": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\Services\\Payment\\Krepim.Payment.Api\\Krepim.Payment.Api.csproj",
   "expectedPackageFiles": [
@@ -61,7 +61,6 @@
     "C:\\Users\\adeos\\.nuget\\packages\\polly.extensions\\8.4.2\\polly.extensions.8.4.2.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\polly.ratelimiting\\8.4.2\\polly.ratelimiting.8.4.2.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\rabbitmq.client\\7.2.1\\rabbitmq.client.7.2.1.nupkg.sha512",
-    "C:\\Users\\adeos\\.nuget\\packages\\stripe.net\\51.1.0\\stripe.net.51.1.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\system.codedom\\6.0.0\\system.codedom.6.0.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\system.composition\\9.0.0\\system.composition.9.0.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\system.composition.attributedmodel\\9.0.0\\system.composition.attributedmodel.9.0.0.nupkg.sha512",
@@ -69,9 +68,7 @@
     "C:\\Users\\adeos\\.nuget\\packages\\system.composition.hosting\\9.0.0\\system.composition.hosting.9.0.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\system.composition.runtime\\9.0.0\\system.composition.runtime.9.0.0.nupkg.sha512",
     "C:\\Users\\adeos\\.nuget\\packages\\system.composition.typedparts\\9.0.0\\system.composition.typedparts.9.0.0.nupkg.sha512",
-    "C:\\Users\\adeos\\.nuget\\packages\\system.configuration.configurationmanager\\9.0.0\\system.configuration.configurationmanager.9.0.0.nupkg.sha512",
-    "C:\\Users\\adeos\\.nuget\\packages\\system.identitymodel.tokens.jwt\\8.0.1\\system.identitymodel.tokens.jwt.8.0.1.nupkg.sha512",
-    "C:\\Users\\adeos\\.nuget\\packages\\system.security.cryptography.protecteddata\\9.0.0\\system.security.cryptography.protecteddata.9.0.0.nupkg.sha512"
+    "C:\\Users\\adeos\\.nuget\\packages\\system.identitymodel.tokens.jwt\\8.0.1\\system.identitymodel.tokens.jwt.8.0.1.nupkg.sha512"
   ],
   "logs": [
     {

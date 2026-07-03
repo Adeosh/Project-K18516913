@@ -10,7 +10,6 @@ namespace Krepim.Ordering.Infrastructure.Database.Repositories
         {
             return await dbContext.Orders
                 .Include(x => x.Items)
-                .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == id, ct);
         }
 

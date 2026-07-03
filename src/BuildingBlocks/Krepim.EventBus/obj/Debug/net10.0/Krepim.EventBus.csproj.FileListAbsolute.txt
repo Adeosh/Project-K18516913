@@ -10,3 +10,7 @@ C:\Users\adeos\Source\Repos\Krepim\src\BuildingBlocks\Krepim.EventBus\obj\Debug\
 C:\Users\adeos\Source\Repos\Krepim\src\BuildingBlocks\Krepim.EventBus\obj\Debug\net10.0\refint\Krepim.EventBus.dll
 C:\Users\adeos\Source\Repos\Krepim\src\BuildingBlocks\Krepim.EventBus\obj\Debug\net10.0\Krepim.EventBus.pdb
 C:\Users\adeos\Source\Repos\Krepim\src\BuildingBlocks\Krepim.EventBus\obj\Debug\net10.0\ref\Krepim.EventBus.dll
+C:\Users\adeos\Source\Repos\Krepim\src\BuildingBlocks\Krepim.EventBus\bin\Debug\net10.0\Krepim.SharedKernel.dll
+C:\Users\adeos\Source\Repos\Krepim\src\BuildingBlocks\Krepim.EventBus\bin\Debug\net10.0\Krepim.SharedKernel.pdb
+C:\Users\adeos\Source\Repos\Krepim\src\BuildingBlocks\Krepim.EventBus\obj\Debug\net10.0\Krepim.EventBus.csproj.AssemblyReference.cache
+C:\Users\adeos\Source\Repos\Krepim\src\BuildingBlocks\Krepim.EventBus\obj\Debug\net10.0\Krepim.E.71CE581E.Up2Date

@@ -3,6 +3,7 @@ import type { FC } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { orderApi, type OrderDto, type OrderItemDto } from '../api/orderApi';
 import { catalogApi } from '../../catalog/api/catalogApi';
+import { paymentApi } from '../../payment/api/paymentApi';
 import type { Product } from '../../catalog/types/product';
 
 const OrderItemCard: FC<{ item: OrderItemDto }> = ({ item }) => {
@@ -29,7 +30,6 @@ const OrderItemCard: FC<{ item: OrderItemDto }> = ({ item }) => {
                         <span className="text-[10px] text-text-muted font-medium">{isLoading ? '...' : 'Нет фото'}</span>
                     )}
                 </Link>
-
                 <div>
                     <Link to={`/product/${item.productId}`} className="font-bold text-text text-sm sm:text-base line-clamp-2 hover:text-accent transition-colors">
                         {displayName}
@@ -39,7 +39,6 @@ const OrderItemCard: FC<{ item: OrderItemDto }> = ({ item }) => {
                     </div>
                 </div>
             </div>
-
             <div className="text-right flex-shrink-0">
                 <div className="font-extrabold text-text text-base sm:text-lg">
                     {(item.quantity * item.unitPrice).toLocaleString('ru-RU')} ₽
@@ -54,9 +53,11 @@ export const OrderDetailView: FC = () => {
     const [order, setOrder] = useState<OrderDto | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
+    const [isPaymentLoading, setIsPaymentLoading] = useState(false);
+    const [paymentError, setPaymentError] = useState<string | null>(null);
+
     useEffect(() => {
         if (!id) return;
-
         let retries = 0;
         const maxRetries = 5;
         const retryDelay = 1500;
@@ -69,29 +70,66 @@ export const OrderDetailView: FC = () => {
             } catch (error) {
                 if (retries < maxRetries) {
                     retries++;
-                    console.log(`Заказ еще не создался в БД (Eventual Consistency). Попытка ретрая #${retries}...`);
                     setTimeout(fetchOrder, retryDelay);
                 } else {
-                    console.error("Ошибка загрузки заказа после всех попыток:", error);
                     setIsLoading(false);
                 }
             }
         };
-
         void fetchOrder();
     }, [id]);
 
-    if (isLoading) return <div className="text-center py-20 animate-pulse text-text-muted">Загрузка данных заказа...</div>;
+    const handlePayment = async () => {
+        if (!order) return;
+        setIsPaymentLoading(true);
+        setPaymentError(null);
 
+        let attempts = 0;
+        const maxAttempts = 6;
+        const intervalDelay = 1200;
+
+        const tryGetUrl = async () => {
+            try {
+                const paymentUrl = await paymentApi.getPaymentUrl(order.id);
+
+                if (paymentUrl) {
+                    if (paymentUrl.includes('/mock-pay')) {
+                        const urlObj = new URL(paymentUrl, window.location.origin);
+                        window.location.href = `${window.location.origin}/mock-pay${urlObj.search}`;
+                    } else {
+                        window.location.href = paymentUrl;
+                    }
+                } else {
+                    throw new Error("Ссылка не получена");
+                }
+            } catch (error: any) {
+                if (attempts < maxAttempts) {
+                    attempts++;
+                    console.log(`[Payment] Ожидаем ответа от брокера сообщений. Попытка #${attempts}...`);
+                    setTimeout(tryGetUrl, intervalDelay);
+                } else {
+                    console.error("Ошибка при получении ссылки на оплату:", error);
+                    setPaymentError("Платежная система пока недоступна. Пожалуйста, попробуйте нажать кнопку еще раз чуть позже.");
+                    setIsPaymentLoading(false);
+                }
+            }
+        };
+
+        void tryGetUrl();
+    };
+
+    if (isLoading) return <div className="text-center py-20 animate-pulse text-text-muted">Загрузка данных заказа...</div>;
     if (!order) return <div className="text-center py-20 text-error font-bold">Заказ не найден</div>;
 
     const statusMap: Record<string, string> = {
-        'Pending': 'Ожидает обработки',
+        'Pending': 'Ожидает оплаты',
         'AwaitingValidation': 'Проверка остатков',
         'Paid': 'Оплачен',
         'Shipped': 'Отправлен',
         'Cancelled': 'Отменен'
     };
+
+    const canBePaid = order.status === 'Pending' || order.status === 'AwaitingValidation';
 
     return (
         <div className="max-w-4xl mx-auto p-4 sm:p-6 mt-8 animate-fadeIn">
@@ -109,18 +147,38 @@ export const OrderDetailView: FC = () => {
                         </div>
 
                         <div className="bg-bg rounded-2xl p-5 border border-border/50 space-y-3">
-                            <div className="flex justify-between">
+                            <div className="flex justify-between items-center">
                                 <span className="text-text-muted font-medium">Статус:</span>
-                                <span className="font-bold text-accent">{statusMap[order.status] || order.status}</span>
+                                <span className={`font-bold px-3 py-1 rounded-lg text-sm ${order.status === 'Paid' ? 'bg-success/10 text-success' : 'bg-orange-100 text-orange-700'}`}>
+                                    {statusMap[order.status] || order.status}
+                                </span>
                             </div>
                             <div className="flex justify-between">
                                 <span className="text-text-muted font-medium">Дата заказа:</span>
                                 <span className="font-bold text-text">{new Date(order.createdAt).toLocaleDateString('ru-RU')}</span>
                             </div>
-                            <div className="flex justify-between border-t border-border/50 pt-3">
+                            <div className="flex justify-between border-t border-border/50 pt-3 items-center">
                                 <span className="text-text-muted font-medium">Итого к оплате:</span>
-                                <span className="text-xl font-extrabold text-text">{order.totalPrice.toLocaleString('ru-RU')} ₽</span>
+                                <span className="text-2xl font-black text-text">{order.totalPrice.toLocaleString('ru-RU')} ₽</span>
                             </div>
+
+                            {canBePaid && (
+                                <div className="pt-4 mt-4 border-t border-border/50">
+                                    <button
+                                        onClick={handlePayment}
+                                        disabled={isPaymentLoading}
+                                        className="w-full py-4 bg-accent text-surface font-bold text-lg rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all disabled:opacity-70 disabled:hover:translate-y-0"
+                                    >
+                                        {isPaymentLoading ? 'Переход к оплате...' : 'Перейти к оплате'}
+                                    </button>
+
+                                    {paymentError && (
+                                        <p className="text-error text-sm font-medium mt-3 text-center animate-fadeIn">
+                                            {paymentError}
+                                        </p>
+                                    )}
+                                </div>
+                            )}
                         </div>
 
                         <div>

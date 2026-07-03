@@ -1,5 +1,5 @@
-﻿using Krepim.Payment.Domain.Enums;
-using Krepim.SharedKernel.Domain;
+﻿using Krepim.SharedKernel.Domain;
+using Krepim.SharedKernel.Enums;
 using Krepim.SharedKernel.Results;
 using Error = Krepim.SharedKernel.Results.Error;
 
@@ -60,6 +60,40 @@ namespace Krepim.Payment.Domain.Entities
             PaymentUrl = paymentUrl;
         }
 
+        public Result HandleStatus(PaymentStatus status, string? errorMessage = null)
+        {
+            if (Status is PaymentStatus.Succeeded or PaymentStatus.Refunded)
+                return Result.Failure(new Error(
+                    "Payment.InvalidState",
+                    $"Платеж уже завершен в статусе {Status}.",
+                    ErrorType.Conflict));
+
+            return status switch
+            {
+                PaymentStatus.Pending => MarkAsPending(),
+                PaymentStatus.Succeeded => MarkAsSucceeded(),
+                PaymentStatus.Failed => MarkAsFailed(errorMessage ?? "Платеж отклонен."),
+                PaymentStatus.Refunded => MarkAsRefunded(),
+                _ => Result.Failure(new Error(
+                    "Payment.InvalidStatus",
+                    $"Неизвестный статус платежа: {status}.",
+                    ErrorType.Validation))
+            };
+        }
+
+        private Result MarkAsPending()
+        {
+            if (Status != PaymentStatus.Pending)
+            {
+                return Result.Failure(new Error(
+                    "Payment.InvalidState",
+                    $"Невозможно перевести платеж в Pending из статуса {Status}.",
+                    ErrorType.Conflict));
+            }
+
+            return Result.Success();
+        }
+
         public Result MarkAsSucceeded()
         {
             if (Status == PaymentStatus.Succeeded)
@@ -75,6 +109,7 @@ namespace Krepim.Payment.Domain.Entities
 
             Status = PaymentStatus.Succeeded;
             ProcessedAt = DateTime.UtcNow;
+            ErrorMessage = null;
             return Result.Success();
         }
 
@@ -90,6 +125,21 @@ namespace Krepim.Payment.Domain.Entities
 
             Status = PaymentStatus.Failed;
             ErrorMessage = error;
+            ProcessedAt = DateTime.UtcNow;
+            return Result.Success();
+        }
+
+        public Result MarkAsRefunded()
+        {
+            if (Status != PaymentStatus.Succeeded)
+            {
+                return Result.Failure(new Error(
+                    "Payment.InvalidState",
+                    $"Невозможно сделать возврат из статуса {Status}.",
+                    ErrorType.Conflict));
+            }
+
+            Status = PaymentStatus.Refunded;
             ProcessedAt = DateTime.UtcNow;
             return Result.Success();
         }

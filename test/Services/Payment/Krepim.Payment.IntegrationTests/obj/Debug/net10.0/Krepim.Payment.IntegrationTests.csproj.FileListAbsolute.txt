@@ -412,16 +412,13 @@ C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.Integrat
 C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.IntegrationTests\bin\Debug\net10.0\RabbitMQ.Client.dll
 C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.IntegrationTests\bin\Debug\net10.0\ICSharpCode.SharpZipLib.dll
 C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.IntegrationTests\bin\Debug\net10.0\Renci.SshNet.dll
-C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.IntegrationTests\bin\Debug\net10.0\Stripe.net.dll
 C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.IntegrationTests\bin\Debug\net10.0\System.CodeDom.dll
 C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.IntegrationTests\bin\Debug\net10.0\System.Composition.AttributedModel.dll
 C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.IntegrationTests\bin\Debug\net10.0\System.Composition.Convention.dll
 C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.IntegrationTests\bin\Debug\net10.0\System.Composition.Hosting.dll
 C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.IntegrationTests\bin\Debug\net10.0\System.Composition.Runtime.dll
 C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.IntegrationTests\bin\Debug\net10.0\System.Composition.TypedParts.dll
-C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.IntegrationTests\bin\Debug\net10.0\System.Configuration.ConfigurationManager.dll
 C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.IntegrationTests\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll
-C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.IntegrationTests\bin\Debug\net10.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.IntegrationTests\bin\Debug\net10.0\Testcontainers.dll
 C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.IntegrationTests\bin\Debug\net10.0\Testcontainers.MongoDb.dll
 C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.IntegrationTests\bin\Debug\net10.0\Testcontainers.PostgreSql.dll

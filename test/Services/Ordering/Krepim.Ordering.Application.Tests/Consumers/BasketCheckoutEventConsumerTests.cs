@@ -2,7 +2,7 @@
 using Krepim.EventBus.Events.Basket;
 using Krepim.Ordering.Application.Consumers;
 using Krepim.Ordering.Domain.Entities;
-using Krepim.Ordering.Domain.Enums;
+using Krepim.SharedKernel.Enums;
 using MassTransit;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -20,10 +20,14 @@ namespace Krepim.Ordering.Application.Tests.Consumers
             _loggerMock = new Mock<ILogger<BasketCheckoutEventConsumer>>();
             _consumeContextMock = new Mock<ConsumeContext<BasketCheckoutIntegrationEvent>>();
 
+            var publishEndpointMock = new Mock<IPublishEndpoint>();
+
             _consumer = new BasketCheckoutEventConsumer(
                 OrderRepositoryMock.Object,
                 UnitOfWorkMock.Object,
-                _loggerMock.Object);
+                publishEndpointMock.Object,
+                _loggerMock.Object
+            );
         }
 
         [Fact]

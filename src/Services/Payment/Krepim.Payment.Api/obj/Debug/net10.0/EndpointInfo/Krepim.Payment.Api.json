@@ -6,20 +6,30 @@
   },
   "servers": [
     {
-      "url": "https://localhost:53022"
+      "url": "https://localhost:56515"
     },
     {
-      "url": "http://localhost:53024"
+      "url": "http://localhost:56518"
     }
   ],
   "paths": {
-    "/api/payments/webhook": {
+    "/api/payments/webhook/mock": {
       "post": {
         "tags": [
           "Webhooks"
         ],
-        "summary": "Прием вебхуков от платежной системы Stripe",
-        "operationId": "StripeWebhook",
+        "summary": "Прием тестовых вебхуков для симуляции оплаты",
+        "operationId": "MockWebhook",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MockWebhookRequest"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -77,6 +87,35 @@
       },
       "ErrorType": {
         "type": "integer"
+      },
+      "MockWebhookRequest": {
+        "required": [
+          "transactionId",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "transactionId": {
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/PaymentStatus"
+          },
+          "errorMessage": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "PaymentStatus": {
+        "enum": [
+          "Pending",
+          "Succeeded",
+          "Failed",
+          "Refunded"
+        ]
       },
       "ResultOfstring": {
         "type": "object",

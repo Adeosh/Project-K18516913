@@ -34,7 +34,11 @@
           "net10.0": {
             "framework": "net10.0",
             "targetAlias": "net10.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\BuildingBlocks\\Krepim.SharedKernel\\Krepim.SharedKernel.csproj": {
+                "projectPath": "C:\\Users\\adeos\\Source\\Repos\\Krepim\\src\\BuildingBlocks\\Krepim.SharedKernel\\Krepim.SharedKernel.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -107,7 +111,6 @@
             "Scalar.Aspire": "0.9.37",
             "Serilog.AspNetCore": "10.0.0",
             "StackExchange.Redis": "2.13.1",
-            "Stripe.net": "51.1.0",
             "System.IdentityModel.Tokens.Jwt": "8.18.0",
             "Testcontainers": "4.12.0",
             "Testcontainers.MongoDb": "4.12.0",
@@ -568,7 +571,6 @@
             "Scalar.Aspire": "0.9.37",
             "Serilog.AspNetCore": "10.0.0",
             "StackExchange.Redis": "2.13.1",
-            "Stripe.net": "51.1.0",
             "System.IdentityModel.Tokens.Jwt": "8.18.0",
             "Testcontainers": "4.12.0",
             "Testcontainers.MongoDb": "4.12.0",
@@ -1142,7 +1144,6 @@
             "Scalar.Aspire": "0.9.37",
             "Serilog.AspNetCore": "10.0.0",
             "StackExchange.Redis": "2.13.1",
-            "Stripe.net": "51.1.0",
             "System.IdentityModel.Tokens.Jwt": "8.18.0",
             "Testcontainers": "4.12.0",
             "Testcontainers.MongoDb": "4.12.0",
@@ -1555,7 +1556,6 @@
             "Scalar.Aspire": "0.9.37",
             "Serilog.AspNetCore": "10.0.0",
             "StackExchange.Redis": "2.13.1",
-            "Stripe.net": "51.1.0",
             "System.IdentityModel.Tokens.Jwt": "8.18.0",
             "Testcontainers": "4.12.0",
             "Testcontainers.MongoDb": "4.12.0",
@@ -1995,7 +1995,6 @@
             "Scalar.Aspire": "0.9.37",
             "Serilog.AspNetCore": "10.0.0",
             "StackExchange.Redis": "2.13.1",
-            "Stripe.net": "51.1.0",
             "System.IdentityModel.Tokens.Jwt": "8.18.0",
             "Testcontainers": "4.12.0",
             "Testcontainers.MongoDb": "4.12.0",

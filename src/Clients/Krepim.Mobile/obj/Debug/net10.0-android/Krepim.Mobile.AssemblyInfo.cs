@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Krepim.Mobile")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+5684065b873a964053b34987072ae0eb27903526")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+53278f51ceef390840e686adff4c04c07593148e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Krepim.Mobile")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Krepim.Mobile")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

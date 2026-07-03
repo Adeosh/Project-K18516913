@@ -21,24 +21,7 @@ namespace Krepim.Payment.Infrastructure
 
             services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<PaymentDbContext>());
             services.AddScoped<IPaymentRepository, PaymentRepository>();
-
-
-            services.AddHttpClient<IPaymentGateway, StripePaymentService>(client =>
-            {
-                client.BaseAddress = new Uri(configuration["PaymentSettings:GatewayUrl"] ?? "https://api.stripe.com");
-                client.Timeout = TimeSpan.FromSeconds(10);
-            })
-            .AddStandardResilienceHandler(options =>
-            {
-                options.Retry.MaxRetryAttempts = 3;
-                options.Retry.Delay = TimeSpan.FromSeconds(2);
-                options.Retry.BackoffType = Polly.DelayBackoffType.Exponential;
-
-                options.CircuitBreaker.FailureRatio = 0.5;
-                options.CircuitBreaker.SamplingDuration = TimeSpan.FromSeconds(30);
-                options.CircuitBreaker.MinimumThroughput = 4;
-                options.CircuitBreaker.BreakDuration = TimeSpan.FromSeconds(15);
-            });
+            services.AddScoped<IPaymentGateway, MockPaymentService>();
 
             services.AddMassTransit(x =>
             {
