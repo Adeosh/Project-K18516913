@@ -1,0 +1,29 @@
+2026-07-06T06:29:50.2088868+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Version: 1.9.1+cb5afc3bb9bb01ebd75b57f89e8358b914ee2a49
+2026-07-06T06:29:50.2180489+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging mode: asynchronous
+2026-07-06T06:29:50.2189065+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging level: Information
+2026-07-06T06:29:50.2189098+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION CreateBuilderAsync entry time: 06:29:50.189
+2026-07-06T06:29:50.2189622+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION PID: 3504
+2026-07-06T06:29:50.2189906+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime information: win-x64 - .NET 10.0.8
+2026-07-06T06:29:50.2190038+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\10.0.8\System.Private.CoreLib.dll
+2026-07-06T06:29:50.2190105+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION IsDynamicCodeSupported: True
+2026-07-06T06:29:50.2190644+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Test module: C:\Users\adeos\Source\Repos\Krepim\test\Services\Ordering\Krepim.Ordering.Domain.Tests\bin\Debug\net10.0\Krepim.Ordering.Domain.Tests.dll
+2026-07-06T06:29:50.2191941+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Command line arguments: '--server --diagnostic --diagnostic-verbosity Information --diagnostic-output-directory C:\Users\adeos\Source\Repos\Krepim\test\Services\Ordering\Krepim.Ordering.Domain.Tests\bin\Debug\net10.0\Log --results-directory C:\Users\adeos\Source\Repos\Krepim\TestResults --client-port 53308'
+2026-07-06T06:29:50.2198285+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION TESTINGPLATFORM_DEFAULT_HANG_TIMEOUT: ''
+2026-07-06T06:29:50.2371245+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting RegisterEnvironmentVariablesConfigurationSource: 'True'
+2026-07-06T06:29:50.2488998+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting PlatformExitProcessOnUnhandledException: 'False', config file: False environment variable: 
+2026-07-06T06:29:50.4912019+00:00 Microsoft.Testing.Platform.Requests.TestHostTestFrameworkInvoker INFORMATION Test framework UID: '30ea7c6e-dd24-4152-a360-1387158cd41d' Version: '3.2.2' DisplayName: 'xUnit.net v3 Microsoft.Testing.Platform test framework' Description: 'xUnit.net v3 Microsoft.Testing.Platform test framework'
+2026-07-06T06:29:50.5000079+00:00 xUnit.net INFORMATION xUnit.net v3 In-Process Runner v3.2.2+728c1dce01 (64-bit .NET 10.0.8)
+2026-07-06T06:29:50.5412120+00:00 xUnit.net INFORMATION   Discovering: Krepim.Ordering.Domain.Tests
+2026-07-06T06:29:50.5770825+00:00 xUnit.net INFORMATION   Discovered:  Krepim.Ordering.Domain.Tests
+2026-07-06T06:29:50.6133245+00:00 xUnit.net INFORMATION   Starting:    Krepim.Ordering.Domain.Tests
+2026-07-06T06:29:51.2865805+00:00 xUnit.net ERROR     Krepim.Ordering.Domain.Tests.Entities.OrderTests.MarkAsPaid_Should_ThrowInvalidOperationException_When_OrderIsCancelled [FAIL]
+2026-07-06T06:29:51.2869150+00:00 xUnit.net INFORMATION       Expected the exception message to match the equivalent of "Cannot pay for a cancelled order.", but "Нельзя оплатить отмененный заказ." does not.
+2026-07-06T06:29:51.2873175+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-06T06:29:51.2876707+00:00 xUnit.net INFORMATION            at FluentAssertions.Specialized.ExceptionAssertions`1.AssertExceptionMessage(Action`1 messageAssertion)
+2026-07-06T06:29:51.2876862+00:00 xUnit.net INFORMATION            at FluentAssertions.Specialized.ExceptionAssertions`1.WithMessage(String expectedWildcardPattern, String because, Object[] becauseArgs)
+2026-07-06T06:29:51.2878753+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Ordering\Krepim.Ordering.Domain.Tests\Entities\OrderTests.cs(112,0): at Krepim.Ordering.Domain.Tests.Entities.OrderTests.MarkAsPaid_Should_ThrowInvalidOperationException_When_OrderIsCancelled()
+2026-07-06T06:29:51.2878896+00:00 xUnit.net INFORMATION            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+2026-07-06T06:29:51.2878953+00:00 xUnit.net INFORMATION            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+2026-07-06T06:29:51.3030945+00:00 xUnit.net INFORMATION   Finished:    Krepim.Ordering.Domain.Tests (ID = '90a5583ee1728665fd9eb322acb487c568101c20a301f21738e04171201cc42b')
+2026-07-06T06:29:51.3079801+00:00 xUnit.net INFORMATION === TEST EXECUTION SUMMARY ===
+2026-07-06T06:29:51.3117614+00:00 xUnit.net INFORMATION    Krepim.Ordering.Domain.Tests  Total: 8, Errors: 0, Failed: 1, Skipped: 0, Not Run: 0, Time: 0,698s

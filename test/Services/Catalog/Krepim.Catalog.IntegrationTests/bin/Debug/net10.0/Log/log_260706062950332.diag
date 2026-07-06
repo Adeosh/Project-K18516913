@@ -1,0 +1,75 @@
+2026-07-06T06:29:50.3399102+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Version: 1.9.1+cb5afc3bb9bb01ebd75b57f89e8358b914ee2a49
+2026-07-06T06:29:50.3504480+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging mode: asynchronous
+2026-07-06T06:29:50.3512974+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging level: Information
+2026-07-06T06:29:50.3513003+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION CreateBuilderAsync entry time: 06:29:50.318
+2026-07-06T06:29:50.3513645+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION PID: 7468
+2026-07-06T06:29:50.3513983+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime information: win-x64 - .NET 10.0.8
+2026-07-06T06:29:50.3514121+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\10.0.8\System.Private.CoreLib.dll
+2026-07-06T06:29:50.3514214+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION IsDynamicCodeSupported: True
+2026-07-06T06:29:50.3514793+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Test module: C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\bin\Debug\net10.0\Krepim.Catalog.IntegrationTests.dll
+2026-07-06T06:29:50.3515892+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Command line arguments: '--server --diagnostic --diagnostic-verbosity Information --diagnostic-output-directory C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\bin\Debug\net10.0\Log --results-directory C:\Users\adeos\Source\Repos\Krepim\TestResults --client-port 53325'
+2026-07-06T06:29:50.3523192+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION TESTINGPLATFORM_DEFAULT_HANG_TIMEOUT: ''
+2026-07-06T06:29:50.3920353+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting RegisterEnvironmentVariablesConfigurationSource: 'True'
+2026-07-06T06:29:50.4158025+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting PlatformExitProcessOnUnhandledException: 'False', config file: False environment variable: 
+2026-07-06T06:29:50.8532328+00:00 Microsoft.Testing.Platform.Requests.TestHostTestFrameworkInvoker INFORMATION Test framework UID: '30ea7c6e-dd24-4152-a360-1387158cd41d' Version: '3.2.2' DisplayName: 'xUnit.net v3 Microsoft.Testing.Platform test framework' Description: 'xUnit.net v3 Microsoft.Testing.Platform test framework'
+2026-07-06T06:29:50.8634459+00:00 xUnit.net INFORMATION xUnit.net v3 In-Process Runner v3.2.2+728c1dce01 (64-bit .NET 10.0.8)
+2026-07-06T06:29:50.9113862+00:00 xUnit.net INFORMATION   Discovering: Krepim.Catalog.IntegrationTests
+2026-07-06T06:29:50.9783448+00:00 xUnit.net INFORMATION   Discovered:  Krepim.Catalog.IntegrationTests
+2026-07-06T06:29:51.0072180+00:00 xUnit.net INFORMATION   Starting:    Krepim.Catalog.IntegrationTests
+2026-07-06T06:30:12.6271683+00:00 xUnit.net ERROR     Krepim.Catalog.IntegrationTests.Features.Products.ManagerEndpointsTests.UpdateProduct_Should_ReturnNoContent_WhenDataIsValid [FAIL]
+2026-07-06T06:30:12.6274854+00:00 xUnit.net INFORMATION       System.Text.Json.JsonException : The JSON value could not be converted to System.Guid. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+2026-07-06T06:30:12.6274916+00:00 xUnit.net INFORMATION       ---- System.InvalidOperationException : Cannot get the value of a token type 'StartObject' as a string.
+2026-07-06T06:30:12.6277354+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-06T06:30:12.6279416+00:00 xUnit.net INFORMATION            at System.Text.Json.ThrowHelper.ReThrowWithPath(ReadStack& state, Utf8JsonReader& reader, Exception ex)
+2026-07-06T06:30:12.6279519+00:00 xUnit.net INFORMATION            at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+2026-07-06T06:30:12.6279589+00:00 xUnit.net INFORMATION            at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.ContinueDeserialize[TReadBufferState,TStream](TReadBufferState& bufferState, JsonReaderState& jsonReaderState, ReadStack& readStack, T& value)
+2026-07-06T06:30:12.6279655+00:00 xUnit.net INFORMATION            at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.DeserializeAsync[TReadBufferState,TStream](TStream utf8Json, TReadBufferState bufferState, CancellationToken cancellationToken)
+2026-07-06T06:30:12.6279703+00:00 xUnit.net INFORMATION            at System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsyncCore[T](HttpContent content, JsonSerializerOptions options, CancellationToken cancellationToken)
+2026-07-06T06:30:12.6279803+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Features\Products\ManagerEndpointsTests.cs(57,0): at Krepim.Catalog.IntegrationTests.Features.Products.ManagerEndpointsTests.CreateTestProductAsync()
+2026-07-06T06:30:12.6279872+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Features\Products\ManagerEndpointsTests.cs(64,0): at Krepim.Catalog.IntegrationTests.Features.Products.ManagerEndpointsTests.UpdateProduct_Should_ReturnNoContent_WhenDataIsValid()
+2026-07-06T06:30:12.6279881+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-06T06:30:12.6279886+00:00 xUnit.net INFORMATION         ----- Inner Stack Trace -----
+2026-07-06T06:30:12.6279919+00:00 xUnit.net INFORMATION            at System.Text.Json.ThrowHelper.ThrowInvalidOperationException_ExpectedString(JsonTokenType tokenType)
+2026-07-06T06:30:12.6280022+00:00 xUnit.net INFORMATION            at System.Text.Json.Utf8JsonReader.TryGetGuid(Guid& value)
+2026-07-06T06:30:12.6280039+00:00 xUnit.net INFORMATION            at System.Text.Json.Utf8JsonReader.GetGuid()
+2026-07-06T06:30:12.6280095+00:00 xUnit.net INFORMATION            at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+2026-07-06T06:30:12.6280138+00:00 xUnit.net INFORMATION            at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+2026-07-06T06:30:12.6375386+00:00 xUnit.net ERROR     Krepim.Catalog.IntegrationTests.Features.Products.ManagerEndpointsTests.DeleteProduct_Should_ReturnNoContent_WhenProductExists [FAIL]
+2026-07-06T06:30:12.6375581+00:00 xUnit.net INFORMATION       System.Text.Json.JsonException : The JSON value could not be converted to System.Guid. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+2026-07-06T06:30:12.6375596+00:00 xUnit.net INFORMATION       ---- System.InvalidOperationException : Cannot get the value of a token type 'StartObject' as a string.
+2026-07-06T06:30:12.6376007+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-06T06:30:12.6376110+00:00 xUnit.net INFORMATION            at System.Text.Json.ThrowHelper.ReThrowWithPath(ReadStack& state, Utf8JsonReader& reader, Exception ex)
+2026-07-06T06:30:12.6376156+00:00 xUnit.net INFORMATION            at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+2026-07-06T06:30:12.6376222+00:00 xUnit.net INFORMATION            at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.ContinueDeserialize[TReadBufferState,TStream](TReadBufferState& bufferState, JsonReaderState& jsonReaderState, ReadStack& readStack, T& value)
+2026-07-06T06:30:12.6376294+00:00 xUnit.net INFORMATION            at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.DeserializeAsync[TReadBufferState,TStream](TStream utf8Json, TReadBufferState bufferState, CancellationToken cancellationToken)
+2026-07-06T06:30:12.6376345+00:00 xUnit.net INFORMATION            at System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsyncCore[T](HttpContent content, JsonSerializerOptions options, CancellationToken cancellationToken)
+2026-07-06T06:30:12.6376477+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Features\Products\ManagerEndpointsTests.cs(57,0): at Krepim.Catalog.IntegrationTests.Features.Products.ManagerEndpointsTests.CreateTestProductAsync()
+2026-07-06T06:30:12.6376578+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Features\Products\ManagerEndpointsTests.cs(119,0): at Krepim.Catalog.IntegrationTests.Features.Products.ManagerEndpointsTests.DeleteProduct_Should_ReturnNoContent_WhenProductExists()
+2026-07-06T06:30:12.6376631+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-06T06:30:12.6376664+00:00 xUnit.net INFORMATION         ----- Inner Stack Trace -----
+2026-07-06T06:30:12.6376704+00:00 xUnit.net INFORMATION            at System.Text.Json.ThrowHelper.ThrowInvalidOperationException_ExpectedString(JsonTokenType tokenType)
+2026-07-06T06:30:12.6376752+00:00 xUnit.net INFORMATION            at System.Text.Json.Utf8JsonReader.TryGetGuid(Guid& value)
+2026-07-06T06:30:12.6376771+00:00 xUnit.net INFORMATION            at System.Text.Json.Utf8JsonReader.GetGuid()
+2026-07-06T06:30:12.6376829+00:00 xUnit.net INFORMATION            at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+2026-07-06T06:30:12.6376872+00:00 xUnit.net INFORMATION            at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+2026-07-06T06:30:12.6895258+00:00 xUnit.net ERROR     Krepim.Catalog.IntegrationTests.Features.Products.CreateProductEndpointTests.CreateProduct_Should_ReturnBadRequest_WhenPriceIsInvalid [FAIL]
+2026-07-06T06:30:12.6895493+00:00 xUnit.net INFORMATION       Expected response.StatusCode to be HttpStatusCode.BadRequest {value: 400}, but found HttpStatusCode.Created {value: 201}.
+2026-07-06T06:30:12.6895515+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-06T06:30:12.6895619+00:00 xUnit.net INFORMATION            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+2026-07-06T06:30:12.6895754+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Features\Products\CreateProductEndpointTests.cs(196,0): at Krepim.Catalog.IntegrationTests.Features.Products.CreateProductEndpointTests.CreateProduct_Should_ReturnBadRequest_WhenPriceIsInvalid()
+2026-07-06T06:30:12.6895770+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-06T06:30:12.6897010+00:00 xUnit.net ERROR     Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.SearchProducts_Should_ReturnMatchingProducts [FAIL]
+2026-07-06T06:30:12.6897076+00:00 xUnit.net INFORMATION       Expected results!.Count to be greater than or equal to 2, but found 1.
+2026-07-06T06:30:12.6897099+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-06T06:30:12.6897147+00:00 xUnit.net INFORMATION            at FluentAssertions.Numeric.NumericAssertionsBase`3.BeGreaterThanOrEqualTo(T expected, String because, Object[] becauseArgs)
+2026-07-06T06:30:12.6897243+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Features\Products\ClientEndpointsTests.cs(190,0): at Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.SearchProducts_Should_ReturnMatchingProducts()
+2026-07-06T06:30:12.6897254+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-06T06:30:12.7004161+00:00 xUnit.net ERROR     Krepim.Catalog.IntegrationTests.Features.Products.CreateProductEndpointTests.CreateProduct_Should_ReturnCreated_WhenUserIsManagerAndDataIsValid [FAIL]
+2026-07-06T06:30:12.7004290+00:00 xUnit.net INFORMATION       Expected response.StatusCode to be HttpStatusCode.Created {value: 201}, but found HttpStatusCode.InternalServerError {value: 500}.
+2026-07-06T06:30:12.7004312+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-06T06:30:12.7004386+00:00 xUnit.net INFORMATION            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+2026-07-06T06:30:12.7004482+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Features\Products\CreateProductEndpointTests.cs(62,0): at Krepim.Catalog.IntegrationTests.Features.Products.CreateProductEndpointTests.CreateProduct_Should_ReturnCreated_WhenUserIsManagerAndDataIsValid()
+2026-07-06T06:30:12.7004492+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-06T06:30:13.6182628+00:00 xUnit.net INFORMATION   Finished:    Krepim.Catalog.IntegrationTests (ID = 'b6f6cfc01af6c8e8cdd5a6b6b4f1286fccd669accb960f34a17294a670ef0945')
+2026-07-06T06:30:13.6215548+00:00 xUnit.net INFORMATION === TEST EXECUTION SUMMARY ===
+2026-07-06T06:30:13.6245274+00:00 xUnit.net INFORMATION    Krepim.Catalog.IntegrationTests  Total: 11, Errors: 0, Failed: 5, Skipped: 0, Not Run: 0, Time: 22,618s

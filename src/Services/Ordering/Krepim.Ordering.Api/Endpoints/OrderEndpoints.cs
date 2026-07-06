@@ -11,7 +11,7 @@ namespace Krepim.Ordering.Api.Endpoints
     {
         public static void MapOrderEndpoints(this IEndpointRouteBuilder builder)
         {
-            var group = builder.MapGroup("/api/orders")
+            var group = builder.MapGroup("")
                 .WithTags("Orders")
                 .RequireAuthorization()
                 .AddEndpointFilter<ResultEndpointFilter>();

@@ -10,7 +10,7 @@ namespace Krepim.Inventory.Api.Endpoints
     {
         public static void MapInventoryEndpoints(this IEndpointRouteBuilder builder)
         {
-            var group = builder.MapGroup("/api/inventory")
+            var group = builder.MapGroup("")
                 .WithTags("Inventory")
                 .AddEndpointFilter<ResultEndpointFilter>(); ;
 

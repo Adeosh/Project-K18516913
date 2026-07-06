@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using Krepim.EventBus.Events.Inventory;
+using Krepim.Inventory.Application.Features.CreditStock;
 using Krepim.Inventory.Application.Models.DTOs;
 using Krepim.Inventory.Domain.Entities;
 using Krepim.Inventory.Infrastructure.Database;
@@ -63,6 +64,58 @@ namespace Krepim.Inventory.IntegrationTests.Features
             // Assert 2
             stockDto.Should().NotBeNull();
             stockDto!.AvailableQuantity.Should().Be(70);
+        }
+
+        [Fact]
+        public async Task OrderCreatedEvent_Should_FailToReserve_When_InsufficientStock()
+        {
+            // Arrange
+            var productId = Guid.NewGuid();
+            using (var scope = _scopeFactory.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetRequiredService<InventoryDbContext>();
+                db.StockItems.Add(StockItem.Create(productId, 10).Value);
+                await db.SaveChangesAsync(TestContext.Current.CancellationToken);
+            }
+
+            var integrationEvent = new OrderCreatedIntegrationEvent(
+                Guid.NewGuid(), 1000m, new List<OrderItemPayload> { new(productId, 50) });
+
+            // Act
+            await _testHarness.Bus.Publish(integrationEvent, TestContext.Current.CancellationToken);
+
+            // Assert
+            var consumerHarness = _testHarness.GetConsumerHarness<Application.Consumers.OrderCreatedEventConsumer>();
+            (await consumerHarness.Consumed.Any<OrderCreatedIntegrationEvent>(TestContext.Current.CancellationToken)).Should().BeTrue();
+
+            var response = await _client.GetAsync($"/api/inventory/{productId}", TestContext.Current.CancellationToken);
+            var stockDto = await response.Content.ReadFromJsonAsync<StockDto>(cancellationToken: TestContext.Current.CancellationToken);
+            stockDto!.AvailableQuantity.Should().Be(10);
+        }
+
+        [Fact]
+        public async Task CreditStock_Should_IncreaseAvailableQuantity()
+        {
+            // Arrange
+            var productId = Guid.NewGuid();
+            using (var scope = _scopeFactory.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetRequiredService<InventoryDbContext>();
+                db.StockItems.Add(StockItem.Create(productId, 50).Value);
+                await db.SaveChangesAsync(TestContext.Current.CancellationToken);
+            }
+
+            var command = new CreditStockCommand(productId, 50);
+
+            // Act
+            var response = await _client.PostAsJsonAsync("/api/inventory/credit", command, cancellationToken: TestContext.Current.CancellationToken);
+
+            // Assert
+            response.StatusCode.Should().Be(HttpStatusCode.NoContent);
+
+            var getResponse = await _client.GetAsync($"/api/inventory/{productId}", TestContext.Current.CancellationToken);
+            var stockDto = await getResponse.Content.ReadFromJsonAsync<StockDto>(cancellationToken: TestContext.Current.CancellationToken);
+            stockDto!.AvailableQuantity.Should().Be(100);
         }
     }
 }

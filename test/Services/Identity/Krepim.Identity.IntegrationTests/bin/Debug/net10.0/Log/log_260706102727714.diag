@@ -1,0 +1,45 @@
+2026-07-06T10:27:27.7187200+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Version: 1.9.1+cb5afc3bb9bb01ebd75b57f89e8358b914ee2a49
+2026-07-06T10:27:27.7246583+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging mode: asynchronous
+2026-07-06T10:27:27.7251886+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging level: Information
+2026-07-06T10:27:27.7251910+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION CreateBuilderAsync entry time: 10:27:27.707
+2026-07-06T10:27:27.7252342+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION PID: 31016
+2026-07-06T10:27:27.7252494+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime information: win-x64 - .NET 10.0.8
+2026-07-06T10:27:27.7252577+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\10.0.8\System.Private.CoreLib.dll
+2026-07-06T10:27:27.7252625+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION IsDynamicCodeSupported: True
+2026-07-06T10:27:27.7253109+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Test module: C:\Users\adeos\Source\Repos\Krepim\test\Services\Identity\Krepim.Identity.IntegrationTests\bin\Debug\net10.0\Krepim.Identity.IntegrationTests.dll
+2026-07-06T10:27:27.7253839+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Command line arguments: '--server --diagnostic --diagnostic-verbosity Information --diagnostic-output-directory C:\Users\adeos\Source\Repos\Krepim\test\Services\Identity\Krepim.Identity.IntegrationTests\bin\Debug\net10.0\Log --results-directory C:\Users\adeos\Source\Repos\Krepim\TestResults --client-port 56215'
+2026-07-06T10:27:27.7258659+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION TESTINGPLATFORM_DEFAULT_HANG_TIMEOUT: ''
+2026-07-06T10:27:27.7366946+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting RegisterEnvironmentVariablesConfigurationSource: 'True'
+2026-07-06T10:27:27.7444524+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting PlatformExitProcessOnUnhandledException: 'False', config file: False environment variable: 
+2026-07-06T10:27:27.8683894+00:00 Microsoft.Testing.Platform.Requests.TestHostTestFrameworkInvoker INFORMATION Test framework UID: '30ea7c6e-dd24-4152-a360-1387158cd41d' Version: '3.2.2' DisplayName: 'xUnit.net v3 Microsoft.Testing.Platform test framework' Description: 'xUnit.net v3 Microsoft.Testing.Platform test framework'
+2026-07-06T10:27:27.8741168+00:00 xUnit.net INFORMATION xUnit.net v3 In-Process Runner v3.2.2+728c1dce01 (64-bit .NET 10.0.8)
+2026-07-06T10:27:27.8992239+00:00 xUnit.net INFORMATION   Discovering: Krepim.Identity.IntegrationTests
+2026-07-06T10:27:27.9268142+00:00 xUnit.net INFORMATION   Discovered:  Krepim.Identity.IntegrationTests
+2026-07-06T10:27:27.9403446+00:00 xUnit.net INFORMATION   Starting:    Krepim.Identity.IntegrationTests
+2026-07-06T10:27:34.5789479+00:00 xUnit.net ERROR     Krepim.Identity.IntegrationTests.Profile.ProfileEndpointTests.GetProfile_Should_ReturnProfile_WhenTokenIsValid [FAIL]
+2026-07-06T10:27:34.5796977+00:00 xUnit.net INFORMATION       Expected response.IsSuccessStatusCode to be True because Ожидался успех, но API вернул Unauthorized. Детали ошибки: , but found False.
+2026-07-06T10:27:34.5799564+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-06T10:27:34.5802164+00:00 xUnit.net INFORMATION            at FluentAssertions.Primitives.BooleanAssertions`1.BeTrue(String because, Object[] becauseArgs)
+2026-07-06T10:27:34.5811408+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Identity\Krepim.Identity.IntegrationTests\Profile\ProfileEndpointTests.cs(72,0): at Krepim.Identity.IntegrationTests.Profile.ProfileEndpointTests.GetProfile_Should_ReturnProfile_WhenTokenIsValid()
+2026-07-06T10:27:34.5811514+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-06T10:27:35.1213781+00:00 xUnit.net ERROR     Krepim.Identity.IntegrationTests.Profile.ProfileEndpointTests.UpdateProfile_Should_ReturnNoContent_WhenDataIsValid [FAIL]
+2026-07-06T10:27:35.1213922+00:00 xUnit.net INFORMATION       Expected response.IsSuccessStatusCode to be True, but found False.
+2026-07-06T10:27:35.1214057+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-06T10:27:35.1214116+00:00 xUnit.net INFORMATION            at FluentAssertions.Primitives.BooleanAssertions`1.BeTrue(String because, Object[] becauseArgs)
+2026-07-06T10:27:35.1214224+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Identity\Krepim.Identity.IntegrationTests\Profile\ProfileEndpointTests.cs(135,0): at Krepim.Identity.IntegrationTests.Profile.ProfileEndpointTests.UpdateProfile_Should_ReturnNoContent_WhenDataIsValid()
+2026-07-06T10:27:35.1214237+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-06T10:27:35.6550967+00:00 xUnit.net ERROR     Krepim.Identity.IntegrationTests.Profile.ProfileEndpointTests.ChangePassword_Should_ReturnOk_WhenDataIsValid [FAIL]
+2026-07-06T10:27:35.6551094+00:00 xUnit.net INFORMATION       Expected response.IsSuccessStatusCode to be True, but found False.
+2026-07-06T10:27:35.6551217+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-06T10:27:35.6551278+00:00 xUnit.net INFORMATION            at FluentAssertions.Primitives.BooleanAssertions`1.BeTrue(String because, Object[] becauseArgs)
+2026-07-06T10:27:35.6551394+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Identity\Krepim.Identity.IntegrationTests\Profile\ProfileEndpointTests.cs(156,0): at Krepim.Identity.IntegrationTests.Profile.ProfileEndpointTests.ChangePassword_Should_ReturnOk_WhenDataIsValid()
+2026-07-06T10:27:35.6551418+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-06T10:27:35.8435102+00:00 xUnit.net ERROR     Krepim.Identity.IntegrationTests.Profile.ProfileEndpointTests.ChangePassword_Should_ReturnBadRequest_WhenNewPasswordIsTooShort [FAIL]
+2026-07-06T10:27:35.8435239+00:00 xUnit.net INFORMATION       Expected response.StatusCode to be HttpStatusCode.BadRequest {value: 400}, but found HttpStatusCode.Unauthorized {value: 401}.
+2026-07-06T10:27:35.8435277+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-06T10:27:35.8435342+00:00 xUnit.net INFORMATION            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+2026-07-06T10:27:35.8435461+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Identity\Krepim.Identity.IntegrationTests\Profile\ProfileEndpointTests.cs(176,0): at Krepim.Identity.IntegrationTests.Profile.ProfileEndpointTests.ChangePassword_Should_ReturnBadRequest_WhenNewPasswordIsTooShort()
+2026-07-06T10:27:35.8435473+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-06T10:27:36.1595902+00:00 xUnit.net INFORMATION   Finished:    Krepim.Identity.IntegrationTests (ID = 'c2c8d69f42748addf63480efa52c255f8456bf0cbba90a3b8fc58f7af79fca55')
+2026-07-06T10:27:36.1626824+00:00 xUnit.net INFORMATION === TEST EXECUTION SUMMARY ===
+2026-07-06T10:27:36.1655858+00:00 xUnit.net INFORMATION    Krepim.Identity.IntegrationTests  Total: 6, Errors: 0, Failed: 4, Skipped: 0, Not Run: 0, Time: 8,222s

@@ -35,7 +35,7 @@ app.UseExceptionHandler();
 app.UseAuthentication();
 app.UseAuthorization();
 
-var apiGroup = app.MapGroup("")
+var apiGroup = app.MapGroup("/api/inventory")
     .AddEndpointFilter<ResultEndpointFilter>();
 
 apiGroup.MapInventoryEndpoints();

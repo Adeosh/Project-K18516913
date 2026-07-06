@@ -9,7 +9,7 @@ namespace Krepim.Payment.Api.Endpoints
     {
         public static void MapPaymentEndpoints(this IEndpointRouteBuilder builder)
         {
-            var group = builder.MapGroup("/api/payments")
+            var group = builder.MapGroup("")
                 .WithTags("Payments")
                 .RequireAuthorization()
                 .AddEndpointFilter<ResultEndpointFilter>(); ;

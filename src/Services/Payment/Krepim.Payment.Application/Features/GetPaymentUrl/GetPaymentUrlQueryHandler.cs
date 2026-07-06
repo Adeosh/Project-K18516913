@@ -5,7 +5,7 @@ using MediatR;
 namespace Krepim.Payment.Application.Features.GetPaymentUrl
 {
     internal sealed class GetPaymentUrlQueryHandler(IPaymentRepository repository)
-    : IRequestHandler<GetPaymentUrlQuery, Result<string>>
+        : IRequestHandler<GetPaymentUrlQuery, Result<string>>
     {
         public async Task<Result<string>> Handle(GetPaymentUrlQuery request, CancellationToken ct)
         {

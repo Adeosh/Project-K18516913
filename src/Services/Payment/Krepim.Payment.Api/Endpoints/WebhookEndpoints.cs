@@ -1,4 +1,5 @@
-﻿using Krepim.Payment.Application.Features.CompletePayment;
+﻿
+using Krepim.Payment.Application.Features.ProcessPayment;
 using Krepim.Payment.Application.Models.Exchange;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +10,7 @@ namespace Krepim.Payment.Api.Endpoints
     {
         public static void MapWebhookEndpoints(this IEndpointRouteBuilder builder)
         {
-            var group = builder.MapGroup("/api/payments/webhook")
+            var group = builder.MapGroup("/webhook")
                 .WithTags("Webhooks");
 
             group.MapPost("/mock", async (

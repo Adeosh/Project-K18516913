@@ -9,7 +9,7 @@ using Krepim.Inventory.Application.Features.GetStock;
 using Krepim.Inventory.Domain.Entities;
 using Krepim.Ordering.Application.Features.GetMyOrders;
 using Krepim.Ordering.Domain.Entities;
-using Krepim.Payment.Application.Features.CompletePayment;
+using Krepim.Payment.Application.Features.ProcessPayment;
 using Krepim.Payment.Domain.Entities;
 using NetArchTest.Rules;
 using System.Reflection;

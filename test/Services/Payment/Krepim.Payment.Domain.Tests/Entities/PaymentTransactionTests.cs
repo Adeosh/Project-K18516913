@@ -143,5 +143,70 @@ namespace Krepim.Payment.Domain.Tests.Entities
             failureResult.Error.Code.Should().Be("Payment.InvalidState");
             failureResult.Error.Type.Should().Be(ErrorType.Conflict);
         }
+
+        [Fact]
+        public void MarkAsRefunded_Should_SetStatus_When_StatusIsSucceeded()
+        {
+            // Arrange
+            var transaction = PaymentTransaction.Create(Guid.NewGuid(), 1000m).Value;
+            transaction.MarkAsSucceeded();
+
+            // Act
+            var result = transaction.MarkAsRefunded();
+
+            // Assert
+            result.IsSuccess.Should().BeTrue();
+            transaction.Status.Should().Be(PaymentStatus.Refunded);
+            transaction.ProcessedAt.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void MarkAsRefunded_Should_ReturnFailure_When_StatusIsNotSucceeded()
+        {
+            // Arrange
+            var transaction = PaymentTransaction.Create(Guid.NewGuid(), 1000m).Value;
+
+            // Act
+            var result = transaction.MarkAsRefunded();
+
+            // Assert
+            result.IsFailure.Should().BeTrue();
+            result.Error.Code.Should().Be("Payment.InvalidState");
+        }
+
+        [Theory]
+        [InlineData(PaymentStatus.Succeeded, true)]
+        [InlineData(PaymentStatus.Failed, true)]
+        [InlineData(PaymentStatus.Refunded, false)]
+        public void HandleStatus_Should_ReturnExpectedResult_When_StatusIsPending(PaymentStatus status, bool expectedSuccess)
+        {
+            // Arrange
+            var transaction = PaymentTransaction.Create(Guid.NewGuid(), 1000m).Value;
+
+            // Act
+            var result = transaction.HandleStatus(status, "Test Error");
+
+            // Assert
+            result.IsSuccess.Should().Be(expectedSuccess);
+            if (expectedSuccess)
+            {
+                transaction.Status.Should().Be(status);
+            }
+        }
+
+        [Fact]
+        public void HandleStatus_Should_ReturnConflict_When_TransactionIsAlreadyFinished()
+        {
+            // Arrange
+            var transaction = PaymentTransaction.Create(Guid.NewGuid(), 1000m).Value;
+            transaction.MarkAsSucceeded(); // Завершили
+
+            // Act
+            var result = transaction.HandleStatus(PaymentStatus.Failed);
+
+            // Assert
+            result.IsFailure.Should().BeTrue();
+            result.Error.Code.Should().Be("Payment.InvalidState");
+        }
     }
 }

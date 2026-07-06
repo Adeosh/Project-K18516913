@@ -1,0 +1,96 @@
+2026-07-06T12:51:58.2978499+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Version: 1.9.1+cb5afc3bb9bb01ebd75b57f89e8358b914ee2a49
+2026-07-06T12:51:58.3037109+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging mode: asynchronous
+2026-07-06T12:51:58.3042763+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging level: Information
+2026-07-06T12:51:58.3042792+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION CreateBuilderAsync entry time: 12:51:58.286
+2026-07-06T12:51:58.3043227+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION PID: 32948
+2026-07-06T12:51:58.3043388+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime information: win-x64 - .NET 10.0.8
+2026-07-06T12:51:58.3043471+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\10.0.8\System.Private.CoreLib.dll
+2026-07-06T12:51:58.3043512+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION IsDynamicCodeSupported: True
+2026-07-06T12:51:58.3043968+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Test module: C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\bin\Debug\net10.0\Krepim.Catalog.IntegrationTests.dll
+2026-07-06T12:51:58.3044795+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Command line arguments: '--server --diagnostic --diagnostic-verbosity Information --diagnostic-output-directory C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\bin\Debug\net10.0\Log --results-directory C:\Users\adeos\Source\Repos\Krepim\TestResults --client-port 57989'
+2026-07-06T12:51:58.3049611+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION TESTINGPLATFORM_DEFAULT_HANG_TIMEOUT: ''
+2026-07-06T12:51:58.3156490+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting RegisterEnvironmentVariablesConfigurationSource: 'True'
+2026-07-06T12:51:58.3233908+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting PlatformExitProcessOnUnhandledException: 'False', config file: False environment variable: 
+2026-07-06T12:51:58.4486933+00:00 Microsoft.Testing.Platform.Requests.TestHostTestFrameworkInvoker INFORMATION Test framework UID: '30ea7c6e-dd24-4152-a360-1387158cd41d' Version: '3.2.2' DisplayName: 'xUnit.net v3 Microsoft.Testing.Platform test framework' Description: 'xUnit.net v3 Microsoft.Testing.Platform test framework'
+2026-07-06T12:51:58.4542811+00:00 xUnit.net INFORMATION xUnit.net v3 In-Process Runner v3.2.2+728c1dce01 (64-bit .NET 10.0.8)
+2026-07-06T12:51:58.4791461+00:00 xUnit.net INFORMATION   Discovering: Krepim.Catalog.IntegrationTests
+2026-07-06T12:51:58.5060894+00:00 xUnit.net INFORMATION   Discovered:  Krepim.Catalog.IntegrationTests
+2026-07-06T12:51:58.5199844+00:00 xUnit.net INFORMATION   Starting:    Krepim.Catalog.IntegrationTests
+2026-07-06T12:52:10.3161979+00:00 xUnit.net ERROR     Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.GetProductById_Should_ReturnProductWithAllFields_WhenProductHasFullData [FAIL]
+2026-07-06T12:52:10.3165594+00:00 xUnit.net INFORMATION       Expected product not to be <null>.
+2026-07-06T12:52:10.3167974+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-06T12:52:10.3170014+00:00 xUnit.net INFORMATION            at FluentAssertions.Primitives.ReferenceTypeAssertions`2.NotBeNull(String because, Object[] becauseArgs)
+2026-07-06T12:52:10.3170186+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Features\Products\ClientEndpointsTests.cs(244,0): at Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.GetProductById_Should_ReturnProductWithAllFields_WhenProductHasFullData()
+2026-07-06T12:52:10.3170201+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-06T12:52:10.3427050+00:00 xUnit.net ERROR     Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.SearchProducts_Should_ReturnOnlyActiveProducts_WhenOnlyActiveIsTrue [FAIL]
+2026-07-06T12:52:10.3427166+00:00 xUnit.net INFORMATION       Expected deactivateResponse.StatusCode to be HttpStatusCode.OK {value: 200}, but found HttpStatusCode.NotFound {value: 404}.
+2026-07-06T12:52:10.3427284+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-06T12:52:10.3427344+00:00 xUnit.net INFORMATION            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+2026-07-06T12:52:10.3427419+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\ProductTestApiFactory.cs(73,0): at Krepim.Catalog.IntegrationTests.Helpers.ProductTestHelper.DeactivateProduct(Guid productId)
+2026-07-06T12:52:10.3427474+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\ProductTestApiFactory.cs(61,0): at Krepim.Catalog.IntegrationTests.Helpers.ProductTestHelper.CreateTestProduct(String name, String sku, Boolean isActive, Decimal price, String[] imageUrls)
+2026-07-06T12:52:10.3427523+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\ProductTestApiFactory.cs(89,0): at Krepim.Catalog.IntegrationTests.Helpers.ProductTestHelper.CreateMultipleProducts(ValueTuple`3[] products)
+2026-07-06T12:52:10.3427616+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Features\Products\ClientEndpointsTests.cs(127,0): at Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.SearchProducts_Should_ReturnOnlyActiveProducts_WhenOnlyActiveIsTrue()
+2026-07-06T12:52:10.3427718+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-06T12:52:10.3489873+00:00 xUnit.net ERROR     Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.SearchProducts_Should_ReturnOk_WhenNoParametersProvided [FAIL]
+2026-07-06T12:52:10.3489962+00:00 xUnit.net INFORMATION       Expected response.StatusCode to be HttpStatusCode.OK {value: 200}, but found HttpStatusCode.NotFound {value: 404}.
+2026-07-06T12:52:10.3489989+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-06T12:52:10.3490043+00:00 xUnit.net INFORMATION            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+2026-07-06T12:52:10.3490134+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Features\Products\ClientEndpointsTests.cs(157,0): at Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.SearchProducts_Should_ReturnOk_WhenNoParametersProvided()
+2026-07-06T12:52:10.3490156+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-06T12:52:10.3552364+00:00 xUnit.net ERROR     Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.SearchProducts_Should_ReturnMatchingProductsBySku [FAIL]
+2026-07-06T12:52:10.3552461+00:00 xUnit.net INFORMATION       Expected response.StatusCode to be HttpStatusCode.OK {value: 200}, but found HttpStatusCode.NotFound {value: 404}.
+2026-07-06T12:52:10.3552487+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-06T12:52:10.3552547+00:00 xUnit.net INFORMATION            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+2026-07-06T12:52:10.3552622+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\ProductTestApiFactory.cs(112,0): at Krepim.Catalog.IntegrationTests.Helpers.ProductTestHelper.SearchProductsAndGetResult(String searchTerm, Int32 page)
+2026-07-06T12:52:10.3552695+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Features\Products\ClientEndpointsTests.cs(206,0): at Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.SearchProducts_Should_ReturnMatchingProductsBySku()
+2026-07-06T12:52:10.3552708+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-06T12:52:10.3762072+00:00 xUnit.net ERROR     Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.SearchProducts_Should_ReturnMatchingProducts_WhenSearchTermMatches [FAIL]
+2026-07-06T12:52:10.3762271+00:00 xUnit.net INFORMATION       System.Exception : Failed to create product: InternalServerError. Error: {"type":"https://datatracker.ietf.org/doc/html/rfc7231#section-6.6.1","title":"Server Error","status":500,"detail":"An unexpected error occurred while processing your request."}
+2026-07-06T12:52:10.3762330+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-06T12:52:10.3762441+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\ProductTestApiFactory.cs(51,0): at Krepim.Catalog.IntegrationTests.Helpers.ProductTestHelper.CreateTestProduct(String name, String sku, Boolean isActive, Decimal price, String[] imageUrls)
+2026-07-06T12:52:10.3762506+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\ProductTestApiFactory.cs(89,0): at Krepim.Catalog.IntegrationTests.Helpers.ProductTestHelper.CreateMultipleProducts(ValueTuple`3[] products)
+2026-07-06T12:52:10.3762559+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Features\Products\ClientEndpointsTests.cs(94,0): at Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.SearchProducts_Should_ReturnMatchingProducts_WhenSearchTermMatches()
+2026-07-06T12:52:10.3762573+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-06T12:52:10.3812710+00:00 xUnit.net ERROR     Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.SearchProducts_Should_SearchByPartialName [FAIL]
+2026-07-06T12:52:10.3812800+00:00 xUnit.net INFORMATION       Expected response.StatusCode to be HttpStatusCode.OK {value: 200}, but found HttpStatusCode.NotFound {value: 404}.
+2026-07-06T12:52:10.3813030+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-06T12:52:10.3813159+00:00 xUnit.net INFORMATION            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+2026-07-06T12:52:10.3813328+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\ProductTestApiFactory.cs(112,0): at Krepim.Catalog.IntegrationTests.Helpers.ProductTestHelper.SearchProductsAndGetResult(String searchTerm, Int32 page)
+2026-07-06T12:52:10.3813392+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Features\Products\ClientEndpointsTests.cs(188,0): at Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.SearchProducts_Should_SearchByPartialName()
+2026-07-06T12:52:10.3813431+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-06T12:52:10.3863560+00:00 xUnit.net ERROR     Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.GetProductById_Should_ReturnNotFound_WhenProductIsInactive [FAIL]
+2026-07-06T12:52:10.3863637+00:00 xUnit.net INFORMATION       Expected deactivateResponse.StatusCode to be HttpStatusCode.OK {value: 200}, but found HttpStatusCode.NotFound {value: 404}.
+2026-07-06T12:52:10.3863671+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-06T12:52:10.3863728+00:00 xUnit.net INFORMATION            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+2026-07-06T12:52:10.3863792+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\ProductTestApiFactory.cs(73,0): at Krepim.Catalog.IntegrationTests.Helpers.ProductTestHelper.DeactivateProduct(Guid productId)
+2026-07-06T12:52:10.3863848+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\ProductTestApiFactory.cs(61,0): at Krepim.Catalog.IntegrationTests.Helpers.ProductTestHelper.CreateTestProduct(String name, String sku, Boolean isActive, Decimal price, String[] imageUrls)
+2026-07-06T12:52:10.3863909+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Features\Products\ClientEndpointsTests.cs(65,0): at Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.GetProductById_Should_ReturnNotFound_WhenProductIsInactive()
+2026-07-06T12:52:10.3863915+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-06T12:52:10.3952445+00:00 xUnit.net ERROR     Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.SearchProducts_Should_ReturnEmptyList_WhenSearchTermDoesNotMatch [FAIL]
+2026-07-06T12:52:10.3952570+00:00 xUnit.net INFORMATION       System.Exception : Failed to create product: InternalServerError. Error: {"type":"https://datatracker.ietf.org/doc/html/rfc7231#section-6.6.1","title":"Server Error","status":500,"detail":"An unexpected error occurred while processing your request."}
+2026-07-06T12:52:10.3952603+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-06T12:52:10.3952704+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\ProductTestApiFactory.cs(51,0): at Krepim.Catalog.IntegrationTests.Helpers.ProductTestHelper.CreateTestProduct(String name, String sku, Boolean isActive, Decimal price, String[] imageUrls)
+2026-07-06T12:52:10.3952760+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Features\Products\ClientEndpointsTests.cs(113,0): at Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.SearchProducts_Should_ReturnEmptyList_WhenSearchTermDoesNotMatch()
+2026-07-06T12:52:10.3952766+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-06T12:52:10.4033101+00:00 xUnit.net ERROR     Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.SearchProducts_Should_SearchCaseInsensitive [FAIL]
+2026-07-06T12:52:10.4033211+00:00 xUnit.net INFORMATION       System.Exception : Failed to create product: InternalServerError. Error: {"type":"https://datatracker.ietf.org/doc/html/rfc7231#section-6.6.1","title":"Server Error","status":500,"detail":"An unexpected error occurred while processing your request."}
+2026-07-06T12:52:10.4033241+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-06T12:52:10.4033341+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\ProductTestApiFactory.cs(51,0): at Krepim.Catalog.IntegrationTests.Helpers.ProductTestHelper.CreateTestProduct(String name, String sku, Boolean isActive, Decimal price, String[] imageUrls)
+2026-07-06T12:52:10.4033400+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Features\Products\ClientEndpointsTests.cs(167,0): at Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.SearchProducts_Should_SearchCaseInsensitive()
+2026-07-06T12:52:10.4033407+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-06T12:52:10.4078851+00:00 xUnit.net ERROR     Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.GetProductById_Should_ReturnNotFound_WhenProductIsDeleted [FAIL]
+2026-07-06T12:52:10.4078936+00:00 xUnit.net INFORMATION       Expected deleteResponse.StatusCode to be HttpStatusCode.OK {value: 200}, but found HttpStatusCode.NotFound {value: 404}.
+2026-07-06T12:52:10.4078965+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-06T12:52:10.4079017+00:00 xUnit.net INFORMATION            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+2026-07-06T12:52:10.4079091+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\ProductTestApiFactory.cs(82,0): at Krepim.Catalog.IntegrationTests.Helpers.ProductTestHelper.DeleteProduct(Guid productId)
+2026-07-06T12:52:10.4079153+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Features\Products\ClientEndpointsTests.cs(80,0): at Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.GetProductById_Should_ReturnNotFound_WhenProductIsDeleted()
+2026-07-06T12:52:10.4079161+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-06T12:52:10.4114743+00:00 xUnit.net ERROR     Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.GetProductById_Should_ReturnProduct_WhenProductExistsAndIsActive [FAIL]
+2026-07-06T12:52:10.4114845+00:00 xUnit.net INFORMATION       Expected product not to be <null>.
+2026-07-06T12:52:10.4114870+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-06T12:52:10.4114922+00:00 xUnit.net INFORMATION            at FluentAssertions.Primitives.ReferenceTypeAssertions`2.NotBeNull(String because, Object[] becauseArgs)
+2026-07-06T12:52:10.4114997+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Features\Products\ClientEndpointsTests.cs(40,0): at Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.GetProductById_Should_ReturnProduct_WhenProductExistsAndIsActive()
+2026-07-06T12:52:10.4115007+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-06T12:52:11.2382092+00:00 xUnit.net INFORMATION   Finished:    Krepim.Catalog.IntegrationTests (ID = 'b6f6cfc01af6c8e8cdd5a6b6b4f1286fccd669accb960f34a17294a670ef0945')
+2026-07-06T12:52:11.2420763+00:00 xUnit.net INFORMATION === TEST EXECUTION SUMMARY ===
+2026-07-06T12:52:11.2454936+00:00 xUnit.net INFORMATION    Krepim.Catalog.IntegrationTests  Total: 12, Errors: 0, Failed: 11, Skipped: 0, Not Run: 0, Time: 12,721s

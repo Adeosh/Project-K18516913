@@ -1,0 +1,113 @@
+2026-07-06T11:23:45.1419557+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Version: 1.9.1+cb5afc3bb9bb01ebd75b57f89e8358b914ee2a49
+2026-07-06T11:23:45.1479346+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging mode: asynchronous
+2026-07-06T11:23:45.1484667+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging level: Information
+2026-07-06T11:23:45.1484690+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION CreateBuilderAsync entry time: 11:23:45.129
+2026-07-06T11:23:45.1485129+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION PID: 29984
+2026-07-06T11:23:45.1485309+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime information: win-x64 - .NET 10.0.8
+2026-07-06T11:23:45.1485399+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\10.0.8\System.Private.CoreLib.dll
+2026-07-06T11:23:45.1485445+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION IsDynamicCodeSupported: True
+2026-07-06T11:23:45.1485903+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Test module: C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.Application.Tests\bin\Debug\net10.0\Krepim.Catalog.Application.Tests.dll
+2026-07-06T11:23:45.1486915+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Command line arguments: '--server --diagnostic --diagnostic-verbosity Information --diagnostic-output-directory C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.Application.Tests\bin\Debug\net10.0\Log --results-directory C:\Users\adeos\Source\Repos\Krepim\TestResults --client-port 57269'
+2026-07-06T11:23:45.1492013+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION TESTINGPLATFORM_DEFAULT_HANG_TIMEOUT: ''
+2026-07-06T11:23:45.1601306+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting RegisterEnvironmentVariablesConfigurationSource: 'True'
+2026-07-06T11:23:45.1681424+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting PlatformExitProcessOnUnhandledException: 'False', config file: False environment variable: 
+2026-07-06T11:23:45.2957077+00:00 Microsoft.Testing.Platform.Requests.TestHostTestFrameworkInvoker INFORMATION Test framework UID: '30ea7c6e-dd24-4152-a360-1387158cd41d' Version: '3.2.2' DisplayName: 'xUnit.net v3 Microsoft.Testing.Platform test framework' Description: 'xUnit.net v3 Microsoft.Testing.Platform test framework'
+2026-07-06T11:23:45.3013527+00:00 xUnit.net INFORMATION xUnit.net v3 In-Process Runner v3.2.2+728c1dce01 (64-bit .NET 10.0.8)
+2026-07-06T11:23:45.3274631+00:00 xUnit.net INFORMATION   Discovering: Krepim.Catalog.Application.Tests
+2026-07-06T11:23:45.3500061+00:00 xUnit.net INFORMATION   Discovered:  Krepim.Catalog.Application.Tests
+2026-07-06T11:23:45.3641931+00:00 xUnit.net INFORMATION   Starting:    Krepim.Catalog.Application.Tests
+2026-07-06T11:23:45.6270369+00:00 xUnit.net ERROR     Krepim.Catalog.Application.Tests.Features.Products.DeactivateProductCommandHandlerTests.Handle_Should_NotCallDeactivate_WhenProductNotFound [FAIL]
+2026-07-06T11:23:45.6273045+00:00 xUnit.net INFORMATION       System.TypeLoadException : Could not load type 'Castle.Proxies.ProductProxy' from assembly 'DynamicProxyGenAssembly2, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null' because the parent type is sealed.
+2026-07-06T11:23:45.6275537+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-06T11:23:45.6280095+00:00 xUnit.net INFORMATION            at System.Reflection.Emit.RuntimeTypeBuilder.CreateTypeNoLock()
+2026-07-06T11:23:45.6280181+00:00 xUnit.net INFORMATION            at System.Reflection.Emit.RuntimeTypeBuilder.CreateTypeInfoImpl()
+2026-07-06T11:23:45.6280229+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.CreateType(TypeBuilder type)
+2026-07-06T11:23:45.6280253+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.BuildType()
+2026-07-06T11:23:45.6280283+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.Generators.BaseClassProxyGenerator.GenerateType(String name, INamingScope namingScope)
+2026-07-06T11:23:45.6280314+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.Generators.BaseProxyGenerator.<>c__DisplayClass13_0.<GetProxyType>b__0(CacheKey cacheKey)
+2026-07-06T11:23:45.6280340+00:00 xUnit.net INFORMATION            at Castle.Core.Internal.SynchronizedDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+2026-07-06T11:23:45.6280359+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.Generators.BaseProxyGenerator.GetProxyType()
+2026-07-06T11:23:45.6280399+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.DefaultProxyBuilder.CreateClassProxyType(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+2026-07-06T11:23:45.6280438+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.ProxyGenerator.CreateClassProxyType(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+2026-07-06T11:23:45.6280490+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.ProxyGenerator.CreateClassProxy(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, Object[] constructorArguments, IInterceptor[] interceptors)
+2026-07-06T11:23:45.6280646+00:00 xUnit.net INFORMATION            at NSubstitute.Proxies.CastleDynamicProxy.CastleDynamicProxyFactory.CreateProxyUsingCastleProxyGenerator(Type typeToProxy, Type[] additionalInterfaces, Object[] constructorArguments, IInterceptor[] interceptors, ProxyGenerationOptions proxyGenerationOptions, Boolean isPartial)
+2026-07-06T11:23:45.6280735+00:00 xUnit.net INFORMATION            at NSubstitute.Proxies.CastleDynamicProxy.CastleDynamicProxyFactory.GenerateTypeProxy(ICallRouter callRouter, Type typeToProxy, Type[] additionalInterfaces, Boolean isPartial, Object[] constructorArguments)
+2026-07-06T11:23:45.6280796+00:00 xUnit.net INFORMATION            at NSubstitute.Proxies.CastleDynamicProxy.CastleDynamicProxyFactory.GenerateProxy(ICallRouter callRouter, Type typeToProxy, Type[] additionalInterfaces, Boolean isPartial, Object[] constructorArguments)
+2026-07-06T11:23:45.6280835+00:00 xUnit.net INFORMATION            at NSubstitute.Core.SubstituteFactory.Create(Type[] typesToProxy, Object[] constructorArguments, Boolean callBaseByDefault, Boolean isPartial)
+2026-07-06T11:23:45.6280861+00:00 xUnit.net INFORMATION            at NSubstitute.Core.SubstituteFactory.Create(Type[] typesToProxy, Object[] constructorArguments)
+2026-07-06T11:23:45.6280884+00:00 xUnit.net INFORMATION            at NSubstitute.Substitute.For(Type[] typesToProxy, Object[] constructorArguments)
+2026-07-06T11:23:45.6280904+00:00 xUnit.net INFORMATION            at NSubstitute.Substitute.For[T](Object[] constructorArguments)
+2026-07-06T11:23:45.6280994+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.Application.Tests\Features\Products\DeactivateProductCommandHandlerTests.cs(128,0): at Krepim.Catalog.Application.Tests.Features.Products.DeactivateProductCommandHandlerTests.Handle_Should_NotCallDeactivate_WhenProductNotFound()
+2026-07-06T11:23:45.6281070+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-06T11:23:45.6286872+00:00 xUnit.net ERROR     Krepim.Catalog.Application.Tests.Features.Products.DeactivateProductCommandHandlerTests.Handle_Should_ReturnNotFoundFailure_WhenProductIsDeleted [FAIL]
+2026-07-06T11:23:45.6286925+00:00 xUnit.net INFORMATION       System.TypeLoadException : Could not load type 'Castle.Proxies.ProductProxy_1' from assembly 'DynamicProxyGenAssembly2, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null' because the parent type is sealed.
+2026-07-06T11:23:45.6287251+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-06T11:23:45.6287317+00:00 xUnit.net INFORMATION            at System.Reflection.Emit.RuntimeTypeBuilder.CreateTypeNoLock()
+2026-07-06T11:23:45.6287377+00:00 xUnit.net INFORMATION            at System.Reflection.Emit.RuntimeTypeBuilder.CreateTypeInfoImpl()
+2026-07-06T11:23:45.6287403+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.CreateType(TypeBuilder type)
+2026-07-06T11:23:45.6287425+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.BuildType()
+2026-07-06T11:23:45.6287455+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.Generators.BaseClassProxyGenerator.GenerateType(String name, INamingScope namingScope)
+2026-07-06T11:23:45.6287486+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.Generators.BaseProxyGenerator.<>c__DisplayClass13_0.<GetProxyType>b__0(CacheKey cacheKey)
+2026-07-06T11:23:45.6287512+00:00 xUnit.net INFORMATION            at Castle.Core.Internal.SynchronizedDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+2026-07-06T11:23:45.6287532+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.Generators.BaseProxyGenerator.GetProxyType()
+2026-07-06T11:23:45.6287573+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.DefaultProxyBuilder.CreateClassProxyType(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+2026-07-06T11:23:45.6287612+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.ProxyGenerator.CreateClassProxyType(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+2026-07-06T11:23:45.6287665+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.ProxyGenerator.CreateClassProxy(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, Object[] constructorArguments, IInterceptor[] interceptors)
+2026-07-06T11:23:45.6287756+00:00 xUnit.net INFORMATION            at NSubstitute.Proxies.CastleDynamicProxy.CastleDynamicProxyFactory.CreateProxyUsingCastleProxyGenerator(Type typeToProxy, Type[] additionalInterfaces, Object[] constructorArguments, IInterceptor[] interceptors, ProxyGenerationOptions proxyGenerationOptions, Boolean isPartial)
+2026-07-06T11:23:45.6287810+00:00 xUnit.net INFORMATION            at NSubstitute.Proxies.CastleDynamicProxy.CastleDynamicProxyFactory.GenerateTypeProxy(ICallRouter callRouter, Type typeToProxy, Type[] additionalInterfaces, Boolean isPartial, Object[] constructorArguments)
+2026-07-06T11:23:45.6287872+00:00 xUnit.net INFORMATION            at NSubstitute.Proxies.CastleDynamicProxy.CastleDynamicProxyFactory.GenerateProxy(ICallRouter callRouter, Type typeToProxy, Type[] additionalInterfaces, Boolean isPartial, Object[] constructorArguments)
+2026-07-06T11:23:45.6287913+00:00 xUnit.net INFORMATION            at NSubstitute.Core.SubstituteFactory.Create(Type[] typesToProxy, Object[] constructorArguments, Boolean callBaseByDefault, Boolean isPartial)
+2026-07-06T11:23:45.6287949+00:00 xUnit.net INFORMATION            at NSubstitute.Core.SubstituteFactory.Create(Type[] typesToProxy, Object[] constructorArguments)
+2026-07-06T11:23:45.6287974+00:00 xUnit.net INFORMATION            at NSubstitute.Substitute.For(Type[] typesToProxy, Object[] constructorArguments)
+2026-07-06T11:23:45.6287993+00:00 xUnit.net INFORMATION            at NSubstitute.Substitute.For[T](Object[] constructorArguments)
+2026-07-06T11:23:45.6288081+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.Application.Tests\Features\Products\DeactivateProductCommandHandlerTests.cs(93,0): at Krepim.Catalog.Application.Tests.Features.Products.DeactivateProductCommandHandlerTests.Handle_Should_ReturnNotFoundFailure_WhenProductIsDeleted()
+2026-07-06T11:23:45.6288088+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-06T11:23:45.6288930+00:00 xUnit.net ERROR     Krepim.Catalog.Application.Tests.Features.Products.DeactivateProductCommandHandlerTests.Handle_Should_ReturnSuccessAndPublishEvent_WhenProductExistsAndIsActive [FAIL]
+2026-07-06T11:23:45.6288980+00:00 xUnit.net INFORMATION       System.TypeLoadException : Could not load type 'Castle.Proxies.ProductProxy_2' from assembly 'DynamicProxyGenAssembly2, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null' because the parent type is sealed.
+2026-07-06T11:23:45.6289060+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-06T11:23:45.6289126+00:00 xUnit.net INFORMATION            at System.Reflection.Emit.RuntimeTypeBuilder.CreateTypeNoLock()
+2026-07-06T11:23:45.6289147+00:00 xUnit.net INFORMATION            at System.Reflection.Emit.RuntimeTypeBuilder.CreateTypeInfoImpl()
+2026-07-06T11:23:45.6289174+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.CreateType(TypeBuilder type)
+2026-07-06T11:23:45.6289197+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.BuildType()
+2026-07-06T11:23:45.6289227+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.Generators.BaseClassProxyGenerator.GenerateType(String name, INamingScope namingScope)
+2026-07-06T11:23:45.6289258+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.Generators.BaseProxyGenerator.<>c__DisplayClass13_0.<GetProxyType>b__0(CacheKey cacheKey)
+2026-07-06T11:23:45.6289285+00:00 xUnit.net INFORMATION            at Castle.Core.Internal.SynchronizedDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+2026-07-06T11:23:45.6289305+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.Generators.BaseProxyGenerator.GetProxyType()
+2026-07-06T11:23:45.6289345+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.DefaultProxyBuilder.CreateClassProxyType(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+2026-07-06T11:23:45.6289409+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.ProxyGenerator.CreateClassProxyType(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+2026-07-06T11:23:45.6289462+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.ProxyGenerator.CreateClassProxy(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, Object[] constructorArguments, IInterceptor[] interceptors)
+2026-07-06T11:23:45.6289535+00:00 xUnit.net INFORMATION            at NSubstitute.Proxies.CastleDynamicProxy.CastleDynamicProxyFactory.CreateProxyUsingCastleProxyGenerator(Type typeToProxy, Type[] additionalInterfaces, Object[] constructorArguments, IInterceptor[] interceptors, ProxyGenerationOptions proxyGenerationOptions, Boolean isPartial)
+2026-07-06T11:23:45.6289600+00:00 xUnit.net INFORMATION            at NSubstitute.Proxies.CastleDynamicProxy.CastleDynamicProxyFactory.GenerateTypeProxy(ICallRouter callRouter, Type typeToProxy, Type[] additionalInterfaces, Boolean isPartial, Object[] constructorArguments)
+2026-07-06T11:23:45.6289683+00:00 xUnit.net INFORMATION            at NSubstitute.Proxies.CastleDynamicProxy.CastleDynamicProxyFactory.GenerateProxy(ICallRouter callRouter, Type typeToProxy, Type[] additionalInterfaces, Boolean isPartial, Object[] constructorArguments)
+2026-07-06T11:23:45.6289723+00:00 xUnit.net INFORMATION            at NSubstitute.Core.SubstituteFactory.Create(Type[] typesToProxy, Object[] constructorArguments, Boolean callBaseByDefault, Boolean isPartial)
+2026-07-06T11:23:45.6289750+00:00 xUnit.net INFORMATION            at NSubstitute.Core.SubstituteFactory.Create(Type[] typesToProxy, Object[] constructorArguments)
+2026-07-06T11:23:45.6289773+00:00 xUnit.net INFORMATION            at NSubstitute.Substitute.For(Type[] typesToProxy, Object[] constructorArguments)
+2026-07-06T11:23:45.6289792+00:00 xUnit.net INFORMATION            at NSubstitute.Substitute.For[T](Object[] constructorArguments)
+2026-07-06T11:23:45.6289921+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.Application.Tests\Features\Products\DeactivateProductCommandHandlerTests.cs(36,0): at Krepim.Catalog.Application.Tests.Features.Products.DeactivateProductCommandHandlerTests.Handle_Should_ReturnSuccessAndPublishEvent_WhenProductExistsAndIsActive()
+2026-07-06T11:23:45.6289927+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-06T11:23:45.6299809+00:00 xUnit.net ERROR     Krepim.Catalog.Application.Tests.Features.Products.DeactivateProductCommandHandlerTests.Handle_Should_PublishEventBeforeSavingChanges [FAIL]
+2026-07-06T11:23:45.6299874+00:00 xUnit.net INFORMATION       System.TypeLoadException : Could not load type 'Castle.Proxies.ProductProxy_3' from assembly 'DynamicProxyGenAssembly2, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null' because the parent type is sealed.
+2026-07-06T11:23:45.6299961+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-06T11:23:45.6300106+00:00 xUnit.net INFORMATION            at System.Reflection.Emit.RuntimeTypeBuilder.CreateTypeNoLock()
+2026-07-06T11:23:45.6300128+00:00 xUnit.net INFORMATION            at System.Reflection.Emit.RuntimeTypeBuilder.CreateTypeInfoImpl()
+2026-07-06T11:23:45.6300155+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.CreateType(TypeBuilder type)
+2026-07-06T11:23:45.6300177+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.Generators.Emitters.AbstractTypeEmitter.BuildType()
+2026-07-06T11:23:45.6300208+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.Generators.BaseClassProxyGenerator.GenerateType(String name, INamingScope namingScope)
+2026-07-06T11:23:45.6300238+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.Generators.BaseProxyGenerator.<>c__DisplayClass13_0.<GetProxyType>b__0(CacheKey cacheKey)
+2026-07-06T11:23:45.6300282+00:00 xUnit.net INFORMATION            at Castle.Core.Internal.SynchronizedDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+2026-07-06T11:23:45.6300302+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.Generators.BaseProxyGenerator.GetProxyType()
+2026-07-06T11:23:45.6300342+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.DefaultProxyBuilder.CreateClassProxyType(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+2026-07-06T11:23:45.6300381+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.ProxyGenerator.CreateClassProxyType(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+2026-07-06T11:23:45.6300434+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.ProxyGenerator.CreateClassProxy(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, Object[] constructorArguments, IInterceptor[] interceptors)
+2026-07-06T11:23:45.6300506+00:00 xUnit.net INFORMATION            at NSubstitute.Proxies.CastleDynamicProxy.CastleDynamicProxyFactory.CreateProxyUsingCastleProxyGenerator(Type typeToProxy, Type[] additionalInterfaces, Object[] constructorArguments, IInterceptor[] interceptors, ProxyGenerationOptions proxyGenerationOptions, Boolean isPartial)
+2026-07-06T11:23:45.6300561+00:00 xUnit.net INFORMATION            at NSubstitute.Proxies.CastleDynamicProxy.CastleDynamicProxyFactory.GenerateTypeProxy(ICallRouter callRouter, Type typeToProxy, Type[] additionalInterfaces, Boolean isPartial, Object[] constructorArguments)
+2026-07-06T11:23:45.6300613+00:00 xUnit.net INFORMATION            at NSubstitute.Proxies.CastleDynamicProxy.CastleDynamicProxyFactory.GenerateProxy(ICallRouter callRouter, Type typeToProxy, Type[] additionalInterfaces, Boolean isPartial, Object[] constructorArguments)
+2026-07-06T11:23:45.6300667+00:00 xUnit.net INFORMATION            at NSubstitute.Core.SubstituteFactory.Create(Type[] typesToProxy, Object[] constructorArguments, Boolean callBaseByDefault, Boolean isPartial)
+2026-07-06T11:23:45.6300695+00:00 xUnit.net INFORMATION            at NSubstitute.Core.SubstituteFactory.Create(Type[] typesToProxy, Object[] constructorArguments)
+2026-07-06T11:23:45.6300718+00:00 xUnit.net INFORMATION            at NSubstitute.Substitute.For(Type[] typesToProxy, Object[] constructorArguments)
+2026-07-06T11:23:45.6300737+00:00 xUnit.net INFORMATION            at NSubstitute.Substitute.For[T](Object[] constructorArguments)
+2026-07-06T11:23:45.6300799+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.Application.Tests\Features\Products\DeactivateProductCommandHandlerTests.cs(144,0): at Krepim.Catalog.Application.Tests.Features.Products.DeactivateProductCommandHandlerTests.Handle_Should_PublishEventBeforeSavingChanges()
+2026-07-06T11:23:45.6300805+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-06T11:23:45.6373080+00:00 xUnit.net INFORMATION   Finished:    Krepim.Catalog.Application.Tests (ID = 'e46365c3fdd3e58bc2ca152f651b4f967284ad2ab02d74e237bd89fedefd0df4')
+2026-07-06T11:23:45.6402643+00:00 xUnit.net INFORMATION === TEST EXECUTION SUMMARY ===
+2026-07-06T11:23:45.6430945+00:00 xUnit.net INFORMATION    Krepim.Catalog.Application.Tests  Total: 5, Errors: 0, Failed: 4, Skipped: 0, Not Run: 0, Time: 0,276s

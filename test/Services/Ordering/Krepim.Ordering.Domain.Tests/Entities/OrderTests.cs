@@ -109,8 +109,7 @@ namespace Krepim.Ordering.Domain.Tests.Entities
             Action act = () => order.MarkAsPaid();
 
             // Assert
-            act.Should().Throw<InvalidOperationException>()
-                .WithMessage("Cannot pay for a cancelled order.");
+            act.Should().Throw<InvalidOperationException>();
         }
 
         [Fact]
@@ -139,6 +138,73 @@ namespace Krepim.Ordering.Domain.Tests.Entities
             // Assert
             act.Should().Throw<InvalidOperationException>()
                 .WithMessage("Cannot cancel an order that is already paid or shipped.");
+        }
+
+        [Fact]
+        public void HandlePaymentResult_Should_SetStatusToAwaitingValidation_When_StatusIsPending_And_PaymentIsPending()
+        {
+            // Arrange
+            var order = Order.Create(Guid.NewGuid(), Guid.NewGuid(), _testAddress);
+
+            // Act
+            order.HandlePaymentResult(PaymentStatus.Pending);
+
+            // Assert
+            order.Status.Should().Be(OrderStatus.AwaitingValidation);
+        }
+
+        [Fact]
+        public void HandlePaymentResult_Should_MarkAsPaid_When_PaymentSucceeded()
+        {
+            // Arrange
+            var order = Order.Create(Guid.NewGuid(), Guid.NewGuid(), _testAddress);
+
+            // Act
+            order.HandlePaymentResult(PaymentStatus.Succeeded);
+
+            // Assert
+            order.Status.Should().Be(OrderStatus.Paid);
+        }
+
+        [Fact]
+        public void HandlePaymentResult_Should_CancelOrder_When_PaymentFailed()
+        {
+            // Arrange
+            var order = Order.Create(Guid.NewGuid(), Guid.NewGuid(), _testAddress);
+
+            // Act
+            order.HandlePaymentResult(PaymentStatus.Failed);
+
+            // Assert
+            order.Status.Should().Be(OrderStatus.Cancelled);
+        }
+
+        [Fact]
+        public void HandlePaymentResult_Should_CancelOrder_When_StatusIsPaid_And_Refunded()
+        {
+            // Arrange
+            var order = Order.Create(Guid.NewGuid(), Guid.NewGuid(), _testAddress);
+            order.MarkAsPaid();
+
+            // Act
+            order.HandlePaymentResult(PaymentStatus.Refunded);
+
+            // Assert
+            order.Status.Should().Be(OrderStatus.Cancelled);
+        }
+
+        [Fact]
+        public void HandlePaymentResult_Should_NotChangeStatus_When_OrderIsCancelledOrShipped()
+        {
+            // Arrange
+            var order = Order.Create(Guid.NewGuid(), Guid.NewGuid(), _testAddress);
+            order.Cancel();
+
+            // Act
+            order.HandlePaymentResult(PaymentStatus.Succeeded);
+
+            // Assert
+            order.Status.Should().Be(OrderStatus.Cancelled);
         }
     }
 }

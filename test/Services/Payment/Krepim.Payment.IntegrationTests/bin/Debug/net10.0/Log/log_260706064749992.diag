@@ -1,0 +1,27 @@
+2026-07-06T06:47:49.9965488+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Version: 1.9.1+cb5afc3bb9bb01ebd75b57f89e8358b914ee2a49
+2026-07-06T06:47:50.0024996+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging mode: asynchronous
+2026-07-06T06:47:50.0030223+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging level: Information
+2026-07-06T06:47:50.0030246+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION CreateBuilderAsync entry time: 06:47:49.985
+2026-07-06T06:47:50.0030666+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION PID: 28340
+2026-07-06T06:47:50.0030819+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime information: win-x64 - .NET 10.0.8
+2026-07-06T06:47:50.0030900+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\10.0.8\System.Private.CoreLib.dll
+2026-07-06T06:47:50.0030945+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION IsDynamicCodeSupported: True
+2026-07-06T06:47:50.0031385+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Test module: C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.IntegrationTests\bin\Debug\net10.0\Krepim.Payment.IntegrationTests.dll
+2026-07-06T06:47:50.0032142+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Command line arguments: '--server --diagnostic --diagnostic-verbosity Information --diagnostic-output-directory C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.IntegrationTests\bin\Debug\net10.0\Log --results-directory C:\Users\adeos\Source\Repos\Krepim\TestResults --client-port 53591'
+2026-07-06T06:47:50.0036932+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION TESTINGPLATFORM_DEFAULT_HANG_TIMEOUT: ''
+2026-07-06T06:47:50.0143716+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting RegisterEnvironmentVariablesConfigurationSource: 'True'
+2026-07-06T06:47:50.0221135+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting PlatformExitProcessOnUnhandledException: 'False', config file: False environment variable: 
+2026-07-06T06:47:50.1883522+00:00 Microsoft.Testing.Platform.Requests.TestHostTestFrameworkInvoker INFORMATION Test framework UID: '30ea7c6e-dd24-4152-a360-1387158cd41d' Version: '3.2.2' DisplayName: 'xUnit.net v3 Microsoft.Testing.Platform test framework' Description: 'xUnit.net v3 Microsoft.Testing.Platform test framework'
+2026-07-06T06:47:50.1959131+00:00 xUnit.net INFORMATION xUnit.net v3 In-Process Runner v3.2.2+728c1dce01 (64-bit .NET 10.0.8)
+2026-07-06T06:47:50.2316270+00:00 xUnit.net INFORMATION   Discovering: Krepim.Payment.IntegrationTests
+2026-07-06T06:47:50.2878906+00:00 xUnit.net INFORMATION   Discovered:  Krepim.Payment.IntegrationTests
+2026-07-06T06:47:50.3029894+00:00 xUnit.net INFORMATION   Starting:    Krepim.Payment.IntegrationTests
+2026-07-06T06:47:56.6824811+00:00 xUnit.net ERROR     Krepim.Payment.IntegrationTests.Features.PaymentEndpointsTests.GetPaymentUrl_Should_ReturnUrl_When_OrderExists [FAIL]
+2026-07-06T06:47:56.6828312+00:00 xUnit.net INFORMATION       Expected response.StatusCode to be HttpStatusCode.OK {value: 200}, but found HttpStatusCode.NotFound {value: 404}.
+2026-07-06T06:47:56.6830828+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-06T06:47:56.6832954+00:00 xUnit.net INFORMATION            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+2026-07-06T06:47:56.6833111+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Payment\Krepim.Payment.IntegrationTests\Features\PaymentEndpointsTests.cs(31,0): at Krepim.Payment.IntegrationTests.Features.PaymentEndpointsTests.GetPaymentUrl_Should_ReturnUrl_When_OrderExists()
+2026-07-06T06:47:56.6833138+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-06T06:47:57.1162882+00:00 xUnit.net INFORMATION   Finished:    Krepim.Payment.IntegrationTests (ID = '289cee96ec7038d5209dbe5a38d0ce00a5baad742b5b70ab3967f32fa8a26aba')
+2026-07-06T06:47:57.1188414+00:00 xUnit.net INFORMATION === TEST EXECUTION SUMMARY ===
+2026-07-06T06:47:57.1218747+00:00 xUnit.net INFORMATION    Krepim.Payment.IntegrationTests  Total: 6, Errors: 0, Failed: 1, Skipped: 0, Not Run: 0, Time: 6,816s

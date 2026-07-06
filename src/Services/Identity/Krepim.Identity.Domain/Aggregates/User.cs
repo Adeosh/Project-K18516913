@@ -32,11 +32,16 @@ namespace Krepim.Identity.Domain.Aggregates
             return user;
         }
 
-        public void UpdateProfile(string email, string? phoneNumber, Address? defaultAddress)
+        public Result UpdateProfile(string email, string? phoneNumber, Address? defaultAddress)
         {
+            if (string.IsNullOrWhiteSpace(email))
+                return Result.Failure(new Error("User.InvalidEmail", "Email cannot be empty", ErrorType.Validation));
+
             Email = email;
             PhoneNumber = phoneNumber;
             DefaultAddress = defaultAddress;
+
+            return Result.Success();
         }
 
         public void UpdatePasswordHash(string newPasswordHash)

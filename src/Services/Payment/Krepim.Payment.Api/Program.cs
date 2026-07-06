@@ -37,11 +37,10 @@ app.UseExceptionHandler();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapWebhookEndpoints();
-
-var apiGroup = app.MapGroup("")
+var apiGroup = app.MapGroup("/api/payments")
     .AddEndpointFilter<ResultEndpointFilter>();
 
 apiGroup.MapPaymentEndpoints();
+apiGroup.MapWebhookEndpoints();
 
 app.Run();

@@ -5,7 +5,8 @@
         Failure = 0,
         Validation = 1,
         NotFound = 2,
-        Conflict = 3
+        Conflict = 3,
+        Unauthorized = 4
     }
 
     public readonly record struct Error(string Code, string Description, ErrorType Type)

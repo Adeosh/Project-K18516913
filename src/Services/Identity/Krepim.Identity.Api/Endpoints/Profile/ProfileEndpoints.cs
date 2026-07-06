@@ -4,6 +4,7 @@ using Krepim.Identity.Application.Features.Profile.UpdateUserProfile;
 using Krepim.Identity.Application.Models.Exchange;
 using Krepim.SharedKernel.Results;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace Krepim.Identity.Api.Endpoints.Profile
@@ -14,44 +15,45 @@ namespace Krepim.Identity.Api.Endpoints.Profile
         {
             var group = app.MapGroup("/profile").RequireAuthorization();
 
-            group.MapGet("/", async (ClaimsPrincipal user, ISender sender) =>
+            group.MapGet("", async (
+                ClaimsPrincipal user,
+                [FromServices] ISender sender) =>
             {
                 var userIdStr = user.FindFirstValue(ClaimTypes.NameIdentifier) ?? user.FindFirstValue(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub);
 
                 if (!Guid.TryParse(userIdStr, out var userId))
-                    return Results.Unauthorized();
+                    return Result<UserProfileResponse>.Failure(new Error("Auth.Unauthorized", "Пользователь не авторизован", ErrorType.Unauthorized));
 
-                var query = new GetUserProfileQuery(userId);
-                var result = await sender.Send(query);
-
-                return result.IsSuccess ? Results.Ok(result.Value) : Results.BadRequest(result.Error);
+                return await sender.Send(new GetUserProfileQuery(userId));
             });
 
-            group.MapPut("/", async (UpdateProfileRequest request, ClaimsPrincipal user, ISender sender) =>
+            group.MapPut("", async (
+                [FromBody] UpdateProfileRequest request,
+                ClaimsPrincipal user,
+                [FromServices] ISender sender) =>
             {
                 var userIdStr = user.FindFirstValue(ClaimTypes.NameIdentifier) ?? user.FindFirstValue(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub);
 
                 if (!Guid.TryParse(userIdStr, out var userId))
-                    return Results.Unauthorized();
+                    return Result.Failure(new Error("Auth.Unauthorized", "Пользователь не авторизован", ErrorType.Unauthorized));
 
-                var command = new UpdateUserProfileCommand(userId, request.Email, request.PhoneNumber, request.DefaultAddress);
-                var result = await sender.Send(command);
-
-                return result.IsSuccess ? Results.NoContent() : Results.BadRequest(result.Error);
+                return await sender.Send(new UpdateUserProfileCommand(userId, request.Email, request.PhoneNumber, request.DefaultAddress));
             });
 
-            group.MapPost("/change-password", async (ChangePasswordRequest request, ClaimsPrincipal user, ISender sender) =>
+            group.MapPost("/change-password", async (
+                [FromBody] ChangePasswordRequest request,
+                ClaimsPrincipal user,
+                [FromServices] ISender sender) =>
             {
                 var userIdStr = user.FindFirstValue(ClaimTypes.NameIdentifier) ?? user.FindFirstValue(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub);
-                if (!Guid.TryParse(userIdStr, out var userId)) return Results.Unauthorized();
+
+                if (!Guid.TryParse(userIdStr, out var userId))
+                    return Result.Failure(new Error("Auth.Unauthorized", "Пользователь не авторизован", ErrorType.Unauthorized));
 
                 if (string.IsNullOrWhiteSpace(request.NewPassword) || request.NewPassword.Length < 6)
-                    return Results.BadRequest(new Error("Password.TooShort", "Новый пароль должен быть не менее 6 символов", ErrorType.Validation));
+                    return Result.Failure(new Error("Password.TooShort", "Новый пароль должен быть не менее 6 символов", ErrorType.Validation));
 
-                var command = new ChangePasswordCommand(userId, request.OldPassword, request.NewPassword);
-                var result = await sender.Send(command);
-
-                return result.IsSuccess ? Results.Ok() : Results.BadRequest(result.Error);
+                return await sender.Send(new ChangePasswordCommand(userId, request.OldPassword, request.NewPassword));
             });
         }
     }

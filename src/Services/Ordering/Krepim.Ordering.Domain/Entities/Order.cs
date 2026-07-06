@@ -67,6 +67,11 @@ namespace Krepim.Ordering.Domain.Entities
             Status = OrderStatus.Cancelled;
         }
 
+        private void SetStatusToCancelled()
+        {
+            Status = OrderStatus.Cancelled;
+        }
+
         public void HandlePaymentResult(PaymentStatus paymentStatus)
         {
             if (Status is OrderStatus.Cancelled or OrderStatus.Shipped)
@@ -91,7 +96,7 @@ namespace Krepim.Ordering.Domain.Entities
 
                 case PaymentStatus.Refunded:
                     if (Status == OrderStatus.Paid)
-                        Cancel();
+                        SetStatusToCancelled();
                     break;
 
                 default:

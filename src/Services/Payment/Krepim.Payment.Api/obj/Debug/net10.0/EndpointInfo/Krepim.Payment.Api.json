@@ -6,37 +6,13 @@
   },
   "servers": [
     {
-      "url": "https://localhost:56515"
+      "url": "https://localhost:54654"
     },
     {
-      "url": "http://localhost:56518"
+      "url": "http://localhost:54657"
     }
   ],
   "paths": {
-    "/api/payments/webhook/mock": {
-      "post": {
-        "tags": [
-          "Webhooks"
-        ],
-        "summary": "Прием тестовых вебхуков для симуляции оплаты",
-        "operationId": "MockWebhook",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MockWebhookRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/payments/{orderId}/url": {
       "get": {
         "tags": [
@@ -64,6 +40,30 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/payments/webhook/mock": {
+      "post": {
+        "tags": [
+          "Webhooks"
+        ],
+        "summary": "Прием тестовых вебхуков для симуляции оплаты",
+        "operationId": "MockWebhook",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MockWebhookRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
@@ -141,10 +141,10 @@
   },
   "tags": [
     {
-      "name": "Webhooks"
+      "name": "Payments"
     },
     {
-      "name": "Payments"
+      "name": "Webhooks"
     }
   ]
 }

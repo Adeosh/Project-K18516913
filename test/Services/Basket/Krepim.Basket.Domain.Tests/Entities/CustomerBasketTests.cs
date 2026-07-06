@@ -67,5 +67,48 @@ namespace Krepim.Basket.Domain.Tests.Entities
             basket.Items.Should().ContainSingle();
             basket.Items[0].ProductId.Should().Be(productId2);
         }
+
+        [Fact]
+        public void Clear_Should_RemoveAllItems()
+        {
+            // Arrange
+            var basket = new CustomerBasket(Guid.NewGuid());
+            basket.AddItem(new BasketItem(Guid.NewGuid(), "Свеча", "SP-1", 500m, 2));
+            basket.AddItem(new BasketItem(Guid.NewGuid(), "Масло", "OIL-1", 1500m, 1));
+
+            // Act
+            basket.Clear();
+
+            // Assert
+            basket.Items.Should().BeEmpty();
+            basket.TotalPrice.Should().Be(0);
+        }
+
+        [Fact]
+        public void RemoveItem_Should_DoNothing_WhenProductIdDoesNotExist()
+        {
+            // Arrange
+            var basket = new CustomerBasket(Guid.NewGuid());
+            var productId = Guid.NewGuid();
+            basket.AddItem(new BasketItem(productId, "Свеча", "SP-1", 500m, 2));
+
+            // Act
+            var nonExistentId = Guid.NewGuid();
+            basket.RemoveItem(nonExistentId);
+
+            // Assert
+            basket.Items.Should().ContainSingle();
+            basket.Items[0].ProductId.Should().Be(productId);
+        }
+
+        [Fact]
+        public void TotalPrice_Should_BeZero_WhenBasketIsEmpty()
+        {
+            // Arrange
+            var basket = new CustomerBasket(Guid.NewGuid());
+
+            // Act & Assert
+            basket.TotalPrice.Should().Be(0);
+        }
     }
 }

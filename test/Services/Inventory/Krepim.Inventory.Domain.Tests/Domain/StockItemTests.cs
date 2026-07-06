@@ -32,6 +32,29 @@ namespace Krepim.Inventory.Domain.Tests.Domain
             result.Error.Type.Should().Be(ErrorType.Validation);
         }
 
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-1)]
+        public void CreditStock_Should_ReturnFailure_When_QuantityIsInvalid(int invalidQuantity)
+        {
+            var stock = StockItem.Create(_productId, 100).Value;
+            var result = stock.CreditStock(invalidQuantity);
+
+            result.IsFailure.Should().BeTrue();
+            result.Error.Code.Should().Be("Inventory.InvalidOperation");
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-1)]
+        public void ReserveStock_Should_ReturnFailure_When_QuantityIsInvalid(int invalidQuantity)
+        {
+            var stock = StockItem.Create(_productId, 100).Value;
+            var result = stock.ReserveStock(invalidQuantity);
+
+            result.IsFailure.Should().BeTrue();
+        }
+
         [Fact]
         public void ReserveStock_Should_MoveAvailableToReserved_WhenSufficient()
         {
@@ -101,6 +124,24 @@ namespace Krepim.Inventory.Domain.Tests.Domain
         }
 
         [Fact]
+        public void ConfirmReservation_Should_ReturnFailure_WhenConfirmingMoreThanReserved()
+        {
+            // Arrange
+            var stock = StockItem.Create(_productId, 100).Value;
+            stock.ReserveStock(10);
+
+            // Act
+            var result = stock.ConfirmReservation(20);
+
+            // Assert
+            result.IsFailure.Should().BeTrue();
+            result.Error.Code.Should().Be("Inventory.InvalidReservationConfirm");
+
+            stock.TotalQuantity.Should().Be(100);
+            stock.ReservedQuantity.Should().Be(10);
+        }
+
+        [Fact]
         public void CancelReservation_Should_ReturnFailure_WhenCancellingMoreThanReserved()
         {
             // Arrange
@@ -113,6 +154,23 @@ namespace Krepim.Inventory.Domain.Tests.Domain
             // Assert
             result.IsFailure.Should().BeTrue();
             result.Error.Code.Should().Be("Inventory.InvalidReservationCancel");
+        }
+
+        [Fact]
+        public void ConfirmReservation_Should_HandlePartialConfirmation()
+        {
+            // Arrange
+            var stock = StockItem.Create(_productId, 100).Value;
+            stock.ReserveStock(50);
+
+            // Act
+            var result = stock.ConfirmReservation(30);
+
+            // Assert
+            result.IsSuccess.Should().BeTrue();
+            stock.TotalQuantity.Should().Be(70);
+            stock.ReservedQuantity.Should().Be(20);
+            stock.AvailableQuantity.Should().Be(50);
         }
     }
 }

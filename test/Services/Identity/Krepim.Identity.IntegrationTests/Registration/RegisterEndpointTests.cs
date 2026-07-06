@@ -46,5 +46,18 @@ namespace Krepim.Identity.IntegrationTests.Registration
             // Assert
             duplicateResponse.StatusCode.Should().Be(HttpStatusCode.Conflict);
         }
+
+        [Fact]
+        public async Task Register_Should_ReturnBadRequest_WhenEmailIsInvalid()
+        {
+            // Arrange
+            var command = new RegisterCommand("", "Pass123!", Role.Client, "+7 (999) 000-00-00");
+
+            // Act
+            var response = await _client.PostAsJsonAsync("/api/identity/register", command, cancellationToken: TestContext.Current.CancellationToken);
+
+            // Assert
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        }
     }
 }

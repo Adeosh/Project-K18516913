@@ -37,7 +37,7 @@ app.UseExceptionHandler();
 app.UseAuthentication();
 app.UseAuthorization();
 
-var apiGroup = app.MapGroup("")
+var apiGroup = app.MapGroup("/api/orders")
     .AddEndpointFilter<ResultEndpointFilter>();
 
 apiGroup.MapOrderEndpoints();

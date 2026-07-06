@@ -33,7 +33,7 @@ if (app.Environment.IsDevelopment())
 app.UseExceptionHandler();
 app.UseAuthorization();
 
-var apiGroup = app.MapGroup("")
+var apiGroup = app.MapGroup("/api/basket")
     .AddEndpointFilter<ResultEndpointFilter>();
 
 apiGroup.MapBasketEndpoints();

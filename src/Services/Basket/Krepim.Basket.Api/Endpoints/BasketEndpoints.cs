@@ -17,7 +17,7 @@ namespace Krepim.Basket.Api.Endpoints
     {
         public static void MapBasketEndpoints(this IEndpointRouteBuilder builder)
         {
-            var group = builder.MapGroup("/api/basket")
+            var group = builder.MapGroup("")
                 .WithTags("Basket")
                 .RequireAuthorization()
                 .AddEndpointFilter<ResultEndpointFilter>();
