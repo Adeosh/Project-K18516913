@@ -208,5 +208,186 @@ namespace Krepim.Payment.Domain.Tests.Entities
             result.IsFailure.Should().BeTrue();
             result.Error.Code.Should().Be("Payment.InvalidState");
         }
+
+        [Fact]
+        public void SetExternalId_Should_UpdateExternalId_When_Valid()
+        {
+            // Arrange
+            var transaction = PaymentTransaction.Create(Guid.NewGuid(), 500m).Value;
+            var externalId = "ch_3MtwfvLkdIwHu7ix28a3";
+
+            // Act
+            transaction.SetExternalId(externalId);
+
+            // Assert
+            transaction.ExternalPaymentId.Should().Be(externalId);
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData(" ")]
+        [InlineData(null!)]
+        public void SetExternalId_Should_ThrowArgumentException_When_Invalid(string externalId)
+        {
+            // Arrange
+            var transaction = PaymentTransaction.Create(Guid.NewGuid(), 500m).Value;
+
+            // Act
+            Action act = () => transaction.SetExternalId(externalId);
+
+            // Assert
+            act.Should().Throw<ArgumentException>();
+        }
+
+        [Fact]
+        public void HandleStatus_WithPending_Should_ReturnSuccess_When_StatusIsPending()
+        {
+            // Arrange
+            var transaction = PaymentTransaction.Create(Guid.NewGuid(), 1000m).Value;
+
+            // Act
+            var result = transaction.HandleStatus(PaymentStatus.Pending);
+
+            // Assert
+            result.IsSuccess.Should().BeTrue();
+            transaction.Status.Should().Be(PaymentStatus.Pending);
+        }
+
+        [Fact]
+        public void HandleStatus_WithUnknownStatus_Should_ReturnFailure()
+        {
+            // Arrange
+            var transaction = PaymentTransaction.Create(Guid.NewGuid(), 1000m).Value;
+
+            // Act
+            var result = transaction.HandleStatus((PaymentStatus)999);
+
+            // Assert
+            result.IsFailure.Should().BeTrue();
+            result.Error.Code.Should().Be("Payment.InvalidStatus");
+            result.Error.Type.Should().Be(ErrorType.Validation);
+        }
+
+        [Fact]
+        public void MarkAsFailed_Should_ReturnFailure_When_StatusIsAlreadySucceeded()
+        {
+            // Arrange
+            var transaction = PaymentTransaction.Create(Guid.NewGuid(), 1000m).Value;
+            transaction.MarkAsSucceeded();
+
+            // Act
+            var result = transaction.MarkAsFailed("Error");
+
+            // Assert
+            result.IsFailure.Should().BeTrue();
+            result.Error.Code.Should().Be("Payment.InvalidState");
+            transaction.Status.Should().Be(PaymentStatus.Succeeded);
+        }
+
+        [Fact]
+        public void MarkAsRefunded_Should_SetProcessedAt_When_Successful()
+        {
+            // Arrange
+            var transaction = PaymentTransaction.Create(Guid.NewGuid(), 1000m).Value;
+            transaction.MarkAsSucceeded();
+
+            // Act
+            var result = transaction.MarkAsRefunded();
+
+            // Assert
+            result.IsSuccess.Should().BeTrue();
+            transaction.ProcessedAt.Should().NotBeNull();
+            transaction.ProcessedAt!.Value.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(2));
+        }
+
+        [Fact]
+        public void HandleStatus_Should_CallMarkAsFailedWithErrorMessage_When_FailedStatus()
+        {
+            // Arrange
+            var transaction = PaymentTransaction.Create(Guid.NewGuid(), 1000m).Value;
+            var errorMessage = "Payment declined by bank";
+
+            // Act
+            var result = transaction.HandleStatus(PaymentStatus.Failed, errorMessage);
+
+            // Assert
+            result.IsSuccess.Should().BeTrue();
+            transaction.Status.Should().Be(PaymentStatus.Failed);
+            transaction.ErrorMessage.Should().Be(errorMessage);
+            transaction.ProcessedAt.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void HandleStatus_Should_UseDefaultErrorMessage_When_FailedAndErrorMessageNotProvided()
+        {
+            // Arrange
+            var transaction = PaymentTransaction.Create(Guid.NewGuid(), 1000m).Value;
+
+            // Act
+            var result = transaction.HandleStatus(PaymentStatus.Failed);
+
+            // Assert
+            result.IsSuccess.Should().BeTrue();
+            transaction.Status.Should().Be(PaymentStatus.Failed);
+            transaction.ErrorMessage.Should().Be("Платеж отклонен.");
+        }
+
+        [Fact]
+        public void MarkAsSucceeded_Should_NotChangeProcessedAt_When_AlreadySucceeded()
+        {
+            // Arrange
+            var transaction = PaymentTransaction.Create(Guid.NewGuid(), 1000m).Value;
+            transaction.MarkAsSucceeded();
+            var firstProcessedAt = transaction.ProcessedAt;
+
+            // Act
+            Thread.Sleep(100); // Небольшая задержка
+            transaction.MarkAsSucceeded();
+
+            // Assert
+            transaction.ProcessedAt.Should().Be(firstProcessedAt);
+        }
+
+        [Fact]
+        public void Create_Should_GenerateNewGuid_EachTime()
+        {
+            // Arrange & Act
+            var transaction1 = PaymentTransaction.Create(Guid.NewGuid(), 100m).Value;
+            var transaction2 = PaymentTransaction.Create(Guid.NewGuid(), 200m).Value;
+
+            // Assert
+            transaction1.Id.Should().NotBe(transaction2.Id);
+        }
+
+        [Fact]
+        public void Create_Should_HaveCreatedAt_CloseToUtcNow()
+        {
+            // Arrange
+            var before = DateTime.UtcNow;
+
+            // Act
+            var transaction = PaymentTransaction.Create(Guid.NewGuid(), 100m).Value;
+
+            // Assert
+            transaction.CreatedAt.Should().BeOnOrAfter(before);
+            transaction.CreatedAt.Should().BeOnOrBefore(DateTime.UtcNow);
+        }
+
+        [Fact]
+        public void MarkAsSucceeded_Should_ReturnFailure_When_StatusIsFailed()
+        {
+            // Arrange
+            var transaction = PaymentTransaction.Create(Guid.NewGuid(), 1000m).Value;
+            transaction.MarkAsFailed("Error");
+
+            // Act
+            var result = transaction.MarkAsSucceeded();
+
+            // Assert
+            result.IsFailure.Should().BeTrue();
+            result.Error.Code.Should().Be("Payment.InvalidState");
+            result.Error.Type.Should().Be(ErrorType.Conflict);
+            transaction.Status.Should().Be(PaymentStatus.Failed);
+        }
     }
 }

@@ -28,7 +28,7 @@ namespace Krepim.Basket.Domain.Entities
         public BasketItem(Guid productId, string productName, string sku, decimal unitPrice, int quantity)
         {
             if (quantity <= 0)
-                throw new ArgumentException("Quantity must be greater than zero", nameof(quantity));
+                throw new ArgumentException("Количество должно быть больше нуля", nameof(quantity));
 
             ProductId = productId;
             ProductName = productName;
@@ -40,7 +40,7 @@ namespace Krepim.Basket.Domain.Entities
         public void AddQuantity(int quantity)
         {
             if (quantity <= 0)
-                throw new ArgumentException("Quantity to add must be greater than zero", nameof(quantity));
+                throw new ArgumentException("Добавляемое количество должно быть больше нуля", nameof(quantity));
 
             Quantity += quantity;
         }
@@ -48,7 +48,7 @@ namespace Krepim.Basket.Domain.Entities
         public void UpdateQuantity(int newQuantity)
         {
             if (newQuantity <= 0)
-                throw new ArgumentException("New quantity must be greater than zero", nameof(newQuantity));
+                throw new ArgumentException("Новое значение должно быть больше нуля", nameof(newQuantity));
 
             Quantity = newQuantity;
         }
@@ -56,10 +56,10 @@ namespace Krepim.Basket.Domain.Entities
         public void UpdateQuantityAndPrice(int newQuantity, decimal newPrice)
         {
             if (newQuantity <= 0)
-                throw new ArgumentException("Quantity must be greater than zero", nameof(newQuantity));
+                throw new ArgumentException("Количество должно быть больше нуля", nameof(newQuantity));
 
             if (newPrice < 0)
-                throw new ArgumentException("Price cannot be negative", nameof(newPrice));
+                throw new ArgumentException("Цена не может быть отрицательной", nameof(newPrice));
 
             Quantity = newQuantity;
             UnitPrice = newPrice;

@@ -25,7 +25,7 @@ namespace Krepim.Identity.Domain.Aggregates
         public static Result<User> Create(string email, string passwordHash, Role role, string? phoneNumber = null)
         {
             if (string.IsNullOrWhiteSpace(email))
-                return Result<User>.Failure(new Error("User.InvalidEmail", "Email cannot be empty", ErrorType.Validation));
+                return Result<User>.Failure(new Error("User.InvalidEmail", "Адрес электронной почты не может быть пустым", ErrorType.Validation));
 
             var user = new User(Guid.NewGuid(), email, passwordHash, role, phoneNumber);
 
@@ -35,7 +35,7 @@ namespace Krepim.Identity.Domain.Aggregates
         public Result UpdateProfile(string email, string? phoneNumber, Address? defaultAddress)
         {
             if (string.IsNullOrWhiteSpace(email))
-                return Result.Failure(new Error("User.InvalidEmail", "Email cannot be empty", ErrorType.Validation));
+                return Result.Failure(new Error("User.InvalidEmail", "Адрес электронной почты не может быть пустым", ErrorType.Validation));
 
             Email = email;
             PhoneNumber = phoneNumber;

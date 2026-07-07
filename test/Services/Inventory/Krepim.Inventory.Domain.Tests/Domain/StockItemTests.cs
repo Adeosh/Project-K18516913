@@ -84,7 +84,6 @@ namespace Krepim.Inventory.Domain.Tests.Domain
             result.IsFailure.Should().BeTrue();
             result.Error.Code.Should().Be("Inventory.InsufficientStock");
 
-            // Инварианты не должны измениться
             stock.ReservedQuantity.Should().Be(0);
             stock.AvailableQuantity.Should().Be(20);
         }
@@ -171,6 +170,227 @@ namespace Krepim.Inventory.Domain.Tests.Domain
             stock.TotalQuantity.Should().Be(70);
             stock.ReservedQuantity.Should().Be(20);
             stock.AvailableQuantity.Should().Be(50);
+        }
+
+        [Fact]
+        public void Create_Should_GenerateNewId_When_Valid()
+        {
+            // Act
+            var result1 = StockItem.Create(_productId, 100);
+            var result2 = StockItem.Create(_productId, 200);
+
+            // Assert
+            result1.Value.Id.Should().NotBe(result2.Value.Id);
+        }
+
+        [Fact]
+        public void CreditStock_Should_IncreaseTotalQuantity_When_Valid()
+        {
+            // Arrange
+            var stock = StockItem.Create(_productId, 100).Value;
+
+            // Act
+            var result = stock.CreditStock(50);
+
+            // Assert
+            result.IsSuccess.Should().BeTrue();
+            stock.TotalQuantity.Should().Be(150);
+            stock.AvailableQuantity.Should().Be(150);
+        }
+
+        [Fact]
+        public void CreditStock_Should_ReturnFailure_When_QuantityIsZero()
+        {
+            // Arrange
+            var stock = StockItem.Create(_productId, 100).Value;
+
+            // Act
+            var result = stock.CreditStock(0);
+
+            // Assert
+            result.IsFailure.Should().BeTrue();
+            result.Error.Code.Should().Be("Inventory.InvalidOperation");
+            stock.TotalQuantity.Should().Be(100);
+        }
+
+        [Fact]
+        public void ReserveStock_Should_ReturnFailure_When_QuantityExceedsAvailable()
+        {
+            // Arrange
+            var stock = StockItem.Create(_productId, 50).Value;
+
+            // Act
+            var result = stock.ReserveStock(100);
+
+            // Assert
+            result.IsFailure.Should().BeTrue();
+            result.Error.Code.Should().Be("Inventory.InsufficientStock");
+            result.Error.Description.Should().Contain("Запрошено: 100, Доступно: 50");
+        }
+
+        [Fact]
+        public void ReserveStock_Should_ReturnFailure_When_QuantityIsZero()
+        {
+            // Arrange
+            var stock = StockItem.Create(_productId, 100).Value;
+
+            // Act
+            var result = stock.ReserveStock(0);
+
+            // Assert
+            result.IsFailure.Should().BeTrue();
+            result.Error.Code.Should().Be("Inventory.InvalidOperation");
+        }
+
+        [Fact]
+        public void ConfirmReservation_Should_ReturnFailure_When_QuantityIsZero()
+        {
+            // Arrange
+            var stock = StockItem.Create(_productId, 100).Value;
+            stock.ReserveStock(50);
+
+            // Act
+            var result = stock.ConfirmReservation(0);
+
+            // Assert
+            result.IsFailure.Should().BeTrue();
+            result.Error.Code.Should().Be("Inventory.InvalidOperation");
+            stock.ReservedQuantity.Should().Be(50);
+            stock.TotalQuantity.Should().Be(100);
+        }
+
+        [Fact]
+        public void ConfirmReservation_Should_ReturnFailure_When_QuantityExceedsReserved()
+        {
+            // Arrange
+            var stock = StockItem.Create(_productId, 100).Value;
+            stock.ReserveStock(30);
+
+            // Act
+            var result = stock.ConfirmReservation(40);
+
+            // Assert
+            result.IsFailure.Should().BeTrue();
+            result.Error.Code.Should().Be("Inventory.InvalidReservationConfirm");
+            result.Error.Description.Should().Contain("Запрошено: 40, В резерве: 30");
+        }
+
+        [Fact]
+        public void CancelReservation_Should_ReturnFailure_When_QuantityIsZero()
+        {
+            // Arrange
+            var stock = StockItem.Create(_productId, 100).Value;
+            stock.ReserveStock(50);
+
+            // Act
+            var result = stock.CancelReservation(0);
+
+            // Assert
+            result.IsFailure.Should().BeTrue();
+            result.Error.Code.Should().Be("Inventory.InvalidOperation");
+            stock.ReservedQuantity.Should().Be(50);
+        }
+
+        [Fact]
+        public void CancelReservation_Should_ReturnFailure_When_QuantityExceedsReserved()
+        {
+            // Arrange
+            var stock = StockItem.Create(_productId, 100).Value;
+            stock.ReserveStock(20);
+
+            // Act
+            var result = stock.CancelReservation(30);
+
+            // Assert
+            result.IsFailure.Should().BeTrue();
+            result.Error.Code.Should().Be("Inventory.InvalidReservationCancel");
+            result.Error.Description.Should().Contain("Запрошено: 30, В резерве: 20");
+        }
+
+        [Fact]
+        public void MultipleOperations_Should_MaintainCorrectState()
+        {
+            // Arrange
+            var stock = StockItem.Create(_productId, 100).Value;
+
+            // Act
+            stock.CreditStock(50);
+            stock.ReserveStock(30);
+            stock.ConfirmReservation(20);
+            stock.CancelReservation(10);
+
+            // Assert
+            stock.TotalQuantity.Should().Be(130);
+            stock.ReservedQuantity.Should().Be(0);
+            stock.AvailableQuantity.Should().Be(130);
+        }
+
+        [Fact]
+        public void ReserveStock_Should_NotAllowReservingMoreThanAvailable_AfterPartialConfirmation()
+        {
+            // Arrange
+            var stock = StockItem.Create(_productId, 100).Value;
+            stock.ReserveStock(80);
+            stock.ConfirmReservation(50);
+
+            // Act
+            var result = stock.ReserveStock(30);
+
+            // Assert
+            result.IsFailure.Should().BeTrue();
+            result.Error.Code.Should().Be("Inventory.InsufficientStock");
+            stock.AvailableQuantity.Should().Be(20);
+        }
+
+        [Fact]
+        public void CreditStock_Should_Work_When_ReservedQuantityExists()
+        {
+            // Arrange
+            var stock = StockItem.Create(_productId, 100).Value;
+            stock.ReserveStock(40);
+
+            // Act
+            var result = stock.CreditStock(30);
+
+            // Assert
+            result.IsSuccess.Should().BeTrue();
+            stock.TotalQuantity.Should().Be(130);
+            stock.ReservedQuantity.Should().Be(40);
+            stock.AvailableQuantity.Should().Be(90);
+        }
+
+        [Fact]
+        public void ConfirmReservation_Should_NotChangeReservedQuantity_When_Failure()
+        {
+            // Arrange
+            var stock = StockItem.Create(_productId, 100).Value;
+            stock.ReserveStock(30);
+
+            // Act
+            var result = stock.ConfirmReservation(50);
+
+            // Assert
+            result.IsFailure.Should().BeTrue();
+            stock.ReservedQuantity.Should().Be(30);
+            stock.TotalQuantity.Should().Be(100);
+            stock.AvailableQuantity.Should().Be(70);
+        }
+
+        [Fact]
+        public void CancelReservation_Should_NotChangeTotalQuantity_When_Failure()
+        {
+            // Arrange
+            var stock = StockItem.Create(_productId, 100).Value;
+            stock.ReserveStock(20);
+
+            // Act
+            var result = stock.CancelReservation(30);
+
+            // Assert
+            result.IsFailure.Should().BeTrue();
+            stock.TotalQuantity.Should().Be(100);
+            stock.ReservedQuantity.Should().Be(20);
+            stock.AvailableQuantity.Should().Be(80);
         }
     }
 }

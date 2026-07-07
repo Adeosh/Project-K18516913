@@ -39,7 +39,7 @@ namespace Krepim.Ordering.Domain.Entities
         public void AddOrderItem(Guid productId, decimal unitPrice, int quantity)
         {
             if (Status != OrderStatus.Pending)
-                throw new InvalidOperationException("Can only add items to pending orders.");
+                throw new InvalidOperationException("Можно добавлять товары только в отложенные заказы.");
 
             var item = new OrderItem(Id, productId, unitPrice, quantity);
             _items.Add(item);
@@ -62,7 +62,7 @@ namespace Krepim.Ordering.Domain.Entities
         public void Cancel()
         {
             if (Status is OrderStatus.Paid or OrderStatus.Shipped)
-                throw new InvalidOperationException("Cannot cancel an order that is already paid or shipped.");
+                throw new InvalidOperationException("Невозможно отменить заказ, который уже оплачен или отправлен.");
 
             Status = OrderStatus.Cancelled;
         }

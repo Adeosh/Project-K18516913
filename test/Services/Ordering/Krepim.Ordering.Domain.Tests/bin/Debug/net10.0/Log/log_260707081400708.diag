@@ -1,0 +1,21 @@
+2026-07-07T08:14:00.7128581+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Version: 1.9.1+cb5afc3bb9bb01ebd75b57f89e8358b914ee2a49
+2026-07-07T08:14:00.7189501+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging mode: asynchronous
+2026-07-07T08:14:00.7195144+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging level: Information
+2026-07-07T08:14:00.7195169+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION CreateBuilderAsync entry time: 08:14:00.701
+2026-07-07T08:14:00.7195668+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION PID: 26428
+2026-07-07T08:14:00.7195870+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime information: win-x64 - .NET 10.0.9
+2026-07-07T08:14:00.7195969+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\10.0.9\System.Private.CoreLib.dll
+2026-07-07T08:14:00.7196024+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION IsDynamicCodeSupported: True
+2026-07-07T08:14:00.7196548+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Test module: C:\Users\adeos\Source\Repos\Krepim\test\Services\Ordering\Krepim.Ordering.Domain.Tests\bin\Debug\net10.0\Krepim.Ordering.Domain.Tests.dll
+2026-07-07T08:14:00.7197363+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Command line arguments: '--server --diagnostic --diagnostic-verbosity Information --diagnostic-output-directory C:\Users\adeos\Source\Repos\Krepim\test\Services\Ordering\Krepim.Ordering.Domain.Tests\bin\Debug\net10.0\Log --results-directory C:\Users\adeos\Source\Repos\Krepim\TestResults --client-port 53898'
+2026-07-07T08:14:00.7202849+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION TESTINGPLATFORM_DEFAULT_HANG_TIMEOUT: ''
+2026-07-07T08:14:00.7317371+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting RegisterEnvironmentVariablesConfigurationSource: 'True'
+2026-07-07T08:14:00.7400068+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting PlatformExitProcessOnUnhandledException: 'False', config file: False environment variable: 
+2026-07-07T08:14:01.0598013+00:00 Microsoft.Testing.Platform.Requests.TestHostTestFrameworkInvoker INFORMATION Test framework UID: '30ea7c6e-dd24-4152-a360-1387158cd41d' Version: '3.2.2' DisplayName: 'xUnit.net v3 Microsoft.Testing.Platform test framework' Description: 'xUnit.net v3 Microsoft.Testing.Platform test framework'
+2026-07-07T08:14:01.0658253+00:00 xUnit.net INFORMATION xUnit.net v3 In-Process Runner v3.2.2+728c1dce01 (64-bit .NET 10.0.9)
+2026-07-07T08:14:01.0932634+00:00 xUnit.net INFORMATION   Discovering: Krepim.Ordering.Domain.Tests
+2026-07-07T08:14:01.1176335+00:00 xUnit.net INFORMATION   Discovered:  Krepim.Ordering.Domain.Tests
+2026-07-07T08:14:01.1340252+00:00 xUnit.net INFORMATION   Starting:    Krepim.Ordering.Domain.Tests
+2026-07-07T08:14:01.4176425+00:00 xUnit.net INFORMATION   Finished:    Krepim.Ordering.Domain.Tests (ID = '90a5583ee1728665fd9eb322acb487c568101c20a301f21738e04171201cc42b')
+2026-07-07T08:14:01.4208317+00:00 xUnit.net INFORMATION === TEST EXECUTION SUMMARY ===
+2026-07-07T08:14:01.4236128+00:00 xUnit.net INFORMATION    Krepim.Ordering.Domain.Tests  Total: 21, Errors: 0, Failed: 0, Skipped: 0, Not Run: 0, Time: 0,287s

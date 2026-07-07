@@ -69,7 +69,7 @@ namespace Krepim.Basket.Application.Tests.Features
             // Assert
             result.IsFailure.Should().BeTrue();
             result.Error.Code.Should().Be("Basket.Invalid");
-            result.Error.Description.Should().Contain("Price cannot be negative");
+            result.Error.Description.Should().Contain("Цена не может быть отрицательной");
         }
 
         [Fact]

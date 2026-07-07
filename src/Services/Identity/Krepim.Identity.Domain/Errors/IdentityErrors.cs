@@ -7,17 +7,17 @@ namespace Krepim.Identity.Domain.Errors
     {
         public static readonly Error EmailNotUnique = new(
             "Identity.EmailNotUnique",
-            "The provided email is already in use.",
+            "Указанный адрес электронной почты уже используется.",
             ErrorType.Conflict);
 
         public static readonly Error UserNotFound = new(
             "Identity.UserNotFound",
-            "The user with the specified identifier was not found.",
+            "Пользователь с указанным идентификатором найден не был.",
             ErrorType.NotFound);
 
         public static readonly Error InvalidCredentials = new(
             "Identity.InvalidCredentials",
-            "Invalid email or password.",
+            "Неверный адрес электронной почты или пароль.",
             ErrorType.Validation);
     }
 }

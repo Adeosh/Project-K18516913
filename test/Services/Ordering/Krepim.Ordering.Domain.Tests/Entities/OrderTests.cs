@@ -82,7 +82,7 @@ namespace Krepim.Ordering.Domain.Tests.Entities
 
             // Assert
             act.Should().Throw<InvalidOperationException>()
-                .WithMessage("Can only add items to pending orders.");
+                .WithMessage("Можно добавлять товары только в отложенные заказы.");
         }
 
         [Fact]
@@ -123,21 +123,6 @@ namespace Krepim.Ordering.Domain.Tests.Entities
 
             // Assert
             order.Status.Should().Be(OrderStatus.Cancelled);
-        }
-
-        [Fact]
-        public void Cancel_Should_ThrowInvalidOperationException_When_OrderIsAlreadyPaidOrShipped()
-        {
-            // Arrange
-            var orderPaid = Order.Create(Guid.NewGuid(), Guid.NewGuid(), _testAddress);
-            orderPaid.MarkAsPaid();
-
-            // Act
-            Action act = () => orderPaid.Cancel();
-
-            // Assert
-            act.Should().Throw<InvalidOperationException>()
-                .WithMessage("Cannot cancel an order that is already paid or shipped.");
         }
 
         [Fact]
@@ -204,6 +189,144 @@ namespace Krepim.Ordering.Domain.Tests.Entities
             order.HandlePaymentResult(PaymentStatus.Succeeded);
 
             // Assert
+            order.Status.Should().Be(OrderStatus.Cancelled);
+        }
+
+        [Fact]
+        public void AddOrderItem_Should_NotThrowException_When_UnitPriceIsZeroOrNegative()
+        {
+            // Arrange
+            var order = Order.Create(Guid.NewGuid(), Guid.NewGuid(), _testAddress);
+
+            // Act
+            Action actZero = () => order.AddOrderItem(Guid.NewGuid(), 0m, 1);
+            Action actNegative = () => order.AddOrderItem(Guid.NewGuid(), -100m, 1);
+
+            // Assert
+            actZero.Should().NotThrow();
+            actNegative.Should().NotThrow();
+
+            order.Items.Should().HaveCount(2);
+            order.Items.Should().Contain(x => x.UnitPrice == 0m);
+            order.Items.Should().Contain(x => x.UnitPrice == -100m);
+        }
+
+        [Fact]
+        public void Cancel_Should_ThrowInvalidOperationException_When_OrderIsAlreadyPaidOrShipped()
+        {
+            // Arrange
+            var orderPaid = Order.Create(Guid.NewGuid(), Guid.NewGuid(), _testAddress);
+            orderPaid.MarkAsPaid();
+
+            // Act
+            Action act = () => orderPaid.Cancel();
+
+            // Assert
+            act.Should().Throw<InvalidOperationException>()
+                .WithMessage("Невозможно отменить заказ, который уже оплачен или отправлен.");
+        }
+
+        [Fact]
+        public void Cancel_Should_ThrowInvalidOperationException_When_OrderIsShipped()
+        {
+            // Arrange
+            var order = Order.Create(Guid.NewGuid(), Guid.NewGuid(), _testAddress);
+            // Устанавливаем статус Shipped через рефлексию
+            typeof(Order).GetProperty("Status")?.SetValue(order, OrderStatus.Shipped);
+
+            // Act
+            Action act = () => order.Cancel();
+
+            // Assert
+            act.Should().Throw<InvalidOperationException>()
+                .WithMessage("Невозможно отменить заказ, который уже оплачен или отправлен.");
+        }
+
+        [Fact]
+        public void MarkAsPaid_Should_ThrowInvalidOperationException_When_OrderIsShipped()
+        {
+            // Arrange
+            var order = Order.Create(Guid.NewGuid(), Guid.NewGuid(), _testAddress);
+            typeof(Order).GetProperty("Status")?.SetValue(order, OrderStatus.Shipped);
+
+            // Act
+            Action act = () => order.MarkAsPaid();
+
+            // Assert
+            act.Should().Throw<InvalidOperationException>()
+                .WithMessage("Нельзя оплатить заказ, который уже был отправлен.");
+        }
+
+        [Fact]
+        public void HandlePaymentResult_Should_ThrowArgumentOutOfRangeException_When_UnknownStatus()
+        {
+            // Arrange
+            var order = Order.Create(Guid.NewGuid(), Guid.NewGuid(), _testAddress);
+
+            // Act
+            Action act = () => order.HandlePaymentResult((PaymentStatus)999);
+
+            // Assert
+            act.Should().Throw<ArgumentOutOfRangeException>()
+                .WithParameterName("paymentStatus")
+                .WithMessage("*Неизвестный статус оплаты*");
+        }
+
+        [Fact]
+        public void AddOrderItem_Should_ThrowInvalidOperationException_When_OrderIsAwaitingValidation()
+        {
+            // Arrange
+            var order = Order.Create(Guid.NewGuid(), Guid.NewGuid(), _testAddress);
+            order.HandlePaymentResult(PaymentStatus.Pending);
+
+            // Act
+            Action act = () => order.AddOrderItem(Guid.NewGuid(), 100m, 1);
+
+            // Assert
+            act.Should().Throw<InvalidOperationException>()
+                .WithMessage("Можно добавлять товары только в отложенные заказы.");
+        }
+
+        [Fact]
+        public void MarkAsPaid_Should_ThrowInvalidOperationException_When_OrderIsNotPendingOrAwaitingValidation()
+        {
+            // Arrange
+            var order = Order.Create(Guid.NewGuid(), Guid.NewGuid(), _testAddress);
+            order.Cancel();
+
+            // Act
+            Action act = () => order.MarkAsPaid();
+
+            // Assert
+            act.Should().Throw<InvalidOperationException>();
+        }
+
+        [Fact]
+        public void Cancel_Should_NotThrow_When_OrderIsPending()
+        {
+            // Arrange
+            var order = Order.Create(Guid.NewGuid(), Guid.NewGuid(), _testAddress);
+
+            // Act
+            Action act = () => order.Cancel();
+
+            // Assert
+            act.Should().NotThrow();
+            order.Status.Should().Be(OrderStatus.Cancelled);
+        }
+
+        [Fact]
+        public void Cancel_Should_NotThrow_When_OrderIsAwaitingValidation()
+        {
+            // Arrange
+            var order = Order.Create(Guid.NewGuid(), Guid.NewGuid(), _testAddress);
+            order.HandlePaymentResult(PaymentStatus.Pending);
+
+            // Act
+            Action act = () => order.Cancel();
+
+            // Assert
+            act.Should().NotThrow();
             order.Status.Should().Be(OrderStatus.Cancelled);
         }
     }
