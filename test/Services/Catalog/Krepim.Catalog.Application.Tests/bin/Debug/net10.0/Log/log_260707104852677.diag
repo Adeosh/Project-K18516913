@@ -1,0 +1,40 @@
+2026-07-07T10:48:52.6815005+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Version: 1.9.1+cb5afc3bb9bb01ebd75b57f89e8358b914ee2a49
+2026-07-07T10:48:52.6874398+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging mode: asynchronous
+2026-07-07T10:48:52.6879660+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging level: Information
+2026-07-07T10:48:52.6879682+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION CreateBuilderAsync entry time: 10:48:52.670
+2026-07-07T10:48:52.6880118+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION PID: 34264
+2026-07-07T10:48:52.6880276+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime information: win-x64 - .NET 10.0.9
+2026-07-07T10:48:52.6880360+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\10.0.9\System.Private.CoreLib.dll
+2026-07-07T10:48:52.6880409+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION IsDynamicCodeSupported: True
+2026-07-07T10:48:52.6880874+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Test module: C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.Application.Tests\bin\Debug\net10.0\Krepim.Catalog.Application.Tests.dll
+2026-07-07T10:48:52.6881626+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Command line arguments: '--server --diagnostic --diagnostic-verbosity Information --diagnostic-output-directory C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.Application.Tests\bin\Debug\net10.0\Log --results-directory C:\Users\adeos\Source\Repos\Krepim\TestResults --client-port 62351'
+2026-07-07T10:48:52.6886685+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION TESTINGPLATFORM_DEFAULT_HANG_TIMEOUT: ''
+2026-07-07T10:48:52.6991703+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting RegisterEnvironmentVariablesConfigurationSource: 'True'
+2026-07-07T10:48:52.7071806+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting PlatformExitProcessOnUnhandledException: 'False', config file: False environment variable: 
+2026-07-07T10:48:52.8416944+00:00 Microsoft.Testing.Platform.Requests.TestHostTestFrameworkInvoker INFORMATION Test framework UID: '30ea7c6e-dd24-4152-a360-1387158cd41d' Version: '3.2.2' DisplayName: 'xUnit.net v3 Microsoft.Testing.Platform test framework' Description: 'xUnit.net v3 Microsoft.Testing.Platform test framework'
+2026-07-07T10:48:52.8485222+00:00 xUnit.net INFORMATION xUnit.net v3 In-Process Runner v3.2.2+728c1dce01 (64-bit .NET 10.0.9)
+2026-07-07T10:48:52.8753779+00:00 xUnit.net INFORMATION   Discovering: Krepim.Catalog.Application.Tests
+2026-07-07T10:48:52.9002957+00:00 xUnit.net INFORMATION   Discovered:  Krepim.Catalog.Application.Tests
+2026-07-07T10:48:52.9147560+00:00 xUnit.net INFORMATION   Starting:    Krepim.Catalog.Application.Tests
+2026-07-07T10:48:53.0760435+00:00 xUnit.net ERROR     Krepim.Catalog.Application.Tests.Features.Products.SearchProductsQueryHandlerTests.Handle_Should_CallRepositoryWithCorrectParameters [FAIL]
+2026-07-07T10:48:53.0763737+00:00 xUnit.net INFORMATION       NSubstitute.Exceptions.ReceivedCallsException : Expected to receive exactly 1 call matching:
+	SearchAsync(s => (s == value(Krepim.Catalog.Application.Tests.Features.Products.SearchProductsQueryHandlerTests+<>c__DisplayClass11_0).searchTerm), b => (b == value(Krepim.Catalog.Application.Tests.Features.Products.SearchProductsQueryHandlerTests+<>c__DisplayClass11_0).onlyActive), i => (i == value(Krepim.Catalog.Application.Tests.Features.Products.SearchProductsQueryHandlerTests+<>c__DisplayClass11_0).page), i => (i == value(Krepim.Catalog.Application.Tests.Features.Products.SearchProductsQueryHandlerTests+<>c__DisplayClass11_0).pageSize), b55a0f0a-9127-4708-b09b-1a4ad128aaba, any CancellationToken)
+2026-07-07T10:48:53.0763824+00:00 xUnit.net INFORMATION       Actually received no matching calls.
+2026-07-07T10:48:53.0763830+00:00 xUnit.net INFORMATION       Received 1 non-matching call (non-matching arguments indicated with '*' characters):
+2026-07-07T10:48:53.0763833+00:00 xUnit.net INFORMATION       	SearchAsync("шуруп", False, 3, 20, *<null>*, System.Threading.CancellationToken)
+
+2026-07-07T10:48:53.0766035+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-07T10:48:53.0771364+00:00 xUnit.net INFORMATION            at NSubstitute.Core.ReceivedCallsExceptionThrower.Throw(ICallSpecification callSpecification, IEnumerable`1 matchingCalls, IEnumerable`1 nonMatchingCalls, Quantity requiredQuantity)
+2026-07-07T10:48:53.0771449+00:00 xUnit.net INFORMATION            at NSubstitute.Routing.Handlers.CheckReceivedCallsHandler.Handle(ICall call)
+2026-07-07T10:48:53.0771467+00:00 xUnit.net INFORMATION            at NSubstitute.Routing.Route.Handle(ICall call)
+2026-07-07T10:48:53.0771483+00:00 xUnit.net INFORMATION            at NSubstitute.Core.CallRouter.Route(ICall call)
+2026-07-07T10:48:53.0771541+00:00 xUnit.net INFORMATION            at NSubstitute.Proxies.CastleDynamicProxy.CastleForwardingInterceptor.Intercept(IInvocation invocation)
+2026-07-07T10:48:53.0771557+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.AbstractInvocation.Proceed()
+2026-07-07T10:48:53.0771584+00:00 xUnit.net INFORMATION            at NSubstitute.Proxies.CastleDynamicProxy.ProxyIdInterceptor.Intercept(IInvocation invocation)
+2026-07-07T10:48:53.0771599+00:00 xUnit.net INFORMATION            at Castle.DynamicProxy.AbstractInvocation.Proceed()
+2026-07-07T10:48:53.0771719+00:00 xUnit.net INFORMATION            at Castle.Proxies.ObjectProxy.SearchAsync(String searchTerm, Boolean onlyActive, Int32 page, Int32 pageSize, Nullable`1 categoryId, CancellationToken cancellationToken)
+2026-07-07T10:48:53.0771840+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.Application.Tests\Features\Products\SearchProductsQueryHandlerTests.cs(282,0): at Krepim.Catalog.Application.Tests.Features.Products.SearchProductsQueryHandlerTests.Handle_Should_CallRepositoryWithCorrectParameters()
+2026-07-07T10:48:53.0771870+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-07T10:48:53.1064986+00:00 xUnit.net INFORMATION   Finished:    Krepim.Catalog.Application.Tests (ID = 'e46365c3fdd3e58bc2ca152f651b4f967284ad2ab02d74e237bd89fedefd0df4')
+2026-07-07T10:48:53.1096051+00:00 xUnit.net INFORMATION === TEST EXECUTION SUMMARY ===
+2026-07-07T10:48:53.1127179+00:00 xUnit.net INFORMATION    Krepim.Catalog.Application.Tests  Total: 9, Errors: 0, Failed: 1, Skipped: 0, Not Run: 0, Time: 0,195s

@@ -13,9 +13,19 @@ namespace Krepim.Catalog.Api.Endpoints.Products
             var group = builder.MapGroup("/public")
                                .AddEndpointFilter<ResultEndpointFilter>();
 
-            group.MapGet("/search", async ([FromQuery] string? term, [FromQuery] int? page, [FromServices] ISender sender, CancellationToken ct) =>
+            group.MapGet("/search", async (
+                [FromQuery] string? term, 
+                [FromQuery] int? page,
+                [FromQuery] Guid? categoryId,
+                [FromServices] ISender sender, 
+                CancellationToken ct) =>
             {
-                return await sender.Send(new SearchProductsQuery(term ?? string.Empty, OnlyActive: true, page ?? 1, 20), ct);
+                return await sender.Send(new SearchProductsQuery(
+                    SearchTerm: term ?? string.Empty,
+                    OnlyActive: true,
+                    Page: page ?? 1,
+                    PageSize: 20,
+                    CategoryId: categoryId), ct);
             });
 
             group.MapGet("/{id:guid}", async (Guid id, [FromServices] ISender sender, CancellationToken ct) =>

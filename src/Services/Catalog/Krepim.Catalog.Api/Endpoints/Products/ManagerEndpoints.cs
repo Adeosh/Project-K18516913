@@ -3,7 +3,6 @@ using Krepim.Catalog.Application.Features.DeleteProduct;
 using Krepim.Catalog.Application.Features.PublishProduct;
 using Krepim.Catalog.Application.Features.SearchProduct;
 using Krepim.Catalog.Application.Features.UpdateProduct;
-using Krepim.SharedKernel.Extensions;
 using Krepim.SharedKernel.Results.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -18,8 +17,13 @@ namespace Krepim.Catalog.Api.Endpoints.Products
                 .RequireAuthorization(policy => policy.RequireRole("Manager"))
                 .AddEndpointFilter<ResultEndpointFilter>();
 
-            group.MapGet("/search", async ([FromQuery] string? term, [FromQuery] int? page, [FromServices] ISender sender, CancellationToken ct) =>
-                await sender.Send(new SearchProductsQuery(term ?? string.Empty, OnlyActive: false, page ?? 1, 20), ct));
+            group.MapGet("/search", async ([FromQuery] string? term, [FromQuery] int? page, [FromQuery] Guid? categoryId, [FromServices] ISender sender, CancellationToken ct) =>
+                await sender.Send(new SearchProductsQuery(
+                    SearchTerm: term ?? string.Empty,
+                    OnlyActive: false,
+                    Page: page ?? 1,
+                    PageSize: 20,
+                    CategoryId: categoryId), ct));
 
             group.MapPut("/{id:guid}", async (Guid id, [FromBody] UpdateProductCommand command, [FromServices] ISender sender, CancellationToken ct) =>
                 await sender.Send(command with { Id = id }, ct));

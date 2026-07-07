@@ -15,15 +15,16 @@ namespace Krepim.Catalog.Infrastructure.Database.Repositories
             return await _collection.Find(filter).FirstOrDefaultAsync(cancellationToken);
         }
 
-        public async Task<IReadOnlyList<ProductReadDto>> SearchAsync(string searchTerm, bool onlyActive, int page, int pageSize, CancellationToken cancellationToken)
+        public async Task<IReadOnlyList<ProductReadDto>> SearchAsync(string searchTerm, bool onlyActive, int page, int pageSize, Guid? categoryId, CancellationToken cancellationToken)
         {
             var filterBuilder = Builders<ProductReadDto>.Filter;
             var filter = filterBuilder.Empty;
 
             if (onlyActive)
-            {
                 filter &= filterBuilder.Eq(x => x.IsActive, true);
-            }
+
+            if (categoryId.HasValue) 
+                filter &= filterBuilder.Eq(x => x.CategoryId, categoryId.Value);
 
             if (!string.IsNullOrWhiteSpace(searchTerm))
             {

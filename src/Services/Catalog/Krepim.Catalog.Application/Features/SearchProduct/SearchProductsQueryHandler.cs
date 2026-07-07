@@ -10,7 +10,7 @@ namespace Krepim.Catalog.Application.Features.SearchProduct
     {
         public async Task<Result<IReadOnlyList<ProductReadDto>>> Handle(SearchProductsQuery request, CancellationToken ct)
         {
-            var products = await readRepo.SearchAsync(request.SearchTerm, request.OnlyActive, request.Page, request.PageSize, ct);
+            var products = await readRepo.SearchAsync(request.SearchTerm, request.OnlyActive, request.Page, request.PageSize, request.CategoryId, ct);
 
             return products.ToList();
         }

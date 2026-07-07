@@ -1,31 +1,58 @@
 import { useState, useEffect } from 'react';
 import type { FC, SyntheticEvent } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { apiClient } from '@/api/apiClient';
 import { catalogApi } from '../api/catalogApi';
 import { ProductCard } from './ProductCard';
 import type { Product } from '../types/product';
 import { useBasketStore } from '../../basket/store/basketStore';
+import type { CategoryDto } from '../api/managerCatalogApi';
 
 export const CatalogView: FC = () => {
+    const [searchParams] = useSearchParams();
+    const [selectedCategory, setSelectedCategory] = useState<string>(searchParams.get('categoryId') || '');
     const [products, setProducts] = useState<Product[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [categories, setCategories] = useState<CategoryDto[]>([]);
     const [page, setPage] = useState(1);
     const [totalCount, setTotalCount] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
     const addItemToBasket = useBasketStore((state) => state.addItem);
 
-    const fetchProducts = async (pageNumber: number, query: string) => {
+    useEffect(() => {
+        const init = async () => {
+            try {
+                const response = await apiClient.get<any>('/api/products/categories');
+                const data = response.data?.value || response.data;
+                if (Array.isArray(data)) {
+                    setCategories(data);
+                }
+            } catch (e) {
+                console.error('Ошибка загрузки категорий', e);
+            }
+        };
+        void init();
+    }, []);
+
+    useEffect(() => {
+        const categoryIdFromUrl = searchParams.get('categoryId') || '';
+        if (categoryIdFromUrl !== selectedCategory) {
+            setSelectedCategory(categoryIdFromUrl);
+        }
+    }, [searchParams]);
+
+    const fetchProducts = async (pageNumber: number, query: string, catId: string) => {
         setIsLoading(true);
         try {
             const data = await catalogApi.search({
                 searchTerm: query.trim() || undefined,
+                categoryId: catId || undefined,
                 page: pageNumber,
                 pageSize: 8,
             });
-
             setProducts(data.items);
             setTotalCount(data.totalCount);
         } catch {
-            console.error('Не удалось загрузить данные каталога');
             setProducts([]);
             setTotalCount(0);
         } finally {
@@ -35,24 +62,18 @@ export const CatalogView: FC = () => {
 
     useEffect(() => {
         let isMounted = true;
-
         const loadData = async () => {
-            if (isMounted) {
-                await fetchProducts(page, searchTerm);
-            }
+            if (isMounted) await fetchProducts(page, searchTerm, selectedCategory);
         };
-
         void loadData();
-
-        return () => {
-            isMounted = false;
-        };
-    }, [page]);
+        return () => { isMounted = false; };
+    }, [page, selectedCategory]);
 
     const handleSearchSubmit = (e: SyntheticEvent) => {
         e.preventDefault();
         setPage(1);
-        void fetchProducts(1, searchTerm);
+        navigate('/catalog', { replace: true });
+        void fetchProducts(1, searchTerm, selectedCategory);
     };
 
     const handleAddToBasket = (productId: string) => {
@@ -74,22 +95,39 @@ export const CatalogView: FC = () => {
     return (
         <div className="p-6 max-w-7xl mx-auto">
             <div className="mb-8 bg-surface p-4 rounded-2xl shadow-sm border border-border">
-                <form onSubmit={handleSearchSubmit} className="flex flex-col sm:flex-row gap-4">
-                    <div className="flex-1">
+                <form onSubmit={handleSearchSubmit} className="flex flex-col sm:flex-row gap-4 items-center">
+                    <div className="relative w-full sm:w-auto">
+                        <select
+                            value={selectedCategory}
+                            onChange={(e) => setSelectedCategory(e.target.value)}
+                            className="w-full sm:w-64 appearance-none px-4 py-3 bg-bg border-2 border-border rounded-xl text-text 
+                       focus:border-accent outline-none cursor-pointer hover:border-accent/50 transition-colors"
+                        >
+                            <option value="">Все категории</option>
+                            {Array.isArray(categories) && categories.map(cat => (
+                                <option key={cat.id} value={cat.id}>{cat.name}</option>
+                            ))}
+                        </select>
+                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-text-muted">
+                            ▼
+                        </div>
+                    </div>
+
+                    <div className="flex-1 w-full">
                         <input
                             type="text"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            placeholder="Введите артикул или название запчасти..."
-                            className="w-full px-4 py-3 bg-bg border-2 border-transparent rounded-xl text-text placeholder-text-placeholder focus:border-border-focus focus:ring-4 focus:ring-accent/10 focus:outline-none transition-all"
+                            placeholder="Введите артикул или название..."
+                            className="w-full px-4 py-3 bg-bg border-2 border-border rounded-xl focus:border-accent outline-none transition-all"
                         />
                     </div>
+
                     <button
                         type="submit"
-                        disabled={isLoading}
-                        className="px-8 py-3 bg-accent text-surface font-bold rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all disabled:opacity-70 disabled:hover:scale-100"
+                        className="w-full sm:w-auto px-8 py-3 bg-[#9E2F1F] hover:bg-[#85281a] text-white font-bold rounded-xl transition-all shadow-md active:scale-95"
                     >
-                        {isLoading ? 'Поиск...' : 'Найти'}
+                        Найти
                     </button>
                 </form>
                 <div className="text-sm text-text-muted mt-3 px-2">

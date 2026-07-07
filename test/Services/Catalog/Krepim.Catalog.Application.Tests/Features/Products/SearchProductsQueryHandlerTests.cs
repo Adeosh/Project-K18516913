@@ -34,7 +34,7 @@ namespace Krepim.Catalog.Application.Tests.Features.Products
                 ProductTestFactory.CreateProductDto(Guid.NewGuid(), "Заклепка вытяжная", "ZRM-M8", true)
             };
 
-            _readRepositoryMock.SearchAsync(searchTerm, onlyActive, page, pageSize, Arg.Any<CancellationToken>())
+            _readRepositoryMock.SearchAsync(searchTerm, onlyActive, page, pageSize, Arg.Any<Guid?>(), Arg.Any<CancellationToken>())
                 .Returns(Task.FromResult<IReadOnlyList<ProductReadDto>>(expectedProducts));
 
             // Act
@@ -59,7 +59,7 @@ namespace Krepim.Catalog.Application.Tests.Features.Products
 
             var emptyList = new List<ProductReadDto>();
 
-            _readRepositoryMock.SearchAsync(searchTerm, onlyActive, page, pageSize, Arg.Any<CancellationToken>())
+            _readRepositoryMock.SearchAsync(searchTerm, onlyActive, page, pageSize, Arg.Any<Guid?>(), Arg.Any<CancellationToken>())
                 .Returns(Task.FromResult<IReadOnlyList<ProductReadDto>>(emptyList));
 
             // Act
@@ -87,7 +87,7 @@ namespace Krepim.Catalog.Application.Tests.Features.Products
                 ProductTestFactory.CreateProductDto(Guid.NewGuid(), "Болт DIN 933", "BOLT-DIN933", true)
             };
 
-            _readRepositoryMock.SearchAsync(searchTerm, onlyActive, page, pageSize, Arg.Any<CancellationToken>())
+            _readRepositoryMock.SearchAsync(searchTerm, onlyActive, page, pageSize, Arg.Any<Guid?>(), Arg.Any<CancellationToken>())
                 .Returns(Task.FromResult<IReadOnlyList<ProductReadDto>>(activeProducts));
 
             // Act
@@ -96,7 +96,7 @@ namespace Krepim.Catalog.Application.Tests.Features.Products
             // Assert
             result.IsSuccess.Should().BeTrue();
             result.Value.Should().AllSatisfy(p => p.IsActive.Should().BeTrue());
-            await _readRepositoryMock.Received(1).SearchAsync(searchTerm, true, page, pageSize, Arg.Any<CancellationToken>());
+            await _readRepositoryMock.Received(1).SearchAsync(searchTerm, true, page, pageSize, Arg.Any<Guid?>(), Arg.Any<CancellationToken>());
         }
 
         [Fact]
@@ -116,7 +116,7 @@ namespace Krepim.Catalog.Application.Tests.Features.Products
                 ProductTestFactory.CreateProductDto(Guid.NewGuid(), "Болт удаленный", "BOLT-DEL", false)
             };
 
-            _readRepositoryMock.SearchAsync(searchTerm, onlyActive, page, pageSize, Arg.Any<CancellationToken>())
+            _readRepositoryMock.SearchAsync(searchTerm, onlyActive, page, pageSize, Arg.Any<Guid?>(), Arg.Any<CancellationToken>())
                 .Returns(Task.FromResult<IReadOnlyList<ProductReadDto>>(allProducts));
 
             // Act
@@ -125,7 +125,7 @@ namespace Krepim.Catalog.Application.Tests.Features.Products
             // Assert
             result.IsSuccess.Should().BeTrue();
             result.Value.Should().HaveCount(3);
-            await _readRepositoryMock.Received(1).SearchAsync(searchTerm, false, page, pageSize, Arg.Any<CancellationToken>());
+            await _readRepositoryMock.Received(1).SearchAsync(searchTerm, false, page, pageSize, Arg.Any<Guid?>(), Arg.Any<CancellationToken>());
         }
 
         [Fact]
@@ -145,7 +145,7 @@ namespace Krepim.Catalog.Application.Tests.Features.Products
                 ProductTestFactory.CreateProductDto(Guid.NewGuid(), "Винт М10", "SCR-M10", true)
             };
 
-            _readRepositoryMock.SearchAsync(searchTerm, onlyActive, page, pageSize, Arg.Any<CancellationToken>())
+            _readRepositoryMock.SearchAsync(searchTerm, onlyActive, page, pageSize, Arg.Any<Guid?>(), Arg.Any<CancellationToken>())
                 .Returns(Task.FromResult<IReadOnlyList<ProductReadDto>>(pagedProducts));
 
             // Act
@@ -154,7 +154,7 @@ namespace Krepim.Catalog.Application.Tests.Features.Products
             // Assert
             result.IsSuccess.Should().BeTrue();
             result.Value.Should().HaveCount(3);
-            await _readRepositoryMock.Received(1).SearchAsync(searchTerm, onlyActive, 2, 5, Arg.Any<CancellationToken>());
+            await _readRepositoryMock.Received(1).SearchAsync(searchTerm, onlyActive, 2, 5, Arg.Any<Guid?>(), Arg.Any<CancellationToken>());
         }
 
         [Fact]
@@ -201,7 +201,7 @@ namespace Krepim.Catalog.Application.Tests.Features.Products
                 PriceTiers: priceTiers
             );
 
-            _readRepositoryMock.SearchAsync(searchTerm, onlyActive, page, pageSize, Arg.Any<CancellationToken>())
+            _readRepositoryMock.SearchAsync(searchTerm, onlyActive, page, pageSize, Arg.Any<Guid?>(), Arg.Any<CancellationToken>())
                 .Returns(Task.FromResult<IReadOnlyList<ProductReadDto>>(new List<ProductReadDto> { expectedProduct }));
 
             // Act
@@ -232,7 +232,7 @@ namespace Krepim.Catalog.Application.Tests.Features.Products
                 ProductTestFactory.CreateProductDto(Guid.NewGuid(), "Продукт 2", "SKU2", true)
             };
 
-            _readRepositoryMock.SearchAsync(searchTerm, onlyActive, page, pageSize, Arg.Any<CancellationToken>())
+            _readRepositoryMock.SearchAsync(searchTerm, onlyActive, page, pageSize, Arg.Any<Guid?>(), Arg.Any<CancellationToken>())
                 .Returns(Task.FromResult<IReadOnlyList<ProductReadDto>>(products));
 
             // Act
@@ -241,7 +241,7 @@ namespace Krepim.Catalog.Application.Tests.Features.Products
             // Assert
             result.IsSuccess.Should().BeTrue();
             result.Value.Should().HaveCount(2);
-            await _readRepositoryMock.Received(1).SearchAsync("", true, page, pageSize, Arg.Any<CancellationToken>());
+            await _readRepositoryMock.Received(1).SearchAsync("", true, page, pageSize, Arg.Any<Guid?>(), Arg.Any<CancellationToken>());
         }
 
         [Fact]
@@ -250,7 +250,7 @@ namespace Krepim.Catalog.Application.Tests.Features.Products
             // Arrange
             var query = new SearchProductsQuery(null, true, 1, 10);
 
-            _readRepositoryMock.SearchAsync(null, true, 1, 10, Arg.Any<CancellationToken>())
+            _readRepositoryMock.SearchAsync(null, true, 1, 10, Arg.Any<Guid?>(), Arg.Any<CancellationToken>())
                 .Returns(Task.FromResult<IReadOnlyList<ProductReadDto>>(new List<ProductReadDto>()));
 
             // Act
@@ -269,9 +269,10 @@ namespace Krepim.Catalog.Application.Tests.Features.Products
             var onlyActive = false;
             var page = 3;
             var pageSize = 20;
+            var categoryId = Arg.Any<Guid?>();
             var query = new SearchProductsQuery(searchTerm, onlyActive, page, pageSize);
 
-            _readRepositoryMock.SearchAsync(searchTerm, onlyActive, page, pageSize, Arg.Any<CancellationToken>())
+            _readRepositoryMock.SearchAsync(searchTerm, onlyActive, page, pageSize, categoryId, Arg.Any<CancellationToken>())
                 .Returns(Task.FromResult<IReadOnlyList<ProductReadDto>>(new List<ProductReadDto>()));
 
             // Act
@@ -283,6 +284,7 @@ namespace Krepim.Catalog.Application.Tests.Features.Products
                 Arg.Is<bool>(b => b == onlyActive),
                 Arg.Is<int>(i => i == page),
                 Arg.Is<int>(i => i == pageSize),
+                categoryId,
                 Arg.Any<CancellationToken>());
         }
     }

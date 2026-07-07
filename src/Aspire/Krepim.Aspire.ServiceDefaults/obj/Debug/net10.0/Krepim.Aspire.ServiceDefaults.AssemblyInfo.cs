@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Krepim.Aspire.ServiceDefaults")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+41dd93024b44207edf7b743faa9680dcb10c1078")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+986b0dcd0d417e57c25b8a7f7f4f2a6ab43ee63d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Krepim.Aspire.ServiceDefaults")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Krepim.Aspire.ServiceDefaults")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

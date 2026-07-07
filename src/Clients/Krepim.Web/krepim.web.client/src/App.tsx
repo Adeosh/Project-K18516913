@@ -13,6 +13,7 @@ import { ManagerDashboard } from './features/catalog/components/ManagerDashboard
 import { InventoryDashboard } from './features/catalog/components/InventoryDashboard';
 import { OrderDetailView } from './features/ordering/components/OrderDetailView';
 import { MockPayView } from './features/payment/components/MockPayView';
+import { HomeView } from './features/home/components/HomeView';
 
 export const App: FC = () => {
     return (
@@ -21,9 +22,12 @@ export const App: FC = () => {
                 <Route path="/login" element={<LoginForm />} />
                 <Route path="/register" element={<RegisterForm />} />
                 <Route path="/mock-pay" element={<MockPayView />} />
+
                 <Route path="/" element={<MainLayout />}>
 
-                    <Route index element={<CatalogView />} />
+                    <Route index element={<HomeView />} />
+                    <Route path="catalog" element={<CatalogView />} />
+
                     <Route path="product/:id" element={<ProductDetailView />} />
                     <Route path="basket" element={<BasketView />} />
                     <Route path="order/:id" element={<OrderDetailView />} />

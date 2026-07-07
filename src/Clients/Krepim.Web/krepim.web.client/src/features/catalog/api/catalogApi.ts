@@ -7,6 +7,7 @@ export const catalogApi = {
             params: {
                 term: filters.searchTerm,
                 page: filters.page,
+                categoryId: filters.categoryId,
             },
         });
 

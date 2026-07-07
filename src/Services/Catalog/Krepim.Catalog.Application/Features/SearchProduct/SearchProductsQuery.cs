@@ -8,5 +8,6 @@ namespace Krepim.Catalog.Application.Features.SearchProduct
         string SearchTerm, 
         bool OnlyActive, 
         int Page = 1, 
-        int PageSize = 20) : IRequest<Result<IReadOnlyList<ProductReadDto>>>;
+        int PageSize = 20,
+        Guid? CategoryId = null) : IRequest<Result<IReadOnlyList<ProductReadDto>>>;
 }

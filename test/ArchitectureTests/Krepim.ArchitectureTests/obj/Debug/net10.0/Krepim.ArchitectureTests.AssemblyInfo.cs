@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Krepim.ArchitectureTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bb4e84905008a5c65a7114f2071116141ef30433")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+986b0dcd0d417e57c25b8a7f7f4f2a6ab43ee63d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Krepim.ArchitectureTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Krepim.ArchitectureTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
