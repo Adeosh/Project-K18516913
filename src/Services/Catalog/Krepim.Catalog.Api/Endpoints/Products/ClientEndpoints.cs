@@ -20,7 +20,7 @@ namespace Krepim.Catalog.Api.Endpoints.Products
 
             group.MapGet("/{id:guid}", async (Guid id, [FromServices] ISender sender, CancellationToken ct) =>
             {
-                return await sender.Send(new GetProductByIdQuery(id), ct);
+                return await sender.Send(new GetProductByIdQuery(id, OnlyActive: true), ct);
             });
         }
     }

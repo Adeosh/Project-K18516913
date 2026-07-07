@@ -6,10 +6,10 @@
   },
   "servers": [
     {
-      "url": "https://localhost:54653"
+      "url": "https://localhost:52793"
     },
     {
-      "url": "http://localhost:54656"
+      "url": "http://localhost:52797"
     }
   ],
   "paths": {
@@ -48,63 +48,6 @@
               "application/problem+json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/products/search": {
-      "get": {
-        "tags": [
-          "Products"
-        ],
-        "summary": "Быстрый поиск товаров (Read Model / MongoDB)",
-        "operationId": "SearchProducts",
-        "parameters": [
-          {
-            "name": "searchTerm",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "schema": {
-              "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
-              "format": "int32"
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "schema": {
-              "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ProductReadDto"
-                  }
                 }
               }
             }

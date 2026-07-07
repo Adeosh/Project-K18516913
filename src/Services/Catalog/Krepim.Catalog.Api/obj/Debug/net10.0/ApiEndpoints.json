@@ -335,44 +335,5 @@
     "Tags": [
       "Products"
     ]
-  },
-  {
-    "ContainingType": "Krepim.Catalog.Api.Endpoints.Products.SearchProductsEndpoint\u002B\u003C\u003Ec",
-    "Method": "\u003CMapSearchProductsEndpoint\u003Eb__0_0",
-    "RelativePath": "api/products/search",
-    "HttpMethod": "GET",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "searchTerm",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "page",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "pageSize",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IReadOnlyList\u00601[[Krepim.Catalog.Application.Models.DTOs.ProductReadDto, Krepim.Catalog.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      }
-    ],
-    "Tags": [
-      "Products"
-    ],
-    "EndpointName": "SearchProducts",
-    "Summary": "\u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u043F\u043E\u0438\u0441\u043A \u0442\u043E\u0432\u0430\u0440\u043E\u0432 (Read Model / MongoDB)"
   }
 ]

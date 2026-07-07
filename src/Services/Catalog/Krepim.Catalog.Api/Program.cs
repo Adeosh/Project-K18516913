@@ -41,7 +41,6 @@ var apiGroup = app.MapGroup("/api/products")
     .AddEndpointFilter<ResultEndpointFilter>();
 
 apiGroup.MapCreateProductEndpoint();
-apiGroup.MapSearchProductsEndpoint();
 apiGroup.MapManagerEndpoints();
 apiGroup.MapClientEndpoints();
 apiGroup.MapCategoryEndpoints();

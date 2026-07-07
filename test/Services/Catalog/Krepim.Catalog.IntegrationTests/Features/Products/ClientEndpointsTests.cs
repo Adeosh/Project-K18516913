@@ -1,8 +1,7 @@
 ﻿using FluentAssertions;
 using Krepim.Catalog.Application.Models.DTOs;
-using Krepim.Catalog.Domain.Enums;
-using Krepim.Catalog.IntegrationTests.Helpers;
 using Krepim.Catalog.IntegrationTests.Infrastructure;
+using MassTransit.Testing;
 using System.Net;
 using System.Net.Http.Json;
 
@@ -17,12 +16,14 @@ namespace Krepim.Catalog.IntegrationTests.Features.Products
         {
             _client = factory.CreateClient();
             _client.DefaultRequestHeaders.Clear();
-            _productHelper = new ProductTestHelper(_client);
+
+            var harness = factory.Services.GetTestHarness();
+            _productHelper = new ProductTestHelper(_client, harness);
         }
 
         public void Dispose()
         {
-            _productHelper.CleanupCreatedProducts().GetAwaiter().GetResult();
+            _productHelper.CleanupCreatedProductsAsync().GetAwaiter().GetResult();
             _client.Dispose();
         }
 
@@ -30,11 +31,11 @@ namespace Krepim.Catalog.IntegrationTests.Features.Products
         public async Task GetProductById_Should_ReturnProduct_WhenProductExistsAndIsActive()
         {
             // Arrange
-            var productId = await _productHelper.CreateTestProduct("Тестовый продукт", "TEST-001", true);
-            await _productHelper.ClearHeaders();
+            var productId = await _productHelper.CreateTestProductAsync("Тестовый продукт", "TEST-001", true);
+            await _productHelper.ClearHeadersAsync();
 
             // Act
-            var product = await _productHelper.GetProductByIdAndGetResult(productId);
+            var product = await _productHelper.GetProductByIdAndGetResultAsync(productId);
 
             // Assert
             product.Should().NotBeNull();
@@ -48,11 +49,11 @@ namespace Krepim.Catalog.IntegrationTests.Features.Products
         public async Task GetProductById_Should_ReturnNotFound_WhenProductDoesNotExist()
         {
             // Arrange
-            await _productHelper.ClearHeaders();
+            await _productHelper.ClearHeadersAsync();
             var nonExistentId = Guid.NewGuid();
 
             // Act
-            var response = await _productHelper.GetProductById(nonExistentId);
+            var response = await _productHelper.GetProductByIdAsync(nonExistentId);
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.NotFound);
@@ -62,11 +63,11 @@ namespace Krepim.Catalog.IntegrationTests.Features.Products
         public async Task GetProductById_Should_ReturnNotFound_WhenProductIsInactive()
         {
             // Arrange
-            var productId = await _productHelper.CreateTestProduct("Неактивный продукт", "TEST-INACTIVE", false);
-            await _productHelper.ClearHeaders();
+            var productId = await _productHelper.CreateTestProductAsync("Неактивный продукт", "TEST-INACTIVE", false);
+            await _productHelper.ClearHeadersAsync();
 
             // Act
-            var response = await _productHelper.GetProductById(productId);
+            var response = await _productHelper.GetProductByIdAsync(productId);
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.NotFound);
@@ -76,12 +77,12 @@ namespace Krepim.Catalog.IntegrationTests.Features.Products
         public async Task GetProductById_Should_ReturnNotFound_WhenProductIsDeleted()
         {
             // Arrange
-            var productId = await _productHelper.CreateTestProduct("Удаленный продукт", "TEST-DELETED", true);
-            await _productHelper.DeleteProduct(productId);
-            await _productHelper.ClearHeaders();
+            var productId = await _productHelper.CreateTestProductAsync("Удаленный продукт", "TEST-DELETED", true);
+            await _productHelper.DeleteProductAsync(productId);
+            await _productHelper.ClearHeadersAsync();
 
             // Act
-            var response = await _productHelper.GetProductById(productId);
+            var response = await _productHelper.GetProductByIdAsync(productId);
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.NotFound);
@@ -91,15 +92,15 @@ namespace Krepim.Catalog.IntegrationTests.Features.Products
         public async Task SearchProducts_Should_ReturnMatchingProducts_WhenSearchTermMatches()
         {
             // Arrange
-            await _productHelper.CreateMultipleProducts(
+            await _productHelper.CreateMultipleProductsAsync(
                 ("Заклепка резьбовая М6", "ZRM-M6-001", true),
                 ("Заклепка резьбовая М8", "ZRM-M8-002", true),
                 ("Болт высокопрочный", "BOLT-001", true)
             );
-            await _productHelper.ClearHeaders();
+            await _productHelper.ClearHeadersAsync();
 
             // Act
-            var results = await _productHelper.SearchProductsAndGetResult("заклепка");
+            var results = await _productHelper.SearchProductsAndGetResultAsync("заклепка");
 
             // Assert
             results.Should().HaveCount(2);
@@ -110,11 +111,11 @@ namespace Krepim.Catalog.IntegrationTests.Features.Products
         public async Task SearchProducts_Should_ReturnEmptyList_WhenSearchTermDoesNotMatch()
         {
             // Arrange
-            await _productHelper.CreateTestProduct("Заклепка резьбовая", "ZRM-001", true);
-            await _productHelper.ClearHeaders();
+            await _productHelper.CreateTestProductAsync("Заклепка резьбовая", "ZRM-001-EMPTY", true);
+            await _productHelper.ClearHeadersAsync();
 
             // Act
-            var results = await _productHelper.SearchProductsAndGetResult("несуществующий");
+            var results = await _productHelper.SearchProductsAndGetResultAsync("несуществующий");
 
             // Assert
             results.Should().BeEmpty();
@@ -124,14 +125,14 @@ namespace Krepim.Catalog.IntegrationTests.Features.Products
         public async Task SearchProducts_Should_ReturnOnlyActiveProducts_WhenOnlyActiveIsTrue()
         {
             // Arrange
-            await _productHelper.CreateMultipleProducts(
+            await _productHelper.CreateMultipleProductsAsync(
                 ("Активный продукт", "ACTIVE-001", true),
                 ("Неактивный продукт", "INACTIVE-001", false)
             );
-            await _productHelper.ClearHeaders();
+            await _productHelper.ClearHeadersAsync();
 
             // Act
-            var results = await _productHelper.SearchProductsAndGetResult("продукт");
+            var results = await _productHelper.SearchProductsAndGetResultAsync("продукт");
 
             // Assert
             results.Should().HaveCount(1);
@@ -144,14 +145,14 @@ namespace Krepim.Catalog.IntegrationTests.Features.Products
         public async Task SearchProducts_Should_ReturnOk_WhenNoParametersProvided()
         {
             // Arrange
-            await _productHelper.CreateMultipleProducts(
+            await _productHelper.CreateMultipleProductsAsync(
                 ("Продукт 1", "PROD-1", true),
                 ("Продукт 2", "PROD-2", true)
             );
-            await _productHelper.ClearHeaders();
+            await _productHelper.ClearHeadersAsync();
 
             // Act
-            var response = await _client.GetAsync("/public/search", TestContext.Current.CancellationToken);
+            var response = await _client.GetAsync("/api/products/public/search", TestContext.Current.CancellationToken);
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -164,12 +165,12 @@ namespace Krepim.Catalog.IntegrationTests.Features.Products
         public async Task SearchProducts_Should_SearchCaseInsensitive()
         {
             // Arrange
-            await _productHelper.CreateTestProduct("Заклепка резьбовая", "ZRM-001", true);
-            await _productHelper.ClearHeaders();
+            await _productHelper.CreateTestProductAsync("Заклепка резьбовая", "ZRM-001-CASE", true);
+            await _productHelper.ClearHeadersAsync();
 
             // Act
-            var resultsLower = await _productHelper.SearchProductsAndGetResult("заклепка");
-            var resultsUpper = await _productHelper.SearchProductsAndGetResult("ЗАКЛЕПКА");
+            var resultsLower = await _productHelper.SearchProductsAndGetResultAsync("заклепка");
+            var resultsUpper = await _productHelper.SearchProductsAndGetResultAsync("ЗАКЛЕПКА");
 
             // Assert
             resultsLower.Should().HaveCount(1);
@@ -181,11 +182,11 @@ namespace Krepim.Catalog.IntegrationTests.Features.Products
         public async Task SearchProducts_Should_SearchByPartialName()
         {
             // Arrange
-            await _productHelper.CreateTestProduct("Заклепка резьбовая М6", "ZRM-001", true);
-            await _productHelper.ClearHeaders();
+            await _productHelper.CreateTestProductAsync("Заклепка резьбовая М6", "ZRM-001-PARTIAL", true);
+            await _productHelper.ClearHeadersAsync();
 
             // Act
-            var results = await _productHelper.SearchProductsAndGetResult("резьбовая");
+            var results = await _productHelper.SearchProductsAndGetResultAsync("резьбовая");
 
             // Assert
             results.Should().HaveCount(1);
@@ -196,14 +197,14 @@ namespace Krepim.Catalog.IntegrationTests.Features.Products
         public async Task SearchProducts_Should_ReturnMatchingProductsBySku()
         {
             // Arrange
-            await _productHelper.CreateMultipleProducts(
+            await _productHelper.CreateMultipleProductsAsync(
                 ("Заклепка", "ZRM-M6-001", true),
                 ("Болт", "BOLT-001", true)
             );
-            await _productHelper.ClearHeaders();
+            await _productHelper.ClearHeadersAsync();
 
             // Act
-            var results = await _productHelper.SearchProductsAndGetResult("ZRM");
+            var results = await _productHelper.SearchProductsAndGetResultAsync("ZRM");
 
             // Assert
             results.Should().HaveCount(1);
@@ -228,17 +229,17 @@ namespace Krepim.Catalog.IntegrationTests.Features.Products
             var imageUrls = new[] { "http://localhost:9000/image1.jpg", "http://localhost:9000/image2.jpg" };
 
             // Создаем продукт через API
-            var productId = await _productHelper.CreateTestProduct(
+            var productId = await _productHelper.CreateTestProductAsync(
                 name: "Полный продукт",
                 sku: "FULL-001",
                 isActive: true,
                 price: 15.0m,
                 imageUrls: imageUrls
             );
-            await _productHelper.ClearHeaders();
+            await _productHelper.ClearHeadersAsync();
 
             // Act
-            var product = await _productHelper.GetProductByIdAndGetResult(productId);
+            var product = await _productHelper.GetProductByIdAndGetResultAsync(productId);
 
             // Assert
             product.Should().NotBeNull();

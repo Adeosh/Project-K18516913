@@ -11,9 +11,10 @@ namespace Krepim.Catalog.Application.Features.GetProduct
         public async Task<Result<ProductReadDto>> Handle(GetProductByIdQuery request, CancellationToken ct)
         {
             var product = await readRepo.GetByIdAsync(request.Id, ct);
-            return product is null
-                ? Result<ProductReadDto>.Failure(new Error("Product.NotFound", "Not found", ErrorType.NotFound))
-                : product;
+            if (product is null || (request.OnlyActive && !product.IsActive))
+                return Result<ProductReadDto>.Failure(new Error("Product.NotFound", "Not found", ErrorType.NotFound));
+
+            return product;
         }
     }
 }

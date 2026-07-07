@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using MongoDB.Driver;
+using NSubstitute;
 using Testcontainers.MongoDb;
 using Testcontainers.PostgreSql;
 using Testcontainers.RabbitMq;
@@ -77,6 +78,18 @@ namespace Krepim.Catalog.IntegrationTests.Infrastructure
                     cfg.ConfigureEndpoints(context);
                 });
             });
+
+            var mockStorage = NSubstitute.Substitute.For<Application.Interfaces.IFileStorageService>();
+
+            mockStorage.UploadFileAsync(
+                Arg.Any<Stream>(),
+                Arg.Any<string>(),
+                Arg.Any<string>(),
+                Arg.Any<CancellationToken>())
+                .Returns(Task.FromResult("http://localhost:9000/test-bucket/test-image.jpg"));
+
+            services.RemoveAll(typeof(Krepim.Catalog.Application.Interfaces.IFileStorageService));
+            services.AddScoped(_ => mockStorage);
         }
     }
 }

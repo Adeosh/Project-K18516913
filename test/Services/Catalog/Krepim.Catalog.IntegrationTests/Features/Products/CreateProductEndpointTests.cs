@@ -27,7 +27,7 @@ namespace Krepim.Catalog.IntegrationTests.Features.Products
             var command = new CreateProductCommand(
                 Name: "Заклепка резьбовая цилиндрическая с малым фланцем М6х15",
                 Description: "Заклепка резьбовая цилиндрическая с малым фланцем",
-                Sku: "ZRM-M6X15-ST-ZN",
+                Sku: "ZRM-M6X15-ST-ZN-SUCCESS",
                 Price: 4.50m,
                 CategoryId: Guid.Parse("4d6804ce-708d-4fd3-994f-641d65ebbae5"),
                 ImageUrls: new[]
@@ -162,7 +162,7 @@ namespace Krepim.Catalog.IntegrationTests.Features.Products
                 Name: "Заклепка резьбовая цилиндрическая с малым фланцем М6х15",
                 Description: "Заклепка резьбовая цилиндрическая с малым фланцем",
                 Sku: "ZRM-M6X15-ST-ZN",
-                Price: 4.50m,
+                Price: -10m,
                 CategoryId: Guid.Parse("4d6804ce-708d-4fd3-994f-641d65ebbae5"),
                 ImageUrls: new[]
                 {

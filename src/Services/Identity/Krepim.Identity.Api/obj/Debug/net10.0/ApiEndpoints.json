@@ -45,8 +45,10 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "Krepim.SharedKernel.Results.Result\u00601[[Krepim.Identity.Application.Models.Exchange.UserProfileResponse, Krepim.Identity.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 200
       }
     ],
@@ -70,8 +72,10 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "Krepim.SharedKernel.Results.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 200
       }
     ],
@@ -95,8 +99,10 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "Krepim.SharedKernel.Results.Result",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 200
       }
     ],

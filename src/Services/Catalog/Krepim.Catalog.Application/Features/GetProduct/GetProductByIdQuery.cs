@@ -4,5 +4,5 @@ using MediatR;
 
 namespace Krepim.Catalog.Application.Features.GetProduct
 {
-    public sealed record GetProductByIdQuery(Guid Id) : IRequest<Result<ProductReadDto>>;
+    public sealed record GetProductByIdQuery(Guid Id, bool OnlyActive = false) : IRequest<Result<ProductReadDto>>;
 }

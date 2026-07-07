@@ -1,0 +1,39 @@
+2026-07-07T06:46:31.2233861+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Version: 1.9.1+cb5afc3bb9bb01ebd75b57f89e8358b914ee2a49
+2026-07-07T06:46:31.2293482+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging mode: asynchronous
+2026-07-07T06:46:31.2298717+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging level: Information
+2026-07-07T06:46:31.2298754+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION CreateBuilderAsync entry time: 06:46:31.212
+2026-07-07T06:46:31.2299171+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION PID: 17576
+2026-07-07T06:46:31.2299322+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime information: win-x64 - .NET 10.0.9
+2026-07-07T06:46:31.2299407+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\10.0.9\System.Private.CoreLib.dll
+2026-07-07T06:46:31.2299455+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION IsDynamicCodeSupported: True
+2026-07-07T06:46:31.2299925+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Test module: C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\bin\Debug\net10.0\Krepim.Catalog.IntegrationTests.dll
+2026-07-07T06:46:31.2300656+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Command line arguments: '--server --diagnostic --diagnostic-verbosity Information --diagnostic-output-directory C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\bin\Debug\net10.0\Log --results-directory C:\Users\adeos\Source\Repos\Krepim\TestResults --client-port 51365'
+2026-07-07T06:46:31.2305714+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION TESTINGPLATFORM_DEFAULT_HANG_TIMEOUT: ''
+2026-07-07T06:46:31.2411663+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting RegisterEnvironmentVariablesConfigurationSource: 'True'
+2026-07-07T06:46:31.2488910+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting PlatformExitProcessOnUnhandledException: 'False', config file: False environment variable: 
+2026-07-07T06:46:31.3741663+00:00 Microsoft.Testing.Platform.Requests.TestHostTestFrameworkInvoker INFORMATION Test framework UID: '30ea7c6e-dd24-4152-a360-1387158cd41d' Version: '3.2.2' DisplayName: 'xUnit.net v3 Microsoft.Testing.Platform test framework' Description: 'xUnit.net v3 Microsoft.Testing.Platform test framework'
+2026-07-07T06:46:31.3797718+00:00 xUnit.net INFORMATION xUnit.net v3 In-Process Runner v3.2.2+728c1dce01 (64-bit .NET 10.0.9)
+2026-07-07T06:46:31.4046002+00:00 xUnit.net INFORMATION   Discovering: Krepim.Catalog.IntegrationTests
+2026-07-07T06:46:31.4297710+00:00 xUnit.net INFORMATION   Discovered:  Krepim.Catalog.IntegrationTests
+2026-07-07T06:46:31.4430031+00:00 xUnit.net INFORMATION   Starting:    Krepim.Catalog.IntegrationTests
+2026-07-07T06:46:43.3656402+00:00 xUnit.net ERROR     Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.GetProductById_Should_ReturnProductWithAllFields_WhenProductHasFullData [FAIL]
+2026-07-07T06:46:43.3659971+00:00 xUnit.net INFORMATION       Expected product.IsActive to be True, but found False.
+2026-07-07T06:46:43.3662877+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-07T06:46:43.3664761+00:00 xUnit.net INFORMATION            at FluentAssertions.Primitives.BooleanAssertions`1.BeTrue(String because, Object[] becauseArgs)
+2026-07-07T06:46:43.3664949+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Features\Products\ClientEndpointsTests.cs(247,0): at Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.GetProductById_Should_ReturnProductWithAllFields_WhenProductHasFullData()
+2026-07-07T06:46:43.3664964+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-07T06:46:43.4982088+00:00 xUnit.net ERROR     Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.GetProductById_Should_ReturnNotFound_WhenProductIsInactive [FAIL]
+2026-07-07T06:46:43.4982199+00:00 xUnit.net INFORMATION       Expected response.StatusCode to be HttpStatusCode.NotFound {value: 404}, but found HttpStatusCode.OK {value: 200}.
+2026-07-07T06:46:43.4982448+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-07T06:46:43.4982503+00:00 xUnit.net INFORMATION            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+2026-07-07T06:46:43.4982594+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Features\Products\ClientEndpointsTests.cs(70,0): at Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.GetProductById_Should_ReturnNotFound_WhenProductIsInactive()
+2026-07-07T06:46:43.4982603+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-07T06:46:43.5287742+00:00 xUnit.net ERROR     Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.GetProductById_Should_ReturnNotFound_WhenProductIsDeleted [FAIL]
+2026-07-07T06:46:43.5287843+00:00 xUnit.net INFORMATION       Expected response.StatusCode to be HttpStatusCode.NoContent {value: 204}, but found HttpStatusCode.NotFound {value: 404}.
+2026-07-07T06:46:43.5287977+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-07-07T06:46:43.5288035+00:00 xUnit.net INFORMATION            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+2026-07-07T06:46:43.5288115+00:00 xUnit.net INFORMATION         C:\Users\adeos\Source\Repos\Krepim\test\Services\Catalog\Krepim.Catalog.IntegrationTests\Features\Products\ClientEndpointsTests.cs(85,0): at Krepim.Catalog.IntegrationTests.Features.Products.ClientEndpointsTests.GetProductById_Should_ReturnNotFound_WhenProductIsDeleted()
+2026-07-07T06:46:43.5288128+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-07-07T06:46:44.3639907+00:00 xUnit.net INFORMATION   Finished:    Krepim.Catalog.IntegrationTests (ID = 'b6f6cfc01af6c8e8cdd5a6b6b4f1286fccd669accb960f34a17294a670ef0945')
+2026-07-07T06:46:44.3671259+00:00 xUnit.net INFORMATION === TEST EXECUTION SUMMARY ===
+2026-07-07T06:46:44.3700419+00:00 xUnit.net INFORMATION    Krepim.Catalog.IntegrationTests  Total: 12, Errors: 0, Failed: 3, Skipped: 0, Not Run: 0, Time: 12,923s
