@@ -9,6 +9,8 @@ var useVolumes = builder.Configuration.GetValue<bool>("AppHostConfiguration:UseV
 var useDedicatedPorts = builder.Configuration.GetValue<bool>("AppHostConfiguration:UseDedicatedPorts");
 var pgPort = builder.Configuration.GetValue<int>("AppHostConfiguration:Postgres:Port", 15432);
 var pgPassword = builder.AddParameter("postgres-password", secret: true);
+var jwtSecret = builder.AddParameter("JwtSecret", secret: true); // dotnet user-secrets init
+
 #endregion
 
 #region Tools & Infrastructure
@@ -61,6 +63,7 @@ var catalogMongoDb = mongo.AddDatabase("Catalog-MongoDb");
 var identityApi = builder.AddProject<Projects.Krepim_Identity_Api>("identity-api")
     .WithReference(identityDb)
     .WithReference(rabbitMq)
+    .WithEnvironment("Jwt__SecretKey", jwtSecret)
     .WaitFor(postgres);
 scalar.WithApiReference(identityApi);
 
@@ -68,30 +71,35 @@ var catalogApi = builder.AddProject<Projects.Krepim_Catalog_Api>("catalog-api")
     .WithReference(catalogDb)
     .WithReference(catalogMongoDb)
     .WithReference(rabbitMq)
+    .WithEnvironment("Jwt__SecretKey", jwtSecret)
     .WaitFor(postgres);
 scalar.WithApiReference(catalogApi);
 
 var basketApi = builder.AddProject<Projects.Krepim_Basket_Api>("basket-api")
     .WithReference(redis)
-    .WithReference(rabbitMq);
+    .WithReference(rabbitMq)
+    .WithEnvironment("Jwt__SecretKey", jwtSecret);
 scalar.WithApiReference(basketApi);
 
 var orderingApi = builder.AddProject<Projects.Krepim_Ordering_Api>("ordering-api")
     .WithReference(orderingDb)
     .WithReference(rabbitMq)
     .WithEnvironment("ClientApp__FrontendUrl", "https://192.168.0.114:63137")
+    .WithEnvironment("Jwt__SecretKey", jwtSecret)
     .WaitFor(postgres);
 scalar.WithApiReference(orderingApi);
 
 var inventoryApi = builder.AddProject<Projects.Krepim_Inventory_Api>("inventory-api")
     .WithReference(inventoryDb)
     .WithReference(rabbitMq)
+    .WithEnvironment("Jwt__SecretKey", jwtSecret)
     .WaitFor(postgres);
 scalar.WithApiReference(inventoryApi);
 
 var paymentApi = builder.AddProject<Projects.Krepim_Payment_Api>("payment-api")
     .WithReference(paymentDb)
     .WithReference(rabbitMq)
+    .WithEnvironment("Jwt__SecretKey", jwtSecret)
     .WaitFor(postgres);
 scalar.WithApiReference(paymentApi);
 
