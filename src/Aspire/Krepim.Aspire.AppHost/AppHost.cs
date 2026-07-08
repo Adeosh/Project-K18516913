@@ -101,7 +101,9 @@ var apiGateway = builder.AddProject<Projects.Krepim_ApiGateway>("api-gateway")
     .WithReference(basketApi)
     .WithReference(inventoryApi)
     .WithReference(orderingApi)
-    .WithReference(paymentApi);
+    .WithReference(paymentApi)
+    .WithEndpoint(port: 7115, scheme: "https", isProxied: false)
+    .WithEndpoint(port: 5078, scheme: "http", isProxied: false);
 
 #endregion
 
@@ -111,7 +113,7 @@ string frontEndPath = "../../Clients/Krepim.Web/krepim.web.client";
 builder.AddNpmApp("krepim-web-client", frontEndPath, "dev")
     .WithReference(apiGateway)
     .WithEnvironment("BROWSER", "none")
-    .WithEndpoint(port: 63137, scheme: "https", env: "PORT", isExternal: true, name: "vite")
+    .WithEndpoint(port: 63137, scheme: "https", env: "PORT", isExternal: true, name: "vite", isProxied: false)
     .PublishAsDockerFile();
 
 #endregion
