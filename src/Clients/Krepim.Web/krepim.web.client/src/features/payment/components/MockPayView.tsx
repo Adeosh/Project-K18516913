@@ -10,7 +10,7 @@ export const MockPayView: FC = () => {
 
     const txId = searchParams.get('tx');
     const orderId = searchParams.get('orderId');
-    const amount = searchParams.get('amount');
+    const rawAmount = searchParams.get('amount');
 
     const [isLoading, setIsLoading] = useState(false);
     const [selectedStatus, setSelectedStatus] = useState<PaymentStatus | null>(null);
@@ -18,6 +18,9 @@ export const MockPayView: FC = () => {
     if (!txId || !orderId) {
         return <div className="p-10 text-center text-error font-bold">Неверная ссылка на оплату.</div>;
     }
+
+    const parsedAmount = parseFloat((rawAmount || '0').replace(/\s/g, '').replace(',', '.'));
+    const displayAmount = isNaN(parsedAmount) ? '0' : parsedAmount.toLocaleString('ru-RU');
 
     const handlePay = async (status: PaymentStatus) => {
         setIsLoading(true);
@@ -52,7 +55,7 @@ export const MockPayView: FC = () => {
                 <div className="bg-bg rounded-2xl p-6 mb-8 border border-border/50">
                     <div className="text-sm text-text-muted mb-1">Сумма к списанию</div>
                     <div className="text-3xl font-black text-text">
-                        {Number(amount).toLocaleString('ru-RU')} ₽
+                        {displayAmount} ₽
                     </div>
                 </div>
 
