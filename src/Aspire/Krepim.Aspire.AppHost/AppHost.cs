@@ -79,6 +79,7 @@ scalar.WithApiReference(basketApi);
 var orderingApi = builder.AddProject<Projects.Krepim_Ordering_Api>("ordering-api")
     .WithReference(orderingDb)
     .WithReference(rabbitMq)
+    .WithEnvironment("ClientApp__FrontendUrl", "https://192.168.0.114:63137")
     .WaitFor(postgres);
 scalar.WithApiReference(orderingApi);
 
@@ -110,7 +111,7 @@ string frontEndPath = "../../Clients/Krepim.Web/krepim.web.client";
 builder.AddNpmApp("krepim-web-client", frontEndPath, "dev")
     .WithReference(apiGateway)
     .WithEnvironment("BROWSER", "none")
-    .WithEndpoint(scheme: "https", env: "PORT", isExternal: true, name: "vite")
+    .WithEndpoint(port: 63137, scheme: "https", env: "PORT", isExternal: true, name: "vite")
     .PublishAsDockerFile();
 
 #endregion

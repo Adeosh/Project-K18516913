@@ -2,12 +2,14 @@
 using Krepim.Ordering.Domain.Interfaces;
 using Krepim.SharedKernel.Results;
 using MediatR;
+using Microsoft.Extensions.Configuration;
 using Net.Codecrete.QrCodeGenerator;
 
 namespace Krepim.Ordering.Application.Features.GetMyOrders
 {
-    internal sealed class GetMyOrdersQueryHandler(IOrderRepository repository)
-        : IRequestHandler<GetMyOrdersQuery, Result<List<OrderDto>>>
+    internal sealed class GetMyOrdersQueryHandler(
+        IOrderRepository repository,
+        IConfiguration configuration) : IRequestHandler<GetMyOrdersQuery, Result<List<OrderDto>>>
     {
         public async Task<Result<List<OrderDto>>> Handle(GetMyOrdersQuery request, CancellationToken ct)
         {
@@ -33,9 +35,11 @@ namespace Krepim.Ordering.Application.Features.GetMyOrders
             return dtos;
         }
 
-        private static string GetQrCode(Domain.Entities.Order o)
+        private string GetQrCode(Domain.Entities.Order o)
         {
-            string orderUrl = $"https://krepim.pro/order/{o.Id}";
+            string baseUrl = configuration["ClientApp:FrontendUrl"] ?? "https://0.0.0.0:5173";
+
+            string orderUrl = $"{baseUrl}/order/{o.Id}";
             var qr = QrCode.EncodeText(orderUrl, QrCode.Ecc.Medium);
             string svgContent = qr.ToSvgString(4);
             string qrDataUri = $"data:image/svg+xml;utf8,{Uri.EscapeDataString(svgContent)}";
