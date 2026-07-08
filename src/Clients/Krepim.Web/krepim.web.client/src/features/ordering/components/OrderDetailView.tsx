@@ -21,11 +21,11 @@ const OrderItemCard: FC<{ item: OrderItemDto }> = ({ item }) => {
     const displayImage = product?.imageUrls?.[0] || null;
 
     return (
-        <div className="flex items-center justify-between gap-4 p-4 border border-border/50 rounded-2xl bg-bg/50 hover:bg-bg transition-colors">
+        <div className="flex items-center justify-between gap-4 p-4 border border-border/50 rounded-2xl bg-bg hover:shadow-sm transition-all">
             <div className="flex items-center gap-4 flex-1">
-                <Link to={`/product/${item.productId}`} className="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 bg-surface rounded-xl border border-border flex items-center justify-center overflow-hidden hover:border-accent transition-colors">
+                <Link to={`/product/${item.productId}`} className="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 bg-surface rounded-xl border border-border/50 flex items-center justify-center overflow-hidden hover:border-accent transition-colors">
                     {displayImage ? (
-                        <img src={displayImage} alt={displayName} className="w-full h-full object-contain p-2" />
+                        <img src={displayImage} alt={displayName} className="w-full h-full object-contain p-1" />
                     ) : (
                         <span className="text-[10px] text-text-muted font-medium">{isLoading ? '...' : 'Нет фото'}</span>
                     )}
@@ -40,7 +40,7 @@ const OrderItemCard: FC<{ item: OrderItemDto }> = ({ item }) => {
                 </div>
             </div>
             <div className="text-right flex-shrink-0">
-                <div className="font-extrabold text-text text-base sm:text-lg">
+                <div className="font-black text-text text-base sm:text-lg">
                     {(item.quantity * item.unitPrice).toLocaleString('ru-RU')} ₽
                 </div>
             </div>
@@ -105,7 +105,6 @@ export const OrderDetailView: FC = () => {
             } catch (error: any) {
                 if (attempts < maxAttempts) {
                     attempts++;
-                    console.log(`[Payment] Ожидаем ответа от брокера сообщений. Попытка #${attempts}...`);
                     setTimeout(tryGetUrl, intervalDelay);
                 } else {
                     console.error("Ошибка при получении ссылки на оплату:", error);
@@ -118,8 +117,8 @@ export const OrderDetailView: FC = () => {
         void tryGetUrl();
     };
 
-    if (isLoading) return <div className="text-center py-20 animate-pulse text-text-muted">Загрузка данных заказа...</div>;
-    if (!order) return <div className="text-center py-20 text-error font-bold">Заказ не найден</div>;
+    if (isLoading) return <div className="text-center py-20 animate-pulse text-text-muted font-medium">Загрузка данных заказа...</div>;
+    if (!order) return <div className="text-center py-20 text-error font-bold text-lg">Заказ не найден</div>;
 
     const statusMap: Record<string, string> = {
         'Pending': 'Ожидает оплаты',
@@ -132,82 +131,82 @@ export const OrderDetailView: FC = () => {
     const canBePaid = order.status === 'Pending' || order.status === 'AwaitingValidation';
 
     return (
-        <div className="max-w-4xl mx-auto p-4 sm:p-6 mt-8 animate-fadeIn">
+        <div className="max-w-5xl mx-auto p-4 sm:p-6 mt-4 sm:mt-8 animate-fadeIn">
             <Link to="/profile" className="text-sm font-bold text-text-muted hover:text-accent mb-6 inline-block transition-colors">
                 ← Назад в профиль
             </Link>
 
-            <div className="bg-surface rounded-3xl p-6 sm:p-10 border border-border shadow-md flex flex-col gap-10">
+            <div className="bg-surface rounded-3xl p-6 sm:p-10 border border-border shadow-sm">
 
-                <div className="flex flex-col md:flex-row gap-10 items-start">
-                    <div className="flex-1 space-y-6 w-full">
-                        <div>
-                            <h1 className="text-3xl font-extrabold text-text mb-2">Заказ оформлен</h1>
-                            <p className="text-text-muted font-medium">№ {order.id.split('-')[0].toUpperCase()}</p>
-                        </div>
-
-                        <div className="bg-bg rounded-2xl p-5 border border-border/50 space-y-3">
-                            <div className="flex justify-between items-center">
-                                <span className="text-text-muted font-medium">Статус:</span>
-                                <span className={`font-bold px-3 py-1 rounded-lg text-sm ${order.status === 'Paid' ? 'bg-success/10 text-success' : 'bg-orange-100 text-orange-700'}`}>
-                                    {statusMap[order.status] || order.status}
-                                </span>
-                            </div>
-                            <div className="flex justify-between">
-                                <span className="text-text-muted font-medium">Дата заказа:</span>
-                                <span className="font-bold text-text">{new Date(order.createdAt).toLocaleDateString('ru-RU')}</span>
-                            </div>
-                            <div className="flex justify-between border-t border-border/50 pt-3 items-center">
-                                <span className="text-text-muted font-medium">Итого к оплате:</span>
-                                <span className="text-2xl font-black text-text">{order.totalPrice.toLocaleString('ru-RU')} ₽</span>
-                            </div>
-
-                            {canBePaid && (
-                                <div className="pt-4 mt-4 border-t border-border/50">
-                                    <button
-                                        onClick={handlePayment}
-                                        disabled={isPaymentLoading}
-                                        className="w-full py-4 bg-accent text-surface font-bold text-lg rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all disabled:opacity-70 disabled:hover:translate-y-0"
-                                    >
-                                        {isPaymentLoading ? 'Переход к оплате...' : 'Перейти к оплате'}
-                                    </button>
-
-                                    {paymentError && (
-                                        <p className="text-error text-sm font-medium mt-3 text-center animate-fadeIn">
-                                            {paymentError}
-                                        </p>
-                                    )}
-                                </div>
-                            )}
-                        </div>
-
-                        <div>
-                            <h3 className="text-lg font-bold text-text mb-3">Адрес доставки</h3>
-                            <p className="text-text font-medium bg-bg p-4 rounded-xl border border-border/50">
-                                {order.fullAddress} {order.flat && `, Кв/Офис: ${order.flat}`}
-                            </p>
-                        </div>
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+                    <div>
+                        <h1 className="text-2xl sm:text-3xl font-extrabold text-text">Заказ оформлен</h1>
+                        <p className="text-text-muted font-medium mt-1">№ {order.id.split('-')[0].toUpperCase()}</p>
                     </div>
-
-                    <div className="flex flex-col items-center justify-center p-6 bg-bg rounded-3xl border-2 border-dashed border-border min-w-[250px] w-full md:w-auto">
-                        <div className="text-sm font-bold text-text-muted uppercase tracking-wider mb-4">QR-код заказа</div>
-                        {order.qrCodeUrl ? (
-                            <div className="bg-white p-2 rounded-xl shadow-sm hover:scale-105 transition-transform duration-300">
-                                <img src={order.qrCodeUrl} alt="QR Code" className="w-40 h-40" />
-                            </div>
-                        ) : (
-                            <div className="w-40 h-40 bg-surface rounded-xl flex items-center justify-center border border-border">
-                                <span className="text-xs text-text-muted">Генерация...</span>
-                            </div>
-                        )}
-                        <p className="text-xs text-center text-text-muted mt-4 font-medium max-w-[200px]">
-                            Покажите этот код при получении товаров
-                        </p>
+                    <div className={`font-bold px-4 py-2 rounded-xl text-sm ${order.status === 'Paid' ? 'bg-success/10 text-success' : 'bg-orange-100 text-orange-700'}`}>
+                        {statusMap[order.status] || order.status}
                     </div>
                 </div>
 
-                <div className="pt-6 border-t border-border/50">
-                    <h3 className="text-xl font-bold text-text mb-6">Состав заказа</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+
+                    <div className="lg:col-span-2 bg-bg rounded-2xl p-6 sm:p-8 border border-border/50 flex flex-col justify-between">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <p className="text-sm text-text-muted font-medium mb-1">Дата заказа</p>
+                                <p className="font-bold text-text text-lg">{new Date(order.createdAt).toLocaleDateString('ru-RU')}</p>
+                            </div>
+                            <div>
+                                <p className="text-sm text-text-muted font-medium mb-1">Итого к оплате</p>
+                                <p className="text-2xl font-black text-text">{order.totalPrice.toLocaleString('ru-RU')} ₽</p>
+                            </div>
+                            <div className="sm:col-span-2 pt-4 border-t border-border/50">
+                                <p className="text-sm text-text-muted font-medium mb-1">Адрес доставки</p>
+                                <p className="font-bold text-text leading-relaxed">
+                                    {order.fullAddress} {order.flat && `, Кв/Офис: ${order.flat}`}
+                                </p>
+                            </div>
+                        </div>
+
+                        {canBePaid && (
+                            <div className="mt-8 pt-6 border-t border-border/50 flex flex-col items-center justify-center">
+                                <button
+                                    onClick={handlePayment}
+                                    disabled={isPaymentLoading}
+                                    className="w-full sm:w-auto px-10 py-3.5 bg-[#9E2F1F] hover:bg-[#85281a] text-white font-bold text-lg rounded-xl shadow-md active:scale-95 transition-all disabled:opacity-70 disabled:active:scale-100"
+                                >
+                                    {isPaymentLoading ? 'Переход к оплате...' : 'Перейти к оплате'}
+                                </button>
+
+                                {paymentError && (
+                                    <p className="text-error text-sm font-medium mt-3 text-center animate-fadeIn">
+                                        {paymentError}
+                                    </p>
+                                )}
+                            </div>
+                        )}
+                    </div>
+
+                    <div className="bg-bg rounded-2xl p-6 sm:p-8 border border-border/50 flex flex-col items-center justify-center text-center">
+                        <div className="text-sm font-bold text-text-muted uppercase tracking-wider mb-6">QR-код получения</div>
+                        {order.qrCodeUrl ? (
+                            <div className="bg-white p-3 rounded-2xl shadow-sm hover:scale-105 transition-transform duration-300">
+                                <img src={order.qrCodeUrl} alt="QR Code" className="w-40 h-40 sm:w-48 sm:h-48 object-contain" />
+                            </div>
+                        ) : (
+                            <div className="w-40 h-40 sm:w-48 sm:h-48 bg-surface rounded-2xl flex items-center justify-center border border-border">
+                                <span className="text-xs text-text-muted font-medium">Генерация...</span>
+                            </div>
+                        )}
+                        <p className="text-xs text-text-muted mt-6 font-medium max-w-[220px] leading-relaxed">
+                            Покажите этот код сотруднику пункта выдачи при получении товаров
+                        </p>
+                    </div>
+
+                </div>
+
+                <div>
+                    <h3 className="text-xl font-bold text-text mb-4">Состав заказа</h3>
                     <div className="space-y-3">
                         {order.items.map(item => (
                             <OrderItemCard key={item.productId} item={item} />
