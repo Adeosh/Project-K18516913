@@ -10,6 +10,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="src\assets\images\banners\" />
+    <Folder Include="src\assets\images\icons\general\" />
+    <Folder Include="src\assets\images\icons\products\" />
     <Folder Include="src\assets\images\partners\" />
   </ItemGroup>
 </Project>
