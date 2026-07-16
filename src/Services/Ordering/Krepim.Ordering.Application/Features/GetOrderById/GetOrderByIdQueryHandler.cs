@@ -21,6 +21,8 @@ namespace Krepim.Ordering.Application.Features.GetOrderById
 
             var dto = new OrderDto(
                 order.Id,
+                order.CustomerEmail,
+                order.CustomerPhone,
                 order.Status.ToString(),
                 order.TotalPrice,
                 order.ShippingAddress.FullAddress,

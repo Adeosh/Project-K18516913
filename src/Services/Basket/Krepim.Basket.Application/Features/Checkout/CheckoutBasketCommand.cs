@@ -6,6 +6,8 @@ namespace Krepim.Basket.Application.Features.Checkout
     public sealed record CheckoutBasketCommand(
         Guid UserId,
         Guid OrderId,
+        string CustomerEmail,
+        string? CustomerPhone,
         string FullAddress,
         double Latitude,
         double Longitude,

@@ -32,7 +32,7 @@ namespace Krepim.Ordering.Application.Tests.Consumers
         {
             // Arrange
             var orderId = Guid.NewGuid();
-            var order = Order.Create(orderId, Guid.NewGuid(), new Address("Адрес", 0, 0, "1"));
+            var order = Order.Create(orderId, Guid.NewGuid(), "test@example.com", "+7 (999) 123-45-67", new Address("Адрес", 0, 0, "1"));
 
             OrderRepositoryMock
                 .Setup(x => x.GetByIdAsync(orderId, It.IsAny<CancellationToken>()))

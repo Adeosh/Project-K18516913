@@ -5,15 +5,16 @@ using MediatR;
 using Microsoft.Extensions.Configuration;
 using Net.Codecrete.QrCodeGenerator;
 
-namespace Krepim.Ordering.Application.Features.GetMyOrders
+namespace Krepim.Ordering.Application.Features.GetAllOrders
 {
-    internal sealed class GetMyOrdersQueryHandler(
+    internal sealed class GetAllOrdersQueryHandler(
         IOrderRepository repository,
-        IConfiguration configuration) : IRequestHandler<GetMyOrdersQuery, Result<List<OrderDto>>>
+        IConfiguration configuration) : IRequestHandler<GetAllOrdersQuery, Result<List<OrderDto>>>
     {
-        public async Task<Result<List<OrderDto>>> Handle(GetMyOrdersQuery request, CancellationToken ct)
+        public async Task<Result<List<OrderDto>>> Handle(GetAllOrdersQuery request, CancellationToken ct)
         {
-            var orders = await repository.GetByUserIdAsync(request.UserId, ct);
+            var orders = await repository.GetAllOrdersAsync(ct);
+
             var dtos = orders.Select(o =>
             {
                 string qrDataUri = GetQrCode(o);

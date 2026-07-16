@@ -190,9 +190,17 @@ export const BasketView: FC = () => {
             return;
         }
 
+        if (!profile.email) {
+            alert('Укажите email в профиле.');
+            navigate('/profile');
+            return;
+        }
+
         setIsCheckingOut(true);
         try {
             const newOrderId = await checkout({
+                customerEmail: profile.email,
+                customerPhone: profile.phoneNumber || null,
                 fullAddress: profile.defaultAddress.fullAddress,
                 latitude: profile.defaultAddress.latitude!,
                 longitude: profile.defaultAddress.longitude!,

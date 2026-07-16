@@ -7,6 +7,8 @@ namespace Krepim.Ordering.Domain.Entities
     public sealed class Order : AggregateRoot<Guid>
     {
         public Guid UserId { get; private set; }
+        public string CustomerEmail { get; private set; }
+        public string? CustomerPhone { get; private set; }
         public OrderStatus Status { get; private set; }
         public Address ShippingAddress { get; private set; }
         public DateTime CreatedAt { get; private set; }
@@ -23,17 +25,19 @@ namespace Krepim.Ordering.Domain.Entities
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         #endregion
 
-        private Order(Guid id, Guid userId, Address shippingAddress) : base(id)
+        private Order(Guid id, Guid userId, string customerEmail, string? customerPhone, Address shippingAddress) : base(id)
         {
             UserId = userId;
+            CustomerEmail = customerEmail;
+            CustomerPhone = customerPhone;
             ShippingAddress = shippingAddress;
             Status = OrderStatus.Pending;
             CreatedAt = DateTime.UtcNow;
         }
 
-        public static Order Create(Guid id, Guid userId, Address shippingAddress)
+        public static Order Create(Guid id, Guid userId, string customerEmail, string? customerPhone, Address shippingAddress)
         {
-            return new Order(id, userId, shippingAddress);
+            return new Order(id, userId, customerEmail, customerPhone, shippingAddress);
         }
 
         public void AddOrderItem(Guid productId, decimal unitPrice, int quantity)

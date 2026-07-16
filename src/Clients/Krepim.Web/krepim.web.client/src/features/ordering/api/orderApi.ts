@@ -10,6 +10,8 @@ export interface OrderDto {
     id: string;
     status: string;
     totalPrice: number;
+    customerEmail: string;
+    customerPhone?: string | null;
     fullAddress: string;
     latitude: number;
     longitude: number;
@@ -27,6 +29,11 @@ export const orderApi = {
 
     getById: async (id: string): Promise<OrderDto> => {
         const response = await apiClient.get<OrderDto>(`/api/orders/${id}`);
+        return response.data;
+    },
+
+    getAllOrders: async (): Promise<OrderDto[]> => {
+        const response = await apiClient.get<OrderDto[]>('/api/orders/all');
         return response.data;
     }
 };

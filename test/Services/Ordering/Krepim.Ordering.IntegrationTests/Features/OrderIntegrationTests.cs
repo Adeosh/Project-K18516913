@@ -38,6 +38,8 @@ namespace Krepim.Ordering.IntegrationTests.Features
             var integrationEvent = new BasketCheckoutIntegrationEvent(
                 orderId,
                 userId,
+                "test@example.com",
+                "+7 (999) 123-45-67",
                 750.00m,
                 "Казань, ул.Баумана",
                 10000.00,
@@ -87,7 +89,16 @@ namespace Krepim.Ordering.IntegrationTests.Features
             var orderId = Guid.NewGuid();
             var userId = Guid.Parse(TestAuthHandler.DefaultUserId);
             var integrationEvent = new BasketCheckoutIntegrationEvent(
-                orderId, userId, 100m, "Адрес", 0, 0, "1", new List<BasketCheckoutItem>());
+                orderId,
+                userId,
+                "test@example.com",
+                "+7 (999) 123-45-67",
+                100m, 
+                "Адрес", 
+                0, 
+                0, 
+                "1",
+                new List<BasketCheckoutItem>());
 
             await _testHarness.Bus.Publish(integrationEvent, TestContext.Current.CancellationToken);
 

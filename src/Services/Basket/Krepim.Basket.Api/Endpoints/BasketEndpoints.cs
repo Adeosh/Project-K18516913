@@ -65,7 +65,14 @@ namespace Krepim.Basket.Api.Endpoints
                 var generatedOrderId = Guid.NewGuid();
 
                 var result = await sender.Send(new CheckoutBasketCommand(
-                    GetUserId(user), generatedOrderId, request.FullAddress, request.Latitude, request.Longitude, request.Flat), ct);
+                    GetUserId(user),
+                    generatedOrderId,
+                    request.CustomerEmail,
+                    request.CustomerPhone,
+                    request.FullAddress,
+                    request.Latitude,
+                    request.Longitude,
+                    request.Flat), ct);
 
                 return result.Match(() => Microsoft.AspNetCore.Http.Results.Ok(new { orderId = generatedOrderId }));
             })

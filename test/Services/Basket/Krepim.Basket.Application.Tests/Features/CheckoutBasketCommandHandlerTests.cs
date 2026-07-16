@@ -26,7 +26,7 @@ namespace Krepim.Basket.Application.Tests.Features
         {
             // Arrange
             var userId = Guid.NewGuid();
-            var command = new CheckoutBasketCommand(userId, Guid.NewGuid(), "Addr", 0, 0, "1");
+            var command = new CheckoutBasketCommand(userId, Guid.NewGuid(), "test@example.com", "+7 (999) 123-45-67", "Addr", 0, 0, "1");
             _repository.GetBasketAsync(userId, Arg.Any<CancellationToken>()).Returns((CustomerBasket?)null);
 
             // Act
@@ -46,7 +46,7 @@ namespace Krepim.Basket.Application.Tests.Features
             var basket = new CustomerBasket(userId);
             basket.AddItem(new BasketItem(Guid.NewGuid(), "Товар", "SKU1", 100m, 1));
 
-            var command = new CheckoutBasketCommand(userId, orderId, "ул. Пушкина", 55.75, 37.61, "1");
+            var command = new CheckoutBasketCommand(userId, orderId, "test@example.com", "+7 (999) 123-45-67", "ул. Пушкина", 55.75, 37.61, "1");
 
             _repository.GetBasketAsync(userId, Arg.Any<CancellationToken>()).Returns(basket);
 
@@ -63,7 +63,6 @@ namespace Krepim.Basket.Application.Tests.Features
                     e.TotalPrice == basket.TotalPrice),
                 Arg.Any<CancellationToken>());
 
-            // Проверяем, что корзина была удалена
             await _repository.Received(1).DeleteBasketAsync(userId, Arg.Any<CancellationToken>());
         }
     }

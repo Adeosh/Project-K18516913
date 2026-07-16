@@ -29,6 +29,8 @@ namespace Krepim.Basket.Application.Features.Checkout
             var checkoutEvent = new BasketCheckoutIntegrationEvent(
                 request.OrderId,
                 request.UserId,
+                request.CustomerEmail,
+                request.CustomerPhone,
                 basket.TotalPrice,
                 request.FullAddress,
                 request.Latitude,

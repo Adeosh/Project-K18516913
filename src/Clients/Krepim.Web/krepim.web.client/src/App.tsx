@@ -14,6 +14,7 @@ import { InventoryDashboard } from './features/catalog/components/InventoryDashb
 import { OrderDetailView } from './features/ordering/components/OrderDetailView';
 import { MockPayView } from './features/payment/components/MockPayView';
 import { HomeView } from './features/home/components/HomeView';
+import { OrdersDashboard } from './features/ordering/components/OrdersDashboard';
 
 export const App: FC = () => {
     return (
@@ -43,6 +44,7 @@ export const App: FC = () => {
                         <Route index element={<Navigate to="catalog" replace />} />
                         <Route path="catalog" element={<ManagerDashboard />} />
                         <Route path="inventory" element={<InventoryDashboard />} />
+                        <Route path="orders" element={<OrdersDashboard />} />
                     </Route>
                 </Route>
             </Routes>

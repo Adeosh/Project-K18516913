@@ -2,6 +2,8 @@
 {
     public sealed record OrderDto(
         Guid Id,
+        string CustomerEmail,
+        string? CustomerPhone,
         string Status,
         decimal TotalPrice,
         string FullAddress,

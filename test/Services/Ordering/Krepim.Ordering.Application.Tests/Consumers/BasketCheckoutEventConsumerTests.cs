@@ -48,6 +48,8 @@ namespace Krepim.Ordering.Application.Tests.Consumers
             var message = new BasketCheckoutIntegrationEvent(
                 orderId,
                 userId,
+                "test@example.com",
+                "+7 (999) 123-45-67",
                 550.00m,
                 "Санкт-Петербург, Невский пр-кт",
                 10003.00,

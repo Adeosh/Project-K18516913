@@ -38,8 +38,14 @@ const decodeJwt = (token: string): UserClaims | null => {
     }
 };
 
-const initialToken = localStorage.getItem('krepim_token');
-const initialUser = initialToken ? decodeJwt(initialToken) : null;
+let initialToken = localStorage.getItem('krepim_token');
+let initialUser = initialToken ? decodeJwt(initialToken) : null;
+
+if (initialUser && initialUser.exp * 1000 < Date.now()) {
+    localStorage.removeItem('krepim_token');
+    initialToken = null;
+    initialUser = null;
+}
 
 export const useAuthStore = create<AuthState>((set, get) => ({
     token: initialToken,

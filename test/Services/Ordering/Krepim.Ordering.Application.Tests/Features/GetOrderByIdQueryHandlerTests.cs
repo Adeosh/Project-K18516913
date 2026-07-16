@@ -12,7 +12,7 @@ namespace Krepim.Ordering.Application.Tests.Features
 
         public GetOrderByIdQueryHandlerTests()
         {
-            _handler = new GetOrderByIdQueryHandler(OrderRepositoryMock.Object);
+            _handler = new GetOrderByIdQueryHandler(OrderRepositoryMock.Object, Configuration);
         }
 
         [Fact]
@@ -21,7 +21,7 @@ namespace Krepim.Ordering.Application.Tests.Features
             // Arrange
             var orderId = Guid.NewGuid();
             var address = new Address("Санкт-Петербург, ул.Тестовая", 10.0, 20.0, "5");
-            var order = Order.Create(orderId, Guid.NewGuid(), address);
+            var order = Order.Create(orderId, Guid.NewGuid(), "test@example.com", "+7 (999) 123-45-67", address);
             order.AddOrderItem(Guid.NewGuid(), 100m, 2); // 200m total
 
             OrderRepositoryMock
@@ -37,6 +37,8 @@ namespace Krepim.Ordering.Application.Tests.Features
             result.IsSuccess.Should().BeTrue();
             result.Value.Should().NotBeNull();
             result.Value.Id.Should().Be(orderId);
+            result.Value.CustomerEmail.Should().Be("test@example.com");
+            result.Value.CustomerPhone.Should().Be("+7 (999) 123-45-67");
             result.Value.TotalPrice.Should().Be(200m);
             result.Value.FullAddress.Should().Be("Санкт-Петербург, ул.Тестовая");
             result.Value.QrCodeUrl.Should().NotBeNullOrEmpty();

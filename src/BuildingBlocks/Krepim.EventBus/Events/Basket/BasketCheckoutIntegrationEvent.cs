@@ -3,6 +3,8 @@
     public sealed record BasketCheckoutIntegrationEvent(
         Guid OrderId,
         Guid UserId,
+        string CustomerEmail,
+        string? CustomerPhone,
         decimal TotalPrice,
         string FullAddress,
         double? Latitude,

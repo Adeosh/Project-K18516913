@@ -12,7 +12,7 @@ namespace Krepim.Ordering.Application.Tests.Features
 
         public GetMyOrdersQueryHandlerTests()
         {
-            _handler = new GetMyOrdersQueryHandler(OrderRepositoryMock.Object);
+            _handler = new GetMyOrdersQueryHandler(OrderRepositoryMock.Object, Configuration);
         }
 
         [Fact]
@@ -23,7 +23,7 @@ namespace Krepim.Ordering.Application.Tests.Features
             var orderId = Guid.NewGuid();
             var address = new Address("Санкт-Петербург, Невский пр-кт", 10003.00, 104345.00, "33");
 
-            var order = Order.Create(orderId, userId, address);
+            var order = Order.Create(orderId, userId, "test@example.com", "+7 (999) 123-45-67", address);
             order.AddOrderItem(Guid.NewGuid(), 200m, 3);
 
             var dbOrders = new List<Order> { order };
@@ -44,6 +44,8 @@ namespace Krepim.Ordering.Application.Tests.Features
 
             var mappedOrder = result.Value.First();
             mappedOrder.Id.Should().Be(order.Id);
+            mappedOrder.CustomerEmail.Should().Be(order.CustomerEmail);
+            mappedOrder.CustomerPhone.Should().Be(order.CustomerPhone);
             mappedOrder.Status.Should().Be("Pending");
             mappedOrder.TotalPrice.Should().Be(600m);
             mappedOrder.FullAddress.Should().Be("Санкт-Петербург, Невский пр-кт");

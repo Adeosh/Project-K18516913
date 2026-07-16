@@ -1,4 +1,5 @@
-﻿using Krepim.Ordering.Application.Features.GetMyOrders;
+﻿using Krepim.Ordering.Application.Features.GetAllOrders;
+using Krepim.Ordering.Application.Features.GetMyOrders;
 using Krepim.Ordering.Application.Features.GetOrderById;
 using Krepim.SharedKernel.Results.Filters;
 using MediatR;
@@ -27,6 +28,12 @@ namespace Krepim.Ordering.Api.Endpoints
                 var result = await sender.Send(new GetOrderByIdQuery(id));
                 return result.IsSuccess ? Results.Ok(result.Value) : Results.NotFound(result.Error);
             }).RequireAuthorization();
+
+            group.MapGet("/all", async ([FromServices] ISender sender, CancellationToken ct) =>
+            {
+                return await sender.Send(new GetAllOrdersQuery(), ct);
+            })
+            .WithName("GetAllOrders");
         }
 
         private static Guid GetUserId(ClaimsPrincipal user)

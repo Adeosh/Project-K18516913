@@ -11,7 +11,14 @@ interface BasketState {
     updateQuantity: (productId: string, quantity: number, price: number) => Promise<void>;
     removeItem: (productId: string) => Promise<void>;
     clearBasket: () => void;
-    checkout: (addressData: { fullAddress: string; latitude: number; longitude: number; flat: string | null }) => Promise<void>;
+    checkout: (addressData: {
+        customerEmail: string;
+        customerPhone: string | null;
+        fullAddress: string;
+        latitude: number;
+        longitude: number;
+        flat: string | null
+    }) => Promise<void>;
 }
 
 export const useBasketStore = create<BasketState>((set, get) => ({
