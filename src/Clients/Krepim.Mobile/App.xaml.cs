@@ -1,16 +1,16 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
-namespace Krepim.Mobile;
+﻿namespace Krepim.Mobile;
 
 public partial class App : Application
 {
-	public App()
+    public App()
 	{
 		InitializeComponent();
-	}
+    }
 
-	protected override Window CreateWindow(IActivationState? activationState)
-	{
-		return new Window(new AppShell());
-	}
+    protected override Window CreateWindow(IActivationState? activationState)
+    {
+        var appShell = activationState!.Context.Services.GetRequiredService<AppShell>();
+
+        return new Window(appShell);
+    }
 }
