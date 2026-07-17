@@ -2,8 +2,11 @@
 using Krepim.Mobile.Features.Auth.Services;
 using Krepim.Mobile.Features.Auth.ViewModels;
 using Krepim.Mobile.Features.Auth.Views;
+using Krepim.Mobile.Features.Basket.Views;
+using Krepim.Mobile.Features.Catalog.Views;
 using Krepim.Mobile.Features.Home.ViewModels;
 using Krepim.Mobile.Features.Home.Views;
+using Krepim.Mobile.Features.Profile.Views;
 using Krepim.Mobile.Http;
 using Microsoft.Extensions.Logging;
 
@@ -46,6 +49,9 @@ public static class MauiProgram
         builder.Services.AddTransient<HomePage>();
         builder.Services.AddTransient<LoginPage>();
         builder.Services.AddTransient<RegisterPage>();
+        builder.Services.AddTransient<CatalogPage>();
+        builder.Services.AddTransient<BasketPage>();
+        builder.Services.AddTransient<ProfilePage>();
         #endregion
 
 #if DEBUG

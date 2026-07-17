@@ -5,21 +5,31 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Krepim.Mobile"
     xmlns:home="clr-namespace:Krepim.Mobile.Features.Home.Views"
-    Title="КРЕПИМ.ПРО">
-
-    <Shell.FlyoutHeader>
-        <VerticalStackLayout Padding="20" BackgroundColor="{StaticResource AccentColor}">
-            <Label Text="КРЕПИМ.PRO" TextColor="White" FontSize="24" FontAttributes="Bold" />
-            <Label Text="Надежный крепеж" TextColor="{StaticResource Sand}" FontSize="14" />
-        </VerticalStackLayout>
-    </Shell.FlyoutHeader>
+    xmlns:catalog="clr-namespace:Krepim.Mobile.Features.Catalog.Views"
+    xmlns:basket="clr-namespace:Krepim.Mobile.Features.Basket.Views"
+    xmlns:profile="clr-namespace:Krepim.Mobile.Features.Profile.Views"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.TabBarBackgroundColor="{StaticResource Sand}"
+    Shell.TabBarForegroundColor="{StaticResource AccentColor}"
+    Shell.TabBarTitleColor="{StaticResource AccentColor}"
+    Shell.TabBarUnselectedColor="{StaticResource Espresso}">
 
     <TabBar>
-        <Tab Title="Главная" Icon="home_icon.png">
+        <Tab Title="Главная" Icon="home.png">
             <ShellContent ContentTemplate="{DataTemplate home:HomePage}" Route="home" />
+        </Tab>
+
+        <Tab Title="Каталог" Icon="catalog.png">
+            <ShellContent ContentTemplate="{DataTemplate catalog:CatalogPage}" Route="catalog" />
+        </Tab>
+
+        <Tab Title="Корзина" Icon="basket.png">
+            <ShellContent ContentTemplate="{DataTemplate basket:BasketPage}" Route="basket" />
+        </Tab>
+
+        <Tab Title="Кабинет" Icon="profile.png">
+            <ShellContent ContentTemplate="{DataTemplate profile:ProfilePage}" Route="profile" />
         </Tab>
     </TabBar>
 
-    <MenuItem Text="Выйти" Command="{Binding LogoutCommand}" />
-    
 </Shell>

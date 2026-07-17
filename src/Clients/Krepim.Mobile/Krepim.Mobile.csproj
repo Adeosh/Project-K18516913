@@ -42,6 +42,17 @@
   <ItemGroup>
     <!-- App Icon -->
     <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+    <MauiImage Include="Resources\Images\Icons\Svg\home.svg" />
+    <MauiImage Include="Resources\Images\Icons\Svg\location.svg" />
+    <MauiImage Include="Resources\Images\Icons\Svg\profile.svg" />
+    <MauiImage Include="Resources\Images\Icons\Svg\search.svg" />
+    <MauiImage Include="Resources\Images\Partners\boltru.jpg" />
+    <MauiImage Include="Resources\Images\Partners\metallservice.jpg" />
+    <MauiImage Include="Resources\Images\Partners\mtk.jpg" />
+    <MauiImage Include="Resources\Images\Partners\pic.jpg" />
+    <MauiImage Include="Resources\Images\Partners\russconnect.jpg" />
+    <MauiImage Include="Resources\Images\Partners\volzgskiy.jpg" />
+    <MauiImage Include="Resources\Images\Partners\zitar.jpg" />
     <!-- Splash Screen -->
     <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
     <!-- Images -->
@@ -51,6 +62,80 @@
     <MauiFont Include="Resources\Fonts\*" />
     <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
     <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\Images\Banners\banner_2.png" />
+    <None Remove="Resources\Images\Icons\General\anchors_2.png" />
+    <None Remove="Resources\Images\Icons\General\arma.png" />
+    <None Remove="Resources\Images\Icons\General\bolts_2.png" />
+    <None Remove="Resources\Images\Icons\General\clock_2.png" />
+    <None Remove="Resources\Images\Icons\General\cons.png" />
+    <None Remove="Resources\Images\Icons\General\dubel.png" />
+    <None Remove="Resources\Images\Icons\General\fast_deliv.png" />
+    <None Remove="Resources\Images\Icons\General\gaiki.png" />
+    <None Remove="Resources\Images\Icons\General\geo.png" />
+    <None Remove="Resources\Images\Icons\General\money_2.png" />
+    <None Remove="Resources\Images\Icons\General\nails_2.png" />
+    <None Remove="Resources\Images\Icons\General\price.png" />
+    <None Remove="Resources\Images\Icons\General\selfr.png" />
+    <None Remove="Resources\Images\Icons\General\shop.png" />
+    <None Remove="Resources\Images\Icons\General\shur_samo.png" />
+    <None Remove="Resources\Images\Icons\General\tools.png" />
+    <None Remove="Resources\Images\Icons\General\tube.png" />
+    <None Remove="Resources\Images\Icons\General\waranty.png" />
+    <None Remove="Resources\Images\Icons\General\waranty_2.png" />
+    <None Remove="Resources\Images\Icons\Other\analis.png" />
+    <None Remove="Resources\Images\Icons\Other\box.png" />
+    <None Remove="Resources\Images\Icons\Other\clock.png" />
+    <None Remove="Resources\Images\Icons\Other\count.png" />
+    <None Remove="Resources\Images\Icons\Other\def.png" />
+    <None Remove="Resources\Images\Icons\Other\deliv.png" />
+    <None Remove="Resources\Images\Icons\Other\info.png" />
+    <None Remove="Resources\Images\Icons\Other\money.png" />
+    <None Remove="Resources\Images\Icons\Other\order.png" />
+    <None Remove="Resources\Images\Icons\Other\perc.png" />
+    <None Remove="Resources\Images\Icons\Other\phone.png" />
+    <None Remove="Resources\Images\Icons\Other\statistic.png" />
+    <None Remove="Resources\Images\Icons\Other\warehouse.png" />
+    <None Remove="Resources\Images\Icons\Products\anchor.png" />
+    <None Remove="Resources\Images\Icons\Products\batt.png" />
+    <None Remove="Resources\Images\Icons\Products\build.png" />
+    <None Remove="Resources\Images\Icons\Products\deliv.png" />
+    <None Remove="Resources\Images\Icons\Products\drel.png" />
+    <None Remove="Resources\Images\Icons\Products\fittings.png" />
+    <None Remove="Resources\Images\Icons\Products\level.png" />
+    <None Remove="Resources\Images\Icons\Products\mbolts.png" />
+    <None Remove="Resources\Images\Icons\Products\mcement.png" />
+    <None Remove="Resources\Images\Icons\Products\nails.png" />
+    <None Remove="Resources\Images\Icons\Products\perf.png" />
+    <None Remove="Resources\Images\Icons\Products\product.png" />
+    <None Remove="Resources\Images\Icons\Products\rivets.png" />
+    <None Remove="Resources\Images\Icons\Products\saw.png" />
+    <None Remove="Resources\Images\Icons\Products\screws.png" />
+    <None Remove="Resources\Images\Icons\Products\step.png" />
+    <None Remove="Resources\Images\Icons\Products\wall.png" />
+    <None Remove="Resources\Images\Icons\Svg\basket.svg" />
+    <None Remove="Resources\Images\Icons\Svg\catalog.svg" />
+    <None Remove="Resources\Images\Icons\Svg\home.svg" />
+    <None Remove="Resources\Images\Icons\Svg\location.svg" />
+    <None Remove="Resources\Images\Icons\Svg\main.svg" />
+    <None Remove="Resources\Images\Icons\Svg\profile.svg" />
+    <None Remove="Resources\Images\Icons\Svg\search.svg" />
+    <None Remove="Resources\Images\Icons\Svg\worker.svg" />
+    <None Remove="Resources\Images\Partners\boltru-130x100.jpg" />
+    <None Remove="Resources\Images\Partners\boltru.jpg" />
+    <None Remove="Resources\Images\Partners\metallservice-130x100.jpg" />
+    <None Remove="Resources\Images\Partners\metallservice.jpg" />
+    <None Remove="Resources\Images\Partners\mtk-130x100.jpg" />
+    <None Remove="Resources\Images\Partners\mtk.jpg" />
+    <None Remove="Resources\Images\Partners\ooo-pic-130x100.jpg" />
+    <None Remove="Resources\Images\Partners\pic.jpg" />
+    <None Remove="Resources\Images\Partners\russconnect-130x100.jpg" />
+    <None Remove="Resources\Images\Partners\russconnect.jpg" />
+    <None Remove="Resources\Images\Partners\volzgskiy-instrument-130x100.jpg" />
+    <None Remove="Resources\Images\Partners\volzgskiy.jpg" />
+    <None Remove="Resources\Images\Partners\zitar-130x100.jpg" />
+    <None Remove="Resources\Images\Partners\zitar.jpg" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Maui" Version="14.2.0" />
@@ -66,15 +151,70 @@
     <MauiXaml Update="Features\Auth\Views\RegisterPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
+    <MauiXaml Update="Features\Basket\Views\BasketPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Catalog\Views\CatalogPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
     <MauiXaml Update="Features\Home\Views\HomePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Profile\Views\ProfilePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\Images\Banners\" />
-    <Folder Include="Resources\Images\Icons\General\" />
-    <Folder Include="Resources\Images\Icons\Products\" />
-    <Folder Include="Resources\Images\Icons\Other\" />
-    <Folder Include="Resources\Images\Partners\" />
+    <MauiImage Include="Resources\Images\Banners\banner_2.png" />
+    <MauiImage Include="Resources\Images\Icons\General\anchors_2.png" />
+    <MauiImage Include="Resources\Images\Icons\General\arma.png" />
+    <MauiImage Include="Resources\Images\Icons\General\bolts_2.png" />
+    <MauiImage Include="Resources\Images\Icons\General\clock_2.png" />
+    <MauiImage Include="Resources\Images\Icons\General\cons.png" />
+    <MauiImage Include="Resources\Images\Icons\General\dubel.png" />
+    <MauiImage Include="Resources\Images\Icons\General\fast_deliv.png" />
+    <MauiImage Include="Resources\Images\Icons\General\gaiki.png" />
+    <MauiImage Include="Resources\Images\Icons\General\geo.png" />
+    <MauiImage Include="Resources\Images\Icons\General\money_2.png" />
+    <MauiImage Include="Resources\Images\Icons\General\nails_2.png" />
+    <MauiImage Include="Resources\Images\Icons\General\price.png" />
+    <MauiImage Include="Resources\Images\Icons\General\selfr.png" />
+    <MauiImage Include="Resources\Images\Icons\General\shop.png" />
+    <MauiImage Include="Resources\Images\Icons\General\shur_samo.png" />
+    <MauiImage Include="Resources\Images\Icons\General\tools.png" />
+    <MauiImage Include="Resources\Images\Icons\General\tube.png" />
+    <MauiImage Include="Resources\Images\Icons\General\waranty.png" />
+    <MauiImage Include="Resources\Images\Icons\General\waranty_2.png" />
+    <MauiImage Include="Resources\Images\Icons\Other\analis.png" />
+    <MauiImage Include="Resources\Images\Icons\Other\box.png" />
+    <MauiImage Include="Resources\Images\Icons\Other\clock.png" />
+    <MauiImage Include="Resources\Images\Icons\Other\count.png" />
+    <MauiImage Include="Resources\Images\Icons\Other\def.png" />
+    <MauiImage Include="Resources\Images\Icons\Other\info.png" />
+    <MauiImage Include="Resources\Images\Icons\Other\money.png" />
+    <MauiImage Include="Resources\Images\Icons\Other\order.png" />
+    <MauiImage Include="Resources\Images\Icons\Other\perc.png" />
+    <MauiImage Include="Resources\Images\Icons\Other\phone.png" />
+    <MauiImage Include="Resources\Images\Icons\Other\statistic.png" />
+    <MauiImage Include="Resources\Images\Icons\Other\warehouse.png" />
+    <MauiImage Include="Resources\Images\Icons\Products\anchor.png" />
+    <MauiImage Include="Resources\Images\Icons\Products\batt.png" />
+    <MauiImage Include="Resources\Images\Icons\Products\build.png" />
+    <MauiImage Include="Resources\Images\Icons\Products\deliv.png" />
+    <MauiImage Include="Resources\Images\Icons\Products\drel.png" />
+    <MauiImage Include="Resources\Images\Icons\Products\fittings.png" />
+    <MauiImage Include="Resources\Images\Icons\Products\level.png" />
+    <MauiImage Include="Resources\Images\Icons\Products\mbolts.png" />
+    <MauiImage Include="Resources\Images\Icons\Products\mcement.png" />
+    <MauiImage Include="Resources\Images\Icons\Products\nails.png" />
+    <MauiImage Include="Resources\Images\Icons\Products\perf.png" />
+    <MauiImage Include="Resources\Images\Icons\Products\product.png" />
+    <MauiImage Include="Resources\Images\Icons\Products\rivets.png" />
+    <MauiImage Include="Resources\Images\Icons\Products\saw.png" />
+    <MauiImage Include="Resources\Images\Icons\Products\screws.png" />
+    <MauiImage Include="Resources\Images\Icons\Products\step.png" />
+    <MauiImage Include="Resources\Images\Icons\Products\wall.png" />
+    <MauiImage Include="Resources\Images\Icons\Svg\basket.svg" />
+    <MauiImage Include="Resources\Images\Icons\Svg\catalog.svg" />
   </ItemGroup>
 </Project>
