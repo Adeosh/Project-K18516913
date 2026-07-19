@@ -30,14 +30,20 @@ public static class MauiProgram
 
         #region Connect
         var assembly = Assembly.GetExecutingAssembly();
-        using var stream = assembly.GetManifestResourceStream("Krepim.Mobile.appsettings.Development.json");
-        if (stream != null)
+        var resourceName = assembly.GetManifestResourceNames()
+                           .FirstOrDefault(x => x.EndsWith("appsettings.Development.json"));
+
+        if (resourceName != null)
         {
-            var config = new ConfigurationBuilder().AddJsonStream(stream).Build();
-            builder.Configuration.AddConfiguration(config);
+            using var stream = assembly.GetManifestResourceStream(resourceName);
+            if (stream != null)
+            {
+                var config = new ConfigurationBuilder().AddJsonStream(stream).Build();
+                builder.Configuration.AddConfiguration(config);
+            }
         }
 
-        var apiUrl = builder.Configuration["ApiGatewayUrl"] ?? "http://localhost:5078/";
+        var apiUrl = builder.Configuration["ApiGatewayUrl"] ?? "http://127.0.0.1:5078/";
 
         builder.Services.AddTransient<AuthAndErrorHandler>();
         builder.Services.AddHttpClient("ApiClient", client =>

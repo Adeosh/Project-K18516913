@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:viewmodels="clr-namespace:Krepim.Mobile.Features.Auth.ViewModels"
              x:Class="Krepim.Mobile.Features.Auth.Views.LoginPage"
              x:DataType="viewmodels:LoginViewModel"
@@ -22,11 +23,24 @@
                 <Label Text="Вход в личный кабинет" FontSize="16" TextColor="{StaticResource TextColor}" Opacity="0.7" HorizontalTextAlignment="Center" />
             </VerticalStackLayout>
 
+            <Border BackgroundColor="#1A9E2F1F" 
+                    Stroke="{StaticResource AccentColor}" 
+                    StrokeShape="RoundRectangle 8" 
+                    Padding="16"
+                    Margin="0,0,0,16"
+                    IsVisible="{Binding ErrorMessage, Converter={toolkit:IsStringNotNullOrWhiteSpaceConverter}}">
+
+                <Label Text="{Binding ErrorMessage}" 
+                       TextColor="{StaticResource AccentColor}" 
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center" />
+            </Border>
+
             <VerticalStackLayout Spacing="16">
                 <Border Stroke="{StaticResource BorderColor}" BackgroundColor="{StaticResource SurfaceColor}" StrokeShape="RoundRectangle 8" HeightRequest="56" Padding="16,0">
                     <Entry Placeholder="E-mail" 
                            Keyboard="Email" 
-                           Text="{Binding Username}" 
+                           Text="{Binding Email}" 
                            TextColor="{StaticResource TextColor}" 
                            PlaceholderColor="{StaticResource TextPlaceholderColor}" 
                            VerticalOptions="Center" />

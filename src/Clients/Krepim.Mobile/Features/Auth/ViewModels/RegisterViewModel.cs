@@ -71,7 +71,7 @@ namespace Krepim.Mobile.Features.Auth.ViewModels
             }
             catch (ApiException apiEx)
             {
-                ErrorMessage = apiEx.Problem.Detail ?? apiEx.Problem.Title;
+                ErrorMessage = apiEx.ToUserFriendlyMessage();
             }
             catch (Exception ex)
             {

@@ -45,7 +45,7 @@ namespace Krepim.Mobile.Features.Auth.ViewModels
             }
             catch (ApiException apiEx)
             {
-                ErrorMessage = apiEx.Problem.Detail ?? apiEx.Problem.Title;
+                ErrorMessage = apiEx.ToUserFriendlyMessage();
             }
             catch (Exception ex)
             {
@@ -61,12 +61,6 @@ namespace Krepim.Mobile.Features.Auth.ViewModels
         public async Task NavigateToRegisterAsync()
         {
             await Shell.Current.GoToAsync("register");
-        }
-
-        [RelayCommand]
-        public async Task GoToRegisterAsync()
-        {
-            await Shell.Current.GoToAsync("//register");
         }
     }
 }

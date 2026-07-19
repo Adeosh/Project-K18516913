@@ -166,6 +166,9 @@
     </MauiXaml>
   </ItemGroup>
   <ItemGroup>
+  	 <EmbeddedResource Include="appsettings.Development.json" />
+  </ItemGroup>
+  <ItemGroup>
     <MauiImage Include="Resources\Images\Banners\banner_2.png" />
     <MauiImage Include="Resources\Images\Icons\General\anchors_2.png" />
     <MauiImage Include="Resources\Images\Icons\General\arma.png" />
