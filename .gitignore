@@ -59,3 +59,5 @@ appsettings.Local.json
 !.vscode/extensions.json
 .DS_Store
 Thumbs.db
+/src/Clients/Krepim.Mobile/appsettings.Development.json
+/src/Clients/Krepim.Mobile/appsettings.Development.json
