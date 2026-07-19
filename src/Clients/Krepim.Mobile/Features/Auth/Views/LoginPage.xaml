@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:viewmodels="clr-namespace:Krepim.Mobile.Features.Auth.ViewModels"
              x:Class="Krepim.Mobile.Features.Auth.Views.LoginPage"
              x:DataType="viewmodels:LoginViewModel"
@@ -9,45 +8,61 @@
              BackgroundColor="{StaticResource BgColor}">
 
     <ScrollView>
-        <VerticalStackLayout Padding="24" Spacing="20" VerticalOptions="Center">
+        <VerticalStackLayout Spacing="24" Padding="24,60,24,24" VerticalOptions="Center">
 
-            <VerticalStackLayout Spacing="5" HorizontalOptions="Center" Margin="0,0,0,20">
-                <Label Text="КРЕПИМ.PRO" FontSize="32" FontAttributes="Bold" TextColor="{StaticResource TextColor}" HorizontalOptions="Center" />
-                <Label Text="Добро пожаловать в систему" FontSize="14" TextColor="{StaticResource TextMutedColor}" HorizontalOptions="Center" />
+            <VerticalStackLayout Spacing="8" HorizontalOptions="Center" Margin="0,0,0,20">
+                <Label FontSize="32" FontAttributes="Bold" HorizontalTextAlignment="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="КРЕПИМ" TextColor="{StaticResource TextColor}" />
+                            <Span Text=".ПРО" TextColor="{StaticResource AccentColor}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="Вход в личный кабинет" FontSize="16" TextColor="{StaticResource TextColor}" Opacity="0.7" HorizontalTextAlignment="Center" />
             </VerticalStackLayout>
 
-            <Border Stroke="{StaticResource ErrorColor}" StrokeThickness="1" BackgroundColor="#1AFFE4E4" 
-                    IsVisible="{Binding ErrorMessage, Converter={toolkit:IsStringNotNullOrEmptyConverter}}" 
-                    Padding="15" StrokeShape="RoundRectangle 12">
-                <Label Text="{Binding ErrorMessage}" TextColor="{StaticResource ErrorColor}" FontAttributes="Bold" HorizontalTextAlignment="Center" />
-            </Border>
+            <VerticalStackLayout Spacing="16">
+                <Border Stroke="{StaticResource BorderColor}" BackgroundColor="{StaticResource SurfaceColor}" StrokeShape="RoundRectangle 8" HeightRequest="56" Padding="16,0">
+                    <Entry Placeholder="E-mail" 
+                           Keyboard="Email" 
+                           Text="{Binding Username}" 
+                           TextColor="{StaticResource TextColor}" 
+                           PlaceholderColor="{StaticResource TextPlaceholderColor}" 
+                           VerticalOptions="Center" />
+                </Border>
 
-            <VerticalStackLayout Spacing="15">
-                <VerticalStackLayout Spacing="5">
-                    <Label Text="Электронная почта" FontAttributes="Bold" TextColor="{StaticResource TextColor}" />
-                    <Entry Text="{Binding Email}" Placeholder="mail@mail.com" Keyboard="Email" IsEnabled="{Binding IsLoading, Converter={toolkit:InvertedBoolConverter}}" />
-                </VerticalStackLayout>
+                <Border Stroke="{StaticResource BorderColor}" BackgroundColor="{StaticResource SurfaceColor}" StrokeShape="RoundRectangle 8" HeightRequest="56" Padding="16,0">
+                    <Entry Placeholder="Пароль" 
+                           IsPassword="True" 
+                           Text="{Binding Password}" 
+                           TextColor="{StaticResource TextColor}" 
+                           PlaceholderColor="{StaticResource TextPlaceholderColor}" 
+                           VerticalOptions="Center" />
+                </Border>
 
-                <VerticalStackLayout Spacing="5">
-                    <Label Text="Пароль" FontAttributes="Bold" TextColor="{StaticResource TextColor}" />
-                    <Entry Text="{Binding Password}" Placeholder="••••••••" IsPassword="True" IsEnabled="{Binding IsLoading, Converter={toolkit:InvertedBoolConverter}}" />
-                </VerticalStackLayout>
-            </VerticalStackLayout>
-
-            <Button Text="Войти в аккаунт" Command="{Binding LoginCommand}" BackgroundColor="{StaticResource AccentColor}" TextColor="{StaticResource White}" CornerRadius="12" HeightRequest="50" Margin="0,10,0,0">
-                <Button.Triggers>
-                    <DataTrigger TargetType="Button" Binding="{Binding IsLoading}" Value="True">
-                        <Setter Property="Text" Value="Выполняется вход..." />
-                        <Setter Property="Opacity" Value="0.7" />
-                    </DataTrigger>
-                </Button.Triggers>
-            </Button>
-
-            <HorizontalStackLayout HorizontalOptions="Center" Spacing="5" Margin="0,20,0,0">
-                <Label Text="Нет аккаунта?" TextColor="{StaticResource TextMutedColor}" VerticalOptions="Center" />
-                <Label Text="Создать аккаунт" TextColor="{StaticResource AccentColor}" FontAttributes="Bold" VerticalOptions="Center">
+                <Label Text="Забыли пароль?" TextColor="{StaticResource AccentColor}" FontSize="14" HorizontalOptions="End">
                     <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding GoToRegisterCommand}" />
+                        <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </VerticalStackLayout>
+
+            <Button Text="ВОЙТИ" 
+                    Command="{Binding LoginCommand}"
+                    BackgroundColor="{StaticResource AccentColor}" 
+                    TextColor="{StaticResource SurfaceColor}" 
+                    FontAttributes="Bold" 
+                    FontSize="16"
+                    HeightRequest="56" 
+                    CornerRadius="8" 
+                    Margin="0,16,0,0" />
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="4" Margin="0,20,0,0">
+                <Label Text="Нет аккаунта?" TextColor="{StaticResource TextColor}" Opacity="0.7" FontSize="15" VerticalOptions="Center" />
+                <Label Text="Создать" TextColor="{StaticResource AccentColor}" FontSize="15" FontAttributes="Bold" VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateToRegisterCommand}" />
                     </Label.GestureRecognizers>
                 </Label>
             </HorizontalStackLayout>

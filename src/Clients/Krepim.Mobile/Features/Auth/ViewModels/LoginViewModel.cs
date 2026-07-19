@@ -58,6 +58,12 @@ namespace Krepim.Mobile.Features.Auth.ViewModels
         }
 
         [RelayCommand]
+        public async Task NavigateToRegisterAsync()
+        {
+            await Shell.Current.GoToAsync("register");
+        }
+
+        [RelayCommand]
         public async Task GoToRegisterAsync()
         {
             await Shell.Current.GoToAsync("//register");

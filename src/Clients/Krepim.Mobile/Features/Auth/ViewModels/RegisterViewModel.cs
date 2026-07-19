@@ -84,9 +84,9 @@ namespace Krepim.Mobile.Features.Auth.ViewModels
         }
 
         [RelayCommand]
-        public async Task GoToLoginAsync()
+        public async Task NavigateToLoginAsync()
         {
-            await Shell.Current.GoToAsync("//login");
+            await Shell.Current.GoToAsync("..");
         }
 
         private string FormatRussianPhoneNumber(string input)

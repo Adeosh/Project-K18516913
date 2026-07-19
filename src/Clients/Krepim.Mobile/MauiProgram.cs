@@ -8,7 +8,9 @@ using Krepim.Mobile.Features.Home.ViewModels;
 using Krepim.Mobile.Features.Home.Views;
 using Krepim.Mobile.Features.Profile.Views;
 using Krepim.Mobile.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System.Reflection;
 
 namespace Krepim.Mobile;
 
@@ -26,13 +28,25 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
+        #region Connect
+        var assembly = Assembly.GetExecutingAssembly();
+        using var stream = assembly.GetManifestResourceStream("Krepim.Mobile.appsettings.Development.json");
+        if (stream != null)
+        {
+            var config = new ConfigurationBuilder().AddJsonStream(stream).Build();
+            builder.Configuration.AddConfiguration(config);
+        }
+
+        var apiUrl = builder.Configuration["ApiGatewayUrl"] ?? "http://localhost:5078/";
+
         builder.Services.AddTransient<AuthAndErrorHandler>();
         builder.Services.AddHttpClient("ApiClient", client =>
         {
-            client.BaseAddress = new Uri("http://localhost:5000");
+            client.BaseAddress = new Uri(apiUrl);
             client.DefaultRequestHeaders.Add("Accept", "application/json");
         })
         .AddHttpMessageHandler<AuthAndErrorHandler>();
+        #endregion
 
         #region Services
         builder.Services.AddSingleton<AppShell>();

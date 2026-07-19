@@ -18,6 +18,24 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("register", typeof(RegisterPage));
     }
 
+    protected override void OnNavigating(ShellNavigatingEventArgs args)
+    {
+        base.OnNavigating(args);
+
+        if (args.Target.Location.OriginalString.Contains("profile"))
+        {
+            if (!_authService.IsAuthenticated)
+            {
+                args.Cancel();
+
+                Dispatcher.Dispatch(async () =>
+                {
+                    await Shell.Current.GoToAsync("login");
+                });
+            }
+        }
+    }
+
     public Command LogoutCommand => new Command(async () =>
     {
         await _authService.LogoutAsync();

@@ -8,6 +8,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 var useVolumes = builder.Configuration.GetValue<bool>("AppHostConfiguration:UseVolumes");
 var useDedicatedPorts = builder.Configuration.GetValue<bool>("AppHostConfiguration:UseDedicatedPorts");
 var pgPort = builder.Configuration.GetValue<int>("AppHostConfiguration:Postgres:Port", 15432);
+var devIp = builder.Configuration["DeveloperIp"] ?? "localhost";
 var pgPassword = builder.AddParameter("postgres-password", secret: true);
 var jwtSecret = builder.AddParameter("JwtSecret", secret: true); // dotnet user-secrets init
 
@@ -71,6 +72,7 @@ var catalogApi = builder.AddProject<Projects.Krepim_Catalog_Api>("catalog-api")
     .WithReference(catalogDb)
     .WithReference(catalogMongoDb)
     .WithReference(rabbitMq)
+    .WithEnvironment("Minio__Endpoint", $"http://{devIp}:9000")
     .WithEnvironment("Jwt__SecretKey", jwtSecret)
     .WaitFor(postgres);
 scalar.WithApiReference(catalogApi);
@@ -84,7 +86,7 @@ scalar.WithApiReference(basketApi);
 var orderingApi = builder.AddProject<Projects.Krepim_Ordering_Api>("ordering-api")
     .WithReference(orderingDb)
     .WithReference(rabbitMq)
-    .WithEnvironment("ClientApp__FrontendUrl", "https://192.168.0.114:63137")
+    .WithEnvironment("ClientApp__FrontendUrl", $"https://{devIp}:63137")
     .WithEnvironment("Jwt__SecretKey", jwtSecret)
     .WaitFor(postgres);
 scalar.WithApiReference(orderingApi);
@@ -110,7 +112,6 @@ var apiGateway = builder.AddProject<Projects.Krepim_ApiGateway>("api-gateway")
     .WithReference(inventoryApi)
     .WithReference(orderingApi)
     .WithReference(paymentApi)
-    .WithEndpoint(port: 7115, scheme: "https", isProxied: false)
     .WithEndpoint(port: 5078, scheme: "http", isProxied: false);
 
 #endregion
@@ -121,7 +122,7 @@ string frontEndPath = "../../Clients/Krepim.Web/krepim.web.client";
 builder.AddNpmApp("krepim-web-client", frontEndPath, "dev")
     .WithReference(apiGateway)
     .WithEnvironment("BROWSER", "none")
-    .WithEndpoint(port: 63137, scheme: "https", env: "PORT", isExternal: true, name: "vite", isProxied: false)
+    .WithEndpoint(port: 63137, scheme: "https", env: "PORT", isExternal: true, name: "vite")
     .PublishAsDockerFile();
 
 #endregion
