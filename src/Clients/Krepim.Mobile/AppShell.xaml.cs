@@ -1,4 +1,5 @@
-﻿using Krepim.Mobile.Features.Auth.Services;
+﻿using Krepim.Mobile.Extensions;
+using Krepim.Mobile.Features.Auth.Services;
 using Krepim.Mobile.Features.Auth.Views;
 
 namespace Krepim.Mobile;
@@ -16,6 +17,8 @@ public partial class AppShell : Shell
 
         Routing.RegisterRoute("login", typeof(LoginPage));
         Routing.RegisterRoute("register", typeof(RegisterPage));
+
+        _authService.InitializeAsync().SafeFireAndForget();
     }
 
     protected override void OnNavigating(ShellNavigatingEventArgs args)

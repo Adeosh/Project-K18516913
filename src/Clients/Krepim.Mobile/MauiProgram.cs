@@ -6,6 +6,7 @@ using Krepim.Mobile.Features.Basket.Views;
 using Krepim.Mobile.Features.Catalog.Views;
 using Krepim.Mobile.Features.Home.ViewModels;
 using Krepim.Mobile.Features.Home.Views;
+using Krepim.Mobile.Features.Profile.ViewModels;
 using Krepim.Mobile.Features.Profile.Views;
 using Krepim.Mobile.Http;
 using Microsoft.Extensions.Configuration;
@@ -63,6 +64,7 @@ public static class MauiProgram
         builder.Services.AddTransient<HomeViewModel>();
         builder.Services.AddTransient<LoginViewModel>();
         builder.Services.AddTransient<RegisterViewModel>();
+        builder.Services.AddTransient<ProfileViewModel>();
         #endregion
 
         #region Views

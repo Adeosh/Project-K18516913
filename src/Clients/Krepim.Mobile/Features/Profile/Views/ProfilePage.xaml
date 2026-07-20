@@ -1,11 +1,85 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewmodels="clr-namespace:Krepim.Mobile.Features.Profile.ViewModels"
              x:Class="Krepim.Mobile.Features.Profile.Views.ProfilePage"
-             Title="ProfilePage">
-    
-    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10">
-        <Label Text="👤" FontSize="48" HorizontalOptions="Center" />
-        <Label Text="Здесь будет профиль" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource TextColor}" />
-    </VerticalStackLayout>
+             x:DataType="viewmodels:ProfileViewModel"
+             Title="Кабинет"
+             BackgroundColor="{StaticResource BgColor}">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="16" Padding="16,20">
+
+            <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" Color="{StaticResource AccentColor}" HorizontalOptions="Center" />
+
+            <Border BackgroundColor="#1A9E2F1F" Stroke="{StaticResource AccentColor}" StrokeShape="RoundRectangle 8" Padding="12" IsVisible="{Binding ErrorMessage, Converter={toolkit:IsStringNotNullOrWhiteSpaceConverter}}">
+                <Label Text="{Binding ErrorMessage}" TextColor="{StaticResource AccentColor}" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+            </Border>
+
+            <Border BackgroundColor="#1A2F9E3F" Stroke="#2F9E3F" StrokeShape="RoundRectangle 8" Padding="12" IsVisible="{Binding SuccessMessage, Converter={toolkit:IsStringNotNullOrWhiteSpaceConverter}}">
+                <Label Text="{Binding SuccessMessage}" TextColor="#2F9E3F" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+            </Border>
+
+            <Label Text="Учетная запись" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource TextColor}" />
+
+            <Border Stroke="{StaticResource BorderColor}" StrokeShape="RoundRectangle 8" Padding="12,0" HeightRequest="45">
+                <Entry Text="{Binding Email}" Placeholder="Email" Keyboard="Email" TextColor="{StaticResource TextColor}" />
+            </Border>
+
+            <Border Stroke="{StaticResource BorderColor}" StrokeShape="RoundRectangle 8" Padding="12,0" HeightRequest="45">
+                <Entry Text="{Binding PhoneNumber}" Placeholder="Телефон (+7...)" Keyboard="Telephone" TextColor="{StaticResource TextColor}" />
+            </Border>
+
+            <Button Text="СМЕНИТЬ ПАРОЛЬ" Clicked="OnChangePasswordClicked" BackgroundColor="Transparent" TextColor="{StaticResource AccentColor}" BorderColor="{StaticResource AccentColor}" BorderWidth="1" HeightRequest="40" CornerRadius="8" />
+
+            <Label Text="Адрес доставки" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource TextColor}" Margin="0,10,0,0" />
+            <Label Text="Отметьте ваш дом на карте. Этот адрес будет использоваться при оформлении заказов." FontSize="14" TextColor="{StaticResource TextPlaceholderColor}" Margin="0,0,0,8" />
+
+            <Border BackgroundColor="{StaticResource SurfaceColor}" Stroke="{StaticResource BorderColor}" StrokeShape="RoundRectangle 8" Padding="12" Margin="0,0,0,10">
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="ВЫБРАННЫЙ АДРЕС" FontSize="12" TextColor="{StaticResource TextPlaceholderColor}" FontAttributes="Bold" />
+                    <Grid ColumnDefinitions="Auto, *">
+                        <ActivityIndicator Grid.Column="0" 
+                                         IsRunning="{Binding IsAddressFetching}" 
+                                         Color="{StaticResource AccentColor}" 
+                                         IsVisible="{Binding IsAddressFetching}"
+                                         WidthRequest="20"
+                                         HeightRequest="20"
+                                         VerticalOptions="Center"
+                                         Margin="0,0,8,0" />
+                        <Label Grid.Column="1" 
+                               Text="{Binding FullAddress}" 
+                               TextColor="{StaticResource AccentColor}" 
+                               FontAttributes="Bold" 
+                               FontSize="14"
+                               VerticalOptions="Center">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding FullAddress}" Value="">
+                                    <Setter Property="Text" Value="Кликните на карту, чтобы выбрать адрес" />
+                                    <Setter Property="TextColor" Value="{StaticResource TextColor}" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Stroke="{StaticResource BorderColor}" StrokeShape="RoundRectangle 8" HeightRequest="350" Margin="0,0,0,10" Padding="0">
+                <WebView x:Name="MapWebView" 
+                         Navigating="MapWebView_Navigating" 
+                         BackgroundColor="{StaticResource BgColor}"
+                         VerticalOptions="Fill" />
+            </Border>
+
+            <Border Stroke="{StaticResource BorderColor}" StrokeShape="RoundRectangle 8" Padding="12,0" HeightRequest="45">
+                <Entry Text="{Binding Flat}" Placeholder="Квартира / Офис (необязательно)" TextColor="{StaticResource TextColor}" />
+            </Border>
+
+            <Button Text="СОХРАНИТЬ ПРОФИЛЬ" Command="{Binding SaveProfileCommand}" BackgroundColor="{StaticResource AccentColor}" TextColor="{StaticResource SurfaceColor}" FontAttributes="Bold" HeightRequest="50" CornerRadius="8" Margin="0,10,0,0" />
+
+            <Button Text="ВЫЙТИ ИЗ АККАУНТА" Command="{Binding LogoutCommand}" BackgroundColor="Transparent" TextColor="{StaticResource TextPlaceholderColor}" HeightRequest="45" Margin="0,0,0,20" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

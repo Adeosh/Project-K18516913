@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+    <script src='https://api-maps.yandex.ru/2.1/?apikey={{YandexApiKey}}&lang=ru_RU'></script>
+    <style>
+        body, html, #map {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            touch-action: none;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id='map'></div>
+    <script>
+        ymaps.ready(function () {
+            var map = new ymaps.Map('map', {
+                center: [{{lat}}, {{lon}}],
+                zoom: 15,
+                controls: ['zoomControl', 'geolocationControl']
+            });
+
+            var placemark = new ymaps.Placemark([{{lat}}, {{lon}}], {}, { preset: 'islands#redDotIcon', draggable: true });
+            map.geoObjects.add(placemark);
+
+            if ('{{address}}' !== '') {
+                placemark.properties.set('balloonContent', decodeURIComponent('{{address}}'));
+            }
+
+            function sendCoords(coords) {
+                placemark.geometry.setCoordinates(coords);
+                window.location.href = 'ymap://location?lat=' + coords[0] + '&lon=' + coords[1];
+            }
+
+            map.events.add('click', function (e) {
+                sendCoords(e.get('coords'));
+            });
+
+            placemark.events.add('dragend', function (e) {
+                sendCoords(placemark.geometry.getCoordinates());
+            });
+
+            window.updateMap = function(newLat, newLon, newAddress) {
+                var newCoords = [parseFloat(newLat), parseFloat(newLon)];
+                placemark.geometry.setCoordinates(newCoords);
+                map.setCenter(newCoords, 15);
+                if (newAddress) {
+                    placemark.properties.set('balloonContent', decodeURIComponent(newAddress));
+                }
+            };
+        });
+    </script>
+</body>
+</html>

@@ -64,6 +64,9 @@
     <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Remove="Platforms\Android\Resources\xml\network_security_config.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Resources\Images\Banners\banner_2.png" />
     <None Remove="Resources\Images\Icons\General\anchors_2.png" />
     <None Remove="Resources\Images\Icons\General\arma.png" />
@@ -159,6 +162,9 @@
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Features\Home\Views\HomePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Profile\Views\ChangePasswordPopup.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Features\Profile\Views\ProfilePage.xaml">

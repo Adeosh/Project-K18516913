@@ -1,4 +1,6 @@
-﻿namespace Krepim.Mobile.Http
+﻿using Krepim.Mobile.Http;
+
+namespace Krepim.Mobile.Exceptions
 {
     public class ApiException : Exception
     {

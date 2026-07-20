@@ -64,6 +64,7 @@ var catalogMongoDb = mongo.AddDatabase("Catalog-MongoDb");
 var identityApi = builder.AddProject<Projects.Krepim_Identity_Api>("identity-api")
     .WithReference(identityDb)
     .WithReference(rabbitMq)
+    .WithReference(redis)
     .WithEnvironment("Jwt__SecretKey", jwtSecret)
     .WaitFor(postgres);
 scalar.WithApiReference(identityApi);

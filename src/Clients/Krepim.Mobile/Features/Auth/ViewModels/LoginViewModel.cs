@@ -1,7 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Krepim.Mobile.Exceptions;
+using Krepim.Mobile.Extensions;
 using Krepim.Mobile.Features.Auth.Services;
-using Krepim.Mobile.Http;
 
 namespace Krepim.Mobile.Features.Auth.ViewModels
 {
@@ -41,7 +42,7 @@ namespace Krepim.Mobile.Features.Auth.ViewModels
             try
             {
                 await _authService.LoginAsync(Email, Password);
-                await Shell.Current.GoToAsync("//home");
+                await Shell.Current.GoToAsync("//profile");
             }
             catch (ApiException apiEx)
             {

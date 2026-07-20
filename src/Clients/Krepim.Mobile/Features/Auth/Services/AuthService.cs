@@ -1,6 +1,10 @@
-﻿using Krepim.Mobile.Features.Auth.Models.DTOs;
+﻿using Krepim.Mobile.Exceptions;
+using Krepim.Mobile.Features.Auth.Models.DTOs;
 using Krepim.Mobile.Features.Auth.Models.Enums;
 using Krepim.Mobile.Features.Auth.Models.Exchange;
+using Krepim.Mobile.Features.Profile.Models.DTOs;
+using Krepim.Mobile.Features.Profile.Models.Exchange;
+using Krepim.Mobile.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 
@@ -64,7 +68,8 @@ namespace Krepim.Mobile.Features.Auth.Services
         {
             SecureStorage.Default.Remove("krepim_token");
             CurrentUser = null;
-            await Shell.Current.GoToAsync("//login");
+
+            await Shell.Current.GoToAsync("//home");
         }
 
         private UserClaimsDto? DecodeJwt(string token)
@@ -80,17 +85,84 @@ namespace Krepim.Mobile.Features.Auth.Services
                 var json = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(base64));
                 var payload = JsonSerializer.Deserialize<JsonElement>(json);
 
+                string id = "";
+                if (payload.TryGetProperty("sub", out var subProp))
+                    id = subProp.GetString() ?? "";
+                else if (payload.TryGetProperty("nameid", out var nameidProp))
+                    id = nameidProp.GetString() ?? "";
+
+                string email = payload.TryGetProperty("email", out var emailProp)
+                    ? emailProp.GetString() ?? ""
+                    : "";
+
+                long exp = payload.TryGetProperty("exp", out var expProp)
+                    ? expProp.GetInt64()
+                    : 0;
+
+                string roleStr = "";
+                if (payload.TryGetProperty("role", out var shortRole))
+                {
+                    roleStr = shortRole.GetString() ?? "";
+                }
+                else if (payload.TryGetProperty("http://schemas.microsoft.com/ws/2008/06/identity/claims/role", out var longRole))
+                {
+                    roleStr = longRole.GetString() ?? "";
+                }
+
+                var role = Enum.TryParse<UserRole>(roleStr, out var parsedRole) ? parsedRole : UserRole.Client;
+
                 return new UserClaimsDto
                 {
-                    Id = payload.TryGetProperty("nameid", out var id) ? id.GetString() ?? "" : payload.GetProperty("sub").GetString() ?? "",
-                    Email = payload.GetProperty("email").GetString() ?? "",
-                    Exp = payload.GetProperty("exp").GetInt64(),
-                    Role = Enum.TryParse<UserRole>(payload.GetProperty("role").GetString(), out var role) ? role : UserRole.Client
+                    Id = id,
+                    Email = email,
+                    Exp = exp,
+                    Role = role
                 };
             }
-            catch
+            catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine($"ОШИБКА РАСШИФРОВКИ JWT: {ex.Message}");
                 return null;
+            }
+        }
+
+        public async Task<UserProfileDto> GetProfileAsync()
+        {
+            var response = await _httpClient.GetAsync("api/identity/profile");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var problem = await response.Content.ReadFromJsonAsync<ProblemDetails>();
+                throw new ApiException(problem ?? new ProblemDetails { Status = (int)response.StatusCode });
+            }
+
+            return await response.Content.ReadFromJsonAsync<UserProfileDto>()
+                   ?? throw new Exception("Не удалось прочитать профиль");
+        }
+
+        public async Task UpdateProfileAsync(UpdateProfilePayload payload)
+        {
+            var response = await _httpClient.PutAsJsonAsync("api/identity/profile", payload);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var problem = await response.Content.ReadFromJsonAsync<ProblemDetails>();
+                throw new ApiException(problem ?? new ProblemDetails { Status = (int)response.StatusCode });
+            }
+        }
+
+        public async Task ChangePasswordAsync(string oldPassword, string newPassword)
+        {
+            var response = await _httpClient.PostAsJsonAsync("api/identity/profile/change-password", new
+            {
+                oldPassword,
+                newPassword
+            });
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var problem = await response.Content.ReadFromJsonAsync<ProblemDetails>();
+                throw new ApiException(problem ?? new ProblemDetails { Status = (int)response.StatusCode });
             }
         }
     }

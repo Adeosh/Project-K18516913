@@ -6,6 +6,7 @@
              x:Class="Krepim.Mobile.Features.Auth.Views.LoginPage"
              x:DataType="viewmodels:LoginViewModel"
              Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False"
              BackgroundColor="{StaticResource BgColor}">
 
     <ScrollView>

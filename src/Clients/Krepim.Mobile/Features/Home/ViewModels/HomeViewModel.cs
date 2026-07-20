@@ -56,8 +56,11 @@ namespace Krepim.Mobile.Features.Home.ViewModels
                 "russconnect.jpg", "volzgskiy.jpg", "zitar.jpg"
             };
 
-            foreach (var img in partnerImages) Partners.Add(new Partner { ImageSource = img });
-            foreach (var img in partnerImages) Partners.Add(new Partner { ImageSource = img });
+            foreach (var img in partnerImages) 
+                Partners.Add(new Partner { ImageSource = img });
+
+            foreach (var img in partnerImages) 
+                Partners.Add(new Partner { ImageSource = img });
         }
 
         [RelayCommand]
