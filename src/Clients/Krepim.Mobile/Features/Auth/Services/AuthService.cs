@@ -13,7 +13,9 @@ namespace Krepim.Mobile.Features.Auth.Services
     public class AuthService
     {
         private readonly HttpClient _httpClient;
+        private readonly TaskCompletionSource _initTcs = new();
 
+        public Task InitializationTask => _initTcs.Task;
         public UserClaimsDto? CurrentUser { get; private set; }
         public bool IsAuthenticated => CurrentUser != null;
 
@@ -24,14 +26,21 @@ namespace Krepim.Mobile.Features.Auth.Services
 
         public async Task InitializeAsync()
         {
-            var token = await SecureStorage.Default.GetAsync("krepim_token");
-            if (!string.IsNullOrEmpty(token))
+            try
             {
-                var claims = DecodeJwt(token);
-                if (claims != null && DateTimeOffset.FromUnixTimeSeconds(claims.Exp) > DateTimeOffset.UtcNow)
-                    CurrentUser = claims;
-                else
-                    await LogoutAsync();
+                var token = await SecureStorage.Default.GetAsync("krepim_token");
+                if (!string.IsNullOrEmpty(token))
+                {
+                    var claims = DecodeJwt(token);
+                    if (claims != null && DateTimeOffset.FromUnixTimeSeconds(claims.Exp) > DateTimeOffset.UtcNow)
+                        CurrentUser = claims;
+                    else
+                        await LogoutAsync();
+                }
+            }
+            finally
+            {
+                _initTcs.TrySetResult();
             }
         }
 

@@ -12,34 +12,46 @@
         <VerticalStackLayout Spacing="0">
             <Grid HeightRequest="240">
                 <Image Source="banner_2.png" Aspect="AspectFill" />
-                <VerticalStackLayout Padding="16,40,16,24" Spacing="16" VerticalOptions="End">
 
-                    <HorizontalStackLayout Spacing="8" IsVisible="{Binding IsAuthenticated}">
+                <Border BackgroundColor="#CC392012" 
+                        StrokeThickness="0" 
+                        StrokeShape="RoundRectangle 8" 
+                        Padding="12,8"
+                        Margin="16,10,16,0"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Start"
+                        IsVisible="{Binding IsAuthenticated}">
+
+                    <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
                         <Image Source="location.png" 
-                               WidthRequest="20" 
-                               HeightRequest="20" 
+                               WidthRequest="18" 
+                               HeightRequest="18" 
                                VerticalOptions="Center" 
-                               Aspect="AspectFit" />
+                               Aspect="AspectFit">
+                            <Image.Behaviors>
+                                <toolkit:IconTintColorBehavior TintColor="{StaticResource BgColor}" />
+                            </Image.Behaviors>
+                        </Image>
                         <Label Text="{Binding DeliveryAddress}" 
-                               TextColor="{StaticResource Sand}" 
-                               FontSize="14" 
+                               TextColor="{StaticResource BgColor}" 
+                               FontSize="16" 
                                FontAttributes="Bold" 
                                LineBreakMode="TailTruncation" 
                                VerticalOptions="Center" />
                     </HorizontalStackLayout>
+                </Border>
+
+                <VerticalStackLayout Padding="16,0,16,24" Spacing="16" VerticalOptions="End">
 
                     <Border BackgroundColor="#CC392012" 
                             StrokeThickness="0" 
                             StrokeShape="RoundRectangle 8" 
                             Padding="12,8"
-                            HorizontalOptions="Center"
-                            IsVisible="{Binding IsAuthenticated, Converter={toolkit:InvertedBoolConverter}}">
+                            HorizontalOptions="Center">
 
                         <Label FontSize="22" 
                                FontAttributes="Bold" 
-                               HorizontalOptions="Start"
-                               IsVisible="{Binding IsAuthenticated, Converter={toolkit:InvertedBoolConverter}}"
-                               Padding="12,8">
+                               HorizontalOptions="Center">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="КРЕПИМ" TextColor="{StaticResource BgColor}" />
@@ -49,7 +61,11 @@
                         </Label>
                     </Border>
 
-                    <Border Stroke="{StaticResource BorderColor}" BackgroundColor="{StaticResource SurfaceColor}" StrokeShape="RoundRectangle 12" HeightRequest="50" Padding="15,0">
+                    <Border Stroke="{StaticResource BorderColor}" 
+                            BackgroundColor="{StaticResource SurfaceColor}" 
+                            StrokeShape="RoundRectangle 12" 
+                            HeightRequest="50" 
+                            Padding="15,0">
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="" />
                         </Border.GestureRecognizers>
@@ -60,7 +76,10 @@
                                    HeightRequest="20" 
                                    VerticalOptions="Center" 
                                    Aspect="AspectFit" />
-                            <Label Text="Найти болты, гайки, анкера..." FontSize="14" TextColor="{StaticResource TextPlaceholderColor}" VerticalOptions="Center" />
+                            <Label Text="Найти болты, гайки, анкера..." 
+                                   FontSize="14" 
+                                   TextColor="{StaticResource TextPlaceholderColor}" 
+                                   VerticalOptions="Center" />
                         </HorizontalStackLayout>
                     </Border>
                 </VerticalStackLayout>

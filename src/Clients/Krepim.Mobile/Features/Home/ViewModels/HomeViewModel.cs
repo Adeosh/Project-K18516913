@@ -64,6 +64,34 @@ namespace Krepim.Mobile.Features.Home.ViewModels
         }
 
         [RelayCommand]
+        public async Task LoadDataAsync()
+        {
+            await _authService.InitializationTask;
+
+            IsAuthenticated = _authService.IsAuthenticated;
+
+            if (IsAuthenticated)
+            {
+                try
+                {
+                    var profile = await _authService.GetProfileAsync();
+                    if (profile?.DefaultAddress != null && !string.IsNullOrWhiteSpace(profile.DefaultAddress.FullAddress))
+                        DeliveryAddress = profile.DefaultAddress.FullAddress;
+                    else
+                        DeliveryAddress = "Адрес не указан в профиле";
+                }
+                catch
+                {
+                    DeliveryAddress = "Не удалось загрузить адрес";
+                }
+            }
+            else
+            {
+                DeliveryAddress = "Войдите, чтобы выбрать адрес";
+            }
+        }
+
+        [RelayCommand]
         public async Task CategoryTappedAsync(string title)
         {
             await Shell.Current.GoToAsync($"//catalog?search={Uri.EscapeDataString(title)}");
