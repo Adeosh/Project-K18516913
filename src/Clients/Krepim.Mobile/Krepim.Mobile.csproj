@@ -167,6 +167,9 @@
     <MauiXaml Update="Features\Home\Views\HomePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
+    <MauiXaml Update="Features\Ordering\Views\MyOrdersPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
     <MauiXaml Update="Features\Ordering\Views\OrderDetailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>

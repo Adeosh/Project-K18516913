@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:models="clr-namespace:Krepim.Mobile.Features.Ordering.Models.DTOs"
+             xmlns:viewmodels="clr-namespace:Krepim.Mobile.Features.Ordering.ViewModels"
+             x:Class="Krepim.Mobile.Features.Ordering.Views.MyOrdersPage"
+             x:DataType="viewmodels:MyOrdersViewModel"
+             Title="Мои заказы"
+             BackgroundColor="{StaticResource BgColor}">
+
+    <Grid>
+        <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" Color="{StaticResource AccentColor}" HorizontalOptions="Center" VerticalOptions="Center" />
+
+        <VerticalStackLayout IsVisible="{Binding IsEmpty}" VerticalOptions="Center" HorizontalOptions="Center" Spacing="16">
+            <Label Text="📭" FontSize="64" HorizontalOptions="Center" />
+            <Label Text="Вы еще ничего не заказывали" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource TextColor}" HorizontalOptions="Center" />
+        </VerticalStackLayout>
+
+        <CollectionView ItemsSource="{Binding Orders}" 
+                        IsVisible="{Binding IsEmpty, Converter={toolkit:InvertedBoolConverter}}"
+                        Margin="16">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:OrderDto">
+                    <Border Stroke="{StaticResource BorderColor}" BackgroundColor="{StaticResource SurfaceColor}" StrokeShape="RoundRectangle 16" Padding="16" Margin="0,0,0,16">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:MyOrdersViewModel}}, Path=GoToDetailsCommand}" CommandParameter="{Binding .}" />
+                        </Border.GestureRecognizers>
+
+                        <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, Auto" RowSpacing="12">
+
+                            <VerticalStackLayout Grid.Row="0" Grid.Column="0">
+                                <Label Text="{Binding Id, StringFormat='№ {0}'}" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource TextColor}" />
+                                <Label Text="{Binding CreatedAt, StringFormat='{0:dd MMMM yyyy}'}" FontSize="12" TextColor="{StaticResource TextPlaceholderColor}" />
+                            </VerticalStackLayout>
+
+                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Status}" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource AccentColor}" HorizontalOptions="End" VerticalOptions="Start" />
+
+                            <Label Grid.Row="1" Grid.Column="0" Text="{Binding FullAddress}" FontSize="12" TextColor="{StaticResource TextPlaceholderColor}" LineBreakMode="TailTruncation" VerticalOptions="End" />
+                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding TotalPrice, StringFormat='{0:N0} ₽'}" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource TextColor}" HorizontalOptions="End" VerticalOptions="End" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

@@ -85,6 +85,7 @@ public static class MauiProgram
         builder.Services.AddTransient<BasketViewModel>();
         builder.Services.AddTransient<OrderDetailViewModel>();
         builder.Services.AddTransient<OrdersDashboardViewModel>();
+        builder.Services.AddTransient<MyOrdersViewModel>();
         builder.Services.AddTransient<MockPayViewModel>();
         #endregion
 
@@ -98,6 +99,7 @@ public static class MauiProgram
         builder.Services.AddTransient<ProfilePage>();
         builder.Services.AddTransient<OrderDetailPage>();
         builder.Services.AddTransient<OrdersDashboardPage>();
+        builder.Services.AddTransient<MyOrdersPage>();
         builder.Services.AddTransient<MockPayPage>();
         #endregion
 

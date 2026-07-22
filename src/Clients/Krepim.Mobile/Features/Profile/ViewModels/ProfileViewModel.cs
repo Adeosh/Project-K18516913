@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Krepim.Mobile.Exceptions;
 using Krepim.Mobile.Extensions;
+using Krepim.Mobile.Features.Auth.Models.Enums;
 using Krepim.Mobile.Features.Auth.Services;
 using Krepim.Mobile.Features.Profile.Models.DTOs;
 using Krepim.Mobile.Features.Profile.Models.Exchange;
@@ -42,6 +43,8 @@ namespace Krepim.Mobile.Features.Profile.ViewModels
         [ObservableProperty]
         public partial string SuccessMessage { get; set; } = string.Empty;
 
+        public bool IsManager => _authService.CurrentUser?.Role == UserRole.Manager;
+
         public ProfileViewModel(AuthService authService)
         {
             _authService = authService;
@@ -63,6 +66,8 @@ namespace Krepim.Mobile.Features.Profile.ViewModels
                 Flat = profile.DefaultAddress?.Flat ?? string.Empty;
                 Latitude = profile.DefaultAddress?.Latitude ?? 0.0;
                 Longitude = profile.DefaultAddress?.Longitude ?? 0.0;
+
+                OnPropertyChanged(nameof(IsManager));
             }
             catch (ApiException apiEx)
             {
@@ -114,6 +119,18 @@ namespace Krepim.Mobile.Features.Profile.ViewModels
             {
                 IsLoading = false;
             }
+        }
+
+        [RelayCommand]
+        public async Task GoToMyOrdersAsync()
+        {
+            await Shell.Current.GoToAsync("MyOrdersPage");
+        }
+
+        [RelayCommand]
+        public async Task GoToOrdersDashboardAsync()
+        {
+            await Shell.Current.GoToAsync("OrdersDashboardPage");
         }
 
         [RelayCommand]

@@ -2,11 +2,11 @@ using Krepim.Mobile.Features.Ordering.ViewModels;
 
 namespace Krepim.Mobile.Features.Ordering.Views;
 
-public partial class OrderDetailPage : ContentPage
+public partial class MyOrdersPage : ContentPage
 {
-    private readonly OrderDetailViewModel _viewModel;
+    private readonly MyOrdersViewModel _viewModel;
 
-    public OrderDetailPage(OrderDetailViewModel viewModel)
+    public MyOrdersPage(MyOrdersViewModel viewModel)
     {
         InitializeComponent();
         _viewModel = viewModel;

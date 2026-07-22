@@ -21,6 +21,29 @@
                 <Label Text="{Binding SuccessMessage}" TextColor="#2F9E3F" FontAttributes="Bold" HorizontalTextAlignment="Center" />
             </Border>
 
+            <Border BackgroundColor="{StaticResource SurfaceColor}" Stroke="{StaticResource BorderColor}" StrokeShape="RoundRectangle 12" Padding="16" Margin="0,8,0,8">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoToMyOrdersCommand}" />
+                </Border.GestureRecognizers>
+                <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto" ColumnSpacing="16">
+                    <Label Grid.Row="0" Grid.Column="0" Text="📦 Мои заказы" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource TextColor}" />
+                    <Label Grid.Row="1" Grid.Column="0" Text="История покупок и статусы доставки" FontSize="14" TextColor="{StaticResource TextPlaceholderColor}" Margin="0,4,0,0" />
+                    <Label Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Text="➔" TextColor="{StaticResource TextPlaceholderColor}" FontSize="24" FontAttributes="Bold" VerticalOptions="Center" />
+                </Grid>
+            </Border>
+
+            <Border BackgroundColor="#1A2F9E3F" Stroke="#2F9E3F" StrokeShape="RoundRectangle 12" Padding="16" Margin="0,0,0,16" 
+                    IsVisible="{Binding IsManager}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoToOrdersDashboardCommand}" />
+                </Border.GestureRecognizers>
+                <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto" ColumnSpacing="16">
+                    <Label Grid.Row="0" Grid.Column="0" Text="⚙️ Панель менеджера" FontSize="18" FontAttributes="Bold" TextColor="#2F9E3F" />
+                    <Label Grid.Row="1" Grid.Column="0" Text="Управление всеми заказами клиентов" FontSize="14" TextColor="#2F9E3F" Margin="0,4,0,0" />
+                    <Label Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Text="➔" TextColor="#2F9E3F" FontSize="24" FontAttributes="Bold" VerticalOptions="Center" />
+                </Grid>
+            </Border>
+
             <Label Text="Учетная запись" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource TextColor}" />
 
             <Border Stroke="{StaticResource BorderColor}" StrokeShape="RoundRectangle 8" Padding="12,0" HeightRequest="45">
