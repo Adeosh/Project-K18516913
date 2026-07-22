@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewmodels="clr-namespace:Krepim.Mobile.Features.Catalog.ViewModels"
+             x:Class="Krepim.Mobile.Features.Catalog.Views.ProductDetailPage"
+             x:DataType="viewmodels:ProductDetailViewModel"
+             Title="{Binding Product.Sku}"
+             BackgroundColor="{StaticResource BgColor}">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="16" Padding="16,16,16,40">
+
+            <ActivityIndicator IsRunning="{Binding IsLoading}" Color="{StaticResource AccentColor}" HorizontalOptions="Center" Margin="0,50" />
+
+            <VerticalStackLayout IsVisible="{Binding IsLoading, Converter={toolkit:InvertedBoolConverter}}" Spacing="24">
+
+                <Border BackgroundColor="{StaticResource SurfaceColor}" Stroke="{StaticResource BorderColor}" StrokeShape="RoundRectangle 16" Padding="16">
+                    <VerticalStackLayout Spacing="16">
+                        <Image Source="{Binding MainImage}" Aspect="AspectFit" HeightRequest="250" />
+
+                        <CollectionView ItemsSource="{Binding Product.ImageUrls}" HeightRequest="60" HorizontalOptions="Center">
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Horizontal" ItemSpacing="8" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="x:String">
+                                    <Border Stroke="{StaticResource BorderColor}" StrokeShape="RoundRectangle 8" WidthRequest="60" HeightRequest="60">
+                                        <Border.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:ProductDetailViewModel}}, Path=SetMainImageCommand}" CommandParameter="{Binding .}" />
+                                        </Border.GestureRecognizers>
+                                        <Image Source="{Binding .}" Aspect="AspectFill" />
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                </Border>
+
+                <FlexLayout Wrap="Wrap" AlignItems="Center">
+                    <Label Text="{Binding Product.Sku, StringFormat='Арт: {0}'}" FontSize="12" FontAttributes="Bold" TextColor="{StaticResource TextPlaceholderColor}" BackgroundColor="{StaticResource SurfaceColor}" Padding="8,4" Margin="0,0,8,8" />
+
+                    <Label Text="{Binding Product.Brand}" FontSize="12" FontAttributes="Bold" TextColor="{StaticResource AccentColor}" IsVisible="{Binding Product.Brand, Converter={toolkit:IsNotNullConverter}}" Margin="0,0,8,8" />
+
+                    <Border StrokeThickness="1" StrokeShape="RoundRectangle 8" Padding="8,4" BackgroundColor="#1A28A745" Stroke="#3328A745" Margin="0,0,8,8">
+                        <Border.Triggers>
+                            <DataTrigger TargetType="Border" Binding="{Binding AvailableStock}" Value="0">
+                                <Setter Property="BackgroundColor" Value="#1ADC3545" />
+                                <Setter Property="Stroke" Value="#33DC3545" />
+                            </DataTrigger>
+                        </Border.Triggers>
+                        <Label Text="{Binding AvailableStock, StringFormat='В наличии: {0}'}" FontSize="12" FontAttributes="Bold" TextColor="#28A745">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding AvailableStock}" Value="0">
+                                    <Setter Property="Text" Value="Нет в наличии" />
+                                    <Setter Property="TextColor" Value="#DC3545" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                    </Border>
+                </FlexLayout>
+
+                <Label Text="{Binding Product.Name}" FontSize="24" FontAttributes="Bold" TextColor="{StaticResource TextColor}" />
+
+                <Border BackgroundColor="{StaticResource SurfaceColor}" Stroke="{StaticResource BorderColor}" StrokeShape="RoundRectangle 16" Padding="16">
+                    <VerticalStackLayout Spacing="16">
+
+                        <HorizontalStackLayout Spacing="8" VerticalOptions="End">
+                            <Label Text="{Binding CurrentPrice, StringFormat='{0:N0}'}" FontSize="32" FontAttributes="Bold" TextColor="{StaticResource TextColor}" />
+                            <Label Text="₽" FontSize="20" TextColor="{StaticResource TextPlaceholderColor}" Margin="0,0,0,4" />
+                            <Label Text="{Binding UnitText, StringFormat='/ {0}'}" FontSize="14" TextColor="{StaticResource TextPlaceholderColor}" Margin="0,0,0,6" />
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout Spacing="8">
+                            <HorizontalStackLayout.Triggers>
+                                <DataTrigger TargetType="HorizontalStackLayout" Binding="{Binding Product.SalesStep}" Value="1">
+                                    <Setter Property="IsVisible" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger TargetType="HorizontalStackLayout" Binding="{Binding Product.SalesStep}" Value="0">
+                                    <Setter Property="IsVisible" Value="False" />
+                                </DataTrigger>
+                            </HorizontalStackLayout.Triggers>
+
+                            <Button Text="Поштучно" 
+                                    Command="{Binding SetUnitModeSingleCommand}"
+                                    BackgroundColor="{Binding IsPackageMode, Converter={toolkit:BoolToObjectConverter TrueObject={StaticResource SurfaceColor}, FalseObject={StaticResource BgColor}}}"
+                                    TextColor="{Binding IsPackageMode, Converter={toolkit:BoolToObjectConverter TrueObject={StaticResource TextPlaceholderColor}, FalseObject={StaticResource TextColor}}}" />
+
+                            <Button Text="{Binding Product.SalesStep, StringFormat='Упаковкой (х{0})'}" 
+                                    Command="{Binding SetUnitModePackageCommand}"
+                                    BackgroundColor="{Binding IsPackageMode, Converter={toolkit:BoolToObjectConverter TrueObject={StaticResource BgColor}, FalseObject={StaticResource SurfaceColor}}}"
+                                    TextColor="{Binding IsPackageMode, Converter={toolkit:BoolToObjectConverter TrueObject={StaticResource TextColor}, FalseObject={StaticResource TextPlaceholderColor}}}" />
+                        </HorizontalStackLayout>
+
+                        <Grid ColumnDefinitions="*, 2*">
+                            <Border Grid.Column="0" Stroke="{StaticResource BorderColor}" BackgroundColor="{StaticResource BgColor}" StrokeShape="RoundRectangle 8" Padding="4">
+                                <HorizontalStackLayout HorizontalOptions="Center" Spacing="12">
+                                    <Button Text="-" 
+                                            Command="{Binding DecreaseQuantityCommand}" 
+                                            BackgroundColor="Transparent" 
+                                            TextColor="{StaticResource TextColor}" 
+                                            FontSize="20" 
+                                            FontAttributes="Bold" />
+
+                                    <Label Text="{Binding Quantity}" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource TextColor}" VerticalOptions="Center" />
+
+                                    <Button Text="+" 
+                                            Command="{Binding IncreaseQuantityCommand}" 
+                                            BackgroundColor="Transparent" 
+                                            TextColor="{StaticResource TextColor}" 
+                                            FontSize="20" 
+                                            FontAttributes="Bold" />
+                                </HorizontalStackLayout>
+                            </Border>
+
+                            <Button Grid.Column="1" Margin="12,0,0,0"
+                                    Text="{Binding AvailableStock, Converter={toolkit:BoolToObjectConverter TrueObject='В корзину', FalseObject='Нет в наличии'}}"
+                                    Command="{Binding AddToBasketCommand}"
+                                    BackgroundColor="{Binding CanAddToCart, Converter={toolkit:BoolToObjectConverter TrueObject={StaticResource AccentColor}, FalseObject={StaticResource BorderColor}}}"
+                                    TextColor="{StaticResource SurfaceColor}"
+                                    FontAttributes="Bold" CornerRadius="8" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Label Text="Описание" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource TextColor}" />
+                <Label Text="{Binding Product.Description}" FontSize="14" TextColor="{StaticResource TextPlaceholderColor}" LineBreakMode="WordWrap" />
+
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

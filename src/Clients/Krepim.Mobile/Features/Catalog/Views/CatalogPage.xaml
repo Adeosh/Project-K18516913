@@ -1,11 +1,97 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:Krepim.Mobile.Features.Catalog.ViewModels"
+             xmlns:models="clr-namespace:Krepim.Mobile.Features.Catalog.Models.DTOs"
              x:Class="Krepim.Mobile.Features.Catalog.Views.CatalogPage"
-             Title="CatalogPage">
-    
-    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10">
-        <Label Text="📦" FontSize="48" HorizontalOptions="Center" />
-        <Label Text="Здесь будет каталог" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource TextColor}" />
-    </VerticalStackLayout>
+             x:DataType="viewmodels:CatalogViewModel"
+             Title="Каталог"
+             BackgroundColor="{StaticResource BgColor}">
+
+    <Grid RowDefinitions="Auto, *">
+
+        <Border Grid.Row="0" BackgroundColor="{StaticResource SurfaceColor}" StrokeThickness="0" Padding="16,16,16,8">
+            <VerticalStackLayout Spacing="12">
+
+                <SearchBar Text="{Binding SearchQuery}" 
+                           Placeholder="Поиск по артикулу или названию..." 
+                           SearchCommand="{Binding SearchCommand}"
+                           BackgroundColor="{StaticResource BgColor}" />
+
+                <Border Stroke="{StaticResource BorderColor}" BackgroundColor="{StaticResource BgColor}" StrokeShape="RoundRectangle 8">
+                    <Picker ItemsSource="{Binding Categories}" 
+                            ItemDisplayBinding="{Binding Name}" 
+                            SelectedItem="{Binding SelectedCategory}" 
+                            Title="Выберите категорию"
+                            TextColor="{StaticResource TextColor}"
+                            Margin="8,0"/>
+                </Border>
+
+                <Label Text="{Binding TotalCount, StringFormat='Найдено товаров: {0}'}" 
+                       TextColor="{StaticResource TextPlaceholderColor}" 
+                       FontSize="12" />
+            </VerticalStackLayout>
+        </Border>
+
+        <CollectionView Grid.Row="1" 
+                        ItemsSource="{Binding Products}" 
+                        Margin="16"
+                        RemainingItemsThreshold="2"
+                        RemainingItemsThresholdReachedCommand="{Binding LoadMoreCommand}">
+
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="12" HorizontalItemSpacing="12" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:ProductDto">
+
+                    <Border BackgroundColor="{StaticResource SurfaceColor}" Stroke="{StaticResource BorderColor}" StrokeShape="RoundRectangle 12" Padding="12">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:CatalogViewModel}}, Path=GoToProductCommand}" CommandParameter="{Binding .}" />
+                        </Border.GestureRecognizers>
+
+                        <Grid RowDefinitions="Auto, *, Auto, Auto" RowSpacing="8">
+
+                            <FlexLayout Grid.Row="0" JustifyContent="SpaceBetween">
+                                <Label Text="{Binding Sku, StringFormat='Арт: {0}'}" FontSize="10" TextColor="{StaticResource TextPlaceholderColor}" />
+                                <Label Text="{Binding Brand}" FontSize="10" TextColor="{StaticResource Sand}" FontAttributes="Bold" />
+                            </FlexLayout>
+
+                            <Image Grid.Row="1" 
+                                   Source="{Binding ImageUrls[0], FallbackValue='placeholder.png', TargetNullValue='placeholder.png'}" 
+                                   Aspect="AspectFit" 
+                                   HeightRequest="100" />
+
+                            <Label Grid.Row="2" Text="{Binding Name}" FontSize="13" FontAttributes="Bold" TextColor="{StaticResource TextColor}" LineBreakMode="TailTruncation" MaxLines="2" />
+
+                            <Grid Grid.Row="3" ColumnDefinitions="*, Auto" VerticalOptions="End">
+                                <Label Grid.Column="0" Text="{Binding Price, StringFormat='{0:N0} ₽'}" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource TextColor}" VerticalOptions="Center" />
+
+                                <Button Grid.Column="1" 
+                                        Text="+" 
+                                        FontAttributes="Bold"
+                                        BackgroundColor="{StaticResource AccentColor}" 
+                                        TextColor="{StaticResource SurfaceColor}"
+                                        WidthRequest="36" 
+                                        HeightRequest="36" 
+                                        CornerRadius="8"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:CatalogViewModel}}, Path=AddToBasketCommand}" 
+                                        CommandParameter="{Binding .}" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <CollectionView.EmptyView>
+                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="16" Margin="0,50,0,0">
+                    <Label Text="Ничего не найдено" FontSize="18" TextColor="{StaticResource TextPlaceholderColor}" HorizontalOptions="Center" />
+                    <ActivityIndicator IsRunning="{Binding IsLoading}" Color="{StaticResource AccentColor}" />
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+        </CollectionView>
+
+    </Grid>
 </ContentPage>

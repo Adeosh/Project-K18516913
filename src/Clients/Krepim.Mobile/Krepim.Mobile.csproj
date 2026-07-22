@@ -161,6 +161,9 @@
     <MauiXaml Update="Features\Catalog\Views\CatalogPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
+    <MauiXaml Update="Features\Catalog\Views\ProductDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
     <MauiXaml Update="Features\Home\Views\HomePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>

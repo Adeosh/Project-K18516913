@@ -3,6 +3,8 @@ using Krepim.Mobile.Features.Auth.Services;
 using Krepim.Mobile.Features.Auth.ViewModels;
 using Krepim.Mobile.Features.Auth.Views;
 using Krepim.Mobile.Features.Basket.Views;
+using Krepim.Mobile.Features.Catalog.Services;
+using Krepim.Mobile.Features.Catalog.ViewModels;
 using Krepim.Mobile.Features.Catalog.Views;
 using Krepim.Mobile.Features.Home.ViewModels;
 using Krepim.Mobile.Features.Home.Views;
@@ -58,6 +60,8 @@ public static class MauiProgram
         #region Services
         builder.Services.AddSingleton<AppShell>();
         builder.Services.AddSingleton<AuthService>();
+        builder.Services.AddSingleton<CatalogService>();
+        builder.Services.AddSingleton<InventoryService>();
         #endregion
 
         #region ViewModels
@@ -65,6 +69,8 @@ public static class MauiProgram
         builder.Services.AddTransient<LoginViewModel>();
         builder.Services.AddTransient<RegisterViewModel>();
         builder.Services.AddTransient<ProfileViewModel>();
+        builder.Services.AddTransient<CatalogViewModel>();
+        builder.Services.AddTransient<ProductDetailViewModel>();
         #endregion
 
         #region Views
@@ -72,6 +78,7 @@ public static class MauiProgram
         builder.Services.AddTransient<LoginPage>();
         builder.Services.AddTransient<RegisterPage>();
         builder.Services.AddTransient<CatalogPage>();
+        builder.Services.AddTransient<ProductDetailPage>();
         builder.Services.AddTransient<BasketPage>();
         builder.Services.AddTransient<ProfilePage>();
         #endregion
