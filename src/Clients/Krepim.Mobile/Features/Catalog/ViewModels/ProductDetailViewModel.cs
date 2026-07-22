@@ -1,6 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Krepim.Mobile.Exceptions;
 using Krepim.Mobile.Extensions;
+using Krepim.Mobile.Features.Basket.Models.Exchange;
+using Krepim.Mobile.Features.Basket.Services;
 using Krepim.Mobile.Features.Catalog.Models.DTOs;
 using Krepim.Mobile.Features.Catalog.Models.Enums;
 using Krepim.Mobile.Features.Catalog.Services;
@@ -12,6 +15,7 @@ namespace Krepim.Mobile.Features.Catalog.ViewModels
     {
         private readonly CatalogService _catalogService;
         private readonly InventoryService _inventoryService;
+        private readonly BasketService _basketService;
 
         [ObservableProperty]
         public partial string ProductId { get; set; } = string.Empty;
@@ -38,17 +42,17 @@ namespace Krepim.Mobile.Features.Catalog.ViewModels
         [NotifyPropertyChangedFor(nameof(CurrentStep))]
         public partial bool IsPackageMode { get; set; }
 
-        public ProductDetailViewModel(CatalogService catalogService, InventoryService inventoryService)
+        public ProductDetailViewModel(CatalogService catalogService, InventoryService inventoryService, BasketService basketService)
         {
             _catalogService = catalogService;
             _inventoryService = inventoryService;
+            _basketService = basketService;
         }
 
         partial void OnProductIdChanged(string value)
         {
             LoadDataAsync().SafeFireAndForget();
         }
-
 
         public int CurrentStep => IsPackageMode && Product?.SalesStep > 0 ? Product.SalesStep : 1;
 
@@ -175,11 +179,31 @@ namespace Krepim.Mobile.Features.Catalog.ViewModels
         [RelayCommand]
         public async Task AddToBasketAsync()
         {
-            if (!CanAddToCart) return;
+            if (!CanAddToCart || Product == null) return;
 
-            if (Application.Current?.Windows.Count > 0 && Application.Current.Windows[0].Page != null)
+            try
             {
-                await Application.Current.Windows[0].Page!.DisplayAlert("Корзина", $"Добавлено: {Quantity} {UnitText}\nНа сумму: {Quantity * CurrentPrice} ₽", "ОК");
+                var request = new AddBasketItemRequest(
+                    Product.Id.ToString(),
+                    Product.Name,
+                    Product.Sku,
+                    CurrentPrice,
+                    Quantity
+                );
+
+                await _basketService.AddItemAsync(request);
+
+                await Shell.Current.DisplayAlertAsync("Корзина", $"Добавлено: {Quantity} {UnitText}\nНа сумму: {Quantity * CurrentPrice} ₽", "ОК");
+
+                Quantity = 0;
+            }
+            catch (ApiException apiEx)
+            {
+                await Shell.Current.DisplayAlertAsync("Ошибка", apiEx.ToUserFriendlyMessage(), "ОК");
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlertAsync("Ошибка", "Не удалось добавить товар: " + ex.Message, "ОК");
             }
         }
     }

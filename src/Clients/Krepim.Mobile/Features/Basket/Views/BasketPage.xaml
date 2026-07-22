@@ -1,11 +1,157 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewmodels="clr-namespace:Krepim.Mobile.Features.Basket.ViewModels"
+             xmlns:wrappers="clr-namespace:Krepim.Mobile.Features.Basket.ViewModels.Wrappers"
              x:Class="Krepim.Mobile.Features.Basket.Views.BasketPage"
-             Title="BasketPage">
-    
-    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10">
-        <Label Text="🛒" FontSize="48" HorizontalOptions="Center" />
-        <Label Text="Здесь будет корзина" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource TextColor}" />
-    </VerticalStackLayout>
+             x:DataType="viewmodels:BasketViewModel"
+             Title="Корзина"
+             BackgroundColor="{StaticResource BgColor}">
+
+    <Grid RowDefinitions="*, Auto">
+
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0"
+                    BackgroundColor="#1A9E2F1F" 
+                    Stroke="{StaticResource AccentColor}" 
+                    StrokeShape="RoundRectangle 8" 
+                    Padding="16"
+                    Margin="16,16,16,0"
+                    IsVisible="{Binding ErrorMessage, Converter={toolkit:IsStringNotNullOrWhiteSpaceConverter}}">
+                <Label Text="{Binding ErrorMessage}" 
+                       TextColor="{StaticResource AccentColor}" 
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center" />
+            </Border>
+
+            <ActivityIndicator Grid.Row="1"
+                               IsRunning="{Binding IsLoading}" 
+                               IsVisible="{Binding IsLoading}"
+                               Color="{StaticResource AccentColor}" 
+                               HorizontalOptions="Center" 
+                               VerticalOptions="Center" />
+
+            <VerticalStackLayout Grid.Row="1"
+                                 IsVisible="{Binding IsEmpty}"
+                                 VerticalOptions="Center" 
+                                 HorizontalOptions="Center" 
+                                 Spacing="16">
+                <Label Text="🛍️" FontSize="64" HorizontalOptions="Center" />
+                <Label Text="Ваша корзина пуста" FontSize="24" FontAttributes="Bold" TextColor="{StaticResource TextColor}" HorizontalOptions="Center" />
+                <Label Text="Загляните в каталог, чтобы выбрать товары." TextColor="{StaticResource TextPlaceholderColor}" HorizontalOptions="Center" />
+                <Button Text="Перейти в каталог" 
+                        Command="{Binding GoToCatalogCommand}" 
+                        BackgroundColor="{StaticResource AccentColor}"
+                        TextColor="{StaticResource SurfaceColor}"
+                        FontAttributes="Bold"
+                        HeightRequest="48"
+                        Margin="0,16,0,0" 
+                        CornerRadius="8" 
+                        Padding="32,0"/>
+            </VerticalStackLayout>
+
+            <CollectionView Grid.Row="1"
+                            ItemsSource="{Binding BasketItems}" 
+                            IsVisible="{Binding IsEmpty, Converter={toolkit:InvertedBoolConverter}}"
+                            Margin="16">
+                <CollectionView.ItemTemplate>
+
+                    <DataTemplate x:DataType="wrappers:BasketItemWrapper">
+                        <Border Stroke="{StaticResource BorderColor}" 
+                                BackgroundColor="{StaticResource SurfaceColor}" 
+                                StrokeShape="RoundRectangle 12" 
+                                Padding="12" 
+                                Margin="0,0,0,12">
+
+                            <Grid ColumnDefinitions="80, *, Auto" RowDefinitions="Auto, Auto" ColumnSpacing="12" RowSpacing="12">
+
+                                <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Stroke="{StaticResource BorderColor}" StrokeShape="RoundRectangle 8" WidthRequest="80" HeightRequest="80" VerticalOptions="Start">
+                                    <Image Aspect="AspectFit">
+                                        <Image.Source>
+                                            <UriImageSource Uri="{Binding Dto.ImageUrl}" CachingEnabled="False" />
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+
+                                <VerticalStackLayout Grid.Row="0" Grid.Column="1" Spacing="4">
+                                    <HorizontalStackLayout Spacing="8">
+                                        <Label Text="{Binding Dto.Sku, StringFormat='Арт: {0}'}" FontSize="12" TextColor="{StaticResource TextPlaceholderColor}" />
+                                        <Label Text="{Binding Dto.Brand}" FontSize="12" TextColor="{StaticResource AccentColor}" FontAttributes="Bold" />
+                                    </HorizontalStackLayout>
+                                    <Label Text="{Binding Dto.Name}" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource TextColor}" MaxLines="2" LineBreakMode="TailTruncation" />
+                                </VerticalStackLayout>
+
+                                <Button Grid.Row="0" Grid.Column="2" 
+                                        Text="✕"
+                                        TextColor="{StaticResource TextPlaceholderColor}"
+                                        BackgroundColor="Transparent"
+                                        FontSize="16"
+                                        FontAttributes="Bold"
+                                        Padding="8"
+                                        VerticalOptions="Start"
+                                        HorizontalOptions="End"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:BasketViewModel}}, Path=RemoveItemCommand}"
+                                        CommandParameter="{Binding Dto.ProductId}" />
+
+                                <Border Grid.Row="1" Grid.Column="1" Stroke="{StaticResource BorderColor}" BackgroundColor="{StaticResource BgColor}" StrokeShape="RoundRectangle 8" Padding="4" HorizontalOptions="Start">
+                                    <HorizontalStackLayout Spacing="16" VerticalOptions="Center">
+                                        <Button Text="-" 
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:BasketViewModel}}, Path=DecreaseQuantityCommand}"
+                                                CommandParameter="{Binding .}"
+                                                BackgroundColor="Transparent" TextColor="{StaticResource TextColor}" FontSize="18" FontAttributes="Bold" Padding="12,0" />
+
+                                        <Label Text="{Binding Quantity}" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource TextColor}" VerticalOptions="Center" />
+
+                                        <Button Text="+" 
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:BasketViewModel}}, Path=IncreaseQuantityCommand}"
+                                                CommandParameter="{Binding .}"
+                                                BackgroundColor="Transparent" TextColor="{StaticResource TextColor}" FontSize="18" FontAttributes="Bold" Padding="12,0" />
+                                    </HorizontalStackLayout>
+                                </Border>
+
+                                <VerticalStackLayout Grid.Row="1" Grid.Column="2" VerticalOptions="End" HorizontalOptions="End">
+                                    <Label Text="{Binding TotalPrice, StringFormat='{0:N0} ₽'}" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource TextColor}" HorizontalOptions="End" />
+                                    <Label Text="{Binding Price, StringFormat='{0:N0} ₽/шт'}" FontSize="12" TextColor="{StaticResource TextPlaceholderColor}" HorizontalOptions="End" />
+                                </VerticalStackLayout>
+
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+        <Border Grid.Row="1" 
+                BackgroundColor="{StaticResource SurfaceColor}" 
+                Stroke="{StaticResource BorderColor}" 
+                StrokeThickness="1" 
+                Padding="16,16,16,32"
+                IsVisible="{Binding IsEmpty, Converter={toolkit:InvertedBoolConverter}}">
+
+            <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto">
+                <VerticalStackLayout Grid.Column="0" VerticalOptions="Center">
+                    <Label Text="Итого к оплате" FontSize="12" TextColor="{StaticResource TextPlaceholderColor}" />
+                    <Label Text="{Binding TotalSum, StringFormat='{0:N0} ₽'}" FontSize="24" FontAttributes="Bold" TextColor="{StaticResource AccentColor}" />
+                </VerticalStackLayout>
+
+                <Button Grid.Column="1" 
+                        Text="Оформить заказ" 
+                        Command="{Binding CheckoutCommand}" 
+                        IsEnabled="{Binding IsCheckingOut, Converter={toolkit:InvertedBoolConverter}}"
+                        BackgroundColor="{StaticResource AccentColor}" 
+                        TextColor="{StaticResource SurfaceColor}" 
+                        FontAttributes="Bold" 
+                        HeightRequest="48"
+                        CornerRadius="8" 
+                        Padding="24,0" />
+            </Grid>
+        </Border>
+
+    </Grid>
 </ContentPage>

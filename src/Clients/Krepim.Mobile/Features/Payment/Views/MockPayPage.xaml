@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewmodels="clr-namespace:Krepim.Mobile.Features.Payment.ViewModels"
+             x:Class="Krepim.Mobile.Features.Payment.Views.MockPayPage"
+             x:DataType="viewmodels:MockPayViewModel"
+             Title="Тестовая Оплата"
+             BackgroundColor="{StaticResource BgColor}">
+
+    <ScrollView>
+        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="24" MaximumWidthRequest="400">
+
+            <Border BackgroundColor="{StaticResource SurfaceColor}" Stroke="{StaticResource BorderColor}" StrokeShape="RoundRectangle 24" Padding="24,32">
+                <VerticalStackLayout Spacing="16">
+
+                    <Label Text="Оплата заказа" FontSize="24" FontAttributes="Bold" TextColor="{StaticResource TextColor}" HorizontalTextAlignment="Center" />
+                    <Label Text="Магазин «Крепим.ПРО»" FontSize="14" TextColor="{StaticResource TextPlaceholderColor}" HorizontalTextAlignment="Center" Margin="0,-8,0,16" />
+
+                    <Border BackgroundColor="{StaticResource BgColor}" Stroke="{StaticResource BorderColor}" StrokeShape="RoundRectangle 16" Padding="24" Margin="0,0,0,16">
+                        <VerticalStackLayout>
+                            <Label Text="Сумма к списанию" FontSize="14" TextColor="{StaticResource TextPlaceholderColor}" HorizontalTextAlignment="Center" />
+                            <Label Text="{Binding DisplayAmount}" FontSize="32" FontAttributes="Bold" TextColor="{StaticResource TextColor}" HorizontalTextAlignment="Center" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border BackgroundColor="#1A9E2F1F" Stroke="{StaticResource AccentColor}" StrokeShape="RoundRectangle 8" Padding="12" IsVisible="{Binding ErrorMessage, Converter={toolkit:IsStringNotNullOrWhiteSpaceConverter}}">
+                        <Label Text="{Binding ErrorMessage}" TextColor="{StaticResource AccentColor}" FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="12" />
+                    </Border>
+
+                    <Border BackgroundColor="{StaticResource BgColor}" Stroke="{StaticResource BorderColor}" StrokeShape="RoundRectangle 12" Padding="12" IsVisible="{Binding SelectedStatus, Converter={toolkit:IsStringNotNullOrWhiteSpaceConverter}}">
+                        <HorizontalStackLayout HorizontalOptions="Center" Spacing="4">
+                            <Label Text="Выбран статус:" FontSize="14" TextColor="{StaticResource TextPlaceholderColor}" />
+                            <Label Text="{Binding SelectedStatus}" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource TextColor}" />
+                        </HorizontalStackLayout>
+                    </Border>
+
+                    <Button Text="Имитировать &quot;Создан&quot;" 
+                            Command="{Binding SimulatePaymentCommand}" CommandParameter="Pending"
+                            IsEnabled="{Binding IsLoading, Converter={toolkit:InvertedBoolConverter}}"
+                            BackgroundColor="#EAB308" TextColor="White" FontAttributes="Bold" HeightRequest="56" CornerRadius="12" />
+
+                    <Button Text="{Binding IsLoading, Converter={toolkit:BoolToObjectConverter TrueObject='Обработка...', FalseObject='Имитировать &quot;Успешно оплачен&quot;'}}" 
+                            Command="{Binding SimulatePaymentCommand}" CommandParameter="Succeeded"
+                            IsEnabled="{Binding IsLoading, Converter={toolkit:InvertedBoolConverter}}"
+                            BackgroundColor="#22C55E" TextColor="White" FontAttributes="Bold" HeightRequest="56" CornerRadius="12" />
+
+                    <Button Text="Имитировать &quot;Ошибка оплаты&quot;" 
+                            Command="{Binding SimulatePaymentCommand}" CommandParameter="Failed"
+                            IsEnabled="{Binding IsLoading, Converter={toolkit:InvertedBoolConverter}}"
+                            BackgroundColor="Transparent" BorderColor="{StaticResource AccentColor}" BorderWidth="2" TextColor="{StaticResource AccentColor}" FontAttributes="Bold" HeightRequest="56" CornerRadius="12" />
+
+                    <Button Text="Имитировать &quot;Оформлен возврат&quot;" 
+                            Command="{Binding SimulatePaymentCommand}" CommandParameter="Refunded"
+                            IsEnabled="{Binding IsLoading, Converter={toolkit:InvertedBoolConverter}}"
+                            BackgroundColor="#3B82F6" TextColor="White" FontAttributes="Bold" HeightRequest="56" CornerRadius="12" />
+
+                    <Button Text="Вернуться в заказ" 
+                            Command="{Binding GoBackToOrderCommand}"
+                            IsEnabled="{Binding IsLoading, Converter={toolkit:InvertedBoolConverter}}"
+                            BackgroundColor="Transparent" TextColor="{StaticResource TextPlaceholderColor}" FontAttributes="Bold" Margin="0,8,0,0" />
+
+                    <BoxView HeightRequest="1" Color="{StaticResource BorderColor}" Margin="0,16" />
+
+                    <Label Text="Это тестовая среда разработчика. Реальные деньги не списываются." FontSize="10" TextColor="{StaticResource TextPlaceholderColor}" HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

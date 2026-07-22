@@ -167,6 +167,15 @@
     <MauiXaml Update="Features\Home\Views\HomePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
+    <MauiXaml Update="Features\Ordering\Views\OrderDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Ordering\Views\OrdersDashboardPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Payment\Views\MockPayPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
     <MauiXaml Update="Features\Profile\Views\ChangePasswordPopup.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>

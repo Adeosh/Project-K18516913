@@ -2,6 +2,8 @@
 using Krepim.Mobile.Features.Auth.Services;
 using Krepim.Mobile.Features.Auth.Views;
 using Krepim.Mobile.Features.Catalog.Views;
+using Krepim.Mobile.Features.Ordering.Views;
+using Krepim.Mobile.Features.Payment.Views;
 
 namespace Krepim.Mobile;
 
@@ -19,6 +21,9 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("login", typeof(LoginPage));
         Routing.RegisterRoute("register", typeof(RegisterPage));
         Routing.RegisterRoute("product", typeof(ProductDetailPage));
+        Routing.RegisterRoute("OrderDetailPage", typeof(OrderDetailPage));
+        Routing.RegisterRoute("MockPayPage", typeof(MockPayPage));
+        Routing.RegisterRoute("OrdersDashboardPage", typeof(OrdersDashboardPage));
 
         _authService.InitializeAsync().SafeFireAndForget();
     }

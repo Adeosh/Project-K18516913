@@ -1,5 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Krepim.Mobile.Exceptions;
+using Krepim.Mobile.Extensions;
+using Krepim.Mobile.Features.Basket.Models.Exchange;
+using Krepim.Mobile.Features.Basket.Services;
 using Krepim.Mobile.Features.Catalog.Models.DTOs;
 using Krepim.Mobile.Features.Catalog.Services;
 using System.Collections.ObjectModel;
@@ -10,6 +14,7 @@ namespace Krepim.Mobile.Features.Catalog.ViewModels
     public partial class CatalogViewModel : ObservableObject
     {
         private readonly CatalogService _catalogService;
+        private readonly BasketService _basketService;
         private int _currentPage = 1;
         private bool _hasNextPage = true;
 
@@ -31,9 +36,10 @@ namespace Krepim.Mobile.Features.Catalog.ViewModels
         [ObservableProperty]
         public partial int TotalCount { get; set; }
 
-        public CatalogViewModel(CatalogService catalogService)
+        public CatalogViewModel(CatalogService catalogService, BasketService basketService)
         {
             _catalogService = catalogService;
+            _basketService = basketService;
         }
 
         partial void OnSearchQueryChanged(string value)
@@ -112,9 +118,28 @@ namespace Krepim.Mobile.Features.Catalog.ViewModels
         [RelayCommand]
         public async Task AddToBasketAsync(ProductDto product)
         {
-            if (Application.Current?.Windows.Count > 0 && Application.Current.Windows[0].Page != null)
+            if (product == null) return;
+
+            try
             {
-                await Application.Current.Windows[0].Page!.DisplayAlert("В корзину", $"Добавлен {product.Name}", "ОК");
+                var request = new AddBasketItemRequest(
+                    product.Id.ToString(),
+                    product.Name,
+                    product.Sku,
+                    product.Price,
+                    product.SalesStep
+                );
+
+                await _basketService.AddItemAsync(request);
+                await Shell.Current.DisplayAlertAsync("Успешно", $"{product.Name} добавлен в корзину", "ОК");
+            }
+            catch (ApiException apiEx)
+            {
+                await Shell.Current.DisplayAlertAsync("Ошибка", apiEx.ToUserFriendlyMessage(), "ОК");
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlertAsync("Ошибка", "Не удалось добавить товар: " + ex.Message, "ОК");
             }
         }
     }

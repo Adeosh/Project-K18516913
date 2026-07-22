@@ -2,12 +2,20 @@
 using Krepim.Mobile.Features.Auth.Services;
 using Krepim.Mobile.Features.Auth.ViewModels;
 using Krepim.Mobile.Features.Auth.Views;
+using Krepim.Mobile.Features.Basket.Services;
+using Krepim.Mobile.Features.Basket.ViewModels;
 using Krepim.Mobile.Features.Basket.Views;
 using Krepim.Mobile.Features.Catalog.Services;
 using Krepim.Mobile.Features.Catalog.ViewModels;
 using Krepim.Mobile.Features.Catalog.Views;
 using Krepim.Mobile.Features.Home.ViewModels;
 using Krepim.Mobile.Features.Home.Views;
+using Krepim.Mobile.Features.Ordering.Services;
+using Krepim.Mobile.Features.Ordering.ViewModels;
+using Krepim.Mobile.Features.Ordering.Views;
+using Krepim.Mobile.Features.Payment.Services;
+using Krepim.Mobile.Features.Payment.ViewModels;
+using Krepim.Mobile.Features.Payment.Views;
 using Krepim.Mobile.Features.Profile.ViewModels;
 using Krepim.Mobile.Features.Profile.Views;
 using Krepim.Mobile.Http;
@@ -62,6 +70,9 @@ public static class MauiProgram
         builder.Services.AddSingleton<AuthService>();
         builder.Services.AddSingleton<CatalogService>();
         builder.Services.AddSingleton<InventoryService>();
+        builder.Services.AddSingleton<BasketService>();
+        builder.Services.AddSingleton<OrderService>();
+        builder.Services.AddSingleton<PaymentService>();
         #endregion
 
         #region ViewModels
@@ -71,6 +82,10 @@ public static class MauiProgram
         builder.Services.AddTransient<ProfileViewModel>();
         builder.Services.AddTransient<CatalogViewModel>();
         builder.Services.AddTransient<ProductDetailViewModel>();
+        builder.Services.AddTransient<BasketViewModel>();
+        builder.Services.AddTransient<OrderDetailViewModel>();
+        builder.Services.AddTransient<OrdersDashboardViewModel>();
+        builder.Services.AddTransient<MockPayViewModel>();
         #endregion
 
         #region Views
@@ -81,6 +96,9 @@ public static class MauiProgram
         builder.Services.AddTransient<ProductDetailPage>();
         builder.Services.AddTransient<BasketPage>();
         builder.Services.AddTransient<ProfilePage>();
+        builder.Services.AddTransient<OrderDetailPage>();
+        builder.Services.AddTransient<OrdersDashboardPage>();
+        builder.Services.AddTransient<MockPayPage>();
         #endregion
 
 #if DEBUG
