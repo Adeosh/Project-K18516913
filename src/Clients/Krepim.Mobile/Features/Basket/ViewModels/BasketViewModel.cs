@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Krepim.Mobile.Exceptions;
 using Krepim.Mobile.Extensions;
 using Krepim.Mobile.Features.Auth.Services;
-using Krepim.Mobile.Features.Basket.Exchange;
+using Krepim.Mobile.Features.Basket.Models.Exchange;
 using Krepim.Mobile.Features.Basket.Services;
 using Krepim.Mobile.Features.Basket.ViewModels.Wrappers;
 using Krepim.Mobile.Features.Catalog.Services;

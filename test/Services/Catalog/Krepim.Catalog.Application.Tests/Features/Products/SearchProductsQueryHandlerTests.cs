@@ -248,9 +248,9 @@ namespace Krepim.Catalog.Application.Tests.Features.Products
         public async Task Handle_Should_ReturnSuccess_WithEmptyList_WhenSearchTermIsNull()
         {
             // Arrange
-            var query = new SearchProductsQuery(null, true, 1, 10);
+            var query = new SearchProductsQuery(string.Empty, true, 1, 10);
 
-            _readRepositoryMock.SearchAsync(null, true, 1, 10, Arg.Any<Guid?>(), Arg.Any<CancellationToken>())
+            _readRepositoryMock.SearchAsync(string.Empty, true, 1, 10, Arg.Any<Guid?>(), Arg.Any<CancellationToken>())
                 .Returns(Task.FromResult<IReadOnlyList<ProductReadDto>>(new List<ProductReadDto>()));
 
             // Act

@@ -1,6 +1,7 @@
 <Project>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+	<CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
   </PropertyGroup>
   <ItemGroup>
     <!-- Базовые пакеты и Aspire -->
@@ -20,22 +21,21 @@
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="10.0.8" />
     <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="10.6.0" />
     <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="10.6.0" />
-    <PackageVersion Include="Microsoft.AspNetCore.Diagnostics" Version="2.3.10" />
-    <PackageVersion Include="Microsoft.AspNetCore.Diagnostics.Abstractions" Version="2.3.10" />
-    <PackageVersion Include="Microsoft.AspNetCore.Http" Version="2.3.10" />
-    <PackageVersion Include="Microsoft.AspNetCore.Mvc" Version="2.3.10" />
+    <PackageVersion Include="Microsoft.AspNetCore.Diagnostics" Version="2.3.11" />
+    <PackageVersion Include="Microsoft.AspNetCore.Diagnostics.Abstractions" Version="2.3.11" />
+    <PackageVersion Include="Microsoft.AspNetCore.Http" Version="2.3.11" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc" Version="2.3.11" />
     <PackageVersion Include="Microsoft.Extensions.Logging" Version="10.0.8" />
-    <PackageVersion Include="Microsoft.AspNetCore.App" Version="2.1.34" />
     <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Yarp" Version="10.6.0" />
     <PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="8.18.0" />
-    <PackageVersion Include="Microsoft.OpenApi" Version="3.9.0" />
+    <PackageVersion Include="Microsoft.OpenApi" Version="2.11.0" />
     <PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="8.18.0" />
     <!-- OpenTelemetry -->
-    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.15.3" />
-    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.15.1" />
-    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.15.1" />
-    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.15.1" />
-    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.15.1" />
+    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.17.0" />
+    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.17.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.17.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.17.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.17.0" />
     <!-- CQRS и Валидация -->
     <PackageVersion Include="MediatR" Version="12.4.1" />
     <PackageVersion Include="FluentValidation" Version="12.1.0" />
@@ -60,6 +60,8 @@
     <PackageVersion Include="Net.Codecrete.QrCodeGenerator" Version="2.1.0" />
     <PackageVersion Include="BCrypt.Net-Next" Version="4.2.0" />
     <PackageVersion Include="Yarp.ReverseProxy" Version="2.3.0" />
+	<PackageVersion Include="SharpCompress" Version="1.0.0" />
+	<PackageVersion Include="MessagePack" Version="3.1.8" />
     <!-- Тестирование -->
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.5.1" />
     <PackageVersion Include="xunit.v3" Version="3.2.2" />

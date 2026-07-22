@@ -9,7 +9,7 @@ namespace Krepim.Catalog.Domain.Tests.Aggregates
         [InlineData("")]
         [InlineData("   ")]
         [InlineData(null)]
-        public void Create_Should_ReturnFailure_WhenNameIsInvalid(string invalidName)
+        public void Create_Should_ReturnFailure_WhenNameIsInvalid(string? invalidName)
         {
             // Act
             var result = Category.Create(invalidName!, "Описание");

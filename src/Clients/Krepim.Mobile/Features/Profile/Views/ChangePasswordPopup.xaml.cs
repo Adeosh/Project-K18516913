@@ -12,10 +12,12 @@ public partial class ChangePasswordPopup : Popup
     public ChangePasswordPopup()
     {
         InitializeComponent();
-        _authService = IPlatformApplication.Current.Services.GetService<AuthService>();
+
+        _authService = IPlatformApplication.Current?.Services.GetRequiredService<AuthService>()
+            ?? throw new InvalidOperationException("AuthService не зарегистрирован в DI контейнере.");
     }
 
-    private async void OnSubmitClicked(object sender, EventArgs e)
+    private async void OnSubmitClicked(object? sender, EventArgs e)
     {
         ErrorLabel.IsVisible = false;
 

@@ -226,14 +226,14 @@ namespace Krepim.Payment.Domain.Tests.Entities
         [Theory]
         [InlineData("")]
         [InlineData(" ")]
-        [InlineData(null!)]
-        public void SetExternalId_Should_ThrowArgumentException_When_Invalid(string externalId)
+        [InlineData(null)]
+        public void SetExternalId_Should_ThrowArgumentException_When_Invalid(string? externalId)
         {
             // Arrange
             var transaction = PaymentTransaction.Create(Guid.NewGuid(), 500m).Value;
 
             // Act
-            Action act = () => transaction.SetExternalId(externalId);
+            Action act = () => transaction.SetExternalId(externalId!);
 
             // Assert
             act.Should().Throw<ArgumentException>();

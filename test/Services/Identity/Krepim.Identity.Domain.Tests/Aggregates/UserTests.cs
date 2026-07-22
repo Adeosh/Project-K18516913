@@ -33,10 +33,10 @@ namespace Krepim.Identity.Domain.Tests.Aggregates
         [InlineData("")]
         [InlineData(" ")]
         [InlineData(null)]
-        public void Create_Should_ReturnFailure_WhenEmailIsNullOrWhiteSpace(string invalidEmail)
+        public void Create_Should_ReturnFailure_WhenEmailIsNullOrWhiteSpace(string? invalidEmail)
         {
             // Act
-            var result = User.Create(invalidEmail, "hash", Role.Client);
+            var result = User.Create(invalidEmail!, "hash", Role.Client);
 
             // Assert
             result.IsFailure.Should().BeTrue();
