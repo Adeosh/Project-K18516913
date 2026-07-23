@@ -5,6 +5,7 @@ import { catalogApi } from '../api/catalogApi';
 import { inventoryApi } from '../api/inventoryApi';
 import type { Product } from '../types/product';
 import { useBasketStore } from '../../basket/store/basketStore';
+import { getImageUrl } from '@/utils/imageUtils';
 
 const parseJsonField = (field: any, fallback: any) => {
     if (typeof field === 'string') {
@@ -174,11 +175,12 @@ export const ProductDetailView: FC = () => {
                     <div className="lg:col-span-5 space-y-4">
                         <div className="aspect-square bg-bg rounded-2xl border border-border flex items-center justify-center overflow-hidden relative">
                             {mainImage ? (
-                                <img src={mainImage} alt={product.name} className="w-full h-full object-contain p-4" />
+                                <img src={getImageUrl(mainImage)} alt={product.name} className="w-full h-full object-contain p-4" />
                             ) : (
                                 <span className="text-text-muted font-medium">Нет фото</span>
                             )}
                         </div>
+
                         {product.imageUrls && product.imageUrls.length > 1 && (
                             <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-thin">
                                 {product.imageUrls.map((url, idx) => (
@@ -187,7 +189,7 @@ export const ProductDetailView: FC = () => {
                                         onClick={() => setMainImage(url)}
                                         className={`w-20 h-20 flex-shrink-0 rounded-xl border-2 overflow-hidden transition-all ${mainImage === url ? 'border-accent' : 'border-border opacity-70 hover:opacity-100'}`}
                                     >
-                                        <img src={url} alt={`thumb-${idx}`} className="w-full h-full object-cover" />
+                                        <img src={getImageUrl(url)} alt={`thumb-${idx}`} className="w-full h-full object-cover" />
                                     </button>
                                 ))}
                             </div>

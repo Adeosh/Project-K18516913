@@ -1,5 +1,5 @@
 import { apiClient } from '@/api/apiClient';
-import type { Product, CatalogSearchFilters, PagedList, SalesUnit } from '../types/product';
+import type { Product, CatalogSearchFilters, PagedList } from '../types/product';
 
 export const catalogApi = {
     search: async (filters: CatalogSearchFilters): Promise<PagedList<Product>> => {

@@ -6,6 +6,7 @@ import type { BasketItem } from '../types/basket';
 import { useNavigate } from 'react-router-dom';
 import { useProfileStore } from '../../profile/store/profileStore';
 import type { Product } from '../../catalog/types/product';
+import { getImageUrl } from '@/utils/imageUtils';
 
 const calculatePrice = (product: Product | any, qty: number): number => {
     try {
@@ -113,7 +114,7 @@ const BasketItemCard: FC<{
 
                 <div className="w-20 h-20 sm:w-24 sm:h-24 flex-shrink-0 bg-bg rounded-xl border border-border flex items-center justify-center overflow-hidden relative">
                     {displayImage ? (
-                        <img src={displayImage} alt={displayName} className="w-full h-full object-contain p-2" />
+                        <img src={getImageUrl(displayImage)} alt={displayName} className="w-full h-full object-contain p-2" />
                     ) : (
                         <span className="text-[10px] text-text-muted font-medium">Нет фото</span>
                     )}

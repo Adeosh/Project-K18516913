@@ -5,6 +5,7 @@ import { orderApi, type OrderDto, type OrderItemDto } from '../api/orderApi';
 import { catalogApi } from '../../catalog/api/catalogApi';
 import { paymentApi } from '../../payment/api/paymentApi';
 import type { Product } from '../../catalog/types/product';
+import { getImageUrl } from '@/utils/imageUtils';
 
 const OrderItemCard: FC<{ item: OrderItemDto }> = ({ item }) => {
     const [product, setProduct] = useState<Product | null>(null);
@@ -13,34 +14,66 @@ const OrderItemCard: FC<{ item: OrderItemDto }> = ({ item }) => {
     useEffect(() => {
         catalogApi.getById(item.productId)
             .then(setProduct)
-            .catch(err => console.error("Ошибка подгрузки данных товара для заказа:", err))
+            .catch(err => {
+                console.error("Ошибка подгрузки данных товара для заказа:", err);
+                setProduct(null);
+            })
             .finally(() => setIsLoading(false));
     }, [item.productId]);
 
-    const displayName = product?.name || 'Загрузка товара...';
-    const displayImage = product?.imageUrls?.[0] || null;
+    const isDeleted = !isLoading && !product;
+    const displayName = isLoading
+        ? 'Загрузка товара...'
+        : (product?.name || 'Товар больше недоступен (удален)');
+
+    const rawImage = product?.imageUrls?.[0] || null;
+    const displayImage = rawImage ? getImageUrl(rawImage) : null;
+    const imageContent = displayImage ? (
+        <img src={displayImage} alt={displayName} className={`w-full h-full object-contain p-1 ${isDeleted ? 'grayscale opacity-50' : ''}`} />
+    ) : (
+        <span className="text-[10px] text-text-muted font-medium text-center px-1">
+            {isLoading ? '...' : (isDeleted ? 'Удален' : 'Нет фото')}
+        </span>
+    );
+
+    const textContent = (
+        <div>
+            <div className={`font-bold text-sm sm:text-base line-clamp-2 transition-colors ${isDeleted ? 'text-text-muted line-through' : 'text-text hover:text-accent'}`}>
+                {displayName}
+            </div>
+            <div className="text-xs text-text-muted mt-1 font-medium">
+                {item.quantity} шт. × {item.unitPrice.toLocaleString('ru-RU')} ₽
+            </div>
+        </div>
+    );
 
     return (
-        <div className="flex items-center justify-between gap-4 p-4 border border-border/50 rounded-2xl bg-bg hover:shadow-sm transition-all">
+        <div className={`flex items-center justify-between gap-4 p-4 border border-border/50 rounded-2xl transition-all ${isDeleted ? 'bg-bg/50 opacity-70' : 'bg-bg hover:shadow-sm'}`}>
             <div className="flex items-center gap-4 flex-1">
-                <Link to={`/product/${item.productId}`} className="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 bg-surface rounded-xl border border-border/50 flex items-center justify-center overflow-hidden hover:border-accent transition-colors">
-                    {displayImage ? (
-                        <img src={displayImage} alt={displayName} className="w-full h-full object-contain p-1" />
-                    ) : (
-                        <span className="text-[10px] text-text-muted font-medium">{isLoading ? '...' : 'Нет фото'}</span>
-                    )}
-                </Link>
-                <div>
-                    <Link to={`/product/${item.productId}`} className="font-bold text-text text-sm sm:text-base line-clamp-2 hover:text-accent transition-colors">
-                        {displayName}
-                    </Link>
-                    <div className="text-xs text-text-muted mt-1 font-medium">
-                        {item.quantity} шт. × {item.unitPrice.toLocaleString('ru-RU')} ₽
+
+                {isDeleted ? (
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 bg-surface rounded-xl border border-border/30 flex items-center justify-center overflow-hidden">
+                        {imageContent}
                     </div>
-                </div>
+                ) : (
+                    <Link to={`/product/${item.productId}`} className="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 bg-surface rounded-xl border border-border/50 flex items-center justify-center overflow-hidden hover:border-accent transition-colors">
+                        {imageContent}
+                    </Link>
+                )}
+
+                {isDeleted ? (
+                    <div className="flex-1 cursor-default">
+                        {textContent}
+                    </div>
+                ) : (
+                    <Link to={`/product/${item.productId}`} className="flex-1">
+                        {textContent}
+                    </Link>
+                )}
             </div>
+
             <div className="text-right flex-shrink-0">
-                <div className="font-black text-text text-base sm:text-lg">
+                <div className={`font-black text-base sm:text-lg ${isDeleted ? 'text-text-muted' : 'text-text'}`}>
                     {(item.quantity * item.unitPrice).toLocaleString('ru-RU')} ₽
                 </div>
             </div>

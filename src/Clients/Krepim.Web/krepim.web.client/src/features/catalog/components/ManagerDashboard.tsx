@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import type { FC, SyntheticEvent } from 'react';
 import { managerCatalogApi, type CreateProductCommand, type CategoryDto } from '../api/managerCatalogApi';
 import { SalesUnit, type Product, type PriceTierDto } from '../types/product';
+import { getImageUrl } from '@/utils/imageUtils';
 
 export const ManagerDashboard: FC = () => {
     const [categories, setCategories] = useState<CategoryDto[]>([]);
@@ -394,8 +395,8 @@ export const ManagerDashboard: FC = () => {
                                     <div className="flex gap-4 overflow-x-auto py-2">
                                         {(formData.imageUrls || []).map((url, idx) => (
                                             <div key={idx} className="relative w-24 h-24 flex-shrink-0 border border-border rounded-lg overflow-hidden group">
-                                                <img src={url} alt="Preview" className="w-full h-full object-cover" />
-                                                <button type="button" onClick={() => removeImage(idx)} className="absolute top-1 right-1 bg-error text-surface w-5 h-5 rounded-full flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-opacity">✕</button>
+                                                <img src={getImageUrl(url)} alt="Preview" className="w-full h-full object-cover" />
+                                                <button type="button" onClick={() => removeImage(idx)} className="...">✕</button>
                                             </div>
                                         ))}
                                     </div>

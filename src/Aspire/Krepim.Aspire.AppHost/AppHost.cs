@@ -8,8 +8,8 @@ var builder = DistributedApplication.CreateBuilder(args);
 var useVolumes = builder.Configuration.GetValue<bool>("AppHostConfiguration:UseVolumes");
 var useDedicatedPorts = builder.Configuration.GetValue<bool>("AppHostConfiguration:UseDedicatedPorts");
 var pgPort = builder.Configuration.GetValue<int>("AppHostConfiguration:Postgres:Port", 15432);
-var devIp = builder.Configuration["DeveloperIp"] ?? "localhost";
 var pgPassword = builder.AddParameter("postgres-password", secret: true);
+var devIp = builder.Configuration["DeveloperIp"] ?? "localhost";
 var jwtSecret = builder.AddParameter("JwtSecret", secret: true); // dotnet user-secrets init
 
 #endregion
@@ -73,7 +73,6 @@ var catalogApi = builder.AddProject<Projects.Krepim_Catalog_Api>("catalog-api")
     .WithReference(catalogDb)
     .WithReference(catalogMongoDb)
     .WithReference(rabbitMq)
-    .WithEnvironment("Minio__Endpoint", $"http://{devIp}:9000")
     .WithEnvironment("Jwt__SecretKey", jwtSecret)
     .WaitFor(postgres);
 scalar.WithApiReference(catalogApi);

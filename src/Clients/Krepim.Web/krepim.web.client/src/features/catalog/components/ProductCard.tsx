@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import { Link } from 'react-router-dom';
 import type { Product } from '../types/product';
+import { getImageUrl } from '@/utils/imageUtils';
 
 interface ProductCardProps {
     product: Product;
@@ -20,7 +21,7 @@ export const ProductCard: FC<ProductCardProps> = ({ product, onAddToBasket }) =>
                 <div className="w-full h-40 bg-bg rounded-xl mb-4 flex items-center justify-center text-sm text-text-muted overflow-hidden">
                     {product.imageUrls && product.imageUrls.length > 0 ? (
                         <img
-                            src={product.imageUrls[0]}
+                            src={getImageUrl(product.imageUrls[0])}
                             alt={product.name}
                             className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform"
                         />

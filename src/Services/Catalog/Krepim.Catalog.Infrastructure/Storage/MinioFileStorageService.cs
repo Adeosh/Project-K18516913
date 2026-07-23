@@ -44,7 +44,7 @@ namespace Krepim.Catalog.Infrastructure.Storage
 
                 await _s3Client.PutObjectAsync(request, cancellationToken);
 
-                return $"{_options.Endpoint}/{_options.BucketName}/{uniqueFileName}";
+                return $"{_options.BucketName}/{uniqueFileName}";
             }
             catch (Exception ex)
             {

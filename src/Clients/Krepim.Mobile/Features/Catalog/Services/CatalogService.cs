@@ -10,6 +10,7 @@ namespace Krepim.Mobile.Features.Catalog.Services
         private readonly HttpClient _httpClient;
         private readonly JsonSerializerOptions _jsonOptions;
         private readonly string _apiHost;
+        private readonly string _storageBaseUrl;
 
         public CatalogService(IHttpClientFactory httpClientFactory, IConfiguration configuration)
         {
@@ -18,30 +19,23 @@ namespace Krepim.Mobile.Features.Catalog.Services
 
             var apiUrl = configuration["ApiGatewayUrl"] ?? "http://127.0.0.1:5078/";
             _apiHost = new Uri(apiUrl).Host;
+            _storageBaseUrl = configuration["StorageUrl"] ?? "http://127.0.0.1:9000/";
         }
 
-        private void FixImageUrls(ProductDto? product)
+        private void BuildImageUrls(ProductDto? product)
         {
             if (product?.ImageUrls == null) return;
 
             for (int i = 0; i < product.ImageUrls.Count; i++)
             {
                 var url = product.ImageUrls[i];
+                if (string.IsNullOrWhiteSpace(url)) continue;
 
-                try
+                if (!url.StartsWith("http", StringComparison.OrdinalIgnoreCase))
                 {
-                    var uri = new Uri(url);
-
-                    if (uri.Host is "localhost" or "127.0.0.1" or "minio" or "host.docker.internal")
-                    {
-                        var builder = new UriBuilder(uri)
-                        {
-                            Host = _apiHost
-                        };
-                        product.ImageUrls[i] = builder.ToString();
-                    }
+                    var cleanPath = url.TrimStart('/');
+                    product.ImageUrls[i] = $"{_storageBaseUrl.TrimEnd('/')}/{cleanPath}";
                 }
-                catch{ }
             }
         }
 
@@ -91,6 +85,7 @@ namespace Krepim.Mobile.Features.Catalog.Services
                 if (json.ValueKind == JsonValueKind.Array)
                 {
                     var items = json.Deserialize<List<ProductDto>>(_jsonOptions) ?? new();
+                    items.ForEach(BuildImageUrls);
                     return new PagedList<ProductDto> { Items = items, TotalCount = items.Count, Page = page, PageSize = pageSize };
                 }
 
@@ -99,9 +94,7 @@ namespace Krepim.Mobile.Features.Catalog.Services
                 if (result?.Items != null)
                 {
                     foreach (var item in result.Items)
-                    {
-                        FixImageUrls(item);
-                    }
+                        BuildImageUrls(item);
                 }
                 return result ?? new PagedList<ProductDto> { Items = new() };
             }
@@ -128,7 +121,7 @@ namespace Krepim.Mobile.Features.Catalog.Services
                     json = valueProp;
 
                 var product = json.Deserialize<ProductDto>(_jsonOptions);
-                FixImageUrls(product);
+                BuildImageUrls(product);
                 return product;
             }
             catch (Exception ex)
