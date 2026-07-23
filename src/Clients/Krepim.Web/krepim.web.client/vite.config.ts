@@ -34,7 +34,7 @@ if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
     }
 }
 
-const target = env["services__api-gateway__https__0"] || env["services__api_gateway__https__0"] || 'https://localhost:7115';
+const target = env["services__api-gateway__http__0"] || 'http://localhost:5078';
 
 const config: UserConfig = {
     plugins: [

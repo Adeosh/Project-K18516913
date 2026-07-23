@@ -40,9 +40,11 @@ if (builder.Configuration.GetValue<bool>("AppHostConfiguration:Mongo:UseExpress"
 var scalar = builder.AddScalarApiReference("scalar");
 
 var minio = builder.AddMinioContainer("minio")
-                   .WithHttpEndpoint(port: 9000, targetPort: 9000)
+                   .WithHttpEndpoint(port: 9000, targetPort: 9000, name: "minio-http", isProxied: false)
+                   .WithHttpEndpoint(port: 9001, targetPort: 9001, name: "console", isProxied: false)
                    .WithEnvironment("MINIO_ROOT_USER", "minioadmin")
                    .WithEnvironment("MINIO_ROOT_PASSWORD", "minioadmin")
+                   .WithEnvironment("MINIO_SERVER_URL", $"http://{devIp}:9000")
                    .WithDataVolume("krepim-minio-data");
 
 #endregion
@@ -73,8 +75,11 @@ var catalogApi = builder.AddProject<Projects.Krepim_Catalog_Api>("catalog-api")
     .WithReference(catalogDb)
     .WithReference(catalogMongoDb)
     .WithReference(rabbitMq)
+    .WithReference(minio)
     .WithEnvironment("Jwt__SecretKey", jwtSecret)
-    .WaitFor(postgres);
+    //.WithEnvironment("Minio__Endpoint", "http://minio:9000")
+    .WaitFor(postgres)
+    .WaitFor(minio);
 scalar.WithApiReference(catalogApi);
 
 var basketApi = builder.AddProject<Projects.Krepim_Basket_Api>("basket-api")
