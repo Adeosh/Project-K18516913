@@ -4,6 +4,7 @@ using Krepim.Mobile.Exceptions;
 using Krepim.Mobile.Extensions;
 using Krepim.Mobile.Features.Ordering.Models.DTOs;
 using Krepim.Mobile.Features.Ordering.Services;
+using Krepim.Mobile.Features.Ordering.ViewModels.Wrappers;
 using System.Collections.ObjectModel;
 
 namespace Krepim.Mobile.Features.Ordering.ViewModels
@@ -11,10 +12,10 @@ namespace Krepim.Mobile.Features.Ordering.ViewModels
     public partial class OrdersDashboardViewModel : ObservableObject
     {
         private readonly OrderService _orderService;
-        private List<OrderDto> _allOrders = new();
+        private List<OrderListItemWrapper> _allOrders = new();
 
         [ObservableProperty]
-        public partial ObservableCollection<OrderDto> FilteredOrders { get; set; } = new();
+        public partial ObservableCollection<OrderListItemWrapper> FilteredOrders { get; set; } = new();
 
         [ObservableProperty]
         public partial bool IsLoading { get; set; }
@@ -40,7 +41,11 @@ namespace Krepim.Mobile.Features.Ordering.ViewModels
             try
             {
                 var orders = await _orderService.GetAllOrdersAsync();
-                _allOrders = orders.OrderByDescending(o => o.CreatedAt).ToList();
+                _allOrders = orders
+                    .OrderByDescending(o => o.CreatedAt)
+                    .Select(o => new OrderListItemWrapper(o))
+                    .ToList();
+
                 ApplyFilters();
             }
             catch (ApiException apiEx)
@@ -62,10 +67,10 @@ namespace Krepim.Mobile.Features.Ordering.ViewModels
             var query = SearchQuery?.ToLower() ?? string.Empty;
 
             var filtered = _allOrders.Where(o =>
-                o.Id.ToLower().Contains(query) ||
-                o.FullAddress.ToLower().Contains(query) ||
-                o.CustomerEmail.ToLower().Contains(query) ||
-                (o.CustomerPhone != null && o.CustomerPhone.ToLower().Contains(query))
+                o.Dto.Id.ToLower().Contains(query) ||
+                o.Dto.FullAddress.ToLower().Contains(query) ||
+                o.Dto.CustomerEmail.ToLower().Contains(query) ||
+                (o.Dto.CustomerPhone != null && o.Dto.CustomerPhone.ToLower().Contains(query))
             ).ToList();
 
             FilteredOrders.Clear();
@@ -76,10 +81,10 @@ namespace Krepim.Mobile.Features.Ordering.ViewModels
         }
 
         [RelayCommand]
-        public async Task GoToDetailsAsync(OrderDto order)
+        public async Task GoToDetailsAsync(OrderListItemWrapper orderWrapper)
         {
-            if (order == null) return;
-            await Shell.Current.GoToAsync($"OrderDetailPage?orderId={order.Id}");
+            if (orderWrapper == null) return;
+            await Shell.Current.GoToAsync($"OrderDetailPage?orderId={orderWrapper.Dto.Id}");
         }
     }
 }

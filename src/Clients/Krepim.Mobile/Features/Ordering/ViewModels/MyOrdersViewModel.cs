@@ -2,8 +2,8 @@
 using CommunityToolkit.Mvvm.Input;
 using Krepim.Mobile.Exceptions;
 using Krepim.Mobile.Extensions;
-using Krepim.Mobile.Features.Ordering.Models.DTOs;
 using Krepim.Mobile.Features.Ordering.Services;
+using Krepim.Mobile.Features.Ordering.ViewModels.Wrappers;
 using System.Collections.ObjectModel;
 
 namespace Krepim.Mobile.Features.Ordering.ViewModels
@@ -13,7 +13,7 @@ namespace Krepim.Mobile.Features.Ordering.ViewModels
         private readonly OrderService _orderService;
 
         [ObservableProperty]
-        public partial ObservableCollection<OrderDto> Orders { get; set; } = new();
+        public partial ObservableCollection<OrderListItemWrapper> Orders { get; set; } = new();
 
         [ObservableProperty]
         public partial bool IsLoading { get; set; }
@@ -33,9 +33,8 @@ namespace Krepim.Mobile.Features.Ordering.ViewModels
                 var orders = await _orderService.GetMyOrdersAsync();
                 Orders.Clear();
                 foreach (var order in orders.OrderByDescending(o => o.CreatedAt))
-                {
-                    Orders.Add(order);
-                }
+                    Orders.Add(new OrderListItemWrapper(order));
+
                 OnPropertyChanged(nameof(IsEmpty));
             }
             catch (ApiException apiEx)
@@ -49,10 +48,10 @@ namespace Krepim.Mobile.Features.Ordering.ViewModels
         }
 
         [RelayCommand]
-        public async Task GoToDetailsAsync(OrderDto order)
+        public async Task GoToDetailsAsync(OrderListItemWrapper orderWrapper)
         {
-            if (order == null) return;
-            await Shell.Current.GoToAsync($"OrderDetailPage?orderId={order.Id}");
+            if (orderWrapper == null) return;
+            await Shell.Current.GoToAsync($"OrderDetailPage?orderId={orderWrapper.Dto.Id}");
         }
     }
 }
