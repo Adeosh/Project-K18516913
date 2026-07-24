@@ -22,9 +22,9 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("register", typeof(RegisterPage));
         Routing.RegisterRoute("product", typeof(ProductDetailPage));
         Routing.RegisterRoute("OrderDetailPage", typeof(OrderDetailPage));
-        Routing.RegisterRoute("MockPayPage", typeof(MockPayPage));
         Routing.RegisterRoute("OrdersDashboardPage", typeof(OrdersDashboardPage));
         Routing.RegisterRoute("MyOrdersPage", typeof(MyOrdersPage));
+        Routing.RegisterRoute("MockPayPage", typeof(MockPayPage));
 
         _authService.InitializeAsync().SafeFireAndForget();
     }

@@ -108,18 +108,6 @@
                                        FontAttributes="Bold" 
                                        TextColor="{StaticResource TextColor}" 
                                        VerticalOptions="Center" />
-
-                                <Button Grid.Column="1" 
-                                        Text="В корзину" 
-                                        FontSize="11"
-                                        FontAttributes="Bold"
-                                        BackgroundColor="{StaticResource AccentColor}" 
-                                        TextColor="{StaticResource SurfaceColor}"
-                                        HeightRequest="30"
-                                        Padding="10,0"
-                                        CornerRadius="6"
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:CatalogViewModel}}, Path=AddToBasketCommand}" 
-                                        CommandParameter="{Binding .}" />
                             </Grid>
                         </Grid>
                     </Border>

@@ -12,8 +12,8 @@
     <Grid>
         <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" Color="{StaticResource AccentColor}" HorizontalOptions="Center" VerticalOptions="Center" />
 
-        <ScrollView IsVisible="{Binding IsLoading, Converter={toolkit:InvertedBoolConverter}}" Padding="16">
-            <VerticalStackLayout Spacing="16">
+        <ScrollView IsVisible="{Binding IsLoading, Converter={toolkit:InvertedBoolConverter}}">
+            <VerticalStackLayout Spacing="16" Padding="16,16,16,40">
 
                 <Label Text="← Назад" TextColor="{StaticResource TextPlaceholderColor}" FontAttributes="Bold" FontSize="14">
                     <Label.GestureRecognizers>
@@ -25,85 +25,85 @@
                     <Label Text="{Binding ErrorMessage}" TextColor="{StaticResource AccentColor}" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                 </Border>
 
-                <Border Stroke="{StaticResource BorderColor}" BackgroundColor="{StaticResource SurfaceColor}" StrokeShape="RoundRectangle 24" Padding="20">
-                    <VerticalStackLayout Spacing="24">
+                <Border Stroke="{StaticResource BorderColor}" BackgroundColor="{StaticResource SurfaceColor}" StrokeShape="RoundRectangle 16" Padding="16">
+                    <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto" RowSpacing="8">
+                        <Label Grid.Row="0" Grid.Column="0" Text="Заказ оформлен" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource TextColor}" />
+                        <Border Grid.Row="0" Grid.Column="1" Stroke="Transparent" BackgroundColor="{StaticResource BgColor}" StrokeShape="RoundRectangle 8" Padding="10,6" VerticalOptions="Center">
+                            <Label Text="{Binding DisplayStatus}" FontSize="13" FontAttributes="Bold" TextColor="{StaticResource AccentColor}" />
+                        </Border>
+                        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Order.Id, StringFormat='№ {0}'}" FontSize="12" TextColor="{StaticResource TextPlaceholderColor}" FontAttributes="Bold" />
+                    </Grid>
+                </Border>
 
-                        <Grid ColumnDefinitions="*, Auto">
-                            <VerticalStackLayout Grid.Column="0">
-                                <Label Text="Заказ оформлен" FontSize="24" FontAttributes="Bold" TextColor="{StaticResource TextColor}" />
-                                <Label Text="{Binding Order.Id, StringFormat='№ {0}'}" FontSize="14" TextColor="{StaticResource TextPlaceholderColor}" FontAttributes="Bold" />
+                <Border Stroke="{StaticResource BorderColor}" BackgroundColor="{StaticResource SurfaceColor}" StrokeShape="RoundRectangle 16" Padding="16">
+                    <VerticalStackLayout Spacing="16">
+
+                        <Grid ColumnDefinitions="*, *" ColumnSpacing="12">
+                            <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                <Label Text="Дата заказа" FontSize="12" TextColor="{StaticResource TextPlaceholderColor}" />
+                                <Label Text="{Binding Order.CreatedAt, StringFormat='{0:dd.MM.yyyy HH:mm}'}" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource TextColor}" />
                             </VerticalStackLayout>
 
-                            <Border Grid.Column="1" Stroke="Transparent" BackgroundColor="{StaticResource BgColor}" StrokeShape="RoundRectangle 12" Padding="12,8" VerticalOptions="Start">
-                                <Label Text="{Binding DisplayStatus}" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource AccentColor}" />
-                            </Border>
+                            <VerticalStackLayout Grid.Column="1" Spacing="2" HorizontalOptions="End">
+                                <Label Text="Итого к оплате" FontSize="12" TextColor="{StaticResource TextPlaceholderColor}" HorizontalOptions="End" />
+                                <Label Text="{Binding Order.TotalPrice, StringFormat='{0:N0} ₽'}" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource AccentColor}" HorizontalOptions="End" />
+                            </VerticalStackLayout>
                         </Grid>
 
-                        <Grid ColumnDefinitions="*, Auto" ColumnSpacing="16">
-                            <Border Grid.Column="0" BackgroundColor="{StaticResource BgColor}" Stroke="{StaticResource BorderColor}" StrokeShape="RoundRectangle 16" Padding="16">
-                                <VerticalStackLayout Spacing="12">
-                                    <VerticalStackLayout>
-                                        <Label Text="Дата заказа" FontSize="12" TextColor="{StaticResource TextPlaceholderColor}" />
-                                        <Label Text="{Binding Order.CreatedAt, StringFormat='{0:dd.MM.yyyy HH:mm}'}" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource TextColor}" />
-                                    </VerticalStackLayout>
-                                    <VerticalStackLayout>
-                                        <Label Text="Итого к оплате" FontSize="12" TextColor="{StaticResource TextPlaceholderColor}" />
-                                        <Label Text="{Binding Order.TotalPrice, StringFormat='{0:N0} ₽'}" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource TextColor}" />
-                                    </VerticalStackLayout>
-                                    <VerticalStackLayout>
-                                        <Label Text="Адрес доставки" FontSize="12" TextColor="{StaticResource TextPlaceholderColor}" />
-                                        <Label Text="{Binding Order.FullAddress}" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource TextColor}" />
-                                    </VerticalStackLayout>
-                                </VerticalStackLayout>
-                            </Border>
+                        <BoxView HeightRequest="1" Color="{StaticResource BorderColor}" />
 
-                            <Border Grid.Column="1" BackgroundColor="{StaticResource BgColor}" Stroke="{StaticResource BorderColor}" StrokeShape="RoundRectangle 16" Padding="16" WidthRequest="140">
-                                <VerticalStackLayout HorizontalOptions="Center" Spacing="8">
-                                    <Label Text="QR-КОД" FontSize="10" FontAttributes="Bold" TextColor="{StaticResource TextPlaceholderColor}" HorizontalOptions="Center" />
-                                    <Image Source="{Binding Order.QrCodeUrl}" WidthRequest="100" HeightRequest="100" />
-                                </VerticalStackLayout>
-                            </Border>
-                        </Grid>
-
-                        <VerticalStackLayout IsVisible="{Binding CanBePaid}" Spacing="8">
-                            <Button Text="{Binding IsPaymentLoading, Converter={toolkit:BoolToObjectConverter TrueObject='Переход к оплате...', FalseObject='Перейти к оплате'}}" 
-                                    Command="{Binding PayCommand}"
-                                    IsEnabled="{Binding IsPaymentLoading, Converter={toolkit:InvertedBoolConverter}}"
-                                    BackgroundColor="{StaticResource AccentColor}" 
-                                    TextColor="{StaticResource SurfaceColor}" 
-                                    FontAttributes="Bold" 
-                                    HeightRequest="52" 
-                                    CornerRadius="12" />
-
-                            <Label Text="{Binding PaymentError}" TextColor="{StaticResource AccentColor}" FontSize="12" HorizontalTextAlignment="Center" IsVisible="{Binding PaymentError, Converter={toolkit:IsStringNotNullOrWhiteSpaceConverter}}" />
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="Адрес доставки" FontSize="12" TextColor="{StaticResource TextPlaceholderColor}" />
+                            <Label Text="{Binding Order.FullAddress}" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource TextColor}" />
                         </VerticalStackLayout>
 
-                        <Label Text="Состав заказа" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource TextColor}" Margin="0,16,0,0" />
-
-                        <VerticalStackLayout BindableLayout.ItemsSource="{Binding OrderItems}" Spacing="12">
-                            <BindableLayout.ItemTemplate>
-                                <DataTemplate x:DataType="wrappers:OrderItemWrapper">
-                                    <Border Stroke="{StaticResource BorderColor}" BackgroundColor="{StaticResource BgColor}" StrokeShape="RoundRectangle 16" Padding="12">
-                                        <Grid ColumnDefinitions="64, *, Auto" ColumnSpacing="12">
-                                            
-                                            <Border Grid.Column="0" Stroke="{StaticResource BorderColor}" StrokeShape="RoundRectangle 12" WidthRequest="64" HeightRequest="64">
-                                                <Image Source="{Binding ProductImageUrl}" Aspect="AspectFit" />
-                                            </Border>
-
-                                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="4">
-                                                <Label Text="{Binding ProductName}" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource TextColor}" MaxLines="2" LineBreakMode="TailTruncation" />
-                                                <Label Text="{Binding Dto.Quantity, StringFormat='{0} шт.'}" FontSize="12" TextColor="{StaticResource TextPlaceholderColor}" />
-                                            </VerticalStackLayout>
-
-                                            <Label Grid.Column="2" Text="{Binding TotalPrice, StringFormat='{0:N0} ₽'}" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource TextColor}" VerticalOptions="Center" />
-                                        </Grid>
-                                    </Border>
-                                </DataTemplate>
-                            </BindableLayout.ItemTemplate>
+                        <VerticalStackLayout IsVisible="{Binding Order.QrCodeUrl, Converter={toolkit:IsStringNotNullOrWhiteSpaceConverter}}" Spacing="8" HorizontalOptions="Center" Margin="0,8,0,0">
+                            <Label Text="QR-КОД ДЛЯ ПОЛУЧЕНИЯ" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource TextPlaceholderColor}" HorizontalOptions="Center" />
+                            <Border Stroke="{StaticResource BorderColor}" BackgroundColor="{StaticResource BgColor}" StrokeShape="RoundRectangle 12" Padding="8">
+                                <WebView Source="{Binding Order.QrCodeUrl}" WidthRequest="140" HeightRequest="140" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
                         </VerticalStackLayout>
 
                     </VerticalStackLayout>
                 </Border>
+
+                <VerticalStackLayout IsVisible="{Binding CanBePaid}" Spacing="8">
+                    <Button Text="{Binding IsPaymentLoading, Converter={toolkit:BoolToObjectConverter TrueObject='Переход к оплате...', FalseObject='Перейти к оплате'}}" 
+                            Command="{Binding PayCommand}"
+                            IsEnabled="{Binding IsPaymentLoading, Converter={toolkit:InvertedBoolConverter}}"
+                            BackgroundColor="{StaticResource AccentColor}" 
+                            TextColor="{StaticResource SurfaceColor}" 
+                            FontAttributes="Bold" 
+                            HeightRequest="48" 
+                            CornerRadius="8" />
+
+                    <Label Text="{Binding PaymentError}" TextColor="{StaticResource AccentColor}" FontSize="12" HorizontalTextAlignment="Center" IsVisible="{Binding PaymentError, Converter={toolkit:IsStringNotNullOrWhiteSpaceConverter}}" />
+                </VerticalStackLayout>
+
+                <Label Text="Состав заказа" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource TextColor}" Margin="0,8,0,0" />
+
+                <VerticalStackLayout BindableLayout.ItemsSource="{Binding OrderItems}" Spacing="8">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="wrappers:OrderItemWrapper">
+                            <Border Stroke="{StaticResource BorderColor}" BackgroundColor="{StaticResource SurfaceColor}" StrokeShape="RoundRectangle 12" Padding="12">
+                                <Grid ColumnDefinitions="56, *, Auto" ColumnSpacing="12" VerticalOptions="Center">
+
+                                    <Border Grid.Column="0" Stroke="{StaticResource BorderColor}" StrokeShape="RoundRectangle 8" WidthRequest="56" HeightRequest="56">
+                                        <Image Source="{Binding ProductImageUrl}" Aspect="AspectFit" />
+                                    </Border>
+
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                                        <Label Text="{Binding ProductName}" FontSize="13" FontAttributes="Bold" TextColor="{StaticResource TextColor}" MaxLines="2" LineBreakMode="TailTruncation" />
+                                        <Label Text="{Binding Dto.Quantity, StringFormat='Количество: {0} шт.'}" FontSize="11" TextColor="{StaticResource TextPlaceholderColor}" />
+                                    </VerticalStackLayout>
+
+                                    <Label Grid.Column="2" Text="{Binding TotalPrice, StringFormat='{0:N0} ₽'}" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource TextColor}" VerticalOptions="Center" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+
             </VerticalStackLayout>
         </ScrollView>
     </Grid>

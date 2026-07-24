@@ -1,8 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Krepim.Mobile.Exceptions;
-using Krepim.Mobile.Extensions;
-using Krepim.Mobile.Features.Basket.Models.Exchange;
 using Krepim.Mobile.Features.Basket.Services;
 using Krepim.Mobile.Features.Catalog.Models.DTOs;
 using Krepim.Mobile.Features.Catalog.Services;
@@ -142,34 +139,6 @@ namespace Krepim.Mobile.Features.Catalog.ViewModels
         public async Task GoToProductAsync(ProductDto product)
         {
             await Shell.Current.GoToAsync($"product?id={product.Id}");
-        }
-
-        [RelayCommand]
-        public async Task AddToBasketAsync(ProductDto product)
-        {
-            if (product == null) return;
-
-            try
-            {
-                var request = new AddBasketItemRequest(
-                    product.Id.ToString(),
-                    product.Name,
-                    product.Sku,
-                    product.Price,
-                    product.SalesStep
-                );
-
-                await _basketService.AddItemAsync(request);
-                await Shell.Current.DisplayAlertAsync("Успешно", $"{product.Name} добавлен в корзину", "ОК");
-            }
-            catch (ApiException apiEx)
-            {
-                await Shell.Current.DisplayAlertAsync("Ошибка", apiEx.ToUserFriendlyMessage(), "ОК");
-            }
-            catch (Exception ex)
-            {
-                await Shell.Current.DisplayAlertAsync("Ошибка", "Не удалось добавить товар: " + ex.Message, "ОК");
-            }
         }
     }
 }

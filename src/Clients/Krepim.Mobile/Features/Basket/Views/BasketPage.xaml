@@ -69,57 +69,60 @@
                                 Padding="12" 
                                 Margin="0,0,0,12">
 
-                            <Grid ColumnDefinitions="80, *, Auto" RowDefinitions="Auto, Auto" ColumnSpacing="12" RowSpacing="12">
+                            <Grid ColumnDefinitions="80, *" ColumnSpacing="12">
 
-                                <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Stroke="{StaticResource BorderColor}" StrokeShape="RoundRectangle 8" WidthRequest="80" HeightRequest="80" VerticalOptions="Start">
-                                    <Image Aspect="AspectFit">
-                                        <Image.Source>
-                                            <UriImageSource Uri="{Binding Dto.ImageUrl}" CachingEnabled="False" />
-                                        </Image.Source>
-                                    </Image>
+                                <Border Grid.Column="0" Stroke="{StaticResource BorderColor}" StrokeShape="RoundRectangle 8" WidthRequest="80" HeightRequest="80" VerticalOptions="Start">
+                                    <Image Source="{Binding ProductImageUrl}" Aspect="AspectFit" />
                                 </Border>
 
-                                <VerticalStackLayout Grid.Row="0" Grid.Column="1" Spacing="4">
-                                    <HorizontalStackLayout Spacing="8">
-                                        <Label Text="{Binding Dto.Sku, StringFormat='Арт: {0}'}" FontSize="12" TextColor="{StaticResource TextPlaceholderColor}" />
-                                        <Label Text="{Binding Dto.Brand}" FontSize="12" TextColor="{StaticResource AccentColor}" FontAttributes="Bold" />
-                                    </HorizontalStackLayout>
-                                    <Label Text="{Binding Dto.Name}" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource TextColor}" MaxLines="2" LineBreakMode="TailTruncation" />
-                                </VerticalStackLayout>
+                                <Grid Grid.Column="1" RowDefinitions="Auto, Auto, *, Auto" RowSpacing="4">
 
-                                <Button Grid.Row="0" Grid.Column="2" 
-                                        Text="✕"
-                                        TextColor="{StaticResource TextPlaceholderColor}"
-                                        BackgroundColor="Transparent"
-                                        FontSize="16"
-                                        FontAttributes="Bold"
-                                        Padding="8"
-                                        VerticalOptions="Start"
-                                        HorizontalOptions="End"
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:BasketViewModel}}, Path=RemoveItemCommand}"
-                                        CommandParameter="{Binding Dto.ProductId}" />
+                                    <Grid Grid.Row="0" ColumnDefinitions="*, Auto" ColumnSpacing="8">
+                                        <Label Grid.Column="0" Text="{Binding ProductName}" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource TextColor}" MaxLines="2" LineBreakMode="TailTruncation" VerticalOptions="Start" />
 
-                                <Border Grid.Row="1" Grid.Column="1" Stroke="{StaticResource BorderColor}" BackgroundColor="{StaticResource BgColor}" StrokeShape="RoundRectangle 8" Padding="4" HorizontalOptions="Start">
-                                    <HorizontalStackLayout Spacing="16" VerticalOptions="Center">
-                                        <Button Text="-" 
-                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:BasketViewModel}}, Path=DecreaseQuantityCommand}"
-                                                CommandParameter="{Binding .}"
-                                                BackgroundColor="Transparent" TextColor="{StaticResource TextColor}" FontSize="18" FontAttributes="Bold" Padding="12,0" />
+                                        <Button Grid.Column="1" Text="✕" 
+                                                Command="{Binding BindingContext.RemoveItemCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}" 
+                                                CommandParameter="{Binding Dto.ProductId}" 
+                                                BackgroundColor="Transparent" 
+                                                TextColor="{StaticResource TextPlaceholderColor}" 
+                                                FontSize="16" 
+                                                Padding="4" 
+                                                Margin="0,-8,-8,0" 
+                                                WidthRequest="32" 
+                                                HeightRequest="32" 
+                                                VerticalOptions="Start" />
+                                    </Grid>
 
-                                        <Label Text="{Binding Quantity}" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource TextColor}" VerticalOptions="Center" />
+                                    <Label Grid.Row="1" Text="{Binding Sku, StringFormat='Арт: {0}'}" FontSize="12" TextColor="{StaticResource TextPlaceholderColor}" />
 
-                                        <Button Text="+" 
-                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:BasketViewModel}}, Path=IncreaseQuantityCommand}"
-                                                CommandParameter="{Binding .}"
-                                                BackgroundColor="Transparent" TextColor="{StaticResource TextColor}" FontSize="18" FontAttributes="Bold" Padding="12,0" />
-                                    </HorizontalStackLayout>
-                                </Border>
+                                    <BoxView Grid.Row="2" Color="Transparent" HeightRequest="8" />
 
-                                <VerticalStackLayout Grid.Row="1" Grid.Column="2" VerticalOptions="End" HorizontalOptions="End">
-                                    <Label Text="{Binding TotalPrice, StringFormat='{0:N0} ₽'}" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource TextColor}" HorizontalOptions="End" />
-                                    <Label Text="{Binding Price, StringFormat='{0:N0} ₽/шт'}" FontSize="12" TextColor="{StaticResource TextPlaceholderColor}" HorizontalOptions="End" />
-                                </VerticalStackLayout>
+                                    <Grid Grid.Row="3" ColumnDefinitions="Auto, *" VerticalOptions="End">
 
+                                        <Border Grid.Column="0" Stroke="{StaticResource BorderColor}" BackgroundColor="{StaticResource BgColor}" StrokeShape="RoundRectangle 8" Padding="2">
+                                            <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
+
+                                                <Button Text="-" 
+                                                        Command="{Binding BindingContext.DecreaseQuantityCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}" 
+                                                        CommandParameter="{Binding .}" 
+                                                        BackgroundColor="Transparent" TextColor="{StaticResource TextColor}" FontSize="18" FontAttributes="Bold" WidthRequest="36" HeightRequest="36" Padding="0" />
+
+                                                <Label Text="{Binding Quantity}" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource TextColor}" VerticalOptions="Center" HorizontalTextAlignment="Center" MinimumWidthRequest="24" />
+
+                                                <Button Text="+" 
+                                                        Command="{Binding BindingContext.IncreaseQuantityCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}" 
+                                                        CommandParameter="{Binding .}" 
+                                                        BackgroundColor="Transparent" TextColor="{StaticResource TextColor}" FontSize="18" FontAttributes="Bold" WidthRequest="36" HeightRequest="36" Padding="0" />
+
+                                            </HorizontalStackLayout>
+                                        </Border>
+
+                                        <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End">
+                                            <Label Text="{Binding TotalPrice, StringFormat='{0:N2} ₽'}" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource TextColor}" HorizontalOptions="End" />
+                                            <Label Text="{Binding Price, StringFormat='{0:N2} ₽/шт'}" FontSize="11" TextColor="{StaticResource TextPlaceholderColor}" HorizontalOptions="End" />
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                </Grid>
                             </Grid>
                         </Border>
                     </DataTemplate>

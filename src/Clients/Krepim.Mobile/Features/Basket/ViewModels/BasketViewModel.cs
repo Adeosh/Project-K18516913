@@ -52,7 +52,12 @@ namespace Krepim.Mobile.Features.Basket.ViewModels
 
                 BasketItems.Clear();
                 foreach (var item in basket.Items)
-                    BasketItems.Add(new BasketItemWrapper(item));
+                {
+                    var wrapper = new BasketItemWrapper(item);
+                    BasketItems.Add(wrapper);
+                    await wrapper.LoadProductDetailsAsync(_catalogService);
+                    wrapper.RecalculatePrice();
+                }
 
                 RefreshUi();
             }
@@ -75,6 +80,8 @@ namespace Krepim.Mobile.Features.Basket.ViewModels
         {
             if (wrapper == null) return;
             wrapper.Quantity++;
+            wrapper.RecalculatePrice();
+            RefreshUi();
             await UpdateItemAsync(wrapper);
         }
 
@@ -83,6 +90,8 @@ namespace Krepim.Mobile.Features.Basket.ViewModels
         {
             if (wrapper == null || wrapper.Quantity <= 1) return;
             wrapper.Quantity--;
+            wrapper.RecalculatePrice();
+            RefreshUi();
             await UpdateItemAsync(wrapper);
         }
 
@@ -152,7 +161,7 @@ namespace Krepim.Mobile.Features.Basket.ViewModels
 
                 BasketItems.Clear();
                 RefreshUi();
-                await Shell.Current.GoToAsync($"///OrderSuccessPage?orderId={orderId}");
+                await Shell.Current.GoToAsync($"OrderDetailPage?orderId={orderId}");
             }
             catch (ApiException apiEx)
             {
@@ -181,11 +190,6 @@ namespace Krepim.Mobile.Features.Basket.ViewModels
 
             try
             {
-                var product = await _catalogService.GetByIdAsync(Guid.Parse(wrapper.Dto.ProductId));
-                if (product != null)
-                    wrapper.Price = product.Price;
-
-                RefreshUi();
                 await _basketService.UpdateQuantityAsync(wrapper.Dto.ProductId, wrapper.Quantity, wrapper.Price);
             }
             catch (ApiException apiEx)
