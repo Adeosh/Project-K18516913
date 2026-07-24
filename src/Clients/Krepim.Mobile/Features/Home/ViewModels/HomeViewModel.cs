@@ -86,15 +86,13 @@ namespace Krepim.Mobile.Features.Home.ViewModels
                 }
             }
             else
-            {
                 DeliveryAddress = "Войдите, чтобы выбрать адрес";
-            }
         }
 
         [RelayCommand]
         public async Task CategoryTappedAsync(string title)
         {
-            await Shell.Current.GoToAsync($"//catalog?search={Uri.EscapeDataString(title)}");
+            await Shell.Current.GoToAsync($"//catalog?category={Uri.EscapeDataString(title)}");
         }
     }
 }

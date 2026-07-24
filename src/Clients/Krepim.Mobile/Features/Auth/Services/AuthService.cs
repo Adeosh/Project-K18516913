@@ -15,6 +15,8 @@ namespace Krepim.Mobile.Features.Auth.Services
         private readonly HttpClient _httpClient;
         private readonly TaskCompletionSource _initTcs = new();
 
+        public static string? RawToken { get; private set; }
+
         public Task InitializationTask => _initTcs.Task;
         public UserClaimsDto? CurrentUser { get; private set; }
         public bool IsAuthenticated => CurrentUser != null;
@@ -28,14 +30,21 @@ namespace Krepim.Mobile.Features.Auth.Services
         {
             try
             {
-                var token = await SecureStorage.Default.GetAsync("krepim_token");
-                if (!string.IsNullOrEmpty(token))
+                var storedToken = await SecureStorage.Default.GetAsync("krepim_token");
+
+                if (!string.IsNullOrEmpty(RawToken))
+                    return;
+
+                if (!string.IsNullOrEmpty(storedToken))
                 {
-                    var claims = DecodeJwt(token);
+                    var claims = DecodeJwt(storedToken);
                     if (claims != null && DateTimeOffset.FromUnixTimeSeconds(claims.Exp) > DateTimeOffset.UtcNow)
+                    {
+                        RawToken = storedToken;
                         CurrentUser = claims;
+                    }
                     else
-                        await LogoutAsync();
+                        SecureStorage.Default.Remove("krepim_token");
                 }
             }
             finally
@@ -59,8 +68,10 @@ namespace Krepim.Mobile.Features.Auth.Services
             if (string.IsNullOrEmpty(token))
                 throw new Exception("Токен не получен от сервера.");
 
-            await SecureStorage.Default.SetAsync("krepim_token", token);
+            RawToken = token;
             CurrentUser = DecodeJwt(token);
+
+            await SecureStorage.Default.SetAsync("krepim_token", token);
         }
 
         public async Task RegisterAsync(string email, string password, string? phoneNumber)
@@ -75,10 +86,22 @@ namespace Krepim.Mobile.Features.Auth.Services
 
         public async Task LogoutAsync()
         {
-            SecureStorage.Default.Remove("krepim_token");
+            RawToken = null;
             CurrentUser = null;
 
-            await Shell.Current.GoToAsync("//home");
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                try
+                {
+                    await Shell.Current.GoToAsync("//home");
+                }
+                catch (Exception ex)
+                {
+                    await Shell.Current.DisplayAlertAsync("Ошибка", $"Сбой навигации: {ex.Message}", "ОК");
+                }
+            });
+
+            SecureStorage.Default.Remove("krepim_token");
         }
 
         private UserClaimsDto? DecodeJwt(string token)

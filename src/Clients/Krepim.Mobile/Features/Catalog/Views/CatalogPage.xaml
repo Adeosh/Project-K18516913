@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:viewmodels="clr-namespace:Krepim.Mobile.Features.Catalog.ViewModels"
              xmlns:models="clr-namespace:Krepim.Mobile.Features.Catalog.Models.DTOs"
              x:Class="Krepim.Mobile.Features.Catalog.Views.CatalogPage"
@@ -13,10 +14,34 @@
         <Border Grid.Row="0" BackgroundColor="{StaticResource SurfaceColor}" StrokeThickness="0" Padding="16,16,16,8">
             <VerticalStackLayout Spacing="12">
 
-                <SearchBar Text="{Binding SearchQuery}" 
-                           Placeholder="Поиск по артикулу или названию..." 
-                           SearchCommand="{Binding SearchCommand}"
-                           BackgroundColor="{StaticResource BgColor}" />
+                <Border Stroke="{StaticResource BorderColor}" 
+                        BackgroundColor="{StaticResource BgColor}" 
+                        StrokeShape="RoundRectangle 8" 
+                        HeightRequest="44" 
+                        Padding="12,0">
+                    <Grid ColumnDefinitions="Auto, *, Auto" ColumnSpacing="8">
+                        <Image Grid.Column="0" 
+                               Source="search.svg" 
+                               WidthRequest="18" 
+                               HeightRequest="18" 
+                               VerticalOptions="Center" 
+                               Aspect="AspectFit">
+                            <Image.Behaviors>
+                                <toolkit:IconTintColorBehavior TintColor="{StaticResource TextPlaceholderColor}" />
+                            </Image.Behaviors>
+                        </Image>
+
+                        <Entry Grid.Column="1" 
+                               Text="{Binding SearchQuery}" 
+                               Placeholder="Поиск по артикулу или названию..." 
+                               PlaceholderColor="{StaticResource TextPlaceholderColor}"
+                               TextColor="{StaticResource TextColor}"
+                               VerticalOptions="Center"
+                               BackgroundColor="Transparent"
+                               FontSize="14"
+                               ClearButtonVisibility="WhileEditing" />
+                    </Grid>
+                </Border>
 
                 <Border Stroke="{StaticResource BorderColor}" BackgroundColor="{StaticResource BgColor}" StrokeShape="RoundRectangle 8">
                     <Picker ItemsSource="{Binding Categories}" 
@@ -24,6 +49,7 @@
                             SelectedItem="{Binding SelectedCategory}" 
                             Title="Выберите категорию"
                             TextColor="{StaticResource TextColor}"
+                            TitleColor="{StaticResource TextPlaceholderColor}"
                             Margin="8,0"/>
                 </Border>
 
@@ -46,12 +72,15 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:ProductDto">
 
-                    <Border BackgroundColor="{StaticResource SurfaceColor}" Stroke="{StaticResource BorderColor}" StrokeShape="RoundRectangle 12" Padding="12">
+                    <Border BackgroundColor="{StaticResource SurfaceColor}" 
+                            Stroke="{StaticResource BorderColor}" 
+                            StrokeShape="RoundRectangle 12" 
+                            Padding="10">
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:CatalogViewModel}}, Path=GoToProductCommand}" CommandParameter="{Binding .}" />
                         </Border.GestureRecognizers>
 
-                        <Grid RowDefinitions="Auto, *, Auto, Auto" RowSpacing="8">
+                        <Grid RowDefinitions="Auto, *, Auto, Auto" RowSpacing="6">
 
                             <FlexLayout Grid.Row="0" JustifyContent="SpaceBetween">
                                 <Label Text="{Binding Sku, StringFormat='Арт: {0}'}" FontSize="10" TextColor="{StaticResource TextPlaceholderColor}" />
@@ -61,21 +90,34 @@
                             <Image Grid.Row="1" 
                                    Source="{Binding ImageUrls[0], FallbackValue='placeholder.png', TargetNullValue='placeholder.png'}" 
                                    Aspect="AspectFit" 
-                                   HeightRequest="100" />
+                                   HeightRequest="90" 
+                                   Margin="0,4" />
 
-                            <Label Grid.Row="2" Text="{Binding Name}" FontSize="13" FontAttributes="Bold" TextColor="{StaticResource TextColor}" LineBreakMode="TailTruncation" MaxLines="2" />
+                            <Label Grid.Row="2" 
+                                   Text="{Binding Name}" 
+                                   FontSize="12" 
+                                   FontAttributes="Bold" 
+                                   TextColor="{StaticResource TextColor}" 
+                                   LineBreakMode="TailTruncation" 
+                                   MaxLines="2" />
 
-                            <Grid Grid.Row="3" ColumnDefinitions="*, Auto" VerticalOptions="End">
-                                <Label Grid.Column="0" Text="{Binding Price, StringFormat='{0:N0} ₽'}" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource TextColor}" VerticalOptions="Center" />
+                            <Grid Grid.Row="3" ColumnDefinitions="*, Auto" VerticalOptions="End" Margin="0,4,0,0">
+                                <Label Grid.Column="0" 
+                                       Text="{Binding Price, StringFormat='{0:N2} ₽'}" 
+                                       FontSize="14" 
+                                       FontAttributes="Bold" 
+                                       TextColor="{StaticResource TextColor}" 
+                                       VerticalOptions="Center" />
 
                                 <Button Grid.Column="1" 
-                                        Text="+" 
+                                        Text="В корзину" 
+                                        FontSize="11"
                                         FontAttributes="Bold"
                                         BackgroundColor="{StaticResource AccentColor}" 
                                         TextColor="{StaticResource SurfaceColor}"
-                                        WidthRequest="36" 
-                                        HeightRequest="36" 
-                                        CornerRadius="8"
+                                        HeightRequest="30"
+                                        Padding="10,0"
+                                        CornerRadius="6"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:CatalogViewModel}}, Path=AddToBasketCommand}" 
                                         CommandParameter="{Binding .}" />
                             </Grid>

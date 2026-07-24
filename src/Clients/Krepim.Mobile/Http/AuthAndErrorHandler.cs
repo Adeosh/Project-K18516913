@@ -1,4 +1,5 @@
 ﻿using Krepim.Mobile.Exceptions;
+using Krepim.Mobile.Features.Auth.Services;
 using Microsoft.Extensions.Logging;
 using System.Net;
 using System.Net.Http.Headers;
@@ -9,15 +10,21 @@ namespace Krepim.Mobile.Http
     public class AuthAndErrorHandler : DelegatingHandler
     {
         private readonly ILogger<AuthAndErrorHandler> _logger;
+        private readonly IServiceProvider _serviceProvider;
 
-        public AuthAndErrorHandler(ILogger<AuthAndErrorHandler> logger)
+        public AuthAndErrorHandler(ILogger<AuthAndErrorHandler> logger, IServiceProvider serviceProvider)
         {
             _logger = logger;
+            _serviceProvider = serviceProvider;
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            var token = await SecureStorage.Default.GetAsync("krepim_token");
+            string? token = AuthService.RawToken;
+
+            if (string.IsNullOrEmpty(token))
+                token = await SecureStorage.Default.GetAsync("krepim_token");
+
             if (!string.IsNullOrEmpty(token))
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
@@ -48,16 +55,16 @@ namespace Krepim.Mobile.Http
                 {
                     case HttpStatusCode.Unauthorized:
                         _logger.LogWarning("Сессия устарела. Перенаправление на вход...");
-                        SecureStorage.Default.Remove("krepim_token");
 
                         MainThread.BeginInvokeOnMainThread(async () =>
                         {
-                            await Shell.Current.GoToAsync("//login");
+                            var authService = _serviceProvider.GetRequiredService<AuthService>();
+                            await authService.LogoutAsync();
                         });
                         break;
 
                     case HttpStatusCode.Forbidden:
-                        _logger.LogError("Доступ запрещен (Недостаточно прав ролевой модели).");
+                        _logger.LogError("Доступ запрещен.");
                         break;
 
                     case HttpStatusCode.BadRequest:

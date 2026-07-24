@@ -11,12 +11,14 @@ using System.Collections.ObjectModel;
 namespace Krepim.Mobile.Features.Catalog.ViewModels
 {
     [QueryProperty(nameof(SearchQuery), "search")]
+    [QueryProperty(nameof(CategoryQuery), "category")]
     public partial class CatalogViewModel : ObservableObject
     {
         private readonly CatalogService _catalogService;
         private readonly BasketService _basketService;
         private int _currentPage = 1;
         private bool _hasNextPage = true;
+        private bool _isInitialized = false;
 
         [ObservableProperty]
         public partial ObservableCollection<ProductDto> Products { get; set; } = new();
@@ -26,6 +28,9 @@ namespace Krepim.Mobile.Features.Catalog.ViewModels
 
         [ObservableProperty]
         public partial CategoryDto? SelectedCategory { get; set; }
+
+        [ObservableProperty]
+        public partial string CategoryQuery { get; set; } = string.Empty;
 
         [ObservableProperty]
         public partial string SearchQuery { get; set; } = string.Empty;
@@ -44,12 +49,26 @@ namespace Krepim.Mobile.Features.Catalog.ViewModels
 
         partial void OnSearchQueryChanged(string value)
         {
+            if (!_isInitialized) return;
             SearchCommand.Execute(null);
         }
 
         partial void OnSelectedCategoryChanged(CategoryDto? value)
         {
+            if (!_isInitialized) return;
             SearchCommand.Execute(null);
+        }
+
+        partial void OnCategoryQueryChanged(string value)
+        {
+            if (!_isInitialized) return;
+
+            if (string.IsNullOrWhiteSpace(value) || Categories == null || !Categories.Any())
+                return;
+
+            var matchedCat = Categories.FirstOrDefault(c => c.Name.Equals(value, StringComparison.OrdinalIgnoreCase));
+            if (matchedCat != null)
+                SelectedCategory = matchedCat;
         }
 
         [RelayCommand]
@@ -64,9 +83,19 @@ namespace Krepim.Mobile.Features.Catalog.ViewModels
             foreach (var c in cats)
                 Categories.Add(c);
 
-            SelectedCategory = Categories.First();
+            CategoryDto targetCategory = Categories.First();
 
-            await LoadProductsAsync(1);
+            if (!string.IsNullOrWhiteSpace(CategoryQuery))
+            {
+                var matchedCat = Categories.FirstOrDefault(c => c.Name.Equals(CategoryQuery, StringComparison.OrdinalIgnoreCase));
+                if (matchedCat != null)
+                    targetCategory = matchedCat;
+
+                CategoryQuery = string.Empty;
+            }
+
+            _isInitialized = true;
+            SelectedCategory = targetCategory;
         }
 
         [RelayCommand]
