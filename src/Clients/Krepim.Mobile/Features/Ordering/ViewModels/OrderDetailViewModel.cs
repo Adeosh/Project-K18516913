@@ -141,7 +141,7 @@ namespace Krepim.Mobile.Features.Ordering.ViewModels
                         if (url.Contains("/mock-pay"))
                         {
                             var uri = new Uri(url.StartsWith("http") ? url : $"http://localhost{url}");
-                            await Shell.Current.GoToAsync($"///MockPayPage{uri.Query}");
+                            await Shell.Current.GoToAsync($"MockPayPage{uri.Query}");
                         }
                         else
                             await Browser.Default.OpenAsync(url, BrowserLaunchMode.SystemPreferred);
@@ -150,8 +150,16 @@ namespace Krepim.Mobile.Features.Ordering.ViewModels
                         return;
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
+                    System.Diagnostics.Debug.WriteLine($"[PAY_ERROR]: {ex.Message}");
+                    if (ex is ArgumentException || ex is UriFormatException)
+                    {
+                        PaymentError = $"Ошибка парсинга или навигации: {ex.Message}";
+                        IsPaymentLoading = false;
+                        return;
+                    }
+
                     attempts++;
                     await Task.Delay(1200);
                 }

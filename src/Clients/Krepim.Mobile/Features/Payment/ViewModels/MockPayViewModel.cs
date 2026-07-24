@@ -70,7 +70,7 @@ namespace Krepim.Mobile.Features.Payment.ViewModels
                 var request = new MockWebhookRequest(TransactionId, status);
                 await _paymentService.SimulateMockPaymentAsync(request);
 
-                await Shell.Current.GoToAsync($"///OrderDetailPage?orderId={OrderId}");
+                await Shell.Current.GoToAsync($"OrderDetailPage?orderId={OrderId}");
             }
             catch (ApiException apiEx)
             {
@@ -91,7 +91,7 @@ namespace Krepim.Mobile.Features.Payment.ViewModels
         [RelayCommand]
         public async Task GoBackToOrderAsync()
         {
-            await Shell.Current.GoToAsync($"///OrderDetailPage?orderId={OrderId}");
+            await Shell.Current.GoToAsync($"OrderDetailPage?orderId={OrderId}");
         }
     }
 }

@@ -24,7 +24,8 @@ namespace Krepim.Mobile.Features.Payment.Services
                 throw new ApiException(problem ?? new ProblemDetails { Status = (int)response.StatusCode });
             }
 
-            return await response.Content.ReadAsStringAsync();
+            var rawString = await response.Content.ReadAsStringAsync();
+            return rawString.Trim('"');
         }
 
         public async Task SimulateMockPaymentAsync(MockWebhookRequest request)
