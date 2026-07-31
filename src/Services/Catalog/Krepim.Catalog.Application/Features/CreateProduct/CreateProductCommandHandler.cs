@@ -17,7 +17,7 @@ namespace Krepim.Catalog.Application.Features.CreateProduct
     {
         public async Task<Result<Guid>> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
-            var result = Product.Create(
+            Result<Product> result = Product.Create(
                 request.Name,
                 request.Description,
                 request.Sku,
@@ -30,7 +30,7 @@ namespace Krepim.Catalog.Application.Features.CreateProduct
             if (result.IsFailure)
                 return Result<Guid>.Failure(result.Error);
 
-            var product = result.Value;
+            Product product = result.Value;
 
             if (request.ImageUrls != null && request.ImageUrls.Any())
                 product.SetImages(request.ImageUrls);
@@ -40,7 +40,7 @@ namespace Krepim.Catalog.Application.Features.CreateProduct
 
             if (request.PriceTiers != null && request.PriceTiers.Any())
             {
-                var domainTiers = request.PriceTiers.Select(pt =>
+                IEnumerable<PriceTier> domainTiers = request.PriceTiers.Select(pt =>
                     new PriceTier(pt.MinQuantity, new Money(pt.Amount, pt.Currency)));
 
                 product.UpdatePriceTiers(domainTiers);
@@ -48,7 +48,7 @@ namespace Krepim.Catalog.Application.Features.CreateProduct
 
             await productRepository.AddAsync(product, cancellationToken);
 
-            var integrationEvent = new ProductCreatedIntegrationEvent(
+            ProductCreatedIntegrationEvent integrationEvent = new ProductCreatedIntegrationEvent(
                 product.Id,
                 product.Name,
                 product.Description,

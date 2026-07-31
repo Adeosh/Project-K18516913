@@ -1,8 +1,10 @@
 ﻿using Krepim.EventBus.Events.Inventory;
 using Krepim.Payment.Application.Interfaces;
+using Krepim.Payment.Application.Models.Exchange;
 using Krepim.Payment.Domain.Entities;
 using Krepim.Payment.Domain.Interfaces;
 using Krepim.SharedKernel.Domain.Abstractions;
+using Krepim.SharedKernel.Results;
 using MassTransit;
 using Microsoft.Extensions.Logging;
 
@@ -17,23 +19,23 @@ namespace Krepim.Payment.Application.Consumers
     {
         public async Task Consume(ConsumeContext<OrderCreatedIntegrationEvent> context)
         {
-            var message = context.Message;
+            OrderCreatedIntegrationEvent message = context.Message;
             logger.LogInformation("Инициация платежа для заказа {OrderId} на сумму {Amount}", message.OrderId, message.TotalPrice);
 
-            var existingTransaction = await paymentRepository.GetByOrderIdAsync(message.OrderId, context.CancellationToken);
+            PaymentTransaction? existingTransaction = await paymentRepository.GetByOrderIdAsync(message.OrderId, context.CancellationToken);
             if (existingTransaction is not null)
             {
                 logger.LogWarning("Платеж для заказа {OrderId} уже существует. Пропуск.", message.OrderId);
                 return;
             }
 
-            var transactionResult = PaymentTransaction.Create(message.OrderId, message.TotalPrice);
+            Result<PaymentTransaction> transactionResult = PaymentTransaction.Create(message.OrderId, message.TotalPrice);
             if (transactionResult.IsFailure)
                 throw new InvalidOperationException($"Ошибка создания платежа: {transactionResult.Error.Description}");
 
-            var transaction = transactionResult.Value;
+            PaymentTransaction transaction = transactionResult.Value;
 
-            var gatewayResponse = await paymentGateway.InitializePaymentAsync(message.OrderId, message.TotalPrice, context.CancellationToken);
+            PaymentGatewayResponse gatewayResponse = await paymentGateway.InitializePaymentAsync(message.OrderId, message.TotalPrice, context.CancellationToken);
 
             transaction.SetExternalDetails(gatewayResponse.ExternalId, gatewayResponse.PaymentUrl);
 

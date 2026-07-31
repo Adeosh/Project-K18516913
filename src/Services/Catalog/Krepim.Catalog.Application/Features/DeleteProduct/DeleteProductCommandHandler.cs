@@ -1,4 +1,5 @@
 ﻿using Krepim.Catalog.Application.Interfaces;
+using Krepim.Catalog.Domain.Aggregates;
 using Krepim.EventBus.Events.Catalog;
 using Krepim.SharedKernel.Domain.Abstractions;
 using Krepim.SharedKernel.Results;
@@ -14,7 +15,7 @@ namespace Krepim.Catalog.Application.Features.DeleteProduct
     {
         public async Task<Result> Handle(DeleteProductCommand request, CancellationToken ct)
         {
-            var product = await repository.GetByIdAsync(request.Id, ct);
+            Product? product = await repository.GetByIdAsync(request.Id, ct);
             if (product is null || product.IsDeleted)
                 return Result.Success();
 

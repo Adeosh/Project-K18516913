@@ -10,11 +10,11 @@ namespace Krepim.Basket.Application.Features.UpdateItemQuantity
     {
         public async Task<Result<CustomerBasket>> Handle(UpdateItemQuantityCommand request, CancellationToken ct)
         {
-            var basket = await repository.GetBasketAsync(request.UserId, ct);
+            CustomerBasket? basket = await repository.GetBasketAsync(request.UserId, ct);
             if (basket is null) 
                 return Result<CustomerBasket>.Failure(new Error("Basket.NotFound", "Корзина не найдена.", ErrorType.NotFound));
 
-            var item = basket.Items.FirstOrDefault(x => x.ProductId == request.ProductId);
+            BasketItem? item = basket.Items.FirstOrDefault(x => x.ProductId == request.ProductId);
             if (item is null) 
                 return Result<CustomerBasket>.Failure(new Error("Basket.ItemNotFound", "Товар не найден.", ErrorType.NotFound));
 

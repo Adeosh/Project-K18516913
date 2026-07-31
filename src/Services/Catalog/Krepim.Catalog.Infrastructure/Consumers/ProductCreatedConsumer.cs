@@ -9,10 +9,10 @@ namespace Krepim.Catalog.Infrastructure.Consumers
     {
         public async Task Consume(ConsumeContext<ProductCreatedIntegrationEvent> context)
         {
-            var message = context.Message;
-            var collection = mongoDatabase.GetCollection<ProductReadDto>("ProductsView");
+            ProductCreatedIntegrationEvent message = context.Message;
+            IMongoCollection<ProductReadDto> collection = mongoDatabase.GetCollection<ProductReadDto>("ProductsView");
 
-            var readModel = new ProductReadDto(
+            ProductReadDto readModel = new ProductReadDto(
                 Id: message.ProductId,
                 Name: message.Name,
                 Description: message.Description,
@@ -29,7 +29,7 @@ namespace Krepim.Catalog.Infrastructure.Consumers
                 PriceTiers: message.PriceTiers?.Select(pt => new PriceTierDto(pt.MinQuantity, pt.Amount, pt.Currency)).ToList() ?? new List<PriceTierDto>()
             );
 
-            var filter = Builders<ProductReadDto>.Filter.Eq(x => x.Id, readModel.Id);
+            FilterDefinition<ProductReadDto> filter = Builders<ProductReadDto>.Filter.Eq(x => x.Id, readModel.Id);
 
             await collection.ReplaceOneAsync(filter, readModel, new ReplaceOptions { IsUpsert = true });
         }

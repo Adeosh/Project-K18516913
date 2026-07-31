@@ -68,7 +68,7 @@ namespace Krepim.Catalog.Domain.Aggregates
             SalesUnit salesUnit,
             decimal salesStep)
         {
-            var sku = Sku.Create(skuValue);
+            Sku? sku = Sku.Create(skuValue);
 
             if (sku is null)
                 return Result<Product>.Failure(new Error("Product.InvalidSku", "Неверный формат артикула.", ErrorType.Validation));
@@ -104,10 +104,8 @@ namespace Krepim.Catalog.Domain.Aggregates
         {
             _attributes.Clear();
             foreach (var attr in attributes)
-            {
                 if (!string.IsNullOrWhiteSpace(attr.Key))
                     _attributes[attr.Key] = attr.Value;
-            }
         }
 
         public void UpdatePriceTiers(IEnumerable<PriceTier> tiers)

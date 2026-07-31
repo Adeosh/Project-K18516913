@@ -27,7 +27,7 @@ namespace Krepim.Identity.Domain.Aggregates
             if (string.IsNullOrWhiteSpace(email))
                 return Result<User>.Failure(new Error("User.InvalidEmail", "Адрес электронной почты не может быть пустым", ErrorType.Validation));
 
-            var user = new User(Guid.NewGuid(), email, passwordHash, role, phoneNumber);
+            User user = new User(Guid.NewGuid(), email, passwordHash, role, phoneNumber);
 
             return user;
         }

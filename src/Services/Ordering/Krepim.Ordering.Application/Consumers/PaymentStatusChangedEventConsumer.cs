@@ -1,4 +1,5 @@
 ﻿using Krepim.EventBus.Events.Payment;
+using Krepim.Ordering.Domain.Entities;
 using Krepim.Ordering.Domain.Interfaces;
 using Krepim.SharedKernel.Domain.Abstractions;
 using MassTransit;
@@ -13,9 +14,9 @@ namespace Krepim.Ordering.Application.Consumers
     {
         public async Task Consume(ConsumeContext<PaymentStatusChangedIntegrationEvent> context)
         {
-            var orderId = context.Message.OrderId;
+            Guid orderId = context.Message.OrderId;
 
-            var order = await orderRepository.GetByIdAsync(orderId, context.CancellationToken);
+            Order? order = await orderRepository.GetByIdAsync(orderId, context.CancellationToken);
             if (order == null)
                 return;
 

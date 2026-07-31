@@ -17,11 +17,11 @@ namespace Krepim.Ordering.Application.Consumers
     {
         public async Task Consume(ConsumeContext<BasketCheckoutIntegrationEvent> context)
         {
-            var message = context.Message;
+            BasketCheckoutIntegrationEvent message = context.Message;
             logger.LogInformation("Получено событие оформления заказа для пользователя {UserId}", message.UserId);
 
-            var address = new Address(message.FullAddress, message.Latitude, message.Longitude, message.Flat);
-            var order = Order.Create(message.OrderId, message.UserId, message.CustomerEmail, message.CustomerPhone, address);
+            Address address = new Address(message.FullAddress, message.Latitude, message.Longitude, message.Flat);
+            Order order = Order.Create(message.OrderId, message.UserId, message.CustomerEmail, message.CustomerPhone, address);
 
             foreach (var item in message.Items)
                 order.AddOrderItem(item.ProductId, item.UnitPrice, item.Quantity);

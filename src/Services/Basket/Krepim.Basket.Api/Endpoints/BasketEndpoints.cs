@@ -6,6 +6,7 @@ using Krepim.Basket.Application.Features.RemoveItem;
 using Krepim.Basket.Application.Features.UpdateItemQuantity;
 using Krepim.Basket.Application.Models.Exchange;
 using Krepim.SharedKernel.Extensions;
+using Krepim.SharedKernel.Results;
 using Krepim.SharedKernel.Results.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -62,9 +63,9 @@ namespace Krepim.Basket.Api.Endpoints
             [FromServices] ISender sender,
             CancellationToken ct) =>
             {
-                var generatedOrderId = Guid.NewGuid();
+                Guid generatedOrderId = Guid.NewGuid();
 
-                var result = await sender.Send(new CheckoutBasketCommand(
+                Result result = await sender.Send(new CheckoutBasketCommand(
                     GetUserId(user),
                     generatedOrderId,
                     request.CustomerEmail,
@@ -83,8 +84,8 @@ namespace Krepim.Basket.Api.Endpoints
 
         private static Guid GetUserId(ClaimsPrincipal user)
         {
-            var userIdClaim = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            return Guid.TryParse(userIdClaim, out var userId) ? userId : Guid.Empty;
+            string? userIdClaim = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            return Guid.TryParse(userIdClaim, out Guid userId) ? userId : Guid.Empty;
         }
     }
 }

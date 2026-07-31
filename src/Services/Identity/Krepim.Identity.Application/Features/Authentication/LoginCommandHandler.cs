@@ -1,4 +1,5 @@
 ﻿using Krepim.Identity.Application.Interfaces;
+using Krepim.Identity.Domain.Aggregates;
 using Krepim.Identity.Domain.Errors;
 using Krepim.Identity.Domain.Interfaces;
 using Krepim.SharedKernel.Results;
@@ -13,7 +14,7 @@ namespace Krepim.Identity.Application.Features.Authentication
     {
         public async Task<Result<string>> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
-            var user = await userRepository.GetByEmailAsync(request.Email, cancellationToken);
+            User? user = await userRepository.GetByEmailAsync(request.Email, cancellationToken);
             if (user is null)
             {
                 return Result<string>.Failure(IdentityErrors.InvalidCredentials);

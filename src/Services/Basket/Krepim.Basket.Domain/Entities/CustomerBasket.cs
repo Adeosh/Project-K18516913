@@ -23,7 +23,7 @@ namespace Krepim.Basket.Domain.Entities
 
         public void AddItem(BasketItem item)
         {
-            var existingItem = Items.FirstOrDefault(x => x.ProductId == item.ProductId);
+            BasketItem? existingItem = Items.FirstOrDefault(x => x.ProductId == item.ProductId);
 
             if (existingItem is not null)
                 existingItem.AddQuantity(item.Quantity);

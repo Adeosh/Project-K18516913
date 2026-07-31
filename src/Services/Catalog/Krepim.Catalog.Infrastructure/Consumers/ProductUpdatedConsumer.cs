@@ -9,21 +9,21 @@ namespace Krepim.Catalog.Infrastructure.Consumers
     {
         public async Task Consume(ConsumeContext<ProductUpdatedIntegrationEvent> context)
         {
-            var msg = context.Message;
-            var collection = mongoDatabase.GetCollection<ProductReadDto>("ProductsView");
+            ProductUpdatedIntegrationEvent message = context.Message;
+            IMongoCollection<ProductReadDto> collection = mongoDatabase.GetCollection<ProductReadDto>("ProductsView");
 
             var update = Builders<ProductReadDto>.Update
-                .Set(p => p.Name, msg.Name)
-                .Set(p => p.Description, msg.Description)
-                .Set(p => p.CategoryId, msg.CategoryId)
-                .Set(p => p.ImageUrls, msg.ImageUrls ?? Array.Empty<string>())
-                .Set(p => p.Standard, msg.Standard)
-                .Set(p => p.SalesUnit, msg.SalesUnit)
-                .Set(p => p.SalesStep, msg.SalesStep)
-                .Set(p => p.Attributes, msg.Attributes ?? new Dictionary<string, string>())
-                .Set(p => p.PriceTiers, msg.PriceTiers?.Select(pt => new PriceTierDto(pt.MinQuantity, pt.Amount, pt.Currency)).ToList() ?? new List<PriceTierDto>());
+                .Set(p => p.Name, message.Name)
+                .Set(p => p.Description, message.Description)
+                .Set(p => p.CategoryId, message.CategoryId)
+                .Set(p => p.ImageUrls, message.ImageUrls ?? Array.Empty<string>())
+                .Set(p => p.Standard, message.Standard)
+                .Set(p => p.SalesUnit, message.SalesUnit)
+                .Set(p => p.SalesStep, message.SalesStep)
+                .Set(p => p.Attributes, message.Attributes ?? new Dictionary<string, string>())
+                .Set(p => p.PriceTiers, message.PriceTiers?.Select(pt => new PriceTierDto(pt.MinQuantity, pt.Amount, pt.Currency)).ToList() ?? new List<PriceTierDto>());
 
-            await collection.UpdateOneAsync(x => x.Id == msg.ProductId, update);
+            await collection.UpdateOneAsync(x => x.Id == message.ProductId, update);
         }
     }
 }

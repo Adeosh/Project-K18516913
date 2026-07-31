@@ -1,4 +1,5 @@
 ﻿using Krepim.Identity.Application.Interfaces;
+using Krepim.Identity.Domain.Aggregates;
 using Krepim.Identity.Domain.Interfaces;
 using Krepim.SharedKernel.Domain.Abstractions;
 using Krepim.SharedKernel.Results;
@@ -13,7 +14,7 @@ namespace Krepim.Identity.Application.Features.Profile.ChangePassword
     {
         public async Task<Result> Handle(ChangePasswordCommand request, CancellationToken cancellationToken)
         {
-            var user = await userRepository.GetByIdAsync(request.UserId, cancellationToken);
+            User? user = await userRepository.GetByIdAsync(request.UserId, cancellationToken);
 
             if (user is null)
                 return Result.Failure(new Error("User.NotFound", "Пользователь не найден", ErrorType.NotFound));

@@ -9,8 +9,8 @@ namespace Krepim.Catalog.Infrastructure.Consumers
     {
         public async Task Consume(ConsumeContext<ProductStatusChangedIntegrationEvent> context)
         {
-            var collection = mongoDatabase.GetCollection<ProductReadDto>("ProductsView");
-            var update = Builders<ProductReadDto>.Update.Set(p => p.IsActive, context.Message.IsActive);
+            IMongoCollection<ProductReadDto> collection = mongoDatabase.GetCollection<ProductReadDto>("ProductsView");
+            UpdateDefinition<ProductReadDto> update = Builders<ProductReadDto>.Update.Set(p => p.IsActive, context.Message.IsActive);
 
             await collection.UpdateOneAsync(x => x.Id == context.Message.ProductId, update);
         }

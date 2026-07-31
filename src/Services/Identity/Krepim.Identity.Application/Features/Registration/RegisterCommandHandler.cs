@@ -31,7 +31,7 @@ namespace Krepim.Identity.Application.Features.Registration
 
             await userRepository.AddAsync(userResult.Value, cancellationToken);
 
-            var integrationEvent = new UserRegisteredIntegrationEvent(
+            UserRegisteredIntegrationEvent integrationEvent = new UserRegisteredIntegrationEvent(
                 userResult.Value.Id,
                 userResult.Value.Email,
                 userResult.Value.Role.ToString());

@@ -1,4 +1,5 @@
-﻿using Krepim.Payment.Domain.Interfaces;
+﻿using Krepim.Payment.Domain.Entities;
+using Krepim.Payment.Domain.Interfaces;
 using Krepim.SharedKernel.Results;
 using MediatR;
 
@@ -9,7 +10,7 @@ namespace Krepim.Payment.Application.Features.GetPaymentUrl
     {
         public async Task<Result<string>> Handle(GetPaymentUrlQuery request, CancellationToken ct)
         {
-            var transaction = await repository.GetByOrderIdAsync(request.OrderId, ct);
+            PaymentTransaction? transaction = await repository.GetByOrderIdAsync(request.OrderId, ct);
 
             if (transaction is null || string.IsNullOrWhiteSpace(transaction.PaymentUrl))
             {

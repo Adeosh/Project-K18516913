@@ -10,7 +10,7 @@ namespace Krepim.Basket.Application.Features.GetBasket
     {
         public async Task<Result<CustomerBasket>> Handle(GetBasketQuery request, CancellationToken ct)
         {
-            var basket = await repository.GetBasketAsync(request.UserId, ct);
+            CustomerBasket? basket = await repository.GetBasketAsync(request.UserId, ct);
 
             return basket ?? new CustomerBasket(request.UserId);
         }

@@ -17,7 +17,7 @@ namespace Krepim.Basket.Infrastructure.Database.Repositories
 
         public async Task<CustomerBasket?> GetBasketAsync(Guid userId, CancellationToken ct = default)
         {
-            var cachedBasket = await cache.GetStringAsync(userId.ToString(), ct);
+            string? cachedBasket = await cache.GetStringAsync(userId.ToString(), ct);
 
             if (string.IsNullOrEmpty(cachedBasket))
                 return null;
@@ -35,7 +35,7 @@ namespace Krepim.Basket.Infrastructure.Database.Repositories
 
         public async Task<CustomerBasket> UpdateBasketAsync(CustomerBasket basket, CancellationToken ct = default)
         {
-            var jsonBasket = JsonSerializer.Serialize(basket);
+            string jsonBasket = JsonSerializer.Serialize(basket);
 
             await cache.SetStringAsync(basket.UserId.ToString(), jsonBasket, _options, ct);
 

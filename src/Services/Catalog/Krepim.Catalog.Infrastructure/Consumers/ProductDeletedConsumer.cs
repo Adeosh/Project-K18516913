@@ -9,7 +9,7 @@ namespace Krepim.Catalog.Infrastructure.Consumers
     {
         public async Task Consume(ConsumeContext<ProductDeletedIntegrationEvent> context)
         {
-            var collection = mongoDatabase.GetCollection<ProductReadDto>("ProductsView");
+            IMongoCollection<ProductReadDto> collection = mongoDatabase.GetCollection<ProductReadDto>("ProductsView");
 
             await collection.DeleteOneAsync(x => x.Id == context.Message.ProductId);
         }

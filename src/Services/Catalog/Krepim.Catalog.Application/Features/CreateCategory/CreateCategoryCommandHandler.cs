@@ -12,7 +12,7 @@ namespace Krepim.Catalog.Application.Features.CreateCategory
     {
         public async Task<Result<Guid>> Handle(CreateCategoryCommand request, CancellationToken ct)
         {
-            var result = Category.Create(request.Name, request.Description);
+            Result<Category> result = Category.Create(request.Name, request.Description);
             if (result.IsFailure)
                 return Result<Guid>.Failure(result.Error);
 

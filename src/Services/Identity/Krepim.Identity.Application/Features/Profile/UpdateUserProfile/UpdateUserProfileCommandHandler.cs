@@ -1,4 +1,5 @@
-﻿using Krepim.Identity.Domain.Interfaces;
+﻿using Krepim.Identity.Domain.Aggregates;
+using Krepim.Identity.Domain.Interfaces;
 using Krepim.SharedKernel.Domain.Abstractions;
 using Krepim.SharedKernel.Results;
 using Krepim.SharedKernel.ValueObjects;
@@ -12,7 +13,7 @@ namespace Krepim.Identity.Application.Features.Profile.UpdateUserProfile
     {
         public async Task<Result> Handle(UpdateUserProfileCommand request, CancellationToken cancellationToken)
         {
-            var user = await userRepository.GetByIdAsync(request.UserId, cancellationToken);
+            User? user = await userRepository.GetByIdAsync(request.UserId, cancellationToken);
 
             if (user is null)
                 return Result.Failure(new Error("User.NotFound", "User not found", ErrorType.NotFound));
@@ -23,7 +24,7 @@ namespace Krepim.Identity.Application.Features.Profile.UpdateUserProfile
                     return Result.Failure(new Error("User.EmailNotUnique", "Этот email уже зарегистрирован", ErrorType.Conflict));
             }
 
-            var address = request.DefaultAddress is not null
+            Address? address = request.DefaultAddress is not null
                 ? new Address(request.DefaultAddress.FullAddress ?? string.Empty, request.DefaultAddress.Latitude, request.DefaultAddress.Longitude, request.DefaultAddress.Flat)
                 : null;
 

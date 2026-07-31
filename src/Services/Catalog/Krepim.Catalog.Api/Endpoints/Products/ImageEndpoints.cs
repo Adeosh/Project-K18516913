@@ -15,21 +15,21 @@ namespace Krepim.Catalog.Api.Endpoints.Products
                 if (!request.HasFormContentType || !request.Form.Files.Any())
                     return Results.BadRequest("Файлы не выбраны");
 
-                var files = request.Form.Files;
-                var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".webp" };
-                var uploadedUrls = new List<string>();
+                IFormFileCollection files = request.Form.Files;
+                string[] allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".webp" };
+                List<string> uploadedUrls = new List<string>();
 
-                foreach (var file in files)
+                foreach (IFormFile file in files)
                 {
-                    var extension = Path.GetExtension(file.FileName).ToLowerInvariant();
+                    string extension = Path.GetExtension(file.FileName).ToLowerInvariant();
                     if (!allowedExtensions.Contains(extension))
                         return Results.BadRequest($"Файл {file.FileName} имеет недопустимый формат.");
                 }
 
-                foreach (var file in files)
+                foreach (IFormFile file in files)
                 {
-                    using var stream = file.OpenReadStream();
-                    var url = await storageService.UploadFileAsync(stream, file.FileName, file.ContentType, ct);
+                    using Stream stream = file.OpenReadStream();
+                    string url = await storageService.UploadFileAsync(stream, file.FileName, file.ContentType, ct);
                     uploadedUrls.Add(url);
                 }
 

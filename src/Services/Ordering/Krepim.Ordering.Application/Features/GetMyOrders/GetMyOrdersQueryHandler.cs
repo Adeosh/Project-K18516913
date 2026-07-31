@@ -1,4 +1,5 @@
 ﻿using Krepim.Ordering.Application.Models.DTOs;
+using Krepim.Ordering.Domain.Entities;
 using Krepim.Ordering.Domain.Interfaces;
 using Krepim.SharedKernel.Results;
 using MediatR;
@@ -13,8 +14,8 @@ namespace Krepim.Ordering.Application.Features.GetMyOrders
     {
         public async Task<Result<List<OrderDto>>> Handle(GetMyOrdersQuery request, CancellationToken ct)
         {
-            var orders = await repository.GetByUserIdAsync(request.UserId, ct);
-            var dtos = orders.Select(o =>
+            List<Order> orders = await repository.GetByUserIdAsync(request.UserId, ct);
+            List<OrderDto> dtos = orders.Select(o =>
             {
                 string qrDataUri = GetQrCode(o);
 

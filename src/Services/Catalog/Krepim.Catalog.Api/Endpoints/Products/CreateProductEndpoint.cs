@@ -1,5 +1,6 @@
 ﻿using Krepim.Catalog.Application.Features.CreateProduct;
 using Krepim.SharedKernel.Extensions;
+using Krepim.SharedKernel.Results;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,7 +15,7 @@ namespace Krepim.Catalog.Api.Endpoints.Products
                 [FromServices] ISender sender,
                 CancellationToken ct) =>
             {
-                var result = await sender.Send(command, ct);
+                Result<Guid> result = await sender.Send(command, ct);
 
                 return result.Match(productId =>
                     Microsoft.AspNetCore.Http.Results.Created($"/api/products/{productId}", productId));

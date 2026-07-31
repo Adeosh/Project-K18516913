@@ -1,4 +1,5 @@
 ﻿using Krepim.Inventory.Application.Models.DTOs;
+using Krepim.Inventory.Domain.Entities;
 using Krepim.Inventory.Domain.Interfaces;
 using Krepim.SharedKernel.Results;
 using MediatR;
@@ -10,7 +11,7 @@ namespace Krepim.Inventory.Application.Features.GetStock
     {
         public async Task<Result<StockDto>> Handle(GetStockQuery request, CancellationToken ct)
         {
-            var stockItem = await repository.GetByProductIdAsync(request.ProductId, ct);
+            StockItem? stockItem = await repository.GetByProductIdAsync(request.ProductId, ct);
 
             if (stockItem is null)
             {

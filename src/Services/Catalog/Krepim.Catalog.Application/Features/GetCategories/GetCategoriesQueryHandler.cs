@@ -10,7 +10,7 @@ namespace Krepim.Catalog.Application.Features.GetCategories
     {
         public async Task<Result<IReadOnlyList<CategoryDto>>> Handle(GetCategoriesQuery request, CancellationToken cancellationToken)
         {
-            var categories = await readRepository.GetAllActiveAsync(cancellationToken);
+            IReadOnlyList<CategoryDto> categories = await readRepository.GetAllActiveAsync(cancellationToken);
             return categories.ToList();
         }
     }

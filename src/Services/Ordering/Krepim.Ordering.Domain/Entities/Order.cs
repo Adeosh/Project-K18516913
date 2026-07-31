@@ -45,7 +45,7 @@ namespace Krepim.Ordering.Domain.Entities
             if (Status != OrderStatus.Pending)
                 throw new InvalidOperationException("Можно добавлять товары только в отложенные заказы.");
 
-            var item = new OrderItem(Id, productId, unitPrice, quantity);
+            OrderItem item = new OrderItem(Id, productId, unitPrice, quantity);
             _items.Add(item);
         }
 

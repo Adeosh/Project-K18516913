@@ -1,4 +1,5 @@
-﻿using Krepim.Basket.Domain.Interfaces;
+﻿using Krepim.Basket.Domain.Entities;
+using Krepim.Basket.Domain.Interfaces;
 using Krepim.EventBus.Events.Basket;
 using Krepim.SharedKernel.Results;
 using MassTransit;
@@ -12,7 +13,7 @@ namespace Krepim.Basket.Application.Features.Checkout
     {
         public async Task<Result> Handle(CheckoutBasketCommand request, CancellationToken ct)
         {
-            var basket = await repository.GetBasketAsync(request.UserId, ct);
+            CustomerBasket? basket = await repository.GetBasketAsync(request.UserId, ct);
 
             if (basket is null || !basket.Items.Any())
             {
@@ -22,11 +23,11 @@ namespace Krepim.Basket.Application.Features.Checkout
                     ErrorType.Validation));
             }
 
-            var eventItems = basket.Items
+            List<BasketCheckoutItem> eventItems = basket.Items
                 .Select(i => new BasketCheckoutItem(i.ProductId, i.UnitPrice, i.Quantity))
                 .ToList();
 
-            var checkoutEvent = new BasketCheckoutIntegrationEvent(
+            BasketCheckoutIntegrationEvent checkoutEvent = new BasketCheckoutIntegrationEvent(
                 request.OrderId,
                 request.UserId,
                 request.CustomerEmail,

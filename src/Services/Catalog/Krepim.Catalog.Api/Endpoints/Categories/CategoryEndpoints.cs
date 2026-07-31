@@ -1,5 +1,6 @@
 ﻿using Krepim.Catalog.Application.Features.GetCategories;
 using Krepim.Catalog.Application.Models.DTOs;
+using Krepim.SharedKernel.Results;
 using Krepim.SharedKernel.Results.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +17,7 @@ namespace Krepim.Catalog.Api.Endpoints.Categories
 
             group.MapPost("/", async ([FromBody] Application.Features.CreateCategory.CreateCategoryCommand command, [FromServices] ISender sender, CancellationToken ct) =>
             {
-                var result = await sender.Send(command, ct);
+                Result<Guid> result = await sender.Send(command, ct);
                 return result.IsSuccess ? Results.Ok(result.Value) : Results.BadRequest(result.Error);
             })
             .WithName("CreateCategory")
@@ -32,7 +33,7 @@ namespace Krepim.Catalog.Api.Endpoints.Categories
 
             group.MapDelete("/{id:guid}", async (Guid id, [FromServices] ISender sender, CancellationToken ct) =>
             {
-                var result = await sender.Send(new Krepim.Catalog.Application.Features.DeleteCategory.DeleteCategoryCommand(id), ct);
+                Result result = await sender.Send(new Krepim.Catalog.Application.Features.DeleteCategory.DeleteCategoryCommand(id), ct);
                 return result.IsSuccess ? Results.NoContent() : Results.BadRequest(result.Error);
             })
             .WithName("DeleteCategory")

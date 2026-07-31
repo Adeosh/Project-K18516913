@@ -19,7 +19,7 @@ namespace Krepim.Identity.Api.Endpoints.Profile
                 ClaimsPrincipal user,
                 [FromServices] ISender sender) =>
             {
-                var userIdStr = user.FindFirstValue(ClaimTypes.NameIdentifier) ?? user.FindFirstValue(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub);
+                string? userIdStr = user.FindFirstValue(ClaimTypes.NameIdentifier) ?? user.FindFirstValue(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub);
 
                 if (!Guid.TryParse(userIdStr, out var userId))
                     return Result<UserProfileResponse>.Failure(new Error("Auth.Unauthorized", "Пользователь не авторизован", ErrorType.Unauthorized));
@@ -32,7 +32,7 @@ namespace Krepim.Identity.Api.Endpoints.Profile
                 ClaimsPrincipal user,
                 [FromServices] ISender sender) =>
             {
-                var userIdStr = user.FindFirstValue(ClaimTypes.NameIdentifier) ?? user.FindFirstValue(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub);
+                string? userIdStr = user.FindFirstValue(ClaimTypes.NameIdentifier) ?? user.FindFirstValue(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub);
 
                 if (!Guid.TryParse(userIdStr, out var userId))
                     return Result.Failure(new Error("Auth.Unauthorized", "Пользователь не авторизован", ErrorType.Unauthorized));
@@ -45,7 +45,7 @@ namespace Krepim.Identity.Api.Endpoints.Profile
                 ClaimsPrincipal user,
                 [FromServices] ISender sender) =>
             {
-                var userIdStr = user.FindFirstValue(ClaimTypes.NameIdentifier) ?? user.FindFirstValue(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub);
+                string? userIdStr = user.FindFirstValue(ClaimTypes.NameIdentifier) ?? user.FindFirstValue(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub);
 
                 if (!Guid.TryParse(userIdStr, out var userId))
                     return Result.Failure(new Error("Auth.Unauthorized", "Пользователь не авторизован", ErrorType.Unauthorized));

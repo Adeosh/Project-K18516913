@@ -1,6 +1,8 @@
 ﻿using Krepim.EventBus.Events.Inventory;
+using Krepim.Inventory.Domain.Entities;
 using Krepim.Inventory.Domain.Interfaces;
 using Krepim.SharedKernel.Domain.Abstractions;
+using Krepim.SharedKernel.Results;
 using MassTransit;
 using Microsoft.Extensions.Logging;
 
@@ -13,17 +15,17 @@ namespace Krepim.Inventory.Application.Consumers
     {
         public async Task Consume(ConsumeContext<OrderCreatedIntegrationEvent> context)
         {
-            var message = context.Message;
+            OrderCreatedIntegrationEvent message = context.Message;
             logger.LogInformation("Попытка резервирования товаров для заказа {OrderId}", message.OrderId);
 
             foreach (var item in message.Items)
             {
-                var stockItem = await inventoryRepository.GetByProductIdAsync(item.ProductId, context.CancellationToken);
+                StockItem? stockItem = await inventoryRepository.GetByProductIdAsync(item.ProductId, context.CancellationToken);
 
                 if (stockItem is null)
                     throw new InvalidOperationException($"Товар {item.ProductId} не найден на складе.");
 
-                var reserveResult = stockItem.ReserveStock(item.Quantity);
+                Result reserveResult = stockItem.ReserveStock(item.Quantity);
 
                 if (reserveResult.IsFailure)
                     throw new InvalidOperationException(

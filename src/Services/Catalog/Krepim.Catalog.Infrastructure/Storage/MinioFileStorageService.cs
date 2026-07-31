@@ -55,7 +55,7 @@ namespace Krepim.Catalog.Infrastructure.Storage
 
         private async Task EnsureBucketExistsAsync(CancellationToken cancellationToken)
         {
-            var bucketExists = await Amazon.S3.Util.AmazonS3Util.DoesS3BucketExistV2Async(_s3Client, _options.BucketName);
+            bool bucketExists = await Amazon.S3.Util.AmazonS3Util.DoesS3BucketExistV2Async(_s3Client, _options.BucketName);
             if (!bucketExists)
             {
                 await _s3Client.PutBucketAsync(new PutBucketRequest { BucketName = _options.BucketName }, cancellationToken);

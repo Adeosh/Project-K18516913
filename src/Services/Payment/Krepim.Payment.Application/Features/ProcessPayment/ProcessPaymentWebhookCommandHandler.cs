@@ -1,4 +1,5 @@
 ﻿using Krepim.EventBus.Events.Payment;
+using Krepim.Payment.Domain.Entities;
 using Krepim.Payment.Domain.Interfaces;
 using Krepim.SharedKernel.Domain.Abstractions;
 using Krepim.SharedKernel.Results;
@@ -16,7 +17,7 @@ namespace Krepim.Payment.Application.Features.ProcessPayment
     {
         public async Task<Result> Handle(ProcessPaymentWebhookCommand request, CancellationToken ct)
         {
-            var transaction = await paymentRepository.GetByExternalIdAsync(request.ExternalPaymentId, ct);
+            PaymentTransaction? transaction = await paymentRepository.GetByExternalIdAsync(request.ExternalPaymentId, ct);
 
             if (transaction is null)
             {
@@ -24,13 +25,13 @@ namespace Krepim.Payment.Application.Features.ProcessPayment
                 return Result.Failure(new Error("Payment.NotFound", "Транзакция не найдена", ErrorType.NotFound));
             }
 
-            var result = transaction.HandleStatus(request.Status, request.ErrorMessage);
+            Result result = transaction.HandleStatus(request.Status, request.ErrorMessage);
             if (result.IsFailure)
                 return result;
 
             await unitOfWork.SaveChangesAsync(ct);
 
-            var integrationEvent = new PaymentStatusChangedIntegrationEvent(transaction.OrderId, transaction.Status);
+            PaymentStatusChangedIntegrationEvent integrationEvent = new PaymentStatusChangedIntegrationEvent(transaction.OrderId, transaction.Status);
 
             await publishEndpoint.Publish(integrationEvent, ct);
 

@@ -10,11 +10,11 @@ namespace Krepim.Basket.Application.Features.AddItem
     {
         public async Task<Result<CustomerBasket>> Handle(AddItemToBasketCommand request, CancellationToken ct)
         {
-            var basket = await repository.GetBasketAsync(request.UserId, ct) ?? new CustomerBasket(request.UserId);
+            CustomerBasket basket = await repository.GetBasketAsync(request.UserId, ct) ?? new CustomerBasket(request.UserId);
 
             try
             {
-                var item = new BasketItem(
+                BasketItem item = new BasketItem(
                     request.ProductId,
                     request.ProductName,
                     request.Sku,

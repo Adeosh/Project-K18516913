@@ -12,11 +12,11 @@ namespace Krepim.Inventory.Application.Features.CreditStock
     {
         public async Task<Result> Handle(CreditStockCommand request, CancellationToken ct)
         {
-            var stockItem = await repository.GetByProductIdAsync(request.ProductId, ct);
+            StockItem? stockItem = await repository.GetByProductIdAsync(request.ProductId, ct);
 
             if (stockItem is null)
             {
-                var createResult = StockItem.Create(request.ProductId, request.Quantity);
+                Result<StockItem> createResult = StockItem.Create(request.ProductId, request.Quantity);
 
                 if (createResult.IsFailure)
                     return Result.Failure(createResult.Error);
@@ -25,7 +25,7 @@ namespace Krepim.Inventory.Application.Features.CreditStock
             }
             else
             {
-                var creditResult = stockItem.CreditStock(request.Quantity);
+                Result creditResult = stockItem.CreditStock(request.Quantity);
 
                 if (creditResult.IsFailure)
                     return creditResult;

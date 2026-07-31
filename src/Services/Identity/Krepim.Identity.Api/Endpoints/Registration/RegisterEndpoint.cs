@@ -1,5 +1,6 @@
 ﻿using Krepim.Identity.Application.Features.Registration;
 using Krepim.SharedKernel.Extensions;
+using Krepim.SharedKernel.Results;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,7 +15,7 @@ namespace Krepim.Identity.Api.Endpoints.Registration
                 [FromServices] ISender sender,
                 CancellationToken ct) =>
             {
-                var result = await sender.Send(command, ct);
+                Result<Guid> result = await sender.Send(command, ct);
 
                 return result.Match(userId => Microsoft.AspNetCore.Http.Results.Created($"/api/identity/{userId}", userId));
             })

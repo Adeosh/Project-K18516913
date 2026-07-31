@@ -1,4 +1,5 @@
 ﻿using Krepim.Ordering.Application.Models.DTOs;
+using Krepim.Ordering.Domain.Entities;
 using Krepim.Ordering.Domain.Interfaces;
 using Krepim.SharedKernel.Results;
 using MediatR;
@@ -13,13 +14,13 @@ namespace Krepim.Ordering.Application.Features.GetOrderById
     {
         public async Task<Result<OrderDto>> Handle(GetOrderByIdQuery request, CancellationToken ct)
         {
-            var order = await repository.GetByIdAsync(request.OrderId, ct);
+            Order? order = await repository.GetByIdAsync(request.OrderId, ct);
             if (order is null)
                 return Result<OrderDto>.Failure(new Error("Order.NotFound", "Not found", ErrorType.NotFound));
 
             string qrDataUri = GetQrCode(order);
 
-            var dto = new OrderDto(
+            OrderDto dto = new OrderDto(
                 order.Id,
                 order.CustomerEmail,
                 order.CustomerPhone,
