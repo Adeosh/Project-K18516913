@@ -61,3 +61,4 @@ appsettings.Local.json
 Thumbs.db
 /src/Clients/Krepim.Mobile/appsettings.Development.json
 /src/Clients/Krepim.Mobile/appsettings.Development.json
+/src/Clients/Krepim.Web/krepim.web.client/.env.example
