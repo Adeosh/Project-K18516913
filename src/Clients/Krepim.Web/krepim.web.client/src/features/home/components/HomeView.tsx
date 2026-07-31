@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import type { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { apiClient } from '@/api/apiClient';
-import type { CategoryDto } from '../api/managerCatalogApi';
+import { extractErrorMessage } from '@/utils/errorUtils';
+import type { CategoryDto } from '../../catalog/api/managerCatalogApi';
 
 import bannerMain from '../../../assets/images/banners/banner_2.png';
-
 import logoBolt from '../../../assets/images/partners/boltru-130x100.jpg';
 import logoMetall from '../../../assets/images/partners/metallservice-130x100.jpg';
 import logoMtk from '../../../assets/images/partners/mtk-130x100.jpg';
@@ -13,7 +13,6 @@ import logoPic from '../../../assets/images/partners/ooo-pic-130x100.jpg';
 import logoRuss from '../../../assets/images/partners/russconnect-130x100.jpg';
 import logoVolz from '../../../assets/images/partners/volzgskiy-instrument-130x100.jpg';
 import logoZitar from '../../../assets/images/partners/zitar-130x100.jpg';
-
 import iconAnker from '../../../assets/images/icons/general/anchors_2.png';
 import iconBolts from '../../../assets/images/icons/general/bolts_2.png';
 import iconArma from '../../../assets/images/icons/general/arma.png';
@@ -22,7 +21,6 @@ import iconGaiki from '../../../assets/images/icons/general/gaiki.png';
 import iconGvozdi from '../../../assets/images/icons/general/nails_2.png';
 import iconSelfRezi from '../../../assets/images/icons/general/selfr.png';
 import iconTools from '../../../assets/images/icons/general/tools.png';
-
 import iconGeoloc from '../../../assets/images/icons/general/geo.png';
 import iconMoney from '../../../assets/images/icons/general/money_2.png';
 import iconClock from '../../../assets/images/icons/general/clock_2.png';
@@ -58,22 +56,34 @@ const PROMO_CATEGORIES = [
     { src: iconTools, title: 'Все категории' },
 ];
 
+interface CategoriesResponse {
+    value?: CategoryDto[];
+    items?: CategoryDto[];
+}
+
 export const HomeView: FC = () => {
     const [dbCategories, setDbCategories] = useState<CategoryDto[]>([]);
 
     useEffect(() => {
+        let isMounted = true;
+
         const fetchCategories = async () => {
             try {
-                const response = await apiClient.get<any>('/api/products/categories');
-                const data = response.data?.value || response.data;
-                if (Array.isArray(data)) {
-                    setDbCategories(data);
+                const response = await apiClient.get<CategoryDto[] | CategoriesResponse>('/api/products/categories');
+                const data = response.data;
+                const categoriesData = Array.isArray(data) ? data : (data?.value || data?.items || []);
+
+                if (isMounted) {
+                    setDbCategories(categoriesData);
                 }
-            } catch (e) {
-                console.error('Ошибка загрузки категорий на главной', e);
+            } catch (err: unknown) {
+                console.error(extractErrorMessage(err, 'Ошибка загрузки категорий на главной'));
             }
         };
+
         void fetchCategories();
+
+        return () => { isMounted = false; };
     }, []);
 
     const getCategoryLink = (title: string) => {

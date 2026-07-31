@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { apiClient } from '@/api/apiClient';
+import { extractErrorMessage } from '@/utils/errorUtils';
 import type { AuthResponse, UserClaims, UserRole } from '../types/auth';
 
 interface AuthState {
@@ -9,7 +10,7 @@ interface AuthState {
     error: string | null;
     login: (email: string, password: string) => Promise<void>;
     logout: () => void;
-    register: (email: string, password: string, phoneNumber: string) => Promise<void>;
+    register: (email: string, password: string, phoneNumber?: string) => Promise<void>;
 }
 
 const decodeJwt = (token: string): UserClaims | null => {
@@ -32,8 +33,10 @@ const decodeJwt = (token: string): UserClaims | null => {
             role: (payload.role || payload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]) as UserRole,
             exp: payload.exp
         };
-    } catch (e) {
-        console.error("Ошибка парсинга JWT токена:", e);
+    } catch (e: unknown) {
+        if (e instanceof Error) {
+            console.error("Ошибка парсинга JWT токена:", e.message);
+        }
         return null;
     }
 };
@@ -57,12 +60,13 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         set({ isLoading: true, error: null });
         try {
 
-            const response = await apiClient.post<any>('/api/identity/login', {
+            const response = await apiClient.post<AuthResponse | string>('/api/identity/login', {
                 email,
                 password,
             });
 
-            const token = typeof response.data === 'string' ? response.data : response.data?.token;
+            const data = response.data;
+            const token = typeof data === 'string' ? data : (data as AuthResponse)?.token;
 
             if (!token) {
                 throw new Error('Токен не получен от сервера.');
@@ -73,8 +77,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
             const claims = decodeJwt(token);
             set({ token, user: claims, isLoading: false });
         } catch (err: unknown) {
-            const errorObj = err as Record<string, string> | null;
-            const errorMessage = errorObj?.detail || errorObj?.title || 'Ошибка авторизации системы.';
+            const errorMessage = extractErrorMessage(err, 'Ошибка авторизации системы.');
             set({ error: errorMessage, isLoading: false });
             throw err;
         }
@@ -97,8 +100,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
             await get().login(email, password);
         } catch (err: unknown) {
-            const errorObj = err as Record<string, string> | null;
-            const errorMessage = errorObj?.detail || errorObj?.title || 'Ошибка регистрации в системе.';
+            const errorMessage = extractErrorMessage(err, 'Ошибка регистрации в системе.');
             set({ error: errorMessage, isLoading: false });
             throw err;
         }

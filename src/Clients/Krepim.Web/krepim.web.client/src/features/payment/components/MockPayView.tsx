@@ -1,6 +1,8 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
+import type { FC } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { apiClient } from '@/api/apiClient';
+import { extractErrorMessage } from '@/utils/errorUtils';
 
 type PaymentStatus = 'Pending' | 'Succeeded' | 'Failed' | 'Refunded';
 
@@ -35,8 +37,8 @@ export const MockPayView: FC = () => {
             setTimeout(() => {
                 navigate(`/order/${orderId}`);
             }, 1200);
-        } catch (error) {
-            console.error('Ошибка при симуляции платежа:', error);
+        } catch (err: unknown) {
+            console.error('Ошибка при симуляции платежа:', extractErrorMessage(err, 'Неизвестная ошибка'));
             alert('Произошла ошибка связи с тестовым шлюзом.');
             setIsLoading(false);
             setSelectedStatus(null);
@@ -67,7 +69,7 @@ export const MockPayView: FC = () => {
 
                 <div className="space-y-4">
                     <button
-                        onClick={() => handlePay('Pending')}
+                        onClick={() => void handlePay('Pending')}
                         disabled={isLoading}
                         className={`${buttonBase} bg-yellow-500 hover:bg-yellow-600 text-white`}
                     >
@@ -75,7 +77,7 @@ export const MockPayView: FC = () => {
                     </button>
 
                     <button
-                        onClick={() => handlePay('Succeeded')}
+                        onClick={() => void handlePay('Succeeded')}
                         disabled={isLoading}
                         className={`${buttonBase} bg-green-500 hover:bg-green-600 text-white`}
                     >
@@ -83,7 +85,7 @@ export const MockPayView: FC = () => {
                     </button>
 
                     <button
-                        onClick={() => handlePay('Failed')}
+                        onClick={() => void handlePay('Failed')}
                         disabled={isLoading}
                         className={`${buttonBase} bg-transparent border-2 border-error text-error hover:bg-error/5`}
                     >
@@ -91,7 +93,7 @@ export const MockPayView: FC = () => {
                     </button>
 
                     <button
-                        onClick={() => handlePay('Refunded')}
+                        onClick={() => void handlePay('Refunded')}
                         disabled={isLoading}
                         className={`${buttonBase} bg-blue-500 hover:bg-blue-600 text-white`}
                     >

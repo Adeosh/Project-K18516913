@@ -16,6 +16,7 @@ export interface Product {
     name: string;
     brand: string;
     description: string;
+    categoryId?: string;
     price: number;
     imageUrls: string[];
     isActive: boolean;
@@ -31,6 +32,7 @@ export interface CatalogSearchFilters {
     brand?: string;
     page: number;
     pageSize: number;
+    categoryId?: string;
 }
 
 export interface PagedList<T> {

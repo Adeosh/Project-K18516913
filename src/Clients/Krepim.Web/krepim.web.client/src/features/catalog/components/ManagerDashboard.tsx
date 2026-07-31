@@ -1,8 +1,19 @@
-import { useState, useEffect } from 'react';
-import type { FC, SyntheticEvent } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import type { FC, SubmitEvent } from 'react';
 import { managerCatalogApi, type CreateProductCommand, type CategoryDto } from '../api/managerCatalogApi';
 import { SalesUnit, type Product, type PriceTierDto } from '../types/product';
 import { getImageUrl } from '@/utils/imageUtils';
+import { extractErrorMessage } from '@/utils/errorUtils';
+
+interface LocalAttribute {
+    id: string;
+    k: string;
+    v: string;
+}
+
+interface LocalPriceTier extends PriceTierDto {
+    id: string;
+}
 
 export const ManagerDashboard: FC = () => {
     const [categories, setCategories] = useState<CategoryDto[]>([]);
@@ -13,8 +24,8 @@ export const ManagerDashboard: FC = () => {
         standard: '', salesUnit: SalesUnit.Pcs, salesStep: 1, attributes: {}, priceTiers: []
     });
 
-    const [attrList, setAttrList] = useState<{ k: string; v: string }[]>([]);
-    const [tierList, setTierList] = useState<PriceTierDto[]>([]);
+    const [attrList, setAttrList] = useState<LocalAttribute[]>([]);
+    const [tierList, setTierList] = useState<LocalPriceTier[]>([]);
 
     const [isCreateFormOpen, setIsCreateFormOpen] = useState(false);
     const [editingProductId, setEditingProductId] = useState<string | null>(null);
@@ -33,34 +44,47 @@ export const ManagerDashboard: FC = () => {
     const [isUploading, setIsUploading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    const loadInitialData = async () => {
-        try {
-            const catsData = await managerCatalogApi.getCategories();
-            setCategories(catsData);
-            if (catsData.length > 0 && !formData.categoryId) {
-                setFormData(prev => ({ ...prev, categoryId: catsData[0].id }));
-            }
-        } catch (err) {
-            console.error('Ошибка загрузки категорий', err);
-        }
-    };
-
-    const fetchProductsList = async (page: number, term: string) => {
+    const fetchProductsList = useCallback(async (page: number, term: string) => {
         setIsListLoading(true);
         try {
             const prodsData = await managerCatalogApi.searchManagedProducts(term, page);
             setProducts(prodsData.items);
-        } catch (err) {
-            console.error('Ошибка загрузки товаров', err);
+        } catch (err: unknown) {
+            console.error(extractErrorMessage(err, 'Ошибка загрузки товаров'));
         } finally {
             setIsListLoading(false);
         }
-    };
+    }, []);
+
+    const fetchCategoriesData = useCallback(async () => {
+        try {
+            return await managerCatalogApi.getCategories();
+        } catch (err: unknown) {
+            console.error(extractErrorMessage(err, 'Ошибка загрузки категорий'));
+            return [];
+        }
+    }, []);
 
     useEffect(() => {
-        void loadInitialData();
-        void fetchProductsList(1, '');
-    }, []);
+        let isMounted = true;
+
+        const init = async () => {
+            const catsData = await fetchCategoriesData();
+
+            if (isMounted && catsData.length > 0) {
+                setCategories(catsData);
+                setFormData(prev => prev.categoryId ? prev : { ...prev, categoryId: catsData[0].id });
+            }
+
+            if (isMounted) {
+                await fetchProductsList(1, '');
+            }
+        };
+
+        void init();
+
+        return () => { isMounted = false; };
+    }, [fetchCategoriesData, fetchProductsList]);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -68,7 +92,7 @@ export const ManagerDashboard: FC = () => {
             void fetchProductsList(1, searchQuery);
         }, 500);
         return () => clearTimeout(timer);
-    }, [searchQuery]);
+    }, [searchQuery, fetchProductsList]);
 
     const handlePageChange = (newPage: number) => {
         setCurrentPage(newPage);
@@ -83,20 +107,16 @@ export const ManagerDashboard: FC = () => {
         }));
     };
 
-    const addAttribute = () => setAttrList([...attrList, { k: '', v: '' }]);
-    const removeAttribute = (index: number) => setAttrList(attrList.filter((_, i) => i !== index));
-    const updateAttribute = (index: number, field: 'k' | 'v', value: string) => {
-        const newList = [...attrList];
-        newList[index][field] = value;
-        setAttrList(newList);
+    const addAttribute = () => setAttrList(prev => [...prev, { id: crypto.randomUUID(), k: '', v: '' }]);
+    const removeAttribute = (id: string) => setAttrList(prev => prev.filter(a => a.id !== id));
+    const updateAttribute = (id: string, field: 'k' | 'v', value: string) => {
+        setAttrList(prev => prev.map(a => a.id === id ? { ...a, [field]: value } : a));
     };
 
-    const addPriceTier = () => setTierList([...tierList, { minQuantity: 0, amount: 0, currency: 'RUB' }]);
-    const removePriceTier = (index: number) => setTierList(tierList.filter((_, i) => i !== index));
-    const updatePriceTier = (index: number, field: keyof PriceTierDto, value: number | string) => {
-        const newList = [...tierList];
-        newList[index] = { ...newList[index], [field]: value };
-        setTierList(newList);
+    const addPriceTier = () => setTierList(prev => [...prev, { id: crypto.randomUUID(), minQuantity: 0, amount: 0, currency: 'RUB' }]);
+    const removePriceTier = (id: string) => setTierList(prev => prev.filter(t => t.id !== id));
+    const updatePriceTier = (id: string, field: keyof PriceTierDto, value: number | string) => {
+        setTierList(prev => prev.map(t => t.id === id ? { ...t, [field]: value } : t));
     };
 
     const handleEditClick = (product: Product) => {
@@ -112,8 +132,8 @@ export const ManagerDashboard: FC = () => {
             salesStep: product.salesStep || 1,
         });
 
-        setAttrList(Object.entries(product.attributes || {}).map(([k, v]) => ({ k, v })));
-        setTierList(product.priceTiers || []);
+        setAttrList(Object.entries(product.attributes || {}).map(([k, v]) => ({ id: crypto.randomUUID(), k, v })));
+        setTierList((product.priceTiers || []).map(t => ({ ...t, id: crypto.randomUUID() })));
 
         setEditingProductId(product.id);
         setIsCreateFormOpen(true);
@@ -132,20 +152,20 @@ export const ManagerDashboard: FC = () => {
         setError(null);
     };
 
-    const handleCreateCategory = async (e: SyntheticEvent) => {
+    const handleCreateCategory = async (e: SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!newCategoryName.trim()) return;
         setIsCategorySubmitting(true);
         try {
             const newId = await managerCatalogApi.createCategory(newCategoryName, newCategoryDescription);
-            const catsData = await managerCatalogApi.getCategories();
+            const catsData = await fetchCategoriesData();
             setCategories(catsData);
             setFormData(prev => ({ ...prev, categoryId: newId }));
             setIsCategoryModalOpen(false);
             setNewCategoryName('');
             setNewCategoryDescription('');
-        } catch (err) {
-            alert('Ошибка создания категории');
+        } catch (err: unknown) {
+            alert(extractErrorMessage(err, 'Ошибка создания категории'));
         } finally {
             setIsCategorySubmitting(false);
         }
@@ -157,13 +177,13 @@ export const ManagerDashboard: FC = () => {
 
         try {
             await managerCatalogApi.deleteCategory(categoryId);
-            await loadInitialData();
+            const catsData = await fetchCategoriesData();
+            setCategories(catsData);
             if (formData.categoryId === categoryId) {
-                const catsData = await managerCatalogApi.getCategories();
                 setFormData(prev => ({ ...prev, categoryId: catsData[0]?.id || '' }));
             }
-        } catch (err) {
-            alert('Не удалось удалить категорию. Возможно, у вас нет прав.');
+        } catch (err: unknown) {
+            alert(extractErrorMessage(err, 'Не удалось удалить категорию. Возможно, у вас нет прав.'));
         }
     };
 
@@ -174,8 +194,8 @@ export const ManagerDashboard: FC = () => {
         try {
             const urls = await managerCatalogApi.uploadImages(e.target.files);
             setFormData(prev => ({ ...prev, imageUrls: [...(prev.imageUrls || []), ...urls] }));
-        } catch (err) {
-            setError('Ошибка загрузки изображений.');
+        } catch (err: unknown) {
+            setError(extractErrorMessage(err, 'Ошибка загрузки изображений.'));
         } finally {
             setIsUploading(false);
             e.target.value = '';
@@ -186,7 +206,7 @@ export const ManagerDashboard: FC = () => {
         setFormData(prev => ({ ...prev, imageUrls: (prev.imageUrls || []).filter((_, index) => index !== indexToRemove) }));
     };
 
-    const handleSubmit = async (e: SyntheticEvent) => {
+    const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError(null);
         if (!formData.name.trim() || !formData.sku.trim() || !formData.categoryId) {
@@ -201,11 +221,15 @@ export const ManagerDashboard: FC = () => {
             }
         });
 
+        const finalPriceTiers = tierList
+            .filter(t => t.minQuantity > 0 && (t.amount ?? 0) > 0)
+            .map(({ id: _id, ...rest }) => rest);
+
         const payload: CreateProductCommand = {
             ...formData,
             salesUnit: Number(formData.salesUnit),
             attributes: finalAttributes,
-            priceTiers: tierList.filter(t => t.minQuantity > 0 && t.amount > 0)
+            priceTiers: finalPriceTiers
         };
 
         setIsSubmitting(true);
@@ -222,8 +246,8 @@ export const ManagerDashboard: FC = () => {
                 void fetchProductsList(1, searchQuery);
             }, 400);
 
-        } catch (err: any) {
-            setError(err.detail || 'Ошибка сохранения товара');
+        } catch (err: unknown) {
+            setError(extractErrorMessage(err, 'Ошибка сохранения товара'));
         } finally {
             setIsSubmitting(false);
         }
@@ -237,8 +261,8 @@ export const ManagerDashboard: FC = () => {
                 await managerCatalogApi.publishProduct(id);
             }
             setProducts(prev => prev.map(p => p.id === id ? { ...p, isActive: !isActive } : p));
-        } catch (err) {
-            alert('Не удалось изменить статус товара.');
+        } catch (err: unknown) {
+            alert(extractErrorMessage(err, 'Не удалось изменить статус товара.'));
         }
     };
 
@@ -247,8 +271,8 @@ export const ManagerDashboard: FC = () => {
         try {
             await managerCatalogApi.deleteProduct(id);
             setProducts(prev => prev.filter(p => p.id !== id));
-        } catch (err) {
-            alert('Ошибка удаления товара');
+        } catch (err: unknown) {
+            alert(extractErrorMessage(err, 'Ошибка удаления товара'));
         }
     };
 
@@ -306,7 +330,7 @@ export const ManagerDashboard: FC = () => {
                                             {categories.length === 0 ? <option value="" disabled>Нет категорий</option> : categories.map(cat => <option key={cat.id} value={cat.id}>{cat.name}</option>)}
                                         </select>
                                         <button type="button" onClick={() => setIsCategoryModalOpen(true)} className="px-4 py-3 bg-surface border border-border rounded-xl text-text-muted hover:border-accent hover:text-accent font-bold transition-all" title="Создать категорию">+</button>
-                                        <button type="button" onClick={() => handleDeleteCategory(formData.categoryId)} disabled={!formData.categoryId || categories.length === 0} className="px-4 py-3 bg-error/10 border border-error/20 text-error rounded-xl hover:bg-error/20 font-bold transition-all disabled:opacity-50" title="Удалить категорию">🗑️</button>
+                                        <button type="button" onClick={() => void handleDeleteCategory(formData.categoryId)} disabled={!formData.categoryId || categories.length === 0} className="px-4 py-3 bg-error/10 border border-error/20 text-error rounded-xl hover:bg-error/20 font-bold transition-all disabled:opacity-50" title="Удалить категорию">🗑️</button>
                                     </div>
                                 </div>
                             </div>
@@ -343,17 +367,17 @@ export const ManagerDashboard: FC = () => {
                                 <p className="text-sm text-text-muted italic">Оптовые цены не заданы. Будет использоваться базовая цена.</p>
                             ) : (
                                 <div className="space-y-3">
-                                    {tierList.map((tier, idx) => (
-                                        <div key={idx} className="flex gap-3 items-center bg-surface p-3 border border-border rounded-xl">
+                                    {tierList.map((tier) => (
+                                        <div key={tier.id} className="flex gap-3 items-center bg-surface p-3 border border-border rounded-xl">
                                             <div className="flex-1 space-y-1">
                                                 <label className="text-xs font-bold text-text-muted">От кол-ва</label>
-                                                <input type="number" value={tier.minQuantity || ''} onChange={(e) => updatePriceTier(idx, 'minQuantity', parseFloat(e.target.value) || 0)} className="w-full px-3 py-2 bg-bg border border-border rounded-lg text-sm outline-none focus:border-accent" min="1" placeholder="Напр: 1000" />
+                                                <input type="number" value={tier.minQuantity || ''} onChange={(e) => updatePriceTier(tier.id, 'minQuantity', parseFloat(e.target.value) || 0)} className="w-full px-3 py-2 bg-bg border border-border rounded-lg text-sm outline-none focus:border-accent" min="1" placeholder="Напр: 1000" />
                                             </div>
                                             <div className="flex-1 space-y-1">
                                                 <label className="text-xs font-bold text-text-muted">Цена за ед.</label>
-                                                <input type="number" value={tier.amount || ''} onChange={(e) => updatePriceTier(idx, 'amount', parseFloat(e.target.value) || 0)} className="w-full px-3 py-2 bg-bg border border-border rounded-lg text-sm outline-none focus:border-accent" min="0" step="0.01" placeholder="Напр: 1.50" />
+                                                <input type="number" value={tier.amount || ''} onChange={(e) => updatePriceTier(tier.id, 'amount', parseFloat(e.target.value) || 0)} className="w-full px-3 py-2 bg-bg border border-border rounded-lg text-sm outline-none focus:border-accent" min="0" step="0.01" placeholder="Напр: 1.50" />
                                             </div>
-                                            <button type="button" onClick={() => removePriceTier(idx)} className="mt-5 w-10 h-10 flex items-center justify-center bg-error/10 text-error rounded-lg hover:bg-error hover:text-surface transition-colors">✕</button>
+                                            <button type="button" onClick={() => removePriceTier(tier.id)} className="mt-5 w-10 h-10 flex items-center justify-center bg-error/10 text-error rounded-lg hover:bg-error hover:text-surface transition-colors">✕</button>
                                         </div>
                                     ))}
                                 </div>
@@ -369,11 +393,11 @@ export const ManagerDashboard: FC = () => {
                                 <p className="text-sm text-text-muted italic">Характеристики не заданы.</p>
                             ) : (
                                 <div className="space-y-3">
-                                    {attrList.map((attr, idx) => (
-                                        <div key={idx} className="flex gap-3">
-                                            <input type="text" value={attr.k} onChange={(e) => updateAttribute(idx, 'k', e.target.value)} placeholder="Свойство (напр. Диаметр)" className="flex-1 px-4 py-2 bg-surface border border-border rounded-xl text-sm outline-none focus:border-accent" />
-                                            <input type="text" value={attr.v} onChange={(e) => updateAttribute(idx, 'v', e.target.value)} placeholder="Значение (напр. M8)" className="flex-1 px-4 py-2 bg-surface border border-border rounded-xl text-sm outline-none focus:border-accent" />
-                                            <button type="button" onClick={() => removeAttribute(idx)} className="w-10 h-10 flex items-center justify-center bg-error/10 text-error rounded-xl hover:bg-error hover:text-surface transition-colors">✕</button>
+                                    {attrList.map((attr) => (
+                                        <div key={attr.id} className="flex gap-3">
+                                            <input type="text" value={attr.k} onChange={(e) => updateAttribute(attr.id, 'k', e.target.value)} placeholder="Свойство (напр. Диаметр)" className="flex-1 px-4 py-2 bg-surface border border-border rounded-xl text-sm outline-none focus:border-accent" />
+                                            <input type="text" value={attr.v} onChange={(e) => updateAttribute(attr.id, 'v', e.target.value)} placeholder="Значение (напр. M8)" className="flex-1 px-4 py-2 bg-surface border border-border rounded-xl text-sm outline-none focus:border-accent" />
+                                            <button type="button" onClick={() => removeAttribute(attr.id)} className="w-10 h-10 flex items-center justify-center bg-error/10 text-error rounded-xl hover:bg-error hover:text-surface transition-colors">✕</button>
                                         </div>
                                     ))}
                                 </div>
@@ -388,7 +412,7 @@ export const ManagerDashboard: FC = () => {
                                     <label className="text-sm font-bold text-text-muted">Изображения товара</label>
                                     <label className="cursor-pointer bg-bg border border-border px-4 py-2 rounded-lg hover:border-accent text-sm font-bold transition-all text-text">
                                         {isUploading ? 'Загрузка...' : 'Выбрать файлы'}
-                                        <input type="file" multiple accept="image/*" onChange={handleImageUpload} className="hidden" disabled={isUploading} />
+                                        <input type="file" multiple accept="image/*" onChange={(e) => void handleImageUpload(e)} className="hidden" disabled={isUploading} />
                                     </label>
                                 </div>
                                 {(formData.imageUrls || []).length > 0 && (
@@ -396,7 +420,7 @@ export const ManagerDashboard: FC = () => {
                                         {(formData.imageUrls || []).map((url, idx) => (
                                             <div key={idx} className="relative w-24 h-24 flex-shrink-0 border border-border rounded-lg overflow-hidden group">
                                                 <img src={getImageUrl(url)} alt="Preview" className="w-full h-full object-cover" />
-                                                <button type="button" onClick={() => removeImage(idx)} className="...">✕</button>
+                                                <button type="button" onClick={() => removeImage(idx)} className="absolute top-1 right-1 w-6 h-6 bg-error text-surface rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-xs font-bold">✕</button>
                                             </div>
                                         ))}
                                     </div>
@@ -462,15 +486,15 @@ export const ManagerDashboard: FC = () => {
                                                 Ред.
                                             </button>
                                             {product.isActive ? (
-                                                <button onClick={() => handleToggleStatus(product.id, true)} className="text-xs bg-orange-50 text-orange-600 border border-orange-200 px-3 py-1.5 rounded-lg hover:bg-orange-100 font-semibold transition-colors">
+                                                <button onClick={() => void handleToggleStatus(product.id, true)} className="text-xs bg-orange-50 text-orange-600 border border-orange-200 px-3 py-1.5 rounded-lg hover:bg-orange-100 font-semibold transition-colors">
                                                     Скрыть
                                                 </button>
                                             ) : (
-                                                <button onClick={() => handleToggleStatus(product.id, false)} className="text-xs bg-green-50 text-green-600 border border-green-200 px-3 py-1.5 rounded-lg hover:bg-green-100 font-semibold transition-colors">
+                                                <button onClick={() => void handleToggleStatus(product.id, false)} className="text-xs bg-green-50 text-green-600 border border-green-200 px-3 py-1.5 rounded-lg hover:bg-green-100 font-semibold transition-colors">
                                                     Опубл.
                                                 </button>
                                             )}
-                                            <button onClick={() => handleDeleteProduct(product.id)} className="text-xs bg-error/10 text-error px-3 py-1.5 rounded-lg hover:bg-error/20 font-semibold transition-colors">
+                                            <button onClick={() => void handleDeleteProduct(product.id)} className="text-xs bg-error/10 text-error px-3 py-1.5 rounded-lg hover:bg-error/20 font-semibold transition-colors">
                                                 Удалить
                                             </button>
                                         </td>

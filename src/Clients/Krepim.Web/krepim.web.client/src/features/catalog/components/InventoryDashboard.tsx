@@ -49,7 +49,7 @@ export const InventoryDashboard: FC = () => {
         void loadProductsAndStock(newPage, searchQuery);
     };
 
-    const handleCreditStock = async (e: React.FormEvent) => {
+    const handleCreditStock = async (e: React.SubmitEvent) => {
         e.preventDefault();
         if (!selectedProduct) return;
 

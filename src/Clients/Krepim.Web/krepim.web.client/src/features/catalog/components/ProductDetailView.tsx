@@ -1,17 +1,39 @@
 import { useState, useEffect, useMemo } from 'react';
 import type { FC } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { catalogApi } from '../api/catalogApi';
 import { inventoryApi } from '../api/inventoryApi';
-import type { Product } from '../types/product';
+import type { Product, PriceTierDto } from '../types/product';
 import { useBasketStore } from '../../basket/store/basketStore';
 import { getImageUrl } from '@/utils/imageUtils';
+import { extractErrorMessage } from '@/utils/errorUtils';
 
-const parseJsonField = (field: any, fallback: any) => {
+interface RawPriceTier {
+    minQuantity?: number;
+    MinQuantity?: number;
+    amount?: number;
+    Amount?: number;
+    price?: { amount?: number };
+    Price?: { Amount?: number };
+    currency?: string;
+    Currency?: string;
+}
+
+type ExtendedProduct = Product & {
+    PriceTiers?: string | unknown[];
+    Attributes?: string | Record<string, string>;
+    Price?: number;
+};
+
+const parseJsonField = <T,>(field: unknown, fallback: T): T => {
     if (typeof field === 'string') {
-        try { return JSON.parse(field); } catch { return fallback; }
+        try {
+            return JSON.parse(field) as T;
+        } catch {
+            return fallback;
+        }
     }
-    return field || fallback;
+    return (field as T) || fallback;
 };
 
 const getToggleLabels = (unit: number) => {
@@ -39,6 +61,8 @@ export const ProductDetailView: FC = () => {
 
     useEffect(() => {
         if (!id) return;
+        let isMounted = true;
+
         const loadData = async () => {
             setIsLoading(true);
             try {
@@ -47,25 +71,47 @@ export const ProductDetailView: FC = () => {
                     inventoryApi.getStock(id)
                 ]);
 
-                catalogData.priceTiers = parseJsonField(catalogData.priceTiers ?? (catalogData as any).PriceTiers, []);
-                catalogData.attributes = parseJsonField(catalogData.attributes ?? (catalogData as any).Attributes, {});
+                if (!isMounted) return;
 
-                setProduct(catalogData);
+                const extProduct = catalogData as ExtendedProduct;
+                const parsedTiers = parseJsonField<RawPriceTier[]>(extProduct.priceTiers ?? extProduct.PriceTiers, []);
+                const parsedAttributes = parseJsonField<Record<string, string>>(extProduct.attributes ?? extProduct.Attributes, {});
+                const normalizedTiers: PriceTierDto[] = parsedTiers.map(t => ({
+                    minQuantity: t.minQuantity ?? t.MinQuantity ?? 0,
+                    amount: t.amount ?? t.Amount ?? t.price?.amount ?? t.Price?.Amount ?? 0,
+                    currency: t.currency ?? t.Currency ?? 'RUB'
+                }));
+
+                const safeProduct: Product = {
+                    ...catalogData,
+                    price: extProduct.price ?? extProduct.Price ?? 0,
+                    priceTiers: normalizedTiers,
+                    attributes: parsedAttributes
+                };
+
+                setProduct(safeProduct);
                 setAvailableStock(stockData);
 
-                if (catalogData.imageUrls && catalogData.imageUrls.length > 0) {
-                    setMainImage(catalogData.imageUrls[0]);
+                if (safeProduct.imageUrls && safeProduct.imageUrls.length > 0) {
+                    setMainImage(safeProduct.imageUrls[0]);
                 }
 
                 setInputQty('0');
                 setIsPackageMode(false);
-            } catch (err) {
-                console.error('Ошибка загрузки данных товара', err);
+            } catch (err: unknown) {
+                if (isMounted) {
+                    console.error(extractErrorMessage(err, 'Ошибка загрузки данных товара'));
+                }
             } finally {
-                setIsLoading(false);
+                if (isMounted) {
+                    setIsLoading(false);
+                }
             }
         };
+
         void loadData();
+
+        return () => { isMounted = false; };
     }, [id]);
 
     const quantity = useMemo(() => {
@@ -75,29 +121,18 @@ export const ProductDetailView: FC = () => {
     }, [inputQty, product]);
 
     const activeTier = useMemo(() => {
-        if (!product) return null;
-        const tiers = product.priceTiers || (product as any).PriceTiers || [];
-        if (!Array.isArray(tiers) || tiers.length === 0) return null;
+        if (!product || !product.priceTiers || product.priceTiers.length === 0) return null;
 
-        const sortedTiers = [...tiers].sort((a: any, b: any) => {
-            const minA = a.minQuantity ?? a.MinQuantity ?? 0;
-            const minB = b.minQuantity ?? b.MinQuantity ?? 0;
-            return minB - minA;
-        });
-
-        return sortedTiers.find((t: any) => {
-            const minQ = t.minQuantity ?? t.MinQuantity ?? 0;
-            return quantity >= minQ;
-        }) || null;
+        const sortedTiers = [...product.priceTiers].sort((a, b) => b.minQuantity - a.minQuantity);
+        return sortedTiers.find(t => quantity >= t.minQuantity) || null;
     }, [product, quantity]);
 
     const currentPrice = useMemo(() => {
         if (!product) return 0;
-        const basePrice = product.price ?? (product as any).Price ?? 0;
+        const basePrice = product.price || 0;
         if (!activeTier) return basePrice;
 
-        const tierPrice = activeTier.amount ?? activeTier.Amount ?? activeTier.price?.amount ?? activeTier.Price?.Amount ?? 0;
-        return tierPrice > 0 ? tierPrice : basePrice;
+        return activeTier.amount > 0 ? activeTier.amount : basePrice;
     }, [product, activeTier]);
 
     const currentStep = useMemo(() => {
@@ -219,7 +254,7 @@ export const ProductDetailView: FC = () => {
 
                                 {activeTier && (
                                     <div className="text-sm text-accent font-bold mt-1 transition-all duration-300">
-                                        С учетом скидки (от {activeTier.minQuantity ?? (activeTier as any).MinQuantity} {getUnitText(product.salesUnit)})
+                                        С учетом скидки (от {activeTier.minQuantity} {getUnitText(product.salesUnit)})
                                     </div>
                                 )}
 
@@ -285,7 +320,7 @@ export const ProductDetailView: FC = () => {
                                                 ${quantity < 1 || availableStock === 0
                                                 ? 'bg-border text-text-muted cursor-not-allowed opacity-60'
                                                 : 'bg-accent text-surface hover:shadow-lg hover:bg-accent/90 hover:-translate-y-0.5'}`}
-                                        >
+                                    >
                                         {availableStock === 0 ? 'Нет в наличии' : 'В корзину'}
                                     </button>
                                 </div>
@@ -296,15 +331,13 @@ export const ProductDetailView: FC = () => {
                             <div className="mb-8">
                                 <h3 className="text-sm font-bold text-text-muted mb-3 uppercase tracking-wider">Оптовые скидки</h3>
                                 <div className="flex flex-wrap gap-3">
-                                    {product.priceTiers.map((tier: any, idx: number) => {
-                                        const minQty = tier.minQuantity ?? tier.MinQuantity;
-                                        const tierPrice = tier.amount ?? tier.Amount ?? tier.price?.amount ?? tier.Price?.Amount ?? 0;
-                                        const isActive = activeTier?.minQuantity === minQty || (activeTier as any)?.MinQuantity === minQty;
+                                    {product.priceTiers.map((tier: PriceTierDto, idx: number) => {
+                                        const isActive = activeTier?.minQuantity === tier.minQuantity;
 
                                         return (
                                             <div key={idx} className={`bg-surface border px-4 py-2 rounded-xl flex items-center gap-3 transition-colors duration-300 ${isActive ? 'border-accent bg-accent/5' : 'border-border'}`}>
-                                                <span className="text-sm text-text-muted font-medium">от {minQty} {getUnitText(product.salesUnit)}</span>
-                                                <span className="text-sm font-bold text-text">{Number(tierPrice).toLocaleString('ru-RU')} ₽</span>
+                                                <span className="text-sm text-text-muted font-medium">от {tier.minQuantity} {getUnitText(product.salesUnit)}</span>
+                                                <span className="text-sm font-bold text-text">{Number(tier.amount).toLocaleString('ru-RU')} ₽</span>
                                             </div>
                                         );
                                     })}

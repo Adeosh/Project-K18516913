@@ -15,9 +15,19 @@ export const inventoryApi = {
         try {
             const response = await apiClient.get<StockDto>(`/api/inventory/${productId}`);
             return response.data?.availableQuantity ?? 0;
-        } catch (error: any) {
-            if (error.response?.status === 404) return 0;
-            console.error('Ошибка при получении остатков:', error);
+        } catch (error: unknown) {
+            const err = error as { response?: { status?: number } };
+
+            if (err.response?.status === 404) {
+                return 0;
+            }
+
+            if (error instanceof Error) {
+                console.error('Ошибка при получении остатков:', error.message);
+            } else {
+                console.error('Неизвестная ошибка при получении остатков');
+            }
+
             return 0;
         }
     },

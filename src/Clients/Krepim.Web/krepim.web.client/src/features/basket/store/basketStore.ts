@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { apiClient } from '@/api/apiClient';
+import { extractErrorMessage } from '@/utils/errorUtils';
 import type { CustomerBasket, BasketItem } from '../types/basket';
 
 interface BasketState {
@@ -18,7 +19,7 @@ interface BasketState {
         latitude: number;
         longitude: number;
         flat: string | null
-    }) => Promise<void>;
+    }) => Promise<string | null>;
 }
 
 export const useBasketStore = create<BasketState>((set, get) => ({
@@ -32,8 +33,7 @@ export const useBasketStore = create<BasketState>((set, get) => ({
             const response = await apiClient.get<CustomerBasket>('/api/basket');
             set({ basket: response.data, isLoading: false });
         } catch (err: unknown) {
-            const errorObj = err as Record<string, string> | null;
-            set({ error: errorObj?.detail || 'Не удалось загрузить корзину.', isLoading: false });
+            set({ error: extractErrorMessage(err, 'Не удалось загрузить корзину.'), isLoading: false });
         }
     },
 
@@ -115,9 +115,9 @@ export const useBasketStore = create<BasketState>((set, get) => ({
             
             set({ basket: null, isLoading: false });
             
-            return response.data.orderId; 
-        } catch (err: any) {
-            set({ error: err.message || 'Ошибка', isLoading: false });
+            return response.data.orderId;
+        } catch (err: unknown) {
+            set({ error: extractErrorMessage(err, 'Ошибка при оформлении заказа'), isLoading: false });
             return null;
         }
     },

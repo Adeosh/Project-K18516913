@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { FC } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { orderApi, type OrderDto, type OrderItemDto } from '../api/orderApi';
@@ -6,19 +6,28 @@ import { catalogApi } from '../../catalog/api/catalogApi';
 import { paymentApi } from '../../payment/api/paymentApi';
 import type { Product } from '../../catalog/types/product';
 import { getImageUrl } from '@/utils/imageUtils';
+import { extractErrorMessage } from '@/utils/errorUtils';
 
 const OrderItemCard: FC<{ item: OrderItemDto }> = ({ item }) => {
     const [product, setProduct] = useState<Product | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        let isMounted = true;
+
         catalogApi.getById(item.productId)
-            .then(setProduct)
+            .then(prod => {
+                if (isMounted) setProduct(prod);
+            })
             .catch(err => {
                 console.error("Ошибка подгрузки данных товара для заказа:", err);
-                setProduct(null);
+                if (isMounted) setProduct(null);
             })
-            .finally(() => setIsLoading(false));
+            .finally(() => {
+                if (isMounted) setIsLoading(false);
+            });
+
+        return () => { isMounted = false; };
     }, [item.productId]);
 
     const isDeleted = !isLoading && !product;
@@ -91,6 +100,7 @@ export const OrderDetailView: FC = () => {
 
     useEffect(() => {
         if (!id) return;
+        let isMounted = true;
         let retries = 0;
         const maxRetries = 5;
         const retryDelay = 1500;
@@ -98,18 +108,22 @@ export const OrderDetailView: FC = () => {
         const fetchOrder = async () => {
             try {
                 const data = await orderApi.getById(id);
-                setOrder(data);
-                setIsLoading(false);
-            } catch (error) {
+                if (isMounted) {
+                    setOrder(data);
+                    setIsLoading(false);
+                }
+            } catch {
                 if (retries < maxRetries) {
                     retries++;
                     setTimeout(fetchOrder, retryDelay);
-                } else {
+                } else if (isMounted) {
                     setIsLoading(false);
                 }
             }
         };
         void fetchOrder();
+
+        return () => { isMounted = false; };
     }, [id]);
 
     const handlePayment = async () => {
@@ -135,12 +149,12 @@ export const OrderDetailView: FC = () => {
                 } else {
                     throw new Error("Ссылка не получена");
                 }
-            } catch (error: any) {
+            } catch (err: unknown) {
                 if (attempts < maxAttempts) {
                     attempts++;
                     setTimeout(tryGetUrl, intervalDelay);
                 } else {
-                    console.error("Ошибка при получении ссылки на оплату:", error);
+                    console.error("Ошибка при получении ссылки на оплату:", extractErrorMessage(err, 'Неизвестная ошибка'));
                     setPaymentError("Платежная система пока недоступна. Пожалуйста, попробуйте нажать кнопку еще раз чуть позже.");
                     setIsPaymentLoading(false);
                 }
@@ -204,7 +218,7 @@ export const OrderDetailView: FC = () => {
                         {canBePaid && (
                             <div className="mt-8 pt-6 border-t border-border/50 flex flex-col items-center justify-center">
                                 <button
-                                    onClick={handlePayment}
+                                    onClick={() => void handlePayment()}
                                     disabled={isPaymentLoading}
                                     className="w-full sm:w-auto px-10 py-3.5 bg-[#9E2F1F] hover:bg-[#85281a] text-white font-bold text-lg rounded-xl shadow-md active:scale-95 transition-all disabled:opacity-70 disabled:active:scale-100"
                                 >

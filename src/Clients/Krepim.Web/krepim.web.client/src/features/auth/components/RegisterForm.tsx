@@ -1,4 +1,4 @@
-import type { FC, FormEvent } from 'react';
+import type { FC, SubmitEvent } from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
@@ -38,7 +38,7 @@ export const RegisterForm: FC = () => {
         setPhoneNumber(digits.length === 0 ? '' : formatted);
     };
 
-    const handleSubmit = async (e: FormEvent) => {
+    const handleSubmit = async (e: SubmitEvent) => {
         e.preventDefault();
         setValidationError('');
 
@@ -48,7 +48,7 @@ export const RegisterForm: FC = () => {
         }
 
         try {
-            await register(email, password, phoneNumber || null);
+            await register(email, password, phoneNumber || undefined);
             navigate('/');
         }
         catch { // обрабатывается в Zustand

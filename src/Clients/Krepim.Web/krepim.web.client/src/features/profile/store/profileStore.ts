@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { profileApi, type UserProfile, type UpdateProfilePayload } from '../api/profileApi';
+import { extractErrorMessage } from '@/utils/errorUtils';
 
 interface ProfileState {
     profile: UserProfile | null;
@@ -19,8 +20,11 @@ export const useProfileStore = create<ProfileState>((set) => ({
         try {
             const profile = await profileApi.getProfile();
             set({ profile, isLoading: false });
-        } catch (error: any) {
-            set({ error: error.message, isLoading: false });
+        } catch (err: unknown) {
+            set({
+                error: extractErrorMessage(err, 'Не удалось загрузить профиль'),
+                isLoading: false
+            });
         }
     },
 
@@ -30,9 +34,12 @@ export const useProfileStore = create<ProfileState>((set) => ({
             await profileApi.updateProfile(payload);
             const updatedProfile = await profileApi.getProfile();
             set({ profile: updatedProfile, isLoading: false });
-        } catch (error: any) {
-            set({ error: error.message, isLoading: false });
-            throw error;
+        } catch (err: unknown) {
+            set({
+                error: extractErrorMessage(err, 'Не удалось обновить профиль'),
+                isLoading: false
+            });
+            throw err;
         }
     }
 }));

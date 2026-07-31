@@ -1,79 +1,108 @@
 import { useState, useEffect } from 'react';
-import type { FC, SyntheticEvent } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import type { FC, SubmitEvent, ChangeEvent } from 'react';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { apiClient } from '@/api/apiClient';
 import { catalogApi } from '../api/catalogApi';
 import { ProductCard } from './ProductCard';
 import type { Product } from '../types/product';
 import { useBasketStore } from '../../basket/store/basketStore';
 import type { CategoryDto } from '../api/managerCatalogApi';
+import { extractErrorMessage } from '@/utils/errorUtils';
+
+interface CategoryResponse {
+    value?: CategoryDto[];
+    items?: CategoryDto[];
+}
 
 export const CatalogView: FC = () => {
     const [searchParams] = useSearchParams();
-    const [selectedCategory, setSelectedCategory] = useState<string>(searchParams.get('categoryId') || '');
-    const [products, setProducts] = useState<Product[]>([]);
+    const navigate = useNavigate();
+
+    const categoryIdFromUrl = searchParams.get('categoryId') || '';
+    const [selectedCategory, setSelectedCategory] = useState<string>(categoryIdFromUrl);
     const [searchTerm, setSearchTerm] = useState('');
+    const [appliedSearchTerm, setAppliedSearchTerm] = useState('');
+
     const [categories, setCategories] = useState<CategoryDto[]>([]);
+    const [products, setProducts] = useState<Product[]>([]);
     const [page, setPage] = useState(1);
     const [totalCount, setTotalCount] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
+
     const addItemToBasket = useBasketStore((state) => state.addItem);
 
+    const [prevUrlCategoryId, setPrevUrlCategoryId] = useState(categoryIdFromUrl);
+    if (categoryIdFromUrl !== prevUrlCategoryId) {
+        setPrevUrlCategoryId(categoryIdFromUrl);
+        setSelectedCategory(categoryIdFromUrl);
+        setPage(1);
+    }
+
     useEffect(() => {
-        const init = async () => {
+        const fetchCategories = async () => {
             try {
-                const response = await apiClient.get<any>('/api/products/categories');
-                const data = response.data?.value || response.data;
-                if (Array.isArray(data)) {
-                    setCategories(data);
-                }
-            } catch (e) {
-                console.error('Ошибка загрузки категорий', e);
+                const response = await apiClient.get<CategoryDto[] | CategoryResponse>('/api/products/categories');
+                const data = response.data;
+                const categoriesData = Array.isArray(data) ? data : (data?.value || data?.items || []);
+                setCategories(categoriesData);
+            } catch (err: unknown) {
+                console.error(extractErrorMessage(err, 'Ошибка загрузки категорий'));
             }
         };
-        void init();
+        void fetchCategories();
     }, []);
 
     useEffect(() => {
-        const categoryIdFromUrl = searchParams.get('categoryId') || '';
-        if (categoryIdFromUrl !== selectedCategory) {
-            setSelectedCategory(categoryIdFromUrl);
-        }
-    }, [searchParams]);
-
-    const fetchProducts = async (pageNumber: number, query: string, catId: string) => {
-        setIsLoading(true);
-        try {
-            const data = await catalogApi.search({
-                searchTerm: query.trim() || undefined,
-                categoryId: catId || undefined,
-                page: pageNumber,
-                pageSize: 8,
-            });
-            setProducts(data.items);
-            setTotalCount(data.totalCount);
-        } catch {
-            setProducts([]);
-            setTotalCount(0);
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
-    useEffect(() => {
         let isMounted = true;
-        const loadData = async () => {
-            if (isMounted) await fetchProducts(page, searchTerm, selectedCategory);
-        };
-        void loadData();
-        return () => { isMounted = false; };
-    }, [page, selectedCategory]);
 
-    const handleSearchSubmit = (e: SyntheticEvent) => {
+        const loadProducts = async () => {
+            setIsLoading(true);
+            try {
+                const data = await catalogApi.search({
+                    searchTerm: appliedSearchTerm.trim() || undefined,
+                    categoryId: selectedCategory || undefined,
+                    page: page,
+                    pageSize: 8,
+                });
+
+                if (isMounted) {
+                    setProducts(data.items);
+                    setTotalCount(data.totalCount);
+                }
+            } catch (err: unknown) {
+                if (isMounted) {
+                    console.error(extractErrorMessage(err, 'Ошибка поиска товаров'));
+                    setProducts([]);
+                    setTotalCount(0);
+                }
+            } finally {
+                if (isMounted) setIsLoading(false);
+            }
+        };
+
+        void loadProducts();
+
+        return () => { isMounted = false; };
+    }, [page, selectedCategory, appliedSearchTerm]);
+
+    const handleSearchSubmit = (e: SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
         setPage(1);
+        setAppliedSearchTerm(searchTerm);
         navigate('/catalog', { replace: true });
-        void fetchProducts(1, searchTerm, selectedCategory);
+    };
+
+    const handleCategoryChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        const newCatId = e.target.value;
+        setSelectedCategory(newCatId);
+        setPage(1);
+
+        if (newCatId) {
+            searchParams.set('categoryId', newCatId);
+        } else {
+            searchParams.delete('categoryId');
+        }
+        navigate(`/catalog?${searchParams.toString()}`, { replace: true });
     };
 
     const handleAddToBasket = (productId: string) => {
@@ -99,12 +128,11 @@ export const CatalogView: FC = () => {
                     <div className="relative w-full sm:w-auto">
                         <select
                             value={selectedCategory}
-                            onChange={(e) => setSelectedCategory(e.target.value)}
-                            className="w-full sm:w-64 appearance-none px-4 py-3 bg-bg border-2 border-border rounded-xl text-text 
-                       focus:border-accent outline-none cursor-pointer hover:border-accent/50 transition-colors"
+                            onChange={handleCategoryChange}
+                            className="w-full sm:w-64 appearance-none px-4 py-3 bg-bg border-2 border-border rounded-xl text-text focus:border-accent outline-none cursor-pointer hover:border-accent/50 transition-colors"
                         >
                             <option value="">Все категории</option>
-                            {Array.isArray(categories) && categories.map(cat => (
+                            {categories.map(cat => (
                                 <option key={cat.id} value={cat.id}>{cat.name}</option>
                             ))}
                         </select>

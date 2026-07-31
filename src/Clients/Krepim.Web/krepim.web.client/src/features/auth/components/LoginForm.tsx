@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { FC, FormEvent } from 'react';
+import type { FC, SubmitEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 
@@ -9,7 +9,7 @@ export const LoginForm: FC = () => {
     const [password, setPassword] = useState('');
     const [validationError, setValidationError] = useState<string | null>(null);
 
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
         setValidationError(null);
 

@@ -1,29 +1,51 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import type { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useBasketStore } from '../store/basketStore';
 import { catalogApi } from '../../catalog/api/catalogApi';
-import type { BasketItem } from '../types/basket';
-import { useNavigate } from 'react-router-dom';
 import { useProfileStore } from '../../profile/store/profileStore';
-import type { Product } from '../../catalog/types/product';
 import { getImageUrl } from '@/utils/imageUtils';
+import type { BasketItem } from '../types/basket';
+import type { Product } from '../../catalog/types/product';
 
-const calculatePrice = (product: Product | any, qty: number): number => {
+interface PriceTier {
+    minQuantity?: number;
+    MinQuantity?: number;
+    amount?: number;
+    Amount?: number;
+    price?: { amount?: number };
+    Price?: { Amount?: number };
+}
+
+type ExtendedProduct = Partial<Product> & {
+    priceTiers?: string | PriceTier[];
+    PriceTiers?: string | PriceTier[];
+    price?: number;
+    Price?: number;
+};
+
+const calculatePrice = (product: ExtendedProduct | null | undefined, qty: number): number => {
     try {
         if (!product) return 0;
-        const tiers = typeof product.priceTiers === 'string' ? JSON.parse(product.priceTiers) : (product.priceTiers || []);
+
+        const rawTiers = product.priceTiers || product.PriceTiers;
+        const tiers: PriceTier[] = typeof rawTiers === 'string' ? JSON.parse(rawTiers) : (rawTiers || []);
+
         const basePrice = product.price ?? product.Price ?? 0;
 
         if (!Array.isArray(tiers) || tiers.length === 0) return basePrice;
 
-        const sorted = [...tiers].sort((a: any, b: any) => (b.minQuantity ?? b.MinQuantity ?? 0) - (a.minQuantity ?? a.MinQuantity ?? 0));
-        const active = sorted.find((t: any) => qty >= (t.minQuantity ?? t.MinQuantity ?? 0));
+        const sorted = [...tiers].sort((a, b) =>
+            (b.minQuantity ?? b.MinQuantity ?? 0) - (a.minQuantity ?? a.MinQuantity ?? 0)
+        );
+        const active = sorted.find((t) => qty >= (t.minQuantity ?? t.MinQuantity ?? 0));
 
         if (!active) return basePrice;
 
         const tierPrice = active.amount ?? active.Amount ?? active.price?.amount ?? active.Price?.Amount ?? 0;
         return tierPrice > 0 ? tierPrice : basePrice;
-    } catch (e) {
+    } catch (e: unknown) {
+        if (e instanceof Error) console.error('Ошибка расчета цены:', e.message);
         return product?.price ?? product?.Price ?? 0;
     }
 };
@@ -36,28 +58,40 @@ const BasketItemCard: FC<{
     const [localQty, setLocalQty] = useState<string>(String(item?.quantity ?? 1));
     const [isUpdating, setIsUpdating] = useState(false);
     const [enrichedData, setEnrichedData] = useState<Product | null>(null);
+    const [prevItemQuantity, setPrevItemQuantity] = useState(item?.quantity);
+
+    const updateQuantityRef = useRef(updateQuantity);
 
     useEffect(() => {
+        updateQuantityRef.current = updateQuantity;
+    }, [updateQuantity]);
+
+    if (item?.quantity !== prevItemQuantity) {
+        setPrevItemQuantity(item?.quantity);
         setLocalQty(String(item?.quantity ?? 1));
-    }, [item?.quantity]);
+    }
 
     useEffect(() => {
+        let isMounted = true;
         const isNameInvalid = !item.name || item.name === 'Неизвестный товар' || item.name === 'Без названия';
         const needsEnrichment = isNameInvalid || !item.imageUrl || !item.price || item.price === 0;
 
         if (needsEnrichment) {
             catalogApi.getById(item.productId)
                 .then(async (productInfo) => {
+                    if (!isMounted) return;
                     setEnrichedData(productInfo);
 
                     if (!item.price || item.price === 0) {
-                        const correctPrice = calculatePrice(productInfo, item.quantity);
-                        await updateQuantity(item.productId, item.quantity, correctPrice);
+                        const correctPrice = calculatePrice(productInfo as ExtendedProduct, item.quantity);
+                        await updateQuantityRef.current(item.productId, item.quantity, correctPrice);
                     }
                 })
                 .catch(err => console.error("Ошибка загрузки данных из каталога:", err));
         }
-    }, [item.productId]);
+
+        return () => { isMounted = false; };
+    }, [item.productId, item.name, item.imageUrl, item.price, item.quantity]);
 
     const handleSmartQuantityChange = async (delta: number, manualValue?: number) => {
         setIsUpdating(true);
@@ -74,11 +108,11 @@ const BasketItemCard: FC<{
 
             setLocalQty(String(newQty));
 
-            const newPrice = calculatePrice(productInfo, newQty);
+            const newPrice = calculatePrice(productInfo as ExtendedProduct, newQty);
             await updateQuantity(item.productId, newQty, newPrice);
 
-        } catch (error) {
-            console.error("Ошибка при умном пересчете:", error);
+        } catch (error: unknown) {
+            if (error instanceof Error) console.error("Ошибка при умном пересчете:", error.message);
             setLocalQty(String(item.quantity));
         } finally {
             setIsUpdating(false);
@@ -103,7 +137,7 @@ const BasketItemCard: FC<{
     const displayBrand = enrichedData?.brand || item?.brand || 'Без бренда';
     const displaySku = enrichedData?.sku || item?.sku || 'Н/Д';
     const displayImage = enrichedData?.imageUrls?.[0] || item?.imageUrl || null;
-    const safePrice = (item?.price && item.price > 0) ? item.price : (enrichedData ? calculatePrice(enrichedData, item.quantity) : 0);
+    const safePrice = (item?.price && item.price > 0) ? item.price : (enrichedData ? calculatePrice(enrichedData as ExtendedProduct, item.quantity) : 0);
     const safeQuantity = item?.quantity ?? 1;
     const itemTotal = safePrice * safeQuantity;
 
@@ -174,15 +208,19 @@ const BasketItemCard: FC<{
 export const BasketView: FC = () => {
     const { basket, fetchBasket, updateQuantity, removeItem, isLoading, checkout } = useBasketStore();
     const profile = useProfileStore(state => state.profile);
+    const fetchProfile = useProfileStore(state => state.fetchProfile);
     const navigate = useNavigate();
     const [isCheckingOut, setIsCheckingOut] = useState(false);
 
     useEffect(() => {
         void fetchBasket();
+    }, [fetchBasket]);
+
+    useEffect(() => {
         if (!profile) {
-            useProfileStore.getState().fetchProfile();
+            void fetchProfile();
         }
-    }, []);
+    }, [profile, fetchProfile]);
 
     const handleCheckout = async () => {
         if (!profile?.defaultAddress?.fullAddress) {
@@ -213,7 +251,7 @@ export const BasketView: FC = () => {
             } else {
                 navigate('/profile');
             }
-        } catch (error) {
+        } catch {
             alert('Не удалось оформить заказ. Попробуйте позже.');
         } finally {
             setIsCheckingOut(false);
@@ -237,9 +275,9 @@ export const BasketView: FC = () => {
             <h2 className="text-3xl font-bold text-text mb-8">Корзина</h2>
 
             <div className="space-y-4">
-                {basket.items.map((item) => (
+                {basket.items.map((item, index) => (
                     <BasketItemCard
-                        key={item?.productId || Math.random().toString()}
+                        key={item?.productId || `basket-item-${index}`}
                         item={item}
                         updateQuantity={updateQuantity}
                         removeItem={removeItem}
@@ -253,7 +291,7 @@ export const BasketView: FC = () => {
                     <div className="text-4xl font-extrabold text-accent">{totalSum.toLocaleString('ru-RU')} ₽</div>
                 </div>
                 <button
-                    onClick={handleCheckout}
+                    onClick={() => void handleCheckout()}
                     disabled={isCheckingOut || totalSum === 0}
                     className="w-full sm:w-auto px-10 py-4 bg-accent text-surface font-bold text-lg rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5 disabled:opacity-50"
                 >

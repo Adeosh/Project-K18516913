@@ -21,6 +21,14 @@ export interface CategoryDto {
     description: string;
 }
 
+interface RawManagedProductDto extends Omit<Partial<Product>, 'priceTiers'> {
+    id: string;
+    PriceTiers?: string | unknown[];
+    priceTiers?: string | unknown[];
+}
+
+type ManagerSearchResponse = RawManagedProductDto[] | { value?: RawManagedProductDto[]; items?: RawManagedProductDto[] };
+
 export const managerCatalogApi = {
     getCategories: async (): Promise<CategoryDto[]> => {
         const response = await apiClient.get<CategoryDto[]>('/api/products/categories');
@@ -54,17 +62,33 @@ export const managerCatalogApi = {
     },
 
     searchManagedProducts: async (searchTerm: string = '', page: number = 1): Promise<PagedList<Product>> => {
-        const response = await apiClient.get<any>('/api/products/manager/search', {
+        const response = await apiClient.get<ManagerSearchResponse>('/api/products/manager/search', {
             params: { term: searchTerm, page }
         });
 
         const data = response.data;
-        const items = Array.isArray(data) ? data : (data?.value || data?.items || []);
+        const rawItems = Array.isArray(data) ? data : (data?.value || data?.items || []);
+        const safeItems: Product[] = rawItems.map(item => ({
+            id: item.id,
+            sku: item.sku || 'N/A',
+            name: item.name || 'Без названия',
+            description: item.description || '',
+            price: item.price || 0,
+            brand: item.brand || 'Крепим.PRO',
+            imageUrls: item.imageUrls || [],
+            attributes: item.attributes || {},
+            isActive: item.isActive ?? true,
+            standard: item.standard,
+            salesUnit: item.salesUnit ?? 1,
+            salesStep: item.salesStep ?? 1,
+            priceTiers: (item.priceTiers ?? item.PriceTiers ?? []) as Product['priceTiers']
+        }));
+
         return {
-            items: items,
+            items: safeItems,
             page: page,
             pageSize: 20,
-            totalCount: items.length,
+            totalCount: safeItems.length,
             hasNextPage: false
         };
     },

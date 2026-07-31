@@ -17,6 +17,15 @@ export default defineConfig([
     ],
     languageOptions: {
       globals: globals.browser,
-    },
+      },
+      rules: {
+          '@typescript-eslint/no-explicit-any': 'error', // запрет на any
+          '@typescript-eslint/ban-ts-comment': 'error', // запрет на комментарии вроде @ts-ignore
+          '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }], // переменная или импорт объявлены, но не используются
+          'no-console': ['warn', { allow: ['warn', 'error'] }], // запрет на console.log
+          'eqeqeq': ['error', 'always'], // заставляет везде использовать строгое равенство
+          'react-hooks/exhaustive-deps': 'error', // повышаем warn до error
+          'react-refresh/only-export-components': ['warn', { allowConstantExport: true }]
+      },
   },
 ])

@@ -1,12 +1,29 @@
-import { useEffect, useState } from 'react';
-import type { FC, FormEvent } from 'react';
+import { useState, useEffect } from 'react';
+import type { FC, SubmitEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { useProfileStore } from '../store/profileStore';
 import { AddressMapPicker } from '../../../components/ui/AddressMapPicker';
 import { profileApi } from '../api/profileApi';
 import { orderApi, type OrderDto } from '../../ordering/api/orderApi';
+import { extractErrorMessage } from '@/utils/errorUtils';
 
 type Tab = 'profile' | 'orders';
+
+const formatPhoneNumber = (value: string): string => {
+    const digits = value.replace(/\D/g, '');
+    let cleaned = digits;
+    if (cleaned.startsWith('7') || cleaned.startsWith('8')) {
+        cleaned = cleaned.slice(1);
+    }
+
+    let formatted = '+7';
+    if (cleaned.length > 0) formatted += ` (${cleaned.slice(0, 3)}`;
+    if (cleaned.length > 3) formatted += `) ${cleaned.slice(3, 6)}`;
+    if (cleaned.length > 6) formatted += `-${cleaned.slice(6, 8)}`;
+    if (cleaned.length > 8) formatted += `-${cleaned.slice(8, 10)}`;
+
+    return digits.length === 0 ? '' : formatted;
+};
 
 export const ProfileView: FC = () => {
     const { profile, fetchProfile, updateProfile, isLoading } = useProfileStore();
@@ -33,6 +50,7 @@ export const ProfileView: FC = () => {
 
     const [orders, setOrders] = useState<OrderDto[]>([]);
     const [isOrdersLoading, setIsOrdersLoading] = useState(false);
+
     const orderStatusMap: Record<string, { label: string, color: string }> = {
         'Pending': { label: 'Ожидает обработки', color: 'bg-orange-100 text-orange-700 border-orange-200' },
         'AwaitingValidation': { label: 'Проверка остатков', color: 'bg-blue-100 text-blue-700 border-blue-200' },
@@ -43,66 +61,58 @@ export const ProfileView: FC = () => {
 
     useEffect(() => {
         void fetchProfile();
-    }, []);
+    }, [fetchProfile]);
 
-    useEffect(() => {
+    const [prevProfile, setPrevProfile] = useState(profile);
+    if (profile !== prevProfile) {
+        setPrevProfile(profile);
         if (profile) {
             setEmail(profile.email || '');
-            if (profile.phoneNumber) {
-                handlePhoneChange(profile.phoneNumber);
-            } else {
-                setPhone('');
-            }
+            setPhone(profile.phoneNumber ? formatPhoneNumber(profile.phoneNumber) : '');
             setFullAddress(profile.defaultAddress?.fullAddress || '');
             setLat(profile.defaultAddress?.latitude || null);
             setLng(profile.defaultAddress?.longitude || null);
             setFlat(profile.defaultAddress?.flat || '');
         }
-    }, [profile]);
+    }
 
     useEffect(() => {
+        let isMounted = true;
+
         if (activeTab === 'orders') {
             const fetchOrders = async () => {
                 setIsOrdersLoading(true);
                 try {
                     const data = await orderApi.getMyOrders();
-                    setOrders(data);
-                } catch (err) {
-                    console.error('Ошибка загрузки заказов:', err);
+                    if (isMounted) setOrders(data);
+                } catch (err: unknown) {
+                    console.error('Ошибка загрузки заказов:', extractErrorMessage(err, 'Не удалось загрузить заказы'));
                 } finally {
-                    setIsOrdersLoading(false);
+                    if (isMounted) setIsOrdersLoading(false);
                 }
             };
             void fetchOrders();
         }
+
+        return () => { isMounted = false; };
     }, [activeTab]);
 
     const handlePhoneChange = (value: string) => {
-        const digits = value.replace(/\D/g, '');
-        let cleaned = digits;
-        if (cleaned.startsWith('7') || cleaned.startsWith('8')) {
-            cleaned = cleaned.slice(1);
-        }
-
-        let formatted = '+7';
-        if (cleaned.length > 0) formatted += ` (${cleaned.slice(0, 3)}`;
-        if (cleaned.length > 3) formatted += `) ${cleaned.slice(3, 6)}`;
-        if (cleaned.length > 6) formatted += `-${cleaned.slice(6, 8)}`;
-        if (cleaned.length > 8) formatted += `-${cleaned.slice(8, 10)}`;
-
-        setPhone(digits.length === 0 ? '' : formatted);
+        setPhone(formatPhoneNumber(value));
     };
 
-    const handleSaveProfile = async (e: FormEvent) => {
-        e.preventDefault();
+    const handleSaveProfile = async (e?: SubmitEvent) => {
+        if (e) e.preventDefault();
         setProfileError(null);
         setIsProfileSuccess(false);
 
         try {
+            const rawPhone = phone ? phone.replace(/[^\d+]/g, '') : null;
+
             await updateProfile({
                 email: email,
-                phoneNumber: phone || null,
-                defaultAddress: fullAddress && lat && lng ? {
+                phoneNumber: rawPhone,
+                defaultAddress: fullAddress && lat !== null && lng !== null ? {
                     fullAddress: fullAddress,
                     latitude: lat,
                     longitude: lng,
@@ -111,8 +121,8 @@ export const ProfileView: FC = () => {
             });
             setIsProfileSuccess(true);
             setTimeout(() => setIsProfileSuccess(false), 3000);
-        } catch (err: any) {
-            setProfileError(err.message || 'Ошибка сохранения профиля');
+        } catch (err: unknown) {
+            setProfileError(extractErrorMessage(err, 'Ошибка сохранения профиля'));
         }
     };
 
@@ -120,7 +130,7 @@ export const ProfileView: FC = () => {
     const isPasswordsMatch = newPassword === confirmPassword;
     const canSubmitPassword = oldPassword && isNewPasswordValidLength && isPasswordsMatch;
 
-    const handleChangePassword = async (e: FormEvent) => {
+    const handleChangePassword = async (e: SubmitEvent) => {
         e.preventDefault();
         if (!canSubmitPassword) return;
 
@@ -139,8 +149,8 @@ export const ProfileView: FC = () => {
                 setIsPasswordSuccess(false);
                 setIsPasswordModalOpen(false);
             }, 2000);
-        } catch (err: any) {
-            setPasswordError(err.message);
+        } catch (err: unknown) {
+            setPasswordError(extractErrorMessage(err, 'Ошибка при смене пароля'));
         } finally {
             setIsPasswordLoading(false);
         }
@@ -203,6 +213,7 @@ export const ProfileView: FC = () => {
 
                                         <div className="pt-4">
                                             <button
+                                                type="button"
                                                 onClick={() => setIsPasswordModalOpen(true)}
                                                 className="text-sm font-bold text-text border border-border px-4 py-2.5 rounded-xl hover:border-accent hover:text-accent transition-all"
                                             >
@@ -218,10 +229,10 @@ export const ProfileView: FC = () => {
                                 <p className="text-sm text-text-muted">Отметьте ваш дом на карте. Этот адрес будет использоваться при оформлении заказов.</p>
 
                                 <AddressMapPicker
-                                    initialLocation={profile?.defaultAddress?.fullAddress ? {
+                                    initialLocation={profile?.defaultAddress?.fullAddress && profile.defaultAddress.latitude !== undefined && profile.defaultAddress.longitude !== undefined ? {
                                         fullAddress: profile.defaultAddress.fullAddress,
-                                        latitude: profile.defaultAddress.latitude!,
-                                        longitude: profile.defaultAddress.longitude!
+                                        latitude: profile.defaultAddress.latitude,
+                                        longitude: profile.defaultAddress.longitude
                                     } : null}
                                     onChange={(loc) => {
                                         setFullAddress(loc.fullAddress);
@@ -244,7 +255,8 @@ export const ProfileView: FC = () => {
                                 <div className="pt-6">
                                     {profileError && <p className="text-error font-medium mb-3 text-sm">{profileError}</p>}
                                     <button
-                                        onClick={handleSaveProfile}
+                                        type="button"
+                                        onClick={() => void handleSaveProfile()}
                                         disabled={isLoading}
                                         className="w-full py-4 bg-accent text-surface font-bold text-lg rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] transition-all disabled:opacity-70 disabled:hover:scale-100"
                                     >
@@ -313,7 +325,6 @@ export const ProfileView: FC = () => {
                             )}
                         </div>
                     )}
-
                 </main>
             </div>
 
@@ -321,6 +332,7 @@ export const ProfileView: FC = () => {
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-text/20 backdrop-blur-sm transition-opacity">
                     <div className="bg-surface w-full max-w-md rounded-3xl shadow-2xl border border-border p-6 sm:p-8 relative">
                         <button
+                            type="button"
                             onClick={() => setIsPasswordModalOpen(false)}
                             className="absolute top-5 right-5 text-text-muted hover:text-error transition-colors"
                         >
@@ -340,7 +352,7 @@ export const ProfileView: FC = () => {
                             </div>
                         )}
 
-                        <form onSubmit={handleChangePassword} className="space-y-4">
+                        <form onSubmit={(e) => void handleChangePassword(e)} className="space-y-4">
                             <div>
                                 <label className="block text-sm font-semibold text-text mb-1.5">Текущий пароль</label>
                                 <input
