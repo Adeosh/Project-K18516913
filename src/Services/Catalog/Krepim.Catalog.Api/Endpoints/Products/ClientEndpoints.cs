@@ -26,7 +26,8 @@ namespace Krepim.Catalog.Api.Endpoints.Products
                     Page: page ?? 1,
                     PageSize: 20,
                     CategoryId: categoryId), ct);
-            });
+            })
+            .RequireRateLimiting("PublicSearchLimit");
 
             group.MapGet("/{id:guid}", async (Guid id, [FromServices] ISender sender, CancellationToken ct) =>
             {

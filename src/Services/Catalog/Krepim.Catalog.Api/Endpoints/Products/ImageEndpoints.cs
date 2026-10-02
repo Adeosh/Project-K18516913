@@ -38,7 +38,8 @@ namespace Krepim.Catalog.Api.Endpoints.Products
             .WithName("UploadProductImages")
             .WithSummary("Загрузить галерею изображений товара в MinIO")
             .RequireAuthorization(policy => policy.RequireRole("Manager"))
-            .DisableAntiforgery();
+            .DisableAntiforgery()
+            .RequireRateLimiting("ImageUploadLimit");
         }
     }
 }

@@ -28,6 +28,8 @@ namespace Krepim.Ordering.Infrastructure
                 x.UsingRabbitMq((context, cfg) =>
                 {
                     cfg.Host(configuration.GetConnectionString("rabbitmq"));
+                    cfg.PrefetchCount = 20; // не более 20 сообщений одновременно на один инстанс
+                    cfg.UseConcurrencyLimit(20);
                     cfg.ConfigureEndpoints(context);
                 });
             });
